@@ -173,9 +173,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 					<?php if ( $tcm_title || $tcm_body || $tcm_image ) : ?>
 						<article class="ws-modality">
 							<?php if ( $tcm_image && ! empty( $tcm_image['url'] ) ) : ?>
-								<div class="ws-modality__image">
-									<img src="<?php echo esc_url( $tcm_image['sizes']['wellspring-card'] ?? $tcm_image['url'] ); ?>" alt="<?php echo esc_attr( $tcm_image['alt'] ?: $tcm_title ); ?>" loading="lazy" />
-								</div>
+								<div class="ws-modality__image" style="background-image: url('<?php echo esc_url( $tcm_image['sizes']['wellspring-card'] ?? $tcm_image['url'] ); ?>');" role="img" aria-label="<?php echo esc_attr( $tcm_image['alt'] ?: $tcm_title ); ?>"></div>
 							<?php endif; ?>
 							<?php if ( $tcm_title ) : ?>
 								<h3 class="ws-modality__title"><?php echo esc_html( $tcm_title ); ?></h3>
@@ -189,9 +187,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 					<?php if ( $acu_title || $acu_body || $acu_image ) : ?>
 						<article class="ws-modality">
 							<?php if ( $acu_image && ! empty( $acu_image['url'] ) ) : ?>
-								<div class="ws-modality__image">
-									<img src="<?php echo esc_url( $acu_image['sizes']['wellspring-card'] ?? $acu_image['url'] ); ?>" alt="<?php echo esc_attr( $acu_image['alt'] ?: $acu_title ); ?>" loading="lazy" />
-								</div>
+								<div class="ws-modality__image" style="background-image: url('<?php echo esc_url( $acu_image['sizes']['wellspring-card'] ?? $acu_image['url'] ); ?>');" role="img" aria-label="<?php echo esc_attr( $acu_image['alt'] ?: $acu_title ); ?>"></div>
 							<?php endif; ?>
 							<?php if ( $acu_title ) : ?>
 								<h3 class="ws-modality__title"><?php echo esc_html( $acu_title ); ?></h3>
