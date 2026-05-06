@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.6.0
+Version: 0.6.1
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -304,6 +304,74 @@ strong, b { font-weight: 500; }
 	border-bottom-color: var(--ws-spring);
 }
 
+/* Parent items with sub-menu: chevron + dropdown */
+.main-navigation .menu-item-has-children {
+	position: relative;
+}
+
+.main-navigation .menu-item-has-children > a::after {
+	content: "";
+	display: inline-block;
+	width: 6px;
+	height: 6px;
+	border-right: 1.5px solid currentColor;
+	border-bottom: 1.5px solid currentColor;
+	transform: rotate(45deg) translateY(-2px);
+	margin-left: 8px;
+	transition: transform 200ms ease;
+}
+
+.main-navigation .menu-item-has-children:hover > a::after,
+.main-navigation .menu-item-has-children:focus-within > a::after {
+	transform: rotate(-135deg) translateY(2px);
+}
+
+.main-navigation .sub-menu {
+	position: absolute;
+	top: 100%;
+	left: -1rem;
+	min-width: 240px;
+	margin: var(--ws-space-2) 0 0;
+	padding: var(--ws-space-2) 0;
+	list-style: none;
+	background: var(--ws-snow);
+	border: 1px solid var(--ws-border);
+	border-radius: var(--ws-radius);
+	box-shadow: 0 12px 32px -16px rgba(15, 77, 51, 0.18);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-4px);
+	transition: opacity 180ms ease, visibility 180ms ease, transform 180ms ease;
+	z-index: 60;
+}
+
+.main-navigation .menu-item-has-children:hover > .sub-menu,
+.main-navigation .menu-item-has-children:focus-within > .sub-menu {
+	opacity: 1;
+	visibility: visible;
+	transform: translateY(0);
+}
+
+.main-navigation .sub-menu li {
+	margin: 0;
+}
+
+.main-navigation .sub-menu a {
+	display: block;
+	padding: var(--ws-space-2) var(--ws-space-4);
+	font-size: var(--ws-text-sm);
+	font-weight: 400;
+	color: var(--ws-char);
+	border-bottom: none;
+	white-space: nowrap;
+}
+
+.main-navigation .sub-menu a:hover {
+	background: var(--ws-mist);
+	color: var(--ws-spring);
+	border-bottom: none;
+}
+
 .menu-toggle {
 	display: none;
 	background: none;
@@ -329,6 +397,21 @@ strong, b { font-weight: 500; }
 	}
 	.main-navigation.toggled > div > ul {
 		display: flex;
+	}
+	/* On mobile, sub-menu expands inline, not as floating dropdown */
+	.main-navigation .sub-menu {
+		position: static;
+		opacity: 1;
+		visibility: visible;
+		transform: none;
+		box-shadow: none;
+		border: none;
+		background: transparent;
+		padding-left: var(--ws-space-4);
+		padding-top: 0;
+	}
+	.main-navigation .menu-item-has-children > a::after {
+		display: none;
 	}
 }
 

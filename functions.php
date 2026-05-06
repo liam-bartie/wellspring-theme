@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.6.0' );
+	define( 'WELLSPRING_VERSION', '0.6.1' );
 }
 
 /**
