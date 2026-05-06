@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.5.0
+Version: 0.6.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -488,7 +488,6 @@ input[type="submit"]:hover {
    ========================================================= */
 .entry-header {
 	margin-bottom: var(--ws-space-8);
-	max-width: var(--ws-container-prose);
 }
 
 .entry-title { margin: 0 0 var(--ws-space-3); }
@@ -498,13 +497,10 @@ input[type="submit"]:hover {
 	color: var(--ws-text-muted);
 }
 
-.entry-content {
-	max-width: var(--ws-container-prose);
-}
-
 .entry-content > * + * { margin-top: var(--ws-space-4); }
-.entry-content h2 { margin-top: var(--ws-space-12); }
-.entry-content h3 { margin-top: var(--ws-space-8); }
+.entry-content h2 { margin-top: var(--ws-space-12); font-size: var(--ws-text-2xl); }
+.entry-content h3 { margin-top: var(--ws-space-8); font-size: var(--ws-text-xl); }
+.entry-content h4 { margin-top: var(--ws-space-6); font-size: var(--ws-text-lg); }
 
 .entry-content blockquote {
 	border-left: 3px solid var(--ws-spring);
@@ -884,4 +880,95 @@ label {
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: var(--ws-space-3);
+}
+
+/* =========================================================
+   12. Page template (default page.php)
+   ========================================================= */
+.ws-page-header {
+	padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.ws-page-header__crumb {
+	margin-bottom: var(--ws-space-4);
+}
+
+.ws-page-header__crumb a {
+	color: var(--ws-forest);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.ws-page-header__crumb a::before {
+	content: "←";
+	display: inline-block;
+	transition: transform 150ms ease;
+}
+
+.ws-page-header__crumb a:hover::before {
+	transform: translateX(-3px);
+}
+
+.ws-page-header__title {
+	font-size: clamp(2.25rem, 1.5rem + 3vw, 4rem);
+	letter-spacing: -0.035em;
+	line-height: 1.05;
+	margin: 0;
+}
+
+.ws-page-header__lede {
+	font-size: var(--ws-text-lg);
+	color: var(--ws-text-muted);
+	margin: var(--ws-space-4) 0 0;
+	line-height: 1.5;
+	max-width: 56ch;
+}
+
+.ws-page-body {
+	padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.ws-page-body .entry-content {
+	font-size: var(--ws-text-base);
+	line-height: 1.7;
+}
+
+.ws-page-body .entry-content > h2:first-child,
+.ws-page-body .entry-content > h3:first-child {
+	margin-top: 0;
+}
+
+/* Sibling nav at bottom of sub-pages */
+.ws-sibling-nav {
+	margin-top: clamp(3rem, 6vw, 5rem);
+	padding-top: var(--ws-space-8);
+	border-top: 1px solid var(--ws-border);
+}
+
+.ws-sibling-nav .eyebrow {
+	margin-bottom: var(--ws-space-4);
+}
+
+.ws-sibling-nav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ws-space-2) var(--ws-space-6);
+}
+
+.ws-sibling-nav__list a {
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-char);
+	border-bottom: 1px solid transparent;
+	padding-block: var(--ws-space-1);
+	transition: border-color 150ms ease, color 150ms ease;
+}
+
+.ws-sibling-nav__list a:hover {
+	color: var(--ws-spring);
+	border-bottom-color: var(--ws-spring);
 }
