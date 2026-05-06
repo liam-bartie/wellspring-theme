@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+*.zip
+*.tar.gz
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+
+# Logs
+*.log
+
+# WordPress export tests
+wp-content/
+wp-config*.php
