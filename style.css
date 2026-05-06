@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.4.0
+Version: 0.5.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -176,7 +176,7 @@ strong, b { font-weight: 500; }
 	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.2em;
-	color: var(--ws-spring);
+	color: var(--ws-forest);
 	margin-bottom: var(--ws-space-3);
 }
 
@@ -223,25 +223,24 @@ strong, b { font-weight: 500; }
 	border-bottom: 1px solid var(--ws-border);
 }
 
-.site-header > .site-branding,
-.site-header > .main-navigation {
+.site-header__inner {
 	max-width: var(--ws-container);
 	margin-inline: auto;
-	padding-inline: clamp(1rem, 4vw, 2.5rem);
+	padding: var(--ws-space-4) clamp(1rem, 4vw, 2.5rem);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--ws-space-6);
+	flex-wrap: wrap;
 }
 
 .site-branding {
-	padding-top: var(--ws-space-6);
-	display: flex;
-	align-items: baseline;
-	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: var(--ws-space-3);
+	flex: 0 0 auto;
 }
 
 .site-title {
 	font-family: var(--ws-font-display);
-	font-size: var(--ws-text-2xl);
+	font-size: var(--ws-text-xl);
 	font-weight: 500;
 	margin: 0;
 	line-height: 1;
@@ -253,13 +252,7 @@ strong, b { font-weight: 500; }
 }
 
 .site-description {
-	font-family: var(--ws-font-body);
-	font-size: var(--ws-text-xs);
-	font-weight: 500;
-	color: var(--ws-spring);
-	margin: 0;
-	letter-spacing: 0.18em;
-	text-transform: uppercase;
+	display: none;
 }
 
 .custom-logo-link {
@@ -267,13 +260,22 @@ strong, b { font-weight: 500; }
 }
 
 .custom-logo {
-	max-height: 56px;
+	max-height: 48px;
 	width: auto;
 }
 
 /* Navigation */
 .main-navigation {
-	padding-block: var(--ws-space-3) var(--ws-space-4);
+	flex: 1 1 auto;
+	display: flex;
+	justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+	.main-navigation {
+		flex: 1 1 100%;
+		justify-content: flex-start;
+	}
 }
 
 .main-navigation ul {
@@ -599,7 +601,7 @@ label {
 }
 
 .ws-hero .eyebrow {
-	color: var(--ws-spring);
+	color: var(--ws-forest);
 	margin-bottom: var(--ws-space-6);
 }
 
@@ -710,7 +712,7 @@ label {
 .ws-card__cta {
 	font-size: var(--ws-text-sm);
 	font-weight: 500;
-	color: var(--ws-spring);
+	color: var(--ws-forest);
 	display: inline-flex;
 	align-items: center;
 	gap: 0.4em;
@@ -762,14 +764,12 @@ label {
 }
 
 .ws-practitioner__credential {
-	font-size: var(--ws-text-sm);
-	color: var(--ws-spring);
-	font-weight: 500;
-	letter-spacing: 0.04em;
-	margin: 0 0 var(--ws-space-6);
-	text-transform: uppercase;
-	letter-spacing: 0.12em;
 	font-size: var(--ws-text-xs);
+	color: var(--ws-forest);
+	font-weight: 500;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	margin: 0 0 var(--ws-space-6);
 }
 
 .ws-practitioner__body h2 {
