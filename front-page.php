@@ -36,8 +36,10 @@ $pract_portrait    = function_exists( 'get_field' ) ? get_field( 'practitioner_p
 
 $mod_eyebrow       = ws_field( 'modalities_eyebrow', 'Our practice' );
 $mod_title         = ws_field( 'modalities_title', 'Two ancient modalities, applied with modern care.' );
+$tcm_image         = function_exists( 'get_field' ) ? get_field( 'tcm_image' ) : null;
 $tcm_title         = ws_field( 'tcm_title', 'What is Traditional Chinese Medicine (TCM)?' );
 $tcm_body          = ws_field( 'tcm_body', '' );
+$acu_image         = function_exists( 'get_field' ) ? get_field( 'acupuncture_image' ) : null;
 $acu_title         = ws_field( 'acupuncture_title', 'What is Acupuncture?' );
 $acu_body          = ws_field( 'acupuncture_body', '' );
 
@@ -168,8 +170,13 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 				<?php endif; ?>
 
 				<div class="ws-modalities__grid">
-					<?php if ( $tcm_title || $tcm_body ) : ?>
+					<?php if ( $tcm_title || $tcm_body || $tcm_image ) : ?>
 						<article class="ws-modality">
+							<?php if ( $tcm_image && ! empty( $tcm_image['url'] ) ) : ?>
+								<div class="ws-modality__image">
+									<img src="<?php echo esc_url( $tcm_image['sizes']['wellspring-card'] ?? $tcm_image['url'] ); ?>" alt="<?php echo esc_attr( $tcm_image['alt'] ?: $tcm_title ); ?>" loading="lazy" />
+								</div>
+							<?php endif; ?>
 							<?php if ( $tcm_title ) : ?>
 								<h3 class="ws-modality__title"><?php echo esc_html( $tcm_title ); ?></h3>
 							<?php endif; ?>
@@ -179,8 +186,13 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 						</article>
 					<?php endif; ?>
 
-					<?php if ( $acu_title || $acu_body ) : ?>
+					<?php if ( $acu_title || $acu_body || $acu_image ) : ?>
 						<article class="ws-modality">
+							<?php if ( $acu_image && ! empty( $acu_image['url'] ) ) : ?>
+								<div class="ws-modality__image">
+									<img src="<?php echo esc_url( $acu_image['sizes']['wellspring-card'] ?? $acu_image['url'] ); ?>" alt="<?php echo esc_attr( $acu_image['alt'] ?: $acu_title ); ?>" loading="lazy" />
+								</div>
+							<?php endif; ?>
 							<?php if ( $acu_title ) : ?>
 								<h3 class="ws-modality__title"><?php echo esc_html( $acu_title ); ?></h3>
 							<?php endif; ?>

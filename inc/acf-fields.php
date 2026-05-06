@@ -214,6 +214,15 @@ add_action(
 						'default_value' => 'Two ancient modalities, applied with modern care.',
 					),
 					array(
+						'key'           => 'field_tcm_image',
+						'name'          => 'tcm_image',
+						'label'         => 'Block 1 — Image',
+						'instructions'  => 'Optional image displayed above the heading. Landscape works best (3:2 ratio).',
+						'type'          => 'image',
+						'return_format' => 'array',
+						'preview_size'  => 'medium',
+					),
+					array(
 						'key'           => 'field_tcm_title',
 						'name'          => 'tcm_title',
 						'label'         => 'Block 1 — Heading',
@@ -229,6 +238,15 @@ add_action(
 						'toolbar'       => 'basic',
 						'media_upload'  => 0,
 						'default_value' => "Traditional Chinese Medicine (TCM) is a comprehensive healthcare system based on real-world clinical experience. For over 2,000 years, TCM has been used to diagnose, treat and prevent illness, harnessing your body's powers of self-healing.\n\nThe World Health Organization (WHO) recognizes TCM as a formal healthcare system and includes its principles in the International Classification of Diseases (ICD-11). Additionally, the National Institutes of Health (NIH) acknowledges it as a vital complementary and alternative medicine (CAM) modality.\n\nAt Wellspring Health Acupuncture & TCM Clinic, our TCM practice emphasizes acupuncture and herbal medicine as effective therapies to support your journey for a healthy and happy life.",
+					),
+					array(
+						'key'           => 'field_acu_image',
+						'name'          => 'acupuncture_image',
+						'label'         => 'Block 2 — Image',
+						'instructions'  => 'Optional image displayed above the heading. Landscape works best (3:2 ratio).',
+						'type'          => 'image',
+						'return_format' => 'array',
+						'preview_size'  => 'medium',
 					),
 					array(
 						'key'           => 'field_acu_title',

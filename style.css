@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.9.0
+Version: 0.9.1
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -976,6 +976,21 @@ label {
 
 .ws-modality {
 	margin: 0;
+}
+
+.ws-modality__image {
+	aspect-ratio: 3 / 2;
+	overflow: hidden;
+	border-radius: var(--ws-radius-lg);
+	margin: 0 0 var(--ws-space-6);
+	background: var(--ws-mist);
+}
+
+.ws-modality__image img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 .ws-modality__title {
