@@ -192,6 +192,62 @@ add_action(
 						'preview_size'  => 'medium',
 					),
 
+					// MODALITIES — TCM + Acupuncture explainers
+					array(
+						'key'   => 'field_mod_tab',
+						'label' => 'Our practice',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_mod_eyebrow',
+						'name'          => 'modalities_eyebrow',
+						'label'         => 'Section eyebrow (optional)',
+						'instructions'  => 'Leave blank to skip the section header.',
+						'type'          => 'text',
+						'default_value' => 'Our practice',
+					),
+					array(
+						'key'           => 'field_mod_title',
+						'name'          => 'modalities_title',
+						'label'         => 'Section headline (optional)',
+						'type'          => 'text',
+						'default_value' => 'Two ancient modalities, applied with modern care.',
+					),
+					array(
+						'key'           => 'field_tcm_title',
+						'name'          => 'tcm_title',
+						'label'         => 'Block 1 — Heading',
+						'type'          => 'text',
+						'default_value' => 'What is Traditional Chinese Medicine (TCM)?',
+					),
+					array(
+						'key'           => 'field_tcm_body',
+						'name'          => 'tcm_body',
+						'label'         => 'Block 1 — Body',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'visual',
+						'toolbar'       => 'basic',
+						'media_upload'  => 0,
+						'default_value' => "Traditional Chinese Medicine (TCM) is a comprehensive healthcare system based on real-world clinical experience. For over 2,000 years, TCM has been used to diagnose, treat and prevent illness, harnessing your body's powers of self-healing.\n\nThe World Health Organization (WHO) recognizes TCM as a formal healthcare system and includes its principles in the International Classification of Diseases (ICD-11). Additionally, the National Institutes of Health (NIH) acknowledges it as a vital complementary and alternative medicine (CAM) modality.\n\nAt Wellspring Health Acupuncture & TCM Clinic, our TCM practice emphasizes acupuncture and herbal medicine as effective therapies to support your journey for a healthy and happy life.",
+					),
+					array(
+						'key'           => 'field_acu_title',
+						'name'          => 'acupuncture_title',
+						'label'         => 'Block 2 — Heading',
+						'type'          => 'text',
+						'default_value' => 'What is Acupuncture?',
+					),
+					array(
+						'key'           => 'field_acu_body',
+						'name'          => 'acupuncture_body',
+						'label'         => 'Block 2 — Body',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'visual',
+						'toolbar'       => 'basic',
+						'media_upload'  => 0,
+						'default_value' => "Acupuncture is a core therapy within Traditional Chinese Medicine that supports the body's natural healing response by restoring balance. Your body has a complex network of energy pathways that can be thrown out of balance by internal or external factors.\n\nAt Wellspring Health, your acupuncturist assesses these patterns and helps restore healthier flow by stimulating specific acupuncture points, often by activating areas that may seem unrelated to where symptoms are felt. After the main imbalance is addressed, Chinese herbal medicine is often recommended to help support and stabilize your progress and cure.\n\nAcupuncture is recognized by the National Institutes of Health (NIH) and the World Health Organization (WHO) as an effective treatment for a variety of health conditions.",
+					),
+
 					// TESTIMONIALS
 					array(
 						'key'   => 'field_testi_tab',

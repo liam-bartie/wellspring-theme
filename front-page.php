@@ -34,6 +34,13 @@ $pract_link_label  = ws_field( 'practitioner_link_label', 'Read her full story' 
 $pract_link_url    = ws_field( 'practitioner_link_url', '/about/' );
 $pract_portrait    = function_exists( 'get_field' ) ? get_field( 'practitioner_portrait' ) : null;
 
+$mod_eyebrow       = ws_field( 'modalities_eyebrow', 'Our practice' );
+$mod_title         = ws_field( 'modalities_title', 'Two ancient modalities, applied with modern care.' );
+$tcm_title         = ws_field( 'tcm_title', 'What is Traditional Chinese Medicine (TCM)?' );
+$tcm_body          = ws_field( 'tcm_body', '' );
+$acu_title         = ws_field( 'acupuncture_title', 'What is Acupuncture?' );
+$acu_body          = ws_field( 'acupuncture_body', '' );
+
 $testi_eyebrow     = ws_field( 'testimonials_eyebrow', 'Patient stories' );
 $testi_title       = ws_field( 'testimonials_title', 'The work, in their words.' );
 
@@ -144,6 +151,50 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 	</section>
 
 	<?php
+	// Modalities section — only render if either block has a heading.
+	if ( $tcm_title || $acu_title ) :
+		?>
+		<section class="ws-section ws-modalities">
+			<div class="ws-container">
+				<?php if ( $mod_eyebrow || $mod_title ) : ?>
+					<header class="ws-section-header ws-section-header--center">
+						<?php if ( $mod_eyebrow ) : ?>
+							<p class="eyebrow"><?php echo esc_html( $mod_eyebrow ); ?></p>
+						<?php endif; ?>
+						<?php if ( $mod_title ) : ?>
+							<h2><?php echo esc_html( $mod_title ); ?></h2>
+						<?php endif; ?>
+					</header>
+				<?php endif; ?>
+
+				<div class="ws-modalities__grid">
+					<?php if ( $tcm_title || $tcm_body ) : ?>
+						<article class="ws-modality">
+							<?php if ( $tcm_title ) : ?>
+								<h3 class="ws-modality__title"><?php echo esc_html( $tcm_title ); ?></h3>
+							<?php endif; ?>
+							<?php if ( $tcm_body ) : ?>
+								<div class="ws-modality__body"><?php echo wp_kses_post( wpautop( $tcm_body ) ); ?></div>
+							<?php endif; ?>
+						</article>
+					<?php endif; ?>
+
+					<?php if ( $acu_title || $acu_body ) : ?>
+						<article class="ws-modality">
+							<?php if ( $acu_title ) : ?>
+								<h3 class="ws-modality__title"><?php echo esc_html( $acu_title ); ?></h3>
+							<?php endif; ?>
+							<?php if ( $acu_body ) : ?>
+								<div class="ws-modality__body"><?php echo wp_kses_post( wpautop( $acu_body ) ); ?></div>
+							<?php endif; ?>
+						</article>
+					<?php endif; ?>
+				</div>
+			</div>
+		</section>
+		<?php
+	endif;
+
 	// Only show testimonials section if at least one testimonial has a quote.
 	$testi_1_quote = ws_field( 'testimonial_1_quote' );
 	$testi_2_quote = ws_field( 'testimonial_2_quote' );
