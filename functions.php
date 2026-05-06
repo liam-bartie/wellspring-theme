@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.2.0' );
+	define( 'WELLSPRING_VERSION', '0.3.0' );
 }
 
 /**
@@ -138,10 +138,10 @@ add_action( 'widgets_init', 'wellspring_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wellspring_scripts() {
-	// Brand fonts: Fraunces (display serif) + Inter (UI sans).
+	// Brand font: Bricolage Grotesque (variable, single family for display + body).
 	wp_enqueue_style(
 		'wellspring-fonts',
-		'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap',
+		'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&display=swap',
 		array(),
 		null
 	);
