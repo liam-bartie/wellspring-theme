@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.3.0
+Version: 0.4.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -587,3 +587,301 @@ label {
 .aligncenter { display: block; margin: 0 auto var(--ws-space-4); }
 .alignwide, .alignfull { width: 100%; }
 .clear:after { content: ""; display: table; clear: both; }
+
+/* =========================================================
+   11. Home page components
+   ========================================================= */
+
+/* Hero */
+.ws-hero {
+	padding-block: clamp(4rem, 9vw, 7.5rem) clamp(3rem, 6vw, 5rem);
+	text-align: center;
+}
+
+.ws-hero .eyebrow {
+	color: var(--ws-spring);
+	margin-bottom: var(--ws-space-6);
+}
+
+.ws-hero__title {
+	font-size: clamp(2.5rem, 1.5rem + 4.5vw, 5rem);
+	letter-spacing: -0.04em;
+	line-height: 0.98;
+	margin: 0 0 var(--ws-space-6);
+	max-width: 18ch;
+	margin-inline: auto;
+}
+
+.ws-hero__lede {
+	font-size: var(--ws-text-lg);
+	color: var(--ws-text-muted);
+	max-width: 56ch;
+	margin: 0 auto var(--ws-space-8);
+	line-height: 1.5;
+}
+
+.ws-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--ws-space-3);
+}
+
+/* Section header */
+.ws-section-header {
+	max-width: 48rem;
+	margin: 0 0 var(--ws-space-12);
+}
+
+.ws-section-header--center {
+	text-align: center;
+	margin-inline: auto;
+}
+
+.ws-section-header h2 {
+	margin: 0 0 var(--ws-space-4);
+}
+
+.ws-section-header__lede {
+	font-size: var(--ws-text-lg);
+	color: var(--ws-text-muted);
+	max-width: 52ch;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.ws-section-header--center .ws-section-header__lede {
+	margin-inline: auto;
+}
+
+/* Card grid */
+.ws-cards {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--ws-space-4);
+}
+
+@media (min-width: 640px) {
+	.ws-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 960px) {
+	.ws-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.ws-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ws-space-3);
+	padding: clamp(1.25rem, 2.5vw, 2rem);
+	background: var(--ws-snow);
+	border: 1px solid var(--ws-border);
+	border-radius: var(--ws-radius-lg);
+	color: var(--ws-text);
+	text-decoration: none;
+	transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+	min-height: 14rem;
+}
+
+.ws-card:hover,
+.ws-card:focus {
+	border-color: var(--ws-spring);
+	transform: translateY(-2px);
+	box-shadow: 0 8px 24px -12px rgba(15, 77, 51, 0.18);
+	color: var(--ws-text);
+}
+
+.ws-card__title {
+	font-size: var(--ws-text-xl);
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	margin: 0;
+	color: var(--ws-text);
+}
+
+.ws-card__body {
+	flex: 1;
+	font-size: var(--ws-text-sm);
+	color: var(--ws-text-muted);
+	line-height: 1.55;
+	margin: 0;
+}
+
+.ws-card__cta {
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-spring);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.ws-card__cta::after {
+	content: "→";
+	transition: transform 150ms ease;
+	display: inline-block;
+}
+
+.ws-card:hover .ws-card__cta::after,
+.ws-card:focus .ws-card__cta::after {
+	transform: translateX(3px);
+}
+
+/* Practitioner */
+.ws-practitioner__inner {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: clamp(1.5rem, 4vw, 3rem);
+	align-items: center;
+}
+
+@media (min-width: 720px) {
+	.ws-practitioner__inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+	}
+}
+
+.ws-practitioner__portrait {
+	aspect-ratio: 4 / 5;
+	background: var(--ws-mist);
+	border-radius: var(--ws-radius-lg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	max-width: 24rem;
+	width: 100%;
+}
+
+.ws-practitioner__monogram {
+	font-family: var(--ws-font-display);
+	font-size: clamp(3rem, 8vw, 5rem);
+	font-weight: 500;
+	color: var(--ws-spring);
+	letter-spacing: -0.04em;
+}
+
+.ws-practitioner__credential {
+	font-size: var(--ws-text-sm);
+	color: var(--ws-spring);
+	font-weight: 500;
+	letter-spacing: 0.04em;
+	margin: 0 0 var(--ws-space-6);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+	font-size: var(--ws-text-xs);
+}
+
+.ws-practitioner__body h2 {
+	margin: 0 0 var(--ws-space-2);
+}
+
+.ws-practitioner__body p {
+	font-size: var(--ws-text-base);
+	line-height: 1.7;
+	color: var(--ws-text);
+	margin: 0 0 var(--ws-space-4);
+}
+
+.ws-link-arrow {
+	font-weight: 500;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+.ws-link-arrow::after {
+	content: "→";
+	display: inline-block;
+	transition: transform 150ms ease;
+}
+
+.ws-link-arrow:hover::after {
+	transform: translateX(3px);
+}
+
+/* Quotes */
+.ws-quotes {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--ws-space-6);
+}
+
+@media (min-width: 768px) {
+	.ws-quotes {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--ws-space-4);
+	}
+}
+
+.ws-quote {
+	margin: 0;
+	padding: clamp(1.5rem, 3vw, 2rem);
+	background: var(--ws-snow);
+	border: 1px solid var(--ws-border);
+	border-radius: var(--ws-radius-lg);
+	display: flex;
+	flex-direction: column;
+	gap: var(--ws-space-4);
+}
+
+.ws-quote__body {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-lg);
+	line-height: 1.45;
+	letter-spacing: -0.015em;
+	color: var(--ws-text);
+	font-weight: 400;
+	font-style: normal;
+}
+
+.ws-quote__body::before {
+	content: "“";
+	display: block;
+	font-family: var(--ws-font-display);
+	font-size: 2.5rem;
+	line-height: 0.5;
+	color: var(--ws-spring);
+	margin-bottom: var(--ws-space-3);
+}
+
+.ws-quote__attr {
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-text);
+}
+
+.ws-quote__attr span {
+	color: var(--ws-text-muted);
+	font-weight: 400;
+}
+
+/* CTA */
+.ws-cta__inner {
+	text-align: center;
+	padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+.ws-cta__title {
+	font-size: var(--ws-text-3xl);
+	letter-spacing: -0.03em;
+	margin: 0 0 var(--ws-space-4);
+}
+
+.ws-cta__lede {
+	font-size: var(--ws-text-lg);
+	color: var(--ws-text-muted);
+	max-width: 48ch;
+	margin: 0 auto var(--ws-space-8);
+	line-height: 1.5;
+}
+
+.ws-cta__actions {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: var(--ws-space-3);
+}
