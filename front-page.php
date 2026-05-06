@@ -182,20 +182,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		</section>
 	<?php endif; ?>
 
-	<section class="ws-section ws-cta">
-		<div class="ws-container ws-container--narrow ws-cta__inner">
-			<h2 class="ws-cta__title"><?php echo esc_html( $cta_title ); ?></h2>
-			<p class="ws-cta__lede"><?php echo esc_html( $cta_lede ); ?></p>
-			<div class="ws-cta__actions">
-				<?php if ( $cta_btn1_label ) : ?>
-					<a href="<?php echo esc_url( $cta_btn1_url ); ?>" class="ws-btn"><?php echo esc_html( $cta_btn1_label ); ?></a>
-				<?php endif; ?>
-				<?php if ( $cta_btn2_label ) : ?>
-					<a href="<?php echo esc_url( $cta_btn2_url ); ?>" class="ws-btn ws-btn--ghost"><?php echo esc_html( $cta_btn2_label ); ?></a>
-				<?php endif; ?>
-			</div>
-		</div>
-	</section>
+	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main>
 

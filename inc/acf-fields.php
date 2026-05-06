@@ -346,8 +346,24 @@ add_action(
  * Helper to get an ACF field with a fallback default.
  *
  * Usage: ws_field('hero_title', 'Default headline')
+ *        ws_field('cta_title', 'Default', $home_id) — read field from a specific post
  */
-function ws_field( $name, $default = '' ) {
-	$value = function_exists( 'get_field' ) ? get_field( $name ) : '';
+function ws_field( $name, $default = '', $post_id = false ) {
+	$value = function_exists( 'get_field' ) ? get_field( $name, $post_id ) : '';
 	return ! empty( $value ) ? $value : $default;
+}
+
+/**
+ * Helper to read a field from the static front page (Home), so site-wide
+ * partials (like the global CTA banner) can pull from a single source of truth.
+ */
+function ws_home_field( $name, $default = '' ) {
+	static $home_id = null;
+	if ( null === $home_id ) {
+		$home_id = (int) get_option( 'page_on_front' );
+	}
+	if ( ! $home_id ) {
+		return $default;
+	}
+	return ws_field( $name, $default, $home_id );
 }

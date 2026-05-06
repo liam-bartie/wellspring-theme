@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.7.2
+Version: 0.8.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -422,7 +422,7 @@ strong, b { font-weight: 500; }
 	background: var(--ws-char);
 	color: var(--ws-snow);
 	padding-block: clamp(3rem, 6vw, 4.5rem);
-	margin-top: clamp(3rem, 6vw, 5rem);
+	margin-top: 0;
 }
 
 .site-footer a {
@@ -1017,21 +1017,28 @@ label {
 	font-weight: 400;
 }
 
-/* CTA */
+/* CTA banner — dark green, reversed buttons. Used site-wide above footer. */
+.ws-cta {
+	background: var(--ws-forest);
+	color: var(--ws-snow);
+	padding-block: clamp(3rem, 6vw, 5rem);
+	margin-top: 0;
+}
+
 .ws-cta__inner {
 	text-align: center;
-	padding-block: clamp(1.5rem, 4vw, 3rem);
 }
 
 .ws-cta__title {
 	font-size: var(--ws-text-3xl);
 	letter-spacing: -0.03em;
+	color: var(--ws-snow);
 	margin: 0 0 var(--ws-space-4);
 }
 
 .ws-cta__lede {
 	font-size: var(--ws-text-lg);
-	color: var(--ws-text-muted);
+	color: rgba(255, 255, 255, 0.82);
 	max-width: 48ch;
 	margin: 0 auto var(--ws-space-8);
 	line-height: 1.5;
@@ -1042,6 +1049,34 @@ label {
 	flex-wrap: wrap;
 	justify-content: center;
 	gap: var(--ws-space-3);
+}
+
+/* Reversed button — solid white on dark backgrounds */
+.ws-btn--reversed {
+	background: var(--ws-snow);
+	color: var(--ws-char);
+	border-color: var(--ws-snow);
+}
+
+.ws-btn--reversed:hover,
+.ws-btn--reversed:focus {
+	background: var(--ws-mist);
+	color: var(--ws-char);
+	border-color: var(--ws-mist);
+}
+
+/* Ghost button on dark backgrounds — white outline */
+.ws-btn--ghost-light {
+	background: transparent;
+	color: var(--ws-snow);
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ws-btn--ghost-light:hover,
+.ws-btn--ghost-light:focus {
+	background: var(--ws-snow);
+	color: var(--ws-char);
+	border-color: var(--ws-snow);
 }
 
 /* =========================================================
