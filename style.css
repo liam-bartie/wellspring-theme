@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.10.0
+Version: 0.10.2
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -94,6 +94,7 @@ body {
 	font-size: var(--ws-text-base);
 	font-weight: 400;
 	line-height: 1.6;
+	overflow-x: clip;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
@@ -767,12 +768,14 @@ label {
 	letter-spacing: 0.04em;
 }
 
-/* Mini-CTA banner */
+/* Mini-CTA banner — full-bleed background, content stays within container width */
 .ws-mini-cta {
 	background: var(--ws-forest);
-	border-radius: var(--ws-radius-lg);
-	padding: clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 2.5rem);
-	margin-block: clamp(2rem, 4vw, 3rem) !important;
+	margin-block: clamp(2.5rem, 5vw, 3.5rem) !important;
+	margin-inline: calc(50% - 50vw);
+	padding-block: clamp(3rem, 7vw, 5rem);
+	padding-inline: max(clamp(1rem, 4vw, 2.5rem), calc(50vw - 50%));
+	border-radius: 0;
 	text-align: center;
 }
 
@@ -784,8 +787,13 @@ label {
 
 .ws-mini-cta__lede {
 	color: rgba(255, 255, 255, 0.82);
-	margin: 0 0 var(--ws-space-6);
+	margin: 0 auto var(--ws-space-6);
 	font-size: var(--ws-text-base);
+	max-width: 48ch;
+}
+
+.ws-mini-cta .wp-block-buttons {
+	justify-content: center;
 }
 
 .ws-mini-cta .wp-block-button__link {
