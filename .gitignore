@@ -26,3 +26,4 @@ Thumbs.db
 # WordPress export tests
 wp-content/
 wp-config*.php
+composer.json
