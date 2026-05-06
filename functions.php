@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.9.2' );
+	define( 'WELLSPRING_VERSION', '0.10.0' );
 }
 
 /**
@@ -180,6 +180,11 @@ add_filter( 'wp_resource_hints', 'wellspring_resource_hints', 10, 2 );
  * ACF field definitions for the home page (loaded only if ACF is active).
  */
 require get_template_directory() . '/inc/acf-fields.php';
+
+/**
+ * Gutenberg block patterns for the Wellspring brand.
+ */
+require get_template_directory() . '/inc/block-patterns.php';
 
 /**
  * Implement the Custom Header feature.
