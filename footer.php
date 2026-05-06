@@ -12,19 +12,43 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'wellspring' ) ); ?>">
+		<div class="ws-footer-grid">
+
+			<div class="ws-footer-brand">
+				<p class="ws-footer-mark">Wellspring Health</p>
+				<p class="ws-footer-tagline">Acupuncture &amp; Traditional Chinese Medicine</p>
+				<p>Calm, grounded, considered care for pain relief, women's health, sleep, digestion, and beyond &mdash; in the heart of Inglewood, Calgary.</p>
+			</div>
+
+			<div class="ws-footer-col">
+				<h4><?php esc_html_e( 'Visit', 'wellspring' ); ?></h4>
+				<ul>
+					<li>1004 8 Ave SE<br />Calgary, AB T2G 0M4</li>
+					<li><a href="tel:+15876004945">(587) 600-4945</a></li>
+					<li><a href="mailto:info@wellspringhealth.ca">info@wellspringhealth.ca</a></li>
+				</ul>
+			</div>
+
+			<div class="ws-footer-col">
+				<h4><?php esc_html_e( 'Explore', 'wellspring' ); ?></h4>
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'wellspring' ), 'WordPress' );
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'container'      => false,
+						'depth'          => 1,
+						'fallback_cb'    => '__return_empty_string',
+					)
+				);
 				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'wellspring' ), 'wellspring', '<a href="https://automattic.com/">Automattic</a>' );
-				?>
-		</div><!-- .site-info -->
+			</div>
+
+		</div>
+
+		<div class="ws-footer-bottom">
+			<span>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> Wellspring Health Ltd. All rights reserved.</span>
+			<span>Acupuncture &middot; Herbal medicine &middot; Cupping &middot; Tui Na</span>
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

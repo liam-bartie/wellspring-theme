@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '1.0.0' );
+	define( 'WELLSPRING_VERSION', '0.2.0' );
 }
 
 /**
@@ -138,7 +138,15 @@ add_action( 'widgets_init', 'wellspring_widgets_init' );
  * Enqueue scripts and styles.
  */
 function wellspring_scripts() {
-	wp_enqueue_style( 'wellspring-style', get_stylesheet_uri(), array(), WELLSPRING_VERSION );
+	// Brand fonts: Fraunces (display serif) + Inter (UI sans).
+	wp_enqueue_style(
+		'wellspring-fonts',
+		'https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap',
+		array(),
+		null
+	);
+
+	wp_enqueue_style( 'wellspring-style', get_stylesheet_uri(), array( 'wellspring-fonts' ), WELLSPRING_VERSION );
 	wp_style_add_data( 'wellspring-style', 'rtl', 'replace' );
 
 	wp_enqueue_script( 'wellspring-navigation', get_template_directory_uri() . '/js/navigation.js', array(), WELLSPRING_VERSION, true );
@@ -148,6 +156,20 @@ function wellspring_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wellspring_scripts' );
+
+/**
+ * Add preconnect for Google Fonts to speed up first paint.
+ */
+function wellspring_resource_hints( $urls, $relation_type ) {
+	if ( wp_style_is( 'wellspring-fonts', 'queue' ) && 'preconnect' === $relation_type ) {
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin',
+		);
+	}
+	return $urls;
+}
+add_filter( 'wp_resource_hints', 'wellspring_resource_hints', 10, 2 );
 
 /**
  * Implement the Custom Header feature.
