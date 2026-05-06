@@ -15,11 +15,18 @@ get_header();
 	<?php
 	while ( have_posts() ) :
 		the_post();
-		$parent_id = wp_get_post_parent_id( get_the_ID() );
+		$parent_id    = wp_get_post_parent_id( get_the_ID() );
+		$has_thumb    = has_post_thumbnail();
+		$thumb_url    = $has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
+		$header_class = $has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
 		?>
 
-		<section class="ws-page-header">
-			<div class="ws-container ws-container--narrow">
+		<section class="<?php echo esc_attr( $header_class ); ?>">
+			<?php if ( $has_thumb ) : ?>
+				<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $thumb_url ); ?>');" aria-hidden="true"></div>
+				<div class="ws-page-header__overlay" aria-hidden="true"></div>
+			<?php endif; ?>
+			<div class="ws-container ws-container--narrow ws-page-header__content">
 				<?php if ( $parent_id ) : ?>
 					<p class="eyebrow ws-page-header__crumb">
 						<a href="<?php echo esc_url( get_permalink( $parent_id ) ); ?>"><?php echo esc_html( get_the_title( $parent_id ) ); ?></a>

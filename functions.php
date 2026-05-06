@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.6.1' );
+	define( 'WELLSPRING_VERSION', '0.7.0' );
 }
 
 /**
@@ -45,6 +45,11 @@ function wellspring_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+
+	// Custom image sizes used by the theme.
+	add_image_size( 'wellspring-card', 720, 480, true );      // What We Treat cards
+	add_image_size( 'wellspring-hero', 1920, 800, true );     // Hero / page header backgrounds
+	add_image_size( 'wellspring-portrait', 600, 750, true );  // 4:5 practitioner portrait
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -170,6 +175,11 @@ function wellspring_resource_hints( $urls, $relation_type ) {
 	return $urls;
 }
 add_filter( 'wp_resource_hints', 'wellspring_resource_hints', 10, 2 );
+
+/**
+ * ACF field definitions for the home page (loaded only if ACF is active).
+ */
+require get_template_directory() . '/inc/acf-fields.php';
 
 /**
  * Implement the Custom Header feature.

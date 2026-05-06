@@ -1,0 +1,348 @@
+<?php
+/**
+ * ACF field group registration for the home page.
+ *
+ * Fields are defined in code (not just the admin DB) so they ship
+ * with the theme and survive cross-environment moves.
+ *
+ * @package Wellspring
+ */
+
+if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+	return; // ACF not active — bail.
+}
+
+add_action(
+	'acf/init',
+	function () {
+		$home_id = (int) get_option( 'page_on_front' );
+		if ( ! $home_id ) {
+			return;
+		}
+
+		acf_add_local_field_group(
+			array(
+				'key'      => 'group_wellspring_home',
+				'title'    => 'Home page content',
+				'fields'   => array(
+
+					// HERO
+					array(
+						'key'   => 'field_hero_tab',
+						'label' => 'Hero',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_hero_eyebrow',
+						'name'          => 'hero_eyebrow',
+						'label'         => 'Eyebrow',
+						'instructions'  => 'Small text above the headline (e.g. "Calgary · Inglewood")',
+						'type'          => 'text',
+						'default_value' => 'Calgary · Inglewood',
+					),
+					array(
+						'key'           => 'field_hero_title',
+						'name'          => 'hero_title',
+						'label'         => 'Headline',
+						'type'          => 'text',
+						'default_value' => 'Calm, considered care for body and mind.',
+					),
+					array(
+						'key'           => 'field_hero_lede',
+						'name'          => 'hero_lede',
+						'label'         => 'Sub-headline / lede',
+						'type'          => 'textarea',
+						'rows'          => 3,
+						'default_value' => "Acupuncture and Traditional Chinese Medicine for pain relief, women's health, sleep, digestion, and beyond — practised by Dr. Laura Cowburn for over a decade.",
+					),
+					array(
+						'key'           => 'field_hero_btn1_label',
+						'name'          => 'hero_primary_button_label',
+						'label'         => 'Primary button label',
+						'type'          => 'text',
+						'default_value' => 'Book an appointment',
+					),
+					array(
+						'key'           => 'field_hero_btn1_url',
+						'name'          => 'hero_primary_button_url',
+						'label'         => 'Primary button URL',
+						'type'          => 'url',
+						'default_value' => '/book-appointments/',
+					),
+					array(
+						'key'           => 'field_hero_btn2_label',
+						'name'          => 'hero_secondary_button_label',
+						'label'         => 'Secondary button label',
+						'type'          => 'text',
+						'default_value' => 'See what we treat',
+					),
+					array(
+						'key'           => 'field_hero_btn2_url',
+						'name'          => 'hero_secondary_button_url',
+						'label'         => 'Secondary button URL',
+						'type'          => 'url',
+						'default_value' => '/what-we-treat/',
+					),
+					array(
+						'key'           => 'field_hero_bg_image',
+						'name'          => 'hero_background_image',
+						'label'         => 'Background image (optional)',
+						'instructions'  => 'A subtle, calming image. Will be displayed with a soft overlay so text stays readable. Leave empty for the clean white hero.',
+						'type'          => 'image',
+						'return_format' => 'array',
+						'preview_size'  => 'medium',
+					),
+
+					// WHAT WE TREAT
+					array(
+						'key'   => 'field_wwt_tab',
+						'label' => 'What we treat',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_wwt_eyebrow',
+						'name'          => 'wwt_eyebrow',
+						'label'         => 'Eyebrow',
+						'type'          => 'text',
+						'default_value' => 'What we treat',
+					),
+					array(
+						'key'           => 'field_wwt_title',
+						'name'          => 'wwt_title',
+						'label'         => 'Section headline',
+						'type'          => 'text',
+						'default_value' => 'Six areas of focus, drawn from thousands of years of practice.',
+					),
+					array(
+						'key'           => 'field_wwt_lede',
+						'name'          => 'wwt_lede',
+						'label'         => 'Section sub-copy',
+						'type'          => 'textarea',
+						'rows'          => 2,
+						'default_value' => 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.',
+					),
+					array(
+						'key'          => 'field_wwt_note',
+						'label'        => 'Cards source',
+						'type'         => 'message',
+						'message'      => 'The six condition cards below this section are pulled automatically from the sub-pages of "What We Treat". Edit each sub-page (title, excerpt, featured image) and the home cards will update.',
+					),
+
+					// PRACTITIONER
+					array(
+						'key'   => 'field_pract_tab',
+						'label' => 'Practitioner',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_pract_eyebrow',
+						'name'          => 'practitioner_eyebrow',
+						'label'         => 'Eyebrow',
+						'type'          => 'text',
+						'default_value' => 'Meet your practitioner',
+					),
+					array(
+						'key'           => 'field_pract_name',
+						'name'          => 'practitioner_name',
+						'label'         => 'Name',
+						'type'          => 'text',
+						'default_value' => 'Dr. Laura Cowburn',
+					),
+					array(
+						'key'           => 'field_pract_credentials',
+						'name'          => 'practitioner_credentials',
+						'label'         => 'Credentials line',
+						'type'          => 'text',
+						'default_value' => 'Doctor of Traditional Chinese Medicine · Registered Acupuncturist (Alberta)',
+					),
+					array(
+						'key'           => 'field_pract_bio',
+						'name'          => 'practitioner_bio',
+						'label'         => 'Bio',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'visual',
+						'toolbar'       => 'basic',
+						'media_upload'  => 0,
+						'default_value' => 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.',
+					),
+					array(
+						'key'           => 'field_pract_link_label',
+						'name'          => 'practitioner_link_label',
+						'label'         => 'Link label',
+						'type'          => 'text',
+						'default_value' => 'Read her full story',
+					),
+					array(
+						'key'           => 'field_pract_link_url',
+						'name'          => 'practitioner_link_url',
+						'label'         => 'Link URL',
+						'type'          => 'url',
+						'default_value' => '/about/',
+					),
+					array(
+						'key'           => 'field_pract_portrait',
+						'name'          => 'practitioner_portrait',
+						'label'         => 'Portrait photo',
+						'instructions'  => 'A 4:5 portrait works best. Leave empty to show the LC monogram placeholder.',
+						'type'          => 'image',
+						'return_format' => 'array',
+						'preview_size'  => 'medium',
+					),
+
+					// TESTIMONIALS
+					array(
+						'key'   => 'field_testi_tab',
+						'label' => 'Testimonials',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_testi_eyebrow',
+						'name'          => 'testimonials_eyebrow',
+						'label'         => 'Eyebrow',
+						'type'          => 'text',
+						'default_value' => 'Patient stories',
+					),
+					array(
+						'key'           => 'field_testi_title',
+						'name'          => 'testimonials_title',
+						'label'         => 'Section headline',
+						'type'          => 'text',
+						'default_value' => 'The work, in their words.',
+					),
+					array(
+						'key'           => 'field_testi_1_quote',
+						'name'          => 'testimonial_1_quote',
+						'label'         => 'Testimonial 1 — Quote',
+						'type'          => 'textarea',
+						'rows'          => 3,
+					),
+					array(
+						'key'           => 'field_testi_1_author',
+						'name'          => 'testimonial_1_author',
+						'label'         => 'Testimonial 1 — Author',
+						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_testi_1_context',
+						'name'          => 'testimonial_1_context',
+						'label'         => 'Testimonial 1 — Context',
+						'instructions'  => 'e.g. "Migraine relief"',
+						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_testi_2_quote',
+						'name'          => 'testimonial_2_quote',
+						'label'         => 'Testimonial 2 — Quote',
+						'type'          => 'textarea',
+						'rows'          => 3,
+					),
+					array(
+						'key'           => 'field_testi_2_author',
+						'name'          => 'testimonial_2_author',
+						'label'         => 'Testimonial 2 — Author',
+						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_testi_2_context',
+						'name'          => 'testimonial_2_context',
+						'label'         => 'Testimonial 2 — Context',
+						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_testi_3_quote',
+						'name'          => 'testimonial_3_quote',
+						'label'         => 'Testimonial 3 — Quote',
+						'type'          => 'textarea',
+						'rows'          => 3,
+					),
+					array(
+						'key'           => 'field_testi_3_author',
+						'name'          => 'testimonial_3_author',
+						'label'         => 'Testimonial 3 — Author',
+						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_testi_3_context',
+						'name'          => 'testimonial_3_context',
+						'label'         => 'Testimonial 3 — Context',
+						'type'          => 'text',
+					),
+
+					// CTA
+					array(
+						'key'   => 'field_cta_tab',
+						'label' => 'Closing CTA',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_cta_title',
+						'name'          => 'cta_title',
+						'label'         => 'Headline',
+						'type'          => 'text',
+						'default_value' => 'Ready when you are.',
+					),
+					array(
+						'key'           => 'field_cta_lede',
+						'name'          => 'cta_lede',
+						'label'         => 'Sub-copy',
+						'type'          => 'textarea',
+						'rows'          => 2,
+						'default_value' => 'New patients welcome. Appointments typically available within the week. Direct billing to most major insurers.',
+					),
+					array(
+						'key'           => 'field_cta_btn1_label',
+						'name'          => 'cta_primary_button_label',
+						'label'         => 'Primary button label',
+						'type'          => 'text',
+						'default_value' => 'Book an appointment',
+					),
+					array(
+						'key'           => 'field_cta_btn1_url',
+						'name'          => 'cta_primary_button_url',
+						'label'         => 'Primary button URL',
+						'type'          => 'url',
+						'default_value' => '/book-appointments/',
+					),
+					array(
+						'key'           => 'field_cta_btn2_label',
+						'name'          => 'cta_secondary_button_label',
+						'label'         => 'Secondary button label',
+						'type'          => 'text',
+						'default_value' => 'Call (587) 600-4945',
+					),
+					array(
+						'key'           => 'field_cta_btn2_url',
+						'name'          => 'cta_secondary_button_url',
+						'label'         => 'Secondary button URL',
+						'type'          => 'url',
+						'default_value' => 'tel:+15876004945',
+					),
+				),
+				'location' => array(
+					array(
+						array(
+							'param'    => 'page',
+							'operator' => '==',
+							'value'    => $home_id,
+						),
+					),
+				),
+				'menu_order'      => 0,
+				'position'        => 'normal',
+				'style'           => 'default',
+				'label_placement' => 'top',
+				'instruction_placement' => 'label',
+			)
+		);
+	}
+);
+
+/**
+ * Helper to get an ACF field with a fallback default.
+ *
+ * Usage: ws_field('hero_title', 'Default headline')
+ */
+function ws_field( $name, $default = '' ) {
+	$value = function_exists( 'get_field' ) ? get_field( $name ) : '';
+	return ! empty( $value ) ? $value : $default;
+}

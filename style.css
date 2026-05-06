@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.6.1
+Version: 0.7.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -677,11 +677,59 @@ label {
 .ws-hero {
 	padding-block: clamp(4rem, 9vw, 7.5rem) clamp(3rem, 6vw, 5rem);
 	text-align: center;
+	position: relative;
+	overflow: hidden;
 }
 
 .ws-hero .eyebrow {
 	color: var(--ws-forest);
 	margin-bottom: var(--ws-space-6);
+}
+
+/* Hero with background image */
+.ws-hero--imaged {
+	color: var(--ws-snow);
+	background: var(--ws-forest);
+}
+
+.ws-hero--imaged .ws-hero__title,
+.ws-hero--imaged .ws-hero__lede {
+	color: var(--ws-snow);
+}
+
+.ws-hero--imaged .eyebrow {
+	color: var(--ws-mist);
+}
+
+.ws-hero--imaged .ws-btn--ghost {
+	color: var(--ws-snow);
+	border-color: rgba(255, 255, 255, 0.7);
+}
+
+.ws-hero--imaged .ws-btn--ghost:hover {
+	background: var(--ws-snow);
+	color: var(--ws-char);
+	border-color: var(--ws-snow);
+}
+
+.ws-hero__bg {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+	z-index: 0;
+}
+
+.ws-hero__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(160deg, rgba(15, 77, 51, 0.85) 0%, rgba(15, 20, 17, 0.65) 100%);
+	z-index: 1;
+}
+
+.ws-hero__content {
+	position: relative;
+	z-index: 2;
 }
 
 .ws-hero__title {
@@ -753,11 +801,10 @@ label {
 .ws-card {
 	display: flex;
 	flex-direction: column;
-	gap: var(--ws-space-3);
-	padding: clamp(1.25rem, 2.5vw, 2rem);
 	background: var(--ws-snow);
 	border: 1px solid var(--ws-border);
 	border-radius: var(--ws-radius-lg);
+	overflow: hidden;
 	color: var(--ws-text);
 	text-decoration: none;
 	transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
@@ -768,8 +815,33 @@ label {
 .ws-card:focus {
 	border-color: var(--ws-spring);
 	transform: translateY(-2px);
-	box-shadow: 0 8px 24px -12px rgba(15, 77, 51, 0.18);
+	box-shadow: 0 12px 28px -14px rgba(15, 77, 51, 0.22);
 	color: var(--ws-text);
+}
+
+.ws-card__image {
+	aspect-ratio: 3 / 2;
+	background-size: cover;
+	background-position: center;
+	background-color: var(--ws-mist);
+	transition: transform 400ms ease;
+}
+
+.ws-card:hover .ws-card__image,
+.ws-card:focus .ws-card__image {
+	transform: scale(1.03);
+}
+
+.ws-card__body-wrap {
+	display: flex;
+	flex-direction: column;
+	gap: var(--ws-space-3);
+	padding: clamp(1.25rem, 2.5vw, 1.75rem);
+	flex: 1;
+}
+
+.ws-card:not(.ws-card--imaged) .ws-card__body-wrap {
+	padding-block: clamp(1.5rem, 3vw, 2rem);
 }
 
 .ws-card__title {
@@ -832,6 +904,13 @@ label {
 	overflow: hidden;
 	max-width: 24rem;
 	width: 100%;
+}
+
+.ws-practitioner__portrait img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 .ws-practitioner__monogram {
@@ -970,6 +1049,47 @@ label {
    ========================================================= */
 .ws-page-header {
 	padding-block: clamp(3rem, 6vw, 5rem) clamp(1.5rem, 3vw, 2.5rem);
+	position: relative;
+	overflow: hidden;
+}
+
+.ws-page-header--imaged {
+	color: var(--ws-snow);
+	padding-block: clamp(5rem, 10vw, 9rem) clamp(3rem, 6vw, 5rem);
+	background: var(--ws-forest);
+}
+
+.ws-page-header--imaged .ws-page-header__title {
+	color: var(--ws-snow);
+}
+
+.ws-page-header--imaged .ws-page-header__lede {
+	color: rgba(255, 255, 255, 0.85);
+}
+
+.ws-page-header--imaged .eyebrow,
+.ws-page-header--imaged .ws-page-header__crumb a {
+	color: var(--ws-mist);
+}
+
+.ws-page-header__bg {
+	position: absolute;
+	inset: 0;
+	background-size: cover;
+	background-position: center;
+	z-index: 0;
+}
+
+.ws-page-header__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(160deg, rgba(15, 77, 51, 0.78) 0%, rgba(15, 20, 17, 0.55) 100%);
+	z-index: 1;
+}
+
+.ws-page-header__content {
+	position: relative;
+	z-index: 2;
 }
 
 .ws-page-header__crumb {
