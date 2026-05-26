@@ -604,12 +604,26 @@ add_action(
 /**
  * Helper to get an ACF field with a fallback default.
  *
+ * Differentiates between "never saved" (null/false → use default) and
+ * "explicitly cleared by editor" (empty string → respect the empty choice).
+ * This means clearing a field in WP admin actually hides it on the page.
+ *
  * Usage: ws_field('hero_title', 'Default headline')
  *        ws_field('cta_title', 'Default', $home_id) — read field from a specific post
  */
 function ws_field( $name, $default = '', $post_id = false ) {
-	$value = function_exists( 'get_field' ) ? get_field( $name, $post_id ) : '';
-	return ! empty( $value ) ? $value : $default;
+	if ( ! function_exists( 'get_field' ) ) {
+		return $default;
+	}
+	$value = get_field( $name, $post_id );
+
+	// Truly unset / never saved → use default.
+	if ( null === $value || false === $value ) {
+		return $default;
+	}
+
+	// Empty string or anything else (including 0, '0') → respect the editor's choice.
+	return $value;
 }
 
 /**
