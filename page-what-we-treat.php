@@ -23,6 +23,9 @@ while ( have_posts() ) :
 
 	$hub_eyebrow   = ws_field( 'hub_eyebrow', 'What we treat' );
 	$hub_lede      = ws_field( 'hub_lede', "TCM addresses the whole person — body, mind, and the patterns that link them. Browse by category, or get in touch if you don't see what you're looking for." );
+	$intro_eyebrow = ws_field( 'intro_eyebrow', '' );
+	$intro_title   = ws_field( 'intro_title', '' );
+	$intro_body    = ws_field( 'intro_body', "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the six areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect." );
 	$cards_eyebrow = ws_field( 'cards_eyebrow', 'Conditions we treat' );
 	$cards_title   = ws_field( 'cards_title', 'Six areas of focus.' );
 	$cards_intro   = ws_field( 'cards_intro', '' );
@@ -57,6 +60,22 @@ while ( have_posts() ) :
 	</section>
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
+
+	<?php if ( $intro_eyebrow || $intro_title || $intro_body ) : ?>
+		<section class="ws-section ws-intro-text">
+			<div class="ws-container ws-container--narrow">
+				<?php if ( $intro_eyebrow ) : ?>
+					<p class="eyebrow"><?php echo esc_html( $intro_eyebrow ); ?></p>
+				<?php endif; ?>
+				<?php if ( $intro_title ) : ?>
+					<h2 class="ws-intro-text__title"><?php echo esc_html( $intro_title ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $intro_body ) : ?>
+					<div class="ws-intro-text__body"><?php echo wp_kses_post( wpautop( $intro_body ) ); ?></div>
+				<?php endif; ?>
+			</div>
+		</section>
+	<?php endif; ?>
 
 	<section class="ws-section ws-section--mist">
 		<div class="ws-container">

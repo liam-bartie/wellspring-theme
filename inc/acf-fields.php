@@ -462,6 +462,42 @@ add_action(
 						'message' => 'The hero background image is the page\'s <strong>Featured image</strong>. Set it via the Featured image panel in the sidebar.',
 					),
 
+					// INTRO TEXT (white section between badge and cards)
+					array(
+						'key'   => 'field_wwt_intro_tab',
+						'label' => 'Intro section',
+						'type'  => 'tab',
+					),
+					array(
+						'key'     => 'field_wwt_intro_note',
+						'label'   => 'About this section',
+						'type'    => 'message',
+						'message' => 'White-background introduction that sits between the reviewed-by badge and the cards grid. Use it to set context before visitors browse the conditions. Leave the body empty to hide the whole section.',
+					),
+					array(
+						'key'           => 'field_wwt_intro_eyebrow',
+						'name'          => 'intro_eyebrow',
+						'label'         => 'Eyebrow (optional)',
+						'type'          => 'text',
+						'default_value' => '',
+					),
+					array(
+						'key'           => 'field_wwt_intro_title',
+						'name'          => 'intro_title',
+						'label'         => 'Headline (optional)',
+						'type'          => 'text',
+						'default_value' => '',
+					),
+					array(
+						'key'           => 'field_wwt_intro_body',
+						'name'          => 'intro_body',
+						'label'         => 'Body',
+						'instructions'  => 'A paragraph or two of context. Leave empty to skip this section entirely.',
+						'type'          => 'textarea',
+						'rows'          => 5,
+						'default_value' => "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the six areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect.",
+					),
+
 					// CARDS SECTION
 					array(
 						'key'   => 'field_wwt_cards_tab',
