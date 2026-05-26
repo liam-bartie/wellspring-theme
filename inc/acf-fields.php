@@ -417,6 +417,118 @@ add_action(
 );
 
 /**
+ * Field group for the "What We Treat" hub page.
+ */
+add_action(
+	'acf/init',
+	function () {
+		$wwt_page = get_page_by_path( 'what-we-treat' );
+		if ( ! $wwt_page ) {
+			return;
+		}
+
+		acf_add_local_field_group(
+			array(
+				'key'      => 'group_wellspring_wwt',
+				'title'    => 'What We Treat page',
+				'fields'   => array(
+
+					// HERO
+					array(
+						'key'   => 'field_wwt_hero_tab',
+						'label' => 'Hero',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_wwt_hub_eyebrow',
+						'name'          => 'hub_eyebrow',
+						'label'         => 'Hero eyebrow',
+						'type'          => 'text',
+						'default_value' => 'What we treat',
+					),
+					array(
+						'key'           => 'field_wwt_hub_lede',
+						'name'          => 'hub_lede',
+						'label'         => 'Hero sub-headline',
+						'instructions'  => 'Short paragraph below the page title in the hero band.',
+						'type'          => 'textarea',
+						'rows'          => 3,
+						'default_value' => "TCM addresses the whole person — body, mind, and the patterns that link them. Browse by category, or get in touch if you don't see what you're looking for.",
+					),
+					array(
+						'key'     => 'field_wwt_hero_note',
+						'label'   => 'Hero background image',
+						'type'    => 'message',
+						'message' => 'The hero background image is the page\'s <strong>Featured image</strong>. Set it via the Featured image panel in the sidebar.',
+					),
+
+					// CARDS SECTION
+					array(
+						'key'   => 'field_wwt_cards_tab',
+						'label' => 'Cards section',
+						'type'  => 'tab',
+					),
+					array(
+						'key'           => 'field_wwt_cards_eyebrow',
+						'name'          => 'cards_eyebrow',
+						'label'         => 'Section eyebrow',
+						'type'          => 'text',
+						'default_value' => 'Conditions we treat',
+					),
+					array(
+						'key'           => 'field_wwt_cards_title',
+						'name'          => 'cards_title',
+						'label'         => 'Section headline',
+						'type'          => 'text',
+						'default_value' => 'Six areas of focus.',
+					),
+					array(
+						'key'           => 'field_wwt_cards_intro',
+						'name'          => 'cards_intro',
+						'label'         => 'Section sub-copy (optional)',
+						'type'          => 'textarea',
+						'rows'          => 2,
+					),
+					array(
+						'key'     => 'field_wwt_cards_note',
+						'label'   => 'Where the cards come from',
+						'type'    => 'message',
+						'message' => 'Cards are pulled automatically from sub-pages of this page (Pain Relief, Women\'s Health, etc.). Edit each sub-page\'s title, excerpt, and featured image to update the matching card.',
+					),
+
+					// CONTENT BLOCKS
+					array(
+						'key'   => 'field_wwt_content_tab',
+						'label' => 'Content blocks',
+						'type'  => 'tab',
+					),
+					array(
+						'key'     => 'field_wwt_content_note',
+						'label'   => 'Add additional sections',
+						'type'    => 'message',
+						'message' => 'Use the main Gutenberg editor above to add additional sections below the cards grid — callouts, image+text, stats, mini-CTA, etc. Insert any of the Wellspring block patterns from the block inserter.',
+					),
+				),
+				'location' => array(
+					array(
+						array(
+							'param'    => 'page',
+							'operator' => '==',
+							'value'    => $wwt_page->ID,
+						),
+					),
+				),
+				'menu_order'      => 0,
+				'position'        => 'normal',
+				'style'           => 'default',
+				'label_placement' => 'top',
+				'instruction_placement' => 'label',
+			)
+		);
+	}
+);
+
+/**
  * Helper to get an ACF field with a fallback default.
  *
  * Usage: ws_field('hero_title', 'Default headline')

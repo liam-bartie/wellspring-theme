@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.10.2
+Version: 0.12.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -373,33 +373,108 @@ strong, b { font-weight: 500; }
 	border-bottom: none;
 }
 
+/* Hamburger button — hidden on desktop, visible on mobile */
 .menu-toggle {
 	display: none;
-	background: none;
+	width: 44px;
+	height: 44px;
+	background: transparent;
 	border: 1px solid var(--ws-border-strong);
-	border-radius: var(--ws-radius-sm);
-	padding: 0.5rem 0.875rem;
-	font-family: var(--ws-font-body);
-	font-size: var(--ws-text-sm);
-	font-weight: 500;
-	color: var(--ws-char);
+	border-radius: var(--ws-radius);
+	padding: 0;
 	cursor: pointer;
+	position: relative;
+	color: var(--ws-char);
+	font-size: 0;
+	line-height: 0;
+	transition: background 150ms ease, border-color 150ms ease;
+}
+
+.menu-toggle:hover {
+	background: var(--ws-mist);
+	border-color: var(--ws-spring);
+}
+
+/* Three horizontal lines drawn with a single pseudo-element + box-shadow */
+.menu-toggle::before {
+	content: "";
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 50%;
+	height: 2px;
+	background: currentColor;
+	box-shadow: 0 -7px 0 currentColor, 0 7px 0 currentColor;
+	transition: transform 200ms ease, box-shadow 200ms ease;
+	transform: translateY(-50%);
+}
+
+/* Animate to an X when menu is open */
+.main-navigation.toggled .menu-toggle::before {
+	box-shadow: none;
+	transform: translateY(-50%) rotate(45deg);
+}
+
+.main-navigation.toggled .menu-toggle::after {
+	content: "";
+	position: absolute;
+	left: 10px;
+	right: 10px;
+	top: 50%;
+	height: 2px;
+	background: currentColor;
+	transform: translateY(-50%) rotate(-45deg);
 }
 
 @media (max-width: 720px) {
+	/* Header keeps wordmark + hamburger on the same row */
+	.site-header__inner {
+		position: relative;
+		flex-wrap: nowrap;
+	}
+
+	.main-navigation {
+		flex: 0 0 auto;
+	}
+
 	.menu-toggle {
-		display: inline-block;
+		display: block;
 	}
-	.main-navigation > div > ul {
+
+	/* Menu becomes a full-width dropdown below the header when toggled */
+	.main-navigation > div {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		background: var(--ws-snow);
+		border-top: 1px solid var(--ws-border);
+		border-bottom: 1px solid var(--ws-border);
+		box-shadow: 0 12px 24px -16px rgba(0, 0, 0, 0.12);
+		padding: var(--ws-space-4) clamp(1rem, 4vw, 2.5rem);
 		display: none;
+		z-index: 50;
+	}
+
+	.main-navigation.toggled > div {
+		display: block;
+	}
+
+	.main-navigation > div > ul {
 		flex-direction: column;
-		gap: var(--ws-space-2);
-		margin-top: var(--ws-space-4);
+		gap: 0;
 	}
-	.main-navigation.toggled > div > ul {
-		display: flex;
+
+	.main-navigation > div > ul > li {
+		padding-block: var(--ws-space-2);
+		border-bottom: 1px solid var(--ws-border);
 	}
-	/* On mobile, sub-menu expands inline, not as floating dropdown */
+
+	.main-navigation > div > ul > li:last-child {
+		border-bottom: none;
+	}
+
+	/* Sub-menu expands inline below its parent in mobile dropdown */
 	.main-navigation .sub-menu {
 		position: static;
 		opacity: 1;
@@ -409,8 +484,15 @@ strong, b { font-weight: 500; }
 		border: none;
 		background: transparent;
 		padding-left: var(--ws-space-4);
-		padding-top: 0;
+		padding-top: var(--ws-space-2);
+		margin-top: var(--ws-space-2);
 	}
+
+	.main-navigation .sub-menu li {
+		padding-block: var(--ws-space-1);
+		border-bottom: none;
+	}
+
 	.main-navigation .menu-item-has-children > a::after {
 		display: none;
 	}
