@@ -22,6 +22,10 @@ $hero_btn2_label   = ws_field( 'hero_secondary_button_label', 'See what we treat
 $hero_btn2_url     = ws_field( 'hero_secondary_button_url', '/what-we-treat/' );
 $hero_bg           = function_exists( 'get_field' ) ? get_field( 'hero_background_image' ) : null;
 
+$intro_eyebrow     = ws_field( 'intro_eyebrow', '' );
+$intro_title       = ws_field( 'intro_title', '' );
+$intro_body        = ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help." );
+
 $wwt_eyebrow       = ws_field( 'wwt_eyebrow', 'What we treat' );
 $wwt_title         = ws_field( 'wwt_title', 'Six areas of focus, drawn from thousands of years of practice.' );
 $wwt_lede          = ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.' );
@@ -92,6 +96,22 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 	</section>
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
+
+	<?php if ( $intro_eyebrow || $intro_title || $intro_body ) : ?>
+		<section class="ws-section ws-intro-text">
+			<div class="ws-container ws-container--narrow">
+				<?php if ( $intro_eyebrow ) : ?>
+					<p class="eyebrow"><?php echo esc_html( $intro_eyebrow ); ?></p>
+				<?php endif; ?>
+				<?php if ( $intro_title ) : ?>
+					<h2 class="ws-intro-text__title"><?php echo esc_html( $intro_title ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $intro_body ) : ?>
+					<div class="ws-intro-text__body"><?php echo wp_kses_post( wpautop( $intro_body ) ); ?></div>
+				<?php endif; ?>
+			</div>
+		</section>
+	<?php endif; ?>
 
 	<section class="ws-section ws-section--mist">
 		<div class="ws-container">

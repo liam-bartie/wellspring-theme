@@ -95,6 +95,42 @@ add_action(
 						'preview_size'  => 'medium',
 					),
 
+					// INTRO (white section between reviewed-by badge and cards)
+					array(
+						'key'   => 'field_home_intro_tab',
+						'label' => 'Intro section',
+						'type'  => 'tab',
+					),
+					array(
+						'key'     => 'field_home_intro_note',
+						'label'   => 'About this section',
+						'type'    => 'message',
+						'message' => 'White-background introduction that sits between the reviewed-by badge and the "What we treat" cards. Leave the body empty to skip the section.',
+					),
+					array(
+						'key'           => 'field_home_intro_eyebrow',
+						'name'          => 'intro_eyebrow',
+						'label'         => 'Eyebrow (optional)',
+						'type'          => 'text',
+						'default_value' => '',
+					),
+					array(
+						'key'           => 'field_home_intro_title',
+						'name'          => 'intro_title',
+						'label'         => 'Headline (optional)',
+						'type'          => 'text',
+						'default_value' => '',
+					),
+					array(
+						'key'           => 'field_home_intro_body',
+						'name'          => 'intro_body',
+						'label'         => 'Body',
+						'instructions'  => 'A short welcoming paragraph that sets context after the hero.',
+						'type'          => 'textarea',
+						'rows'          => 5,
+						'default_value' => "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help.",
+					),
+
 					// WHAT WE TREAT
 					array(
 						'key'   => 'field_wwt_tab',
