@@ -117,6 +117,7 @@ while ( have_posts() ) :
 
 <?php endwhile; ?>
 
+	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main>

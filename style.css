@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.13.0
+Version: 0.14.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -968,6 +968,52 @@ label {
 
 .wp-block-details p:last-child {
 	margin-bottom: 0;
+}
+
+/* "Reviewed by Dr. Cowburn" credibility badge — sits above the global CTA */
+.ws-reviewed-by {
+	background: var(--ws-mist);
+	padding-block: clamp(1.25rem, 3vw, 1.75rem);
+	border-top: 1px solid rgba(15, 77, 51, 0.08);
+	border-bottom: 1px solid rgba(15, 77, 51, 0.08);
+}
+
+.ws-reviewed-by__inner {
+	max-width: var(--ws-container-narrow);
+	margin-inline: auto;
+	padding-inline: clamp(1rem, 4vw, 2.5rem);
+	display: flex;
+	align-items: center;
+	gap: var(--ws-space-3);
+	justify-content: center;
+	text-align: center;
+	flex-wrap: wrap;
+}
+
+.ws-reviewed-by__icon {
+	flex-shrink: 0;
+	color: var(--ws-spring);
+	width: 22px;
+	height: 22px;
+}
+
+.ws-reviewed-by__text {
+	font-size: var(--ws-text-sm);
+	color: var(--ws-text);
+	margin: 0;
+	line-height: 1.5;
+}
+
+.ws-reviewed-by__text strong {
+	color: var(--ws-char);
+	font-weight: 500;
+}
+
+@media (max-width: 480px) {
+	.ws-reviewed-by__inner {
+		flex-direction: column;
+		gap: var(--ws-space-2);
+	}
 }
 
 /* =========================================================

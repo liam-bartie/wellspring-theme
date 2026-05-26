@@ -241,6 +241,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		</section>
 	<?php endif; ?>
 
+	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main>

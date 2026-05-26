@@ -88,6 +88,7 @@ get_header();
 	endwhile;
 	?>
 
+	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main><!-- #main -->
