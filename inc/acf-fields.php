@@ -487,7 +487,8 @@ add_action(
 						'name'          => 'cards_intro',
 						'label'         => 'Section sub-copy (optional)',
 						'type'          => 'textarea',
-						'rows'          => 2,
+						'rows'          => 3,
+						'default_value' => 'Acupuncture and Traditional Chinese Medicine address the root causes of imbalance, not just the symptoms. The areas below cover the conditions we see most often — but if you don\'t see what you\'re looking for, get in touch. There\'s a good chance we can help.',
 					),
 					array(
 						'key'     => 'field_wwt_cards_note',

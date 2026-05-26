@@ -152,6 +152,78 @@ add_action(
 		);
 
 		/**
+		 * 6. FAQ accordion — collapsible questions using native HTML5 details blocks.
+		 */
+		register_block_pattern(
+			'wellspring/faq-accordion',
+			array(
+				'title'       => __( 'FAQ accordion', 'wellspring' ),
+				'description' => __( 'Collapsible FAQ list. Click any question to expand. Native HTML5 details — no JavaScript required, fully accessible.', 'wellspring' ),
+				'categories'  => array( 'wellspring' ),
+				'keywords'    => array( 'faq', 'questions', 'accordion', 'details', 'frequently asked' ),
+				'content'     => '<!-- wp:group {"className":"ws-faq","layout":{"type":"constrained"}} -->
+<div class="wp-block-group ws-faq"><!-- wp:heading {"level":2,"className":"ws-faq__title"} -->
+<h2 class="wp-block-heading ws-faq__title">Frequently asked questions</h2>
+<!-- /wp:heading -->
+
+<!-- wp:details {"summary":"How many acupuncture sessions do I need?"} -->
+<details class="wp-block-details"><summary>How many acupuncture sessions do I need?</summary><!-- wp:paragraph -->
+<p>The number of acupuncture treatments you need depends on your specific condition, its severity, and how your body responds. Treatment plans are personalized to your medical history, needs, and overall health. In some cases one treatment is enough to address acute pain; in others, you may benefit from 10 or more sessions over a course of treatment.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"Is acupuncture covered by insurance in Alberta?"} -->
+<details class="wp-block-details"><summary>Is acupuncture covered by insurance in Alberta?</summary><!-- wp:paragraph -->
+<p>Acupuncture is generally not covered by Alberta Health Care (provincial insurance). However, it is commonly covered under private extended health benefits or company group insurance plans, often listed under paramedical services. Coverage typically requires the practitioner to be a registered, licensed acupuncturist in Alberta — which we are.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"Does acupuncture hurt?"} -->
+<details class="wp-block-details"><summary>Does acupuncture hurt?</summary><!-- wp:paragraph -->
+<p>Most people don\'t report pain during acupuncture, though you may feel some sensations. What you feel depends on your pain tolerance and overall sensitivity. Your first treatment may seem more intense than the ones that follow — partly nerves, partly the body responding to needling for the first time. Most patients become more relaxed and comfortable with each subsequent session.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"How deep do the needles go?"} -->
+<details class="wp-block-details"><summary>How deep do the needles go?</summary><!-- wp:paragraph -->
+<p>Acupuncture needles generally penetrate from 1/16 of an inch to 1.5 inches (roughly 2mm to 40mm), depending on body area, muscle density, and treatment goals. Delicate areas like the scalp or face receive shallow insertions (1–5 mm), while fleshier areas like the hips or glutes can be treated more deeply.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"Are the needles sterilized or one-time use?"} -->
+<details class="wp-block-details"><summary>Are the needles sterilized or one-time use?</summary><!-- wp:paragraph -->
+<p>Both. In modern, regulated practices, acupuncture needles are treated as single-use medical devices: sterilized during manufacturing, opened from sealed packaging in front of you, and disposed of immediately after a single treatment.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"What are the needles made from?"} -->
+<details class="wp-block-details"><summary>What are the needles made from?</summary><!-- wp:paragraph -->
+<p>Modern acupuncture needles are made from high-quality, surgical-grade stainless steel — thin, flexible, hair-thin, and sterile. Handles are typically stainless steel, copper, or plastic, sometimes with a silicone coating for smoother insertion.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"How quickly does acupuncture and TCM work?"} -->
+<details class="wp-block-details"><summary>How quickly does acupuncture and TCM work?</summary><!-- wp:paragraph -->
+<p>Most patients see improvement within 1–2 sessions for acute conditions, and 2–3 sessions for chronic issues. Some feel relief immediately; others need a series of treatments to achieve lasting results. We\'ll talk through realistic expectations during your first appointment.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"What will my first appointment include?"} -->
+<details class="wp-block-details"><summary>What will my first appointment include?</summary><!-- wp:paragraph -->
+<p>Your first appointment typically lasts 50 minutes. It includes a comprehensive intake of your health history, a TCM-based pattern diagnosis, and a personalized treatment plan. Expect detailed questions about your sleep, diet, stress, and overall patterns — followed by acupuncture and, if appropriate, an herbal recommendation.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details -->
+
+<!-- wp:details {"summary":"How will I feel after treatment?"} -->
+<details class="wp-block-details"><summary>How will I feel after treatment?</summary><!-- wp:paragraph -->
+<p>Most patients feel a deep sense of relaxation after treatment. Some experience mild soreness at the needle sites or feel a bit tired — both subside within a day. Any mild bruising or discolouration usually clears within a few days. For the first 24 hours, rest, drink plenty of water, eat well, and avoid strenuous activity. Use heat packs rather than ice.</p>
+<!-- /wp:paragraph --></details>
+<!-- /wp:details --></div>
+<!-- /wp:group -->',
+			)
+		);
+
+		/**
 		 * 5. Mini-CTA banner — small dark green CTA for mid-page conversion moments.
 		 */
 		register_block_pattern(
