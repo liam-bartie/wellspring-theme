@@ -56,6 +56,8 @@ while ( have_posts() ) :
 		</div>
 	</section>
 
+	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
+
 	<section class="ws-section ws-section--mist">
 		<div class="ws-container">
 			<?php if ( $cards_eyebrow || $cards_title || $cards_intro ) : ?>
@@ -117,7 +119,6 @@ while ( have_posts() ) :
 
 <?php endwhile; ?>
 
-	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main>

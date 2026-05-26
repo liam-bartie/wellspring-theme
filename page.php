@@ -41,6 +41,8 @@ get_header();
 			</div>
 		</section>
 
+		<?php get_template_part( 'template-parts/reviewed-by' ); ?>
+
 		<section class="ws-page-body">
 			<div class="ws-container ws-container--narrow">
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-content' ); ?>>
@@ -88,7 +90,6 @@ get_header();
 	endwhile;
 	?>
 
-	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main><!-- #main -->
