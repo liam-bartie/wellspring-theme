@@ -29,11 +29,28 @@ $all_cases = get_posts(
 
 <main id="primary" class="site-main">
 
-	<section class="ws-page-header">
+	<?php
+	$ar_eyebrow    = get_theme_mod( 'clinic_cases_eyebrow', 'Real outcomes' );
+	$ar_title      = get_theme_mod( 'clinic_cases_title', 'Clinic cases' );
+	$ar_lede       = get_theme_mod( 'clinic_cases_lede', "A curated record of patients we've worked with. Names are shortened to initials for privacy. Use the filters below to browse by focus area or search by symptom." );
+	$ar_image      = get_theme_mod( 'clinic_cases_hero_image', '' );
+	$header_class  = $ar_image ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
+	?>
+	<section class="<?php echo esc_attr( $header_class ); ?>">
+		<?php if ( $ar_image ) : ?>
+			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $ar_image ); ?>');" aria-hidden="true"></div>
+			<div class="ws-page-header__overlay" aria-hidden="true"></div>
+		<?php endif; ?>
 		<div class="ws-container ws-container--narrow ws-page-header__content">
-			<p class="eyebrow">Real outcomes</p>
-			<h1 class="ws-page-header__title">Clinic cases</h1>
-			<p class="ws-page-header__lede">A curated record of patients we've worked with. Names are shortened to initials for privacy. Use the filters below to browse by focus area or search by symptom.</p>
+			<?php if ( $ar_eyebrow ) : ?>
+				<p class="eyebrow"><?php echo esc_html( $ar_eyebrow ); ?></p>
+			<?php endif; ?>
+			<?php if ( $ar_title ) : ?>
+				<h1 class="ws-page-header__title"><?php echo esc_html( $ar_title ); ?></h1>
+			<?php endif; ?>
+			<?php if ( $ar_lede ) : ?>
+				<p class="ws-page-header__lede"><?php echo esc_html( $ar_lede ); ?></p>
+			<?php endif; ?>
 		</div>
 	</section>
 

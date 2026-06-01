@@ -214,6 +214,96 @@ add_action(
 );
 
 /**
+ * Customizer settings for the Clinic Cases archive hero.
+ *
+ * Lets the editor change eyebrow, title, lede, and upload a hero background
+ * image via Appearance → Customize → Clinic Cases archive.
+ */
+add_action(
+	'customize_register',
+	function ( $wp_customize ) {
+		$wp_customize->add_section(
+			'wellspring_clinic_cases',
+			array(
+				'title'    => __( 'Clinic Cases archive', 'wellspring' ),
+				'priority' => 100,
+			)
+		);
+
+		$wp_customize->add_setting(
+			'clinic_cases_eyebrow',
+			array(
+				'default'           => 'Real outcomes',
+				'transport'         => 'refresh',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'clinic_cases_eyebrow',
+			array(
+				'label'   => __( 'Hero eyebrow', 'wellspring' ),
+				'section' => 'wellspring_clinic_cases',
+				'type'    => 'text',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'clinic_cases_title',
+			array(
+				'default'           => 'Clinic cases',
+				'transport'         => 'refresh',
+				'sanitize_callback' => 'sanitize_text_field',
+			)
+		);
+		$wp_customize->add_control(
+			'clinic_cases_title',
+			array(
+				'label'   => __( 'Hero title', 'wellspring' ),
+				'section' => 'wellspring_clinic_cases',
+				'type'    => 'text',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'clinic_cases_lede',
+			array(
+				'default'           => "A curated record of patients we've worked with. Names are shortened to initials for privacy. Use the filters below to browse by focus area or search by symptom.",
+				'transport'         => 'refresh',
+				'sanitize_callback' => 'sanitize_textarea_field',
+			)
+		);
+		$wp_customize->add_control(
+			'clinic_cases_lede',
+			array(
+				'label'   => __( 'Hero sub-headline', 'wellspring' ),
+				'section' => 'wellspring_clinic_cases',
+				'type'    => 'textarea',
+			)
+		);
+
+		$wp_customize->add_setting(
+			'clinic_cases_hero_image',
+			array(
+				'default'           => '',
+				'transport'         => 'refresh',
+				'sanitize_callback' => 'esc_url_raw',
+			)
+		);
+		$wp_customize->add_control(
+			new WP_Customize_Image_Control(
+				$wp_customize,
+				'clinic_cases_hero_image',
+				array(
+					'label'       => __( 'Hero background image', 'wellspring' ),
+					'description' => __( 'Optional. Leave empty for a clean text-only hero.', 'wellspring' ),
+					'section'     => 'wellspring_clinic_cases',
+				)
+			)
+		);
+	}
+);
+
+/**
  * Flush rewrite rules when the theme is activated (so the new CPT URLs work
  * without the user having to visit Settings → Permalinks).
  */
