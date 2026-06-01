@@ -302,6 +302,52 @@ add_action(
 						'default_value' => "Acupuncture is a core therapy within Traditional Chinese Medicine that supports the body's natural healing response by restoring balance. Your body has a complex network of energy pathways that can be thrown out of balance by internal or external factors.\n\nAt Wellspring Health, your acupuncturist assesses these patterns and helps restore healthier flow by stimulating specific acupuncture points, often by activating areas that may seem unrelated to where symptoms are felt. After the main imbalance is addressed, Chinese herbal medicine is often recommended to help support and stabilize your progress and cure.\n\nAcupuncture is recognized by the National Institutes of Health (NIH) and the World Health Organization (WHO) as an effective treatment for a variety of health conditions.",
 					),
 
+					// FEATURED CASES
+					array(
+						'key'   => 'field_home_cases_tab',
+						'label' => 'Featured cases',
+						'type'  => 'tab',
+					),
+					array(
+						'key'     => 'field_home_cases_note',
+						'label'   => 'About this section',
+						'type'    => 'message',
+						'message' => 'A homepage strip showing 3 clinic cases. By default the 3 most recent published cases appear automatically — or pick specific cases below to feature.',
+					),
+					array(
+						'key'           => 'field_home_cases_eyebrow',
+						'name'          => 'cases_eyebrow',
+						'label'         => 'Section eyebrow',
+						'type'          => 'text',
+						'default_value' => 'Cases from the clinic',
+					),
+					array(
+						'key'           => 'field_home_cases_title',
+						'name'          => 'cases_title',
+						'label'         => 'Section headline',
+						'type'          => 'text',
+						'default_value' => 'Real patients, real outcomes.',
+					),
+					array(
+						'key'           => 'field_home_cases_lede',
+						'name'          => 'cases_lede',
+						'label'         => 'Section sub-copy (optional)',
+						'type'          => 'textarea',
+						'rows'          => 2,
+						'default_value' => '',
+					),
+					array(
+						'key'           => 'field_home_cases_featured',
+						'name'          => 'cases_featured',
+						'label'         => 'Featured cases (optional)',
+						'instructions'  => 'Pick up to 3 cases to feature. Leave empty to show the 3 most recent published cases automatically.',
+						'type'          => 'relationship',
+						'post_type'     => array( 'clinic_case' ),
+						'filters'       => array( 'search' ),
+						'max'           => 3,
+						'return_format' => 'id',
+					),
+
 					// TESTIMONIALS
 					array(
 						'key'   => 'field_testi_tab',

@@ -47,6 +47,31 @@ $acu_image         = function_exists( 'get_field' ) ? get_field( 'acupuncture_im
 $acu_title         = ws_field( 'acupuncture_title', 'What is Acupuncture?' );
 $acu_body          = ws_field( 'acupuncture_body', '' );
 
+$cases_eyebrow     = ws_field( 'cases_eyebrow', 'Cases from the clinic' );
+$cases_title       = ws_field( 'cases_title', 'Real patients, real outcomes.' );
+$cases_lede        = ws_field( 'cases_lede', '' );
+$cases_featured_ids = function_exists( 'get_field' ) ? get_field( 'cases_featured' ) : array();
+
+if ( ! empty( $cases_featured_ids ) && is_array( $cases_featured_ids ) ) {
+	$featured_cases = get_posts(
+		array(
+			'post_type'      => 'clinic_case',
+			'post__in'       => $cases_featured_ids,
+			'orderby'        => 'post__in',
+			'posts_per_page' => 3,
+		)
+	);
+} else {
+	$featured_cases = get_posts(
+		array(
+			'post_type'      => 'clinic_case',
+			'posts_per_page' => 3,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		)
+	);
+}
+
 $testi_eyebrow     = ws_field( 'testimonials_eyebrow', 'Patient stories' );
 $testi_title       = ws_field( 'testimonials_title', 'The work, in their words.' );
 
@@ -220,6 +245,37 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 						</article>
 					<?php endif; ?>
 				</div>
+			</div>
+		</section>
+		<?php
+	endif;
+
+	// Featured cases — only render if there's at least one published case.
+	if ( ! empty( $featured_cases ) ) :
+		?>
+		<section class="ws-section ws-home-cases">
+			<div class="ws-container">
+				<header class="ws-section-header ws-section-header--center">
+					<?php if ( $cases_eyebrow ) : ?>
+						<p class="eyebrow"><?php echo esc_html( $cases_eyebrow ); ?></p>
+					<?php endif; ?>
+					<?php if ( $cases_title ) : ?>
+						<h2><?php echo esc_html( $cases_title ); ?></h2>
+					<?php endif; ?>
+					<?php if ( $cases_lede ) : ?>
+						<p class="ws-section-header__lede"><?php echo esc_html( $cases_lede ); ?></p>
+					<?php endif; ?>
+				</header>
+
+				<div class="ws-cases-grid">
+					<?php foreach ( $featured_cases as $case ) {
+						get_template_part( 'template-parts/case-card', null, array( 'case' => $case ) );
+					} ?>
+				</div>
+
+				<p class="ws-home-cases__view-all">
+					<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>" class="ws-link-arrow">View all cases</a>
+				</p>
 			</div>
 		</section>
 		<?php
