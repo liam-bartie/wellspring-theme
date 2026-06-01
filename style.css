@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.17.1
+Version: 0.17.2
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -1084,11 +1084,13 @@ label {
 	text-decoration: underline;
 }
 
-/* Cards grid */
+/* Cards grid — extra row-gap so file tabs don't collide with cards below */
 .ws-cases-grid {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: var(--ws-space-6);
+	column-gap: var(--ws-space-6);
+	row-gap: calc(var(--ws-space-6) + 0.75rem);
+	padding-top: 0.75rem;
 }
 
 @media (min-width: 640px) {
@@ -1103,30 +1105,28 @@ label {
 .ws-case-card {
 	position: relative;
 	background: #FAF7F0;
-	border: 1px solid rgba(15, 77, 51, 0.14);
+	border: 1px solid rgba(15, 77, 51, 0.16);
 	border-radius: var(--ws-radius);
 	padding: 1.75rem 1.5rem 1.5rem;
 	transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-	overflow: hidden;
 }
 
 .ws-case-card:hover {
 	transform: translateY(-2px);
 	box-shadow: 0 12px 28px -16px rgba(15, 77, 51, 0.18);
-	border-color: rgba(15, 77, 51, 0.25);
+	border-color: rgba(15, 77, 51, 0.28);
 }
 
-/* File folder tab at the top-left */
+/* File folder tab — pokes up above the top-right corner */
 .ws-case-card::before {
 	content: "";
 	position: absolute;
-	top: 0;
-	left: 1.5rem;
-	width: 3.5rem;
-	height: 5px;
+	top: -0.7rem;
+	right: 1.5rem;
+	width: 4.5rem;
+	height: 0.8rem;
 	background: var(--ws-forest);
-	border-bottom-left-radius: 2px;
-	border-bottom-right-radius: 2px;
+	border-radius: 3px 3px 0 0;
 }
 
 .ws-case-card__focus {
