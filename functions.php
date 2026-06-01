@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.16.2' );
+	define( 'WELLSPRING_VERSION', '0.17.0' );
 }
 
 /**
@@ -185,6 +185,11 @@ require get_template_directory() . '/inc/acf-fields.php';
  * Gutenberg block patterns for the Wellspring brand.
  */
 require get_template_directory() . '/inc/block-patterns.php';
+
+/**
+ * Clinic Cases custom post type, taxonomy, and ACF fields.
+ */
+require get_template_directory() . '/inc/clinic-cases.php';
 
 /**
  * Implement the Custom Header feature.
