@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.18.2' );
+	define( 'WELLSPRING_VERSION', '0.19.0' );
 }
 
 /**
@@ -156,11 +156,33 @@ function wellspring_scripts() {
 
 	wp_enqueue_script( 'wellspring-navigation', get_template_directory_uri() . '/js/navigation.js', array(), WELLSPRING_VERSION, true );
 
+	// Reviews slider — only where the curated Google reviews section appears.
+	if ( is_front_page() || is_page( ws_reviews_page_slugs() ) ) {
+		wp_enqueue_script( 'wellspring-reviews-slider', get_template_directory_uri() . '/js/reviews-slider.js', array(), WELLSPRING_VERSION, true );
+	}
+
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
 add_action( 'wp_enqueue_scripts', 'wellspring_scripts' );
+
+/**
+ * Page slugs (besides the home page) that should display the curated
+ * Google reviews slider just above the closing CTA.
+ *
+ * Edit this list if your page slugs differ. Extra variants are included so
+ * it works whether the pages are slugged "bookings" or "book-appointments",
+ * "contact" or "contact-us", etc.
+ *
+ * @return string[]
+ */
+function ws_reviews_page_slugs() {
+	return apply_filters(
+		'ws_reviews_page_slugs',
+		array( 'about', 'book-appointments', 'bookings', 'booking', 'contact', 'contact-us' )
+	);
+}
 
 /**
  * Add preconnect for Google Fonts to speed up first paint.

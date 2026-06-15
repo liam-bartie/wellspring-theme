@@ -88,6 +88,11 @@ get_header();
 			<?php
 		endif;
 	endwhile;
+
+	// Curated Google reviews slider on selected pages, just above the CTA.
+	if ( is_page( ws_reviews_page_slugs() ) ) {
+		get_template_part( 'template-parts/reviews-slider' );
+	}
 	?>
 
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
