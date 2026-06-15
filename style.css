@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.18.1
+Version: 0.18.2
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -1792,6 +1792,134 @@ label {
 .ws-quote__attr span {
 	color: var(--ws-text-muted);
 	font-weight: 400;
+}
+
+/* =========================================================
+   Google reviews — curated, theme-matched
+   ========================================================= */
+
+/* Star row: grey base with a gold overlay clipped to the rating width,
+   so fractional scores (e.g. 4.9) render accurately. */
+.ws-stars {
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	line-height: 1;
+	letter-spacing: 2px;
+	font-size: 1.05rem;
+}
+
+.ws-stars__base {
+	color: rgba(15, 20, 17, 0.16);
+}
+
+.ws-stars__fill {
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	color: #F4B400;
+}
+
+/* Aggregate rating badge under the section heading */
+.ws-reviews-summary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--ws-space-2) var(--ws-space-4);
+	max-width: 34rem;
+	margin: 0 auto var(--ws-space-12);
+	padding: var(--ws-space-4) var(--ws-space-6);
+	background: var(--ws-snow);
+	border: 1px solid var(--ws-border);
+	border-radius: var(--ws-radius-lg);
+	text-decoration: none;
+	color: var(--ws-text);
+}
+
+a.ws-reviews-summary {
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.ws-reviews-summary:hover {
+	border-color: var(--ws-border-strong);
+	box-shadow: 0 6px 20px rgba(15, 20, 17, 0.06);
+}
+
+.ws-reviews-summary__brand {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ws-space-2);
+	font-weight: 500;
+	font-size: var(--ws-text-base);
+}
+
+.ws-reviews-summary__score {
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-2xl);
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+
+.ws-reviews-summary .ws-stars {
+	font-size: 1.2rem;
+}
+
+.ws-reviews-summary__count {
+	flex-basis: 100%;
+	text-align: center;
+	font-size: var(--ws-text-sm);
+	color: var(--ws-text-muted);
+}
+
+@media (min-width: 600px) {
+	.ws-reviews-summary__count {
+		flex-basis: auto;
+	}
+}
+
+/* Per-card stars + Google attribution */
+.ws-quote__stars {
+	margin-bottom: var(--ws-space-3);
+}
+
+.ws-quote__attr {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--ws-space-3);
+}
+
+.ws-quote__name {
+	min-width: 0;
+}
+
+.ws-quote__source {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	flex-shrink: 0;
+	font-size: var(--ws-text-xs);
+	font-weight: 500;
+	color: var(--ws-text-muted);
+}
+
+.ws-g {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+/* Review cards lead with stars, so drop the decorative open-quote glyph */
+.ws-reviews .ws-quote__body::before {
+	content: none;
+}
+
+.ws-reviews__cta {
+	margin: var(--ws-space-12) 0 0;
+	text-align: center;
 }
 
 /* CTA banner — dark green, reversed buttons. Used site-wide above footer. */

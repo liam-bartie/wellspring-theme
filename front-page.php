@@ -74,6 +74,10 @@ if ( ! empty( $cases_featured_ids ) && is_array( $cases_featured_ids ) ) {
 
 $testi_eyebrow     = ws_field( 'testimonials_eyebrow', 'Patient stories' );
 $testi_title       = ws_field( 'testimonials_title', 'The work, in their words.' );
+$reviews_rating    = ws_field( 'reviews_rating', '5.0' );
+$reviews_count     = ws_field( 'reviews_count', '' );
+$reviews_url       = ws_field( 'reviews_url', '' );
+$reviews_cta_label = ws_field( 'reviews_cta_label', 'Read all reviews on Google' );
 
 $cta_title         = ws_field( 'cta_title', 'Ready when you are.' );
 $cta_lede          = ws_field( 'cta_lede', 'New patients welcome. Appointments typically available within the week. Direct billing to most major insurers.' );
@@ -287,34 +291,84 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 	$testi_3_quote = ws_field( 'testimonial_3_quote' );
 	$any_testi     = $testi_1_quote || $testi_2_quote || $testi_3_quote;
 
+	// Inline Google "G" mark.
+	$ws_google_g = '<svg class="ws-g" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/></svg>';
+
+	// Star row renderer — supports fractional ratings via an overlaid fill.
+	$ws_stars = function ( $rating ) {
+		$rating = (float) $rating;
+		$pct    = max( 0, min( 100, ( $rating / 5 ) * 100 ) );
+		$label  = rtrim( rtrim( number_format( $rating, 1 ), '0' ), '.' ) . ' out of 5 stars';
+		$out    = '<span class="ws-stars" role="img" aria-label="' . esc_attr( $label ) . '">';
+		$out   .= '<span class="ws-stars__base" aria-hidden="true">★★★★★</span>';
+		$out   .= '<span class="ws-stars__fill" aria-hidden="true" style="width:' . esc_attr( $pct ) . '%;">★★★★★</span>';
+		$out   .= '</span>';
+		return $out;
+	};
+
 	if ( $any_testi ) :
 		?>
-		<section class="ws-section ws-section--mist">
+		<section class="ws-section ws-section--mist ws-reviews">
 			<div class="ws-container ws-container--narrow">
 				<header class="ws-section-header ws-section-header--center">
 					<p class="eyebrow"><?php echo esc_html( $testi_eyebrow ); ?></p>
 					<h2><?php echo esc_html( $testi_title ); ?></h2>
 				</header>
 
+				<?php if ( $reviews_rating ) : ?>
+					<?php
+					$rating_badge = sprintf(
+						'<span class="ws-reviews-summary__brand">%1$s<span>Google</span></span>' .
+						'<span class="ws-reviews-summary__score">%2$s</span>' .
+						'%3$s' .
+						'<span class="ws-reviews-summary__count">%4$s</span>',
+						$ws_google_g,
+						esc_html( $reviews_rating ),
+						$ws_stars( $reviews_rating ),
+						$reviews_count ? esc_html( sprintf( /* translators: %s: review count */ 'Based on %s Google reviews', $reviews_count ) ) : esc_html__( 'Rated on Google', 'wellspring' )
+					);
+					?>
+					<?php if ( $reviews_url ) : ?>
+						<a class="ws-reviews-summary" href="<?php echo esc_url( $reviews_url ); ?>" target="_blank" rel="noopener noreferrer">
+							<?php echo $rating_badge; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted static markup; dynamic values escaped above ?>
+						</a>
+					<?php else : ?>
+						<div class="ws-reviews-summary">
+							<?php echo $rating_badge; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted static markup; dynamic values escaped above ?>
+						</div>
+					<?php endif; ?>
+				<?php endif; ?>
+
 				<div class="ws-quotes">
 					<?php for ( $i = 1; $i <= 3; $i++ ) :
 						$q = ws_field( 'testimonial_' . $i . '_quote' );
 						$a = ws_field( 'testimonial_' . $i . '_author' );
 						$c = ws_field( 'testimonial_' . $i . '_context' );
+						$r = ws_field( 'testimonial_' . $i . '_rating', 5 );
 						if ( ! $q ) {
 							continue;
 						}
 						?>
 						<figure class="ws-quote">
+							<div class="ws-quote__stars"><?php echo wp_kses_post( $ws_stars( $r ) ); ?></div>
 							<blockquote class="ws-quote__body"><?php echo esc_html( $q ); ?></blockquote>
 							<figcaption class="ws-quote__attr">
-								<?php echo esc_html( $a ); ?>
-								<?php if ( $c ) : ?>&middot; <span><?php echo esc_html( $c ); ?></span><?php endif; ?>
+								<span class="ws-quote__name">
+									<?php echo esc_html( $a ); ?>
+									<?php if ( $c ) : ?>&middot; <span><?php echo esc_html( $c ); ?></span><?php endif; ?>
+								</span>
+								<span class="ws-quote__source"><?php echo $ws_google_g; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static trusted SVG ?>Google</span>
 							</figcaption>
 						</figure>
 						<?php
 					endfor; ?>
 				</div>
+
+				<?php if ( $reviews_url && $reviews_cta_label ) : ?>
+					<p class="ws-reviews__cta">
+						<a class="ws-link-arrow" href="<?php echo esc_url( $reviews_url ); ?>" target="_blank" rel="noopener noreferrer"><?php echo esc_html( $reviews_cta_label ); ?></a>
+					</p>
+				<?php endif; ?>
 			</div>
 		</section>
 	<?php endif; ?>
