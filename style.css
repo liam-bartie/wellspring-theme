@@ -24,6 +24,7 @@ Tags: custom-logo, custom-menu, featured-images, threaded-comments, translation-
 	--ws-forest: #0F4D33;
 	--ws-snow: #FFFFFF;
 	--ws-mist: #E8F4EE;
+	--ws-paper: #FAF8F3;
 	--ws-char: #0F1411;
 	--ws-char-muted: #4A524E;
 	--ws-white: #FFFFFF;
@@ -1671,6 +1672,13 @@ label {
 }
 
 /* Modalities — two-column TCM + Acupuncture explainers */
+/* Warm off-white "paper" background with a faint dot-grain, to set
+   the Our Practice section apart from its white neighbours. */
+.ws-modalities {
+	background-color: var(--ws-paper);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='1' fill='%230F1411' fill-opacity='0.035'/%3E%3C/svg%3E");
+}
+
 .ws-modalities__grid {
 	display: grid;
 	grid-template-columns: 1fr;
