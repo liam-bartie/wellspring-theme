@@ -79,19 +79,6 @@ while ( have_posts() ) :
 					<div class="ws-case-glance">
 						<p class="ws-case-glance__lbl">At a glance</p>
 						<p class="ws-case-glance__text"><?php echo esc_html( $summary ); ?></p>
-						<?php if ( $duration || $sessions || ! empty( $modalities ) ) : ?>
-							<div class="ws-case-glance__stats">
-								<?php if ( $duration ) : ?>
-									<div><b><?php echo esc_html( $duration ); ?></b>Duration</div>
-								<?php endif; ?>
-								<?php if ( $sessions ) : ?>
-									<div><b><?php echo esc_html( $sessions ); ?></b>Sessions</div>
-								<?php endif; ?>
-								<?php if ( ! empty( $modalities ) && ! is_wp_error( $modalities ) ) : ?>
-									<div><b><?php echo esc_html( $modalities[0]->name ); ?></b>Approach</div>
-								<?php endif; ?>
-							</div>
-						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 
