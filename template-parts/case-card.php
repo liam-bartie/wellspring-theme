@@ -64,26 +64,28 @@ $has_image       = has_post_thumbnail( $case->ID );
 		?>
 	</a>
 
-	<?php if ( $primary_focus ) : ?>
-		<p class="ws-case-card__focus"><?php echo esc_html( $primary_focus ); ?></p>
-	<?php endif; ?>
-
-	<div class="ws-case-card__patient">
-		<?php if ( $monogram ) : ?>
-			<span class="ws-case-card__monogram" aria-hidden="true"><?php echo esc_html( substr( $monogram, 0, 2 ) ); ?></span>
+	<div class="ws-case-card__body">
+		<?php if ( $primary_focus ) : ?>
+			<p class="ws-case-card__focus"><?php echo esc_html( $primary_focus ); ?></p>
 		<?php endif; ?>
-		<span><?php echo esc_html( $initial ? $initial : 'Patient' ); ?><?php if ( $context ) : ?> &middot; <?php echo esc_html( $context ); ?><?php endif; ?></span>
+
+		<div class="ws-case-card__patient">
+			<?php if ( $monogram ) : ?>
+				<span class="ws-case-card__monogram" aria-hidden="true"><?php echo esc_html( substr( $monogram, 0, 2 ) ); ?></span>
+			<?php endif; ?>
+			<span><?php echo esc_html( $initial ? $initial : 'Patient' ); ?><?php if ( $context ) : ?> &middot; <?php echo esc_html( $context ); ?><?php endif; ?></span>
+		</div>
+
+		<h3 class="ws-case-card__title">
+			<a href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>"><?php echo esc_html( $case->post_title ); ?></a>
+		</h3>
+
+		<?php if ( $result_excerpt ) : ?>
+			<p class="ws-case-card__excerpt"><?php echo esc_html( $result_excerpt ); ?></p>
+		<?php endif; ?>
+
+		<div class="ws-case-card__divider" aria-hidden="true"></div>
+
+		<a href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>" class="ws-case-card__cta">Read the full case <span aria-hidden="true">→</span></a>
 	</div>
-
-	<h3 class="ws-case-card__title">
-		<a href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>"><?php echo esc_html( $case->post_title ); ?></a>
-	</h3>
-
-	<?php if ( $result_excerpt ) : ?>
-		<p class="ws-case-card__excerpt"><?php echo esc_html( $result_excerpt ); ?></p>
-	<?php endif; ?>
-
-	<div class="ws-case-card__divider" aria-hidden="true"></div>
-
-	<a href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>" class="ws-case-card__cta">Read the full case <span aria-hidden="true">→</span></a>
 </article>

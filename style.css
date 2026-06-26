@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.23.0
+Version: 0.23.1
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -1494,6 +1494,46 @@ label {
 
 .ws-case-detail__tag--static { cursor: default; }
 .ws-case-detail__tag--static:hover { background: var(--ws-mist); color: var(--ws-forest); }
+
+/* Horizontal row variant — used in the library results for denser previews */
+.ws-cases-results .ws-cases-grid--rows {
+	grid-template-columns: 1fr;
+	gap: var(--ws-space-4);
+}
+
+.ws-cases-grid--rows .ws-case-card {
+	display: flex;
+	gap: 1.25rem;
+	padding: 1.1rem;
+}
+
+.ws-cases-grid--rows .ws-case-card::before { display: none; }
+
+.ws-cases-grid--rows .ws-case-card__media {
+	margin: 0;
+	flex: 0 0 180px;
+	width: 180px;
+	aspect-ratio: auto;
+	height: auto;
+	min-height: 128px;
+	align-self: stretch;
+	border-radius: var(--ws-radius);
+}
+
+.ws-cases-grid--rows .ws-case-card__body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.ws-cases-grid--rows .ws-case-card__focus { margin-top: 0; }
+.ws-cases-grid--rows .ws-case-card__excerpt { margin-bottom: auto; }
+.ws-cases-grid--rows .ws-case-sprig { width: 46px; }
+
+@media (max-width: 520px) {
+	.ws-cases-grid--rows .ws-case-card__media { flex-basis: 104px; width: 104px; }
+}
 
 /* =========================================================
    Clinic cases library — faceted filter rail

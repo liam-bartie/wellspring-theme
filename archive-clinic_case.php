@@ -89,7 +89,7 @@ $facet_groups = array(
 							<p class="ws-cases-results__count"><span id="ws-cases-count"><?php echo count( $all_cases ); ?></span> <?php echo esc_html( _n( 'case', 'cases', count( $all_cases ), 'wellspring' ) ); ?></p>
 						</div>
 
-						<div class="ws-cases-grid">
+						<div class="ws-cases-grid ws-cases-grid--rows">
 							<?php foreach ( $all_cases as $case ) {
 								get_template_part( 'template-parts/case-card', null, array( 'case' => $case ) );
 							} ?>
