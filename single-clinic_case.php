@@ -23,11 +23,23 @@ while ( have_posts() ) :
 	$result      = function_exists( 'get_field' ) ? get_field( 'result' ) : '';
 	$duration    = function_exists( 'get_field' ) ? get_field( 'duration' ) : '';
 	$sessions    = function_exists( 'get_field' ) ? get_field( 'sessions' ) : '';
+	$summary     = function_exists( 'get_field' ) ? get_field( 'summary' ) : '';
+	$modalities  = wp_get_post_terms( get_the_ID(), 'case_modality' );
+	$symptoms    = wp_get_post_terms( get_the_ID(), 'case_symptom' );
 	?>
 
 <main id="primary" class="site-main">
 
-	<section class="ws-page-header">
+	<?php
+	$case_has_thumb = has_post_thumbnail();
+	$case_thumb_url = $case_has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
+	$case_ph_class  = $case_has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
+	?>
+	<section class="<?php echo esc_attr( $case_ph_class ); ?>">
+		<?php if ( $case_has_thumb ) : ?>
+			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $case_thumb_url ); ?>');" aria-hidden="true"></div>
+			<div class="ws-page-header__overlay" aria-hidden="true"></div>
+		<?php endif; ?>
 		<div class="ws-container ws-container--narrow ws-page-header__content">
 			<p class="eyebrow ws-page-header__crumb">
 				<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>">Clinic cases</a>
@@ -45,38 +57,42 @@ while ( have_posts() ) :
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<section class="ws-page-body">
-		<div class="ws-container ws-container--narrow">
+		<div class="ws-container ws-case-layout">
 			<article class="ws-case-detail">
 
-				<?php if ( has_post_thumbnail() ) : ?>
-					<figure class="ws-case-detail__figure">
-						<?php the_post_thumbnail( 'large', array( 'class' => 'ws-case-detail__image', 'loading' => 'eager' ) ); ?>
-					</figure>
-				<?php endif; ?>
-
-				<?php if ( ! empty( $focus_areas ) ) : ?>
+				<?php if ( ( ! empty( $focus_areas ) && ! is_wp_error( $focus_areas ) ) || ( ! empty( $symptoms ) && ! is_wp_error( $symptoms ) ) ) : ?>
 					<div class="ws-case-detail__tags">
-						<?php foreach ( $focus_areas as $term ) : ?>
-							<a class="ws-case-detail__tag" href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?></a>
-						<?php endforeach; ?>
+						<?php if ( ! empty( $focus_areas ) && ! is_wp_error( $focus_areas ) ) : ?>
+							<?php foreach ( $focus_areas as $term ) : ?>
+								<a class="ws-case-detail__tag" href="<?php echo esc_url( get_term_link( $term ) ); ?>"><?php echo esc_html( $term->name ); ?></a>
+							<?php endforeach; ?>
+						<?php endif; ?>
+						<?php if ( ! empty( $symptoms ) && ! is_wp_error( $symptoms ) ) : ?>
+							<?php foreach ( $symptoms as $term ) : ?>
+								<span class="ws-case-detail__tag ws-case-detail__tag--static"><?php echo esc_html( $term->name ); ?></span>
+							<?php endforeach; ?>
+						<?php endif; ?>
 					</div>
 				<?php endif; ?>
 
-				<?php if ( $duration || $sessions ) : ?>
-					<dl class="ws-case-detail__meta">
-						<?php if ( $duration ) : ?>
-							<div>
-								<dt>Duration</dt>
-								<dd><?php echo esc_html( $duration ); ?></dd>
+				<?php if ( $summary ) : ?>
+					<div class="ws-case-glance">
+						<p class="ws-case-glance__lbl">At a glance</p>
+						<p class="ws-case-glance__text"><?php echo esc_html( $summary ); ?></p>
+						<?php if ( $duration || $sessions || ! empty( $modalities ) ) : ?>
+							<div class="ws-case-glance__stats">
+								<?php if ( $duration ) : ?>
+									<div><b><?php echo esc_html( $duration ); ?></b>Duration</div>
+								<?php endif; ?>
+								<?php if ( $sessions ) : ?>
+									<div><b><?php echo esc_html( $sessions ); ?></b>Sessions</div>
+								<?php endif; ?>
+								<?php if ( ! empty( $modalities ) && ! is_wp_error( $modalities ) ) : ?>
+									<div><b><?php echo esc_html( $modalities[0]->name ); ?></b>Approach</div>
+								<?php endif; ?>
 							</div>
 						<?php endif; ?>
-						<?php if ( $sessions ) : ?>
-							<div>
-								<dt>Sessions</dt>
-								<dd><?php echo esc_html( $sessions ); ?></dd>
-							</div>
-						<?php endif; ?>
-					</dl>
+					</div>
 				<?php endif; ?>
 
 				<?php if ( $presentation ) : ?>
@@ -122,6 +138,9 @@ while ( have_posts() ) :
 				</p>
 
 			</article>
+
+			<?php get_template_part( 'template-parts/case-sidebar' ); ?>
+
 		</div>
 	</section>
 

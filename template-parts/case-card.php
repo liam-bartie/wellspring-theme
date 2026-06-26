@@ -17,6 +17,11 @@ $case            = $args['case'];
 $focus_areas     = wp_get_post_terms( $case->ID, 'case_focus' );
 $focus_slugs     = wp_list_pluck( $focus_areas, 'slug' );
 $focus_names     = wp_list_pluck( $focus_areas, 'name' );
+$symptom_terms   = wp_get_post_terms( $case->ID, 'case_symptom' );
+$modality_terms  = wp_get_post_terms( $case->ID, 'case_modality' );
+$symptom_slugs   = is_wp_error( $symptom_terms ) ? array() : wp_list_pluck( $symptom_terms, 'slug' );
+$modality_slugs  = is_wp_error( $modality_terms ) ? array() : wp_list_pluck( $modality_terms, 'slug' );
+$symptom_names   = is_wp_error( $symptom_terms ) ? array() : wp_list_pluck( $symptom_terms, 'name' );
 $primary_focus   = $focus_areas[0]->name ?? '';
 $initial         = function_exists( 'get_field' ) ? get_field( 'patient_initial', $case->ID ) : '';
 $context         = function_exists( 'get_field' ) ? get_field( 'patient_context', $case->ID ) : '';
@@ -36,8 +41,10 @@ $has_image       = has_post_thumbnail( $case->ID );
 ?>
 <article
 	class="ws-case-card"
-	data-search="<?php echo esc_attr( strtolower( $case->post_title . ' ' . wp_strip_all_tags( $case->post_content ) . ' ' . $context . ' ' . implode( ' ', $focus_names ) ) ); ?>"
+	data-search="<?php echo esc_attr( strtolower( $case->post_title . ' ' . wp_strip_all_tags( $case->post_content ) . ' ' . $context . ' ' . implode( ' ', $focus_names ) . ' ' . implode( ' ', $symptom_names ) ) ); ?>"
 	data-tags="<?php echo esc_attr( implode( ',', $focus_slugs ) ); ?>"
+	data-symptom="<?php echo esc_attr( implode( ',', $symptom_slugs ) ); ?>"
+	data-modality="<?php echo esc_attr( implode( ',', $modality_slugs ) ); ?>"
 >
 	<a class="ws-case-card__media<?php echo $has_image ? '' : ' ws-case-card__media--placeholder'; ?>" href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>" tabindex="-1" aria-hidden="true">
 		<?php

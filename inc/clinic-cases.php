@@ -77,6 +77,51 @@ add_action(
 				),
 			)
 		);
+
+		// Secondary facets used by the library filter rail.
+		register_taxonomy(
+			'case_symptom',
+			array( 'clinic_case' ),
+			array(
+				'labels'            => array(
+					'name'          => __( 'Symptoms', 'wellspring' ),
+					'singular_name' => __( 'Symptom', 'wellspring' ),
+					'menu_name'     => __( 'Symptoms', 'wellspring' ),
+					'add_new_item'  => __( 'Add new symptom', 'wellspring' ),
+					'new_item_name' => __( 'New symptom', 'wellspring' ),
+				),
+				'hierarchical'      => false,
+				'show_ui'           => true,
+				'show_in_rest'      => true,
+				'show_admin_column' => true,
+				'rewrite'           => array(
+					'slug'       => 'clinic-cases/symptom',
+					'with_front' => false,
+				),
+			)
+		);
+
+		register_taxonomy(
+			'case_modality',
+			array( 'clinic_case' ),
+			array(
+				'labels'            => array(
+					'name'          => __( 'Treatments used', 'wellspring' ),
+					'singular_name' => __( 'Treatment', 'wellspring' ),
+					'menu_name'     => __( 'Treatments used', 'wellspring' ),
+					'add_new_item'  => __( 'Add new treatment', 'wellspring' ),
+					'new_item_name' => __( 'New treatment', 'wellspring' ),
+				),
+				'hierarchical'      => false,
+				'show_ui'           => true,
+				'show_in_rest'      => true,
+				'show_admin_column' => true,
+				'rewrite'           => array(
+					'slug'       => 'clinic-cases/treatment',
+					'with_front' => false,
+				),
+			)
+		);
 	}
 );
 
@@ -112,6 +157,53 @@ add_action(
 );
 
 /**
+ * Seed the secondary facet terms (symptoms + treatments) once.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( get_option( 'wellspring_facets_seeded' ) === '1' ) {
+			return;
+		}
+
+		$symptoms = array(
+			'pain'         => 'Pain',
+			'headache'     => 'Headache',
+			'sleep'        => 'Sleep',
+			'inflammation' => 'Inflammation',
+			'bleeding'     => 'Bleeding & periods',
+			'urinary'      => 'Urinary',
+			'breathing'    => 'Breathing & sinus',
+			'circulation'  => 'Circulation',
+			'mood'         => 'Mood & anxiety',
+			'skin'         => 'Skin',
+			'fatigue'      => 'Fatigue & energy',
+		);
+		foreach ( $symptoms as $slug => $name ) {
+			if ( ! term_exists( $slug, 'case_symptom' ) ) {
+				wp_insert_term( $name, 'case_symptom', array( 'slug' => $slug ) );
+			}
+		}
+
+		$modalities = array(
+			'acupuncture' => 'Acupuncture',
+			'herbal'      => 'Herbal medicine',
+			'ear-seeds'   => 'Ear seeds',
+			'scalp'       => 'Scalp acupuncture',
+			'cosmetic'    => 'Cosmetic acupuncture',
+			'home-care'   => 'Lifestyle & home care',
+		);
+		foreach ( $modalities as $slug => $name ) {
+			if ( ! term_exists( $slug, 'case_modality' ) ) {
+				wp_insert_term( $name, 'case_modality', array( 'slug' => $slug ) );
+			}
+		}
+
+		update_option( 'wellspring_facets_seeded', '1' );
+	}
+);
+
+/**
  * ACF fields for the clinical narrative on each case.
  */
 add_action(
@@ -139,6 +231,15 @@ add_action(
 						'label'         => 'Patient context (optional)',
 						'instructions'  => 'A short framing line like "Age 45, recurring back pain over 5 years"',
 						'type'          => 'text',
+					),
+					array(
+						'key'           => 'field_case_summary',
+						'name'          => 'summary',
+						'label'         => 'At a glance (summary)',
+						'instructions'  => 'One or two sentences summarising the case and outcome. Shown in the highlighted box near the top of the case page.',
+						'type'          => 'textarea',
+						'rows'          => 3,
+						'new_lines'     => '',
 					),
 					array(
 						'key'           => 'field_case_presentation',

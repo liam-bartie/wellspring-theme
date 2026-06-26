@@ -36,7 +36,14 @@
       ],
       "treatment_outro": "Because the jaw responds quickly to distal points like these, many patients feel the area soften within the session itself.",
       "result": "The jaw joint stops feeling tense and sore, range of movement through the jaw improves, and the night-time tooth grinding settles. With the underlying tension released, patients are able to open, chew, and sleep without the familiar ache returning.",
-      "quote": ""
+      "quote": "",
+      "summary": "Aching, tight jaw and night-time grinding, released by clearing the Qi blockage around the joint — settled within a single treatment course.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture"
+      ]
     },
     {
       "slug": "extremely-heavy-periods-brought-back-to-normal",
@@ -59,7 +66,16 @@
       ],
       "treatment_outro": "Alongside the acupuncture, ear seeds were applied using Dr. Lichun Huang's stop-bleeding combination for the uterus — tiny seeds taped to specific points on the ear that the patient pressed between visits for continuous, gentle stimulation. A custom herbal formula was prescribed to tonify Spleen Qi from the inside, working steadily between sessions to rebuild the body's reserves.",
       "result": "The quantity of menstrual blood returned to a normal, manageable level, and the cycle of hospital visits came to an end. With the Spleen's holding function restored, her periods were no longer a recurring emergency.",
-      "quote": ""
+      "quote": "",
+      "summary": "Months of dangerous, hospitalising menstrual flow brought back to a normal level by strengthening the Spleen's hold on the blood.",
+      "symptom": [
+        "bleeding"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal"
+      ]
     },
     {
       "slug": "frequent-and-urgent-urination-resolved",
@@ -88,7 +104,15 @@
       ],
       "treatment_outro": "",
       "result": "The pulse signs of inflammation resolved, and urination returned to a normal, comfortable rhythm. With the underlying heat cleared, the constant urgency that had been organising her days simply lifted.",
-      "quote": ""
+      "quote": "",
+      "summary": "Urgent, constant urination resolved once the underlying bladder and lung inflammation cleared — back to a normal, comfortable rhythm.",
+      "symptom": [
+        "urinary",
+        "inflammation"
+      ],
+      "modality": [
+        "acupuncture"
+      ]
     },
     {
       "slug": "swelling-and-pain-after-knee-surgery-fully-recovered",
@@ -113,7 +137,15 @@
       ],
       "treatment_outro": "",
       "result": "The pain and swelling resolved. Her doctors were surprised by how quickly and completely she recovered, and her gym instructor was amazed at the full range of movement she regained in the knee — a return to function well beyond what had been expected after her surgery.",
-      "quote": ""
+      "quote": "",
+      "summary": "Post-surgical swelling and pain at the knee fully resolved, with a faster, fuller recovery than her doctors expected.",
+      "symptom": [
+        "pain",
+        "inflammation"
+      ],
+      "modality": [
+        "acupuncture"
+      ]
     },
     {
       "slug": "waking-through-the-night-to-urinate-restored-deep-sleep",
@@ -129,7 +161,18 @@
       "treatment_points": [],
       "treatment_outro": "To tonify Kidney Yang, a custom herbal formula was prescribed and paired with guidance toward regular aerobic exercise. To release the stress and smooth the Liver Qi, treatment combined acupuncture, ear seeds, and supportive work on day-to-day attitude and stress habits.",
       "result": "Within a month, the patient could fall asleep easily and stay asleep through the night. With the bladder settled and the mind unwound, her sleep became deep and unbroken again — and her daytime energy returned with it.",
-      "quote": ""
+      "quote": "",
+      "summary": "Hours to fall asleep and constant night-time waking, resolved by warming the Kidneys and unwinding stress — deep sleep within a month.",
+      "symptom": [
+        "sleep",
+        "urinary"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal",
+        "ear-seeds",
+        "home-care"
+      ]
     },
     {
       "slug": "severe-insomnia-from-barely-sleeping-to-full-nights",
@@ -145,7 +188,16 @@
       "treatment_points": [],
       "treatment_outro": "The first priority was to stop the abnormal uterine bleeding using acupuncture and ear seeds, halting the ongoing blood loss that was deepening the deficiency. From there, a herbal formula, acupuncture, and ear seeds worked together to tonify the Spleen and rebuild the blood, settle the digestion, and steadily improve the depth of sleep.",
       "result": "Over three weeks, her sleep rebuilt itself in stages — first two hours of straight sleep in a night, then three, then five, and finally a full seven to eight hours of unbroken sleep. From barely sleeping at all, she returned to genuinely restful nights.",
-      "quote": ""
+      "quote": "",
+      "summary": "From barely sleeping at all to a full seven–eight hours, rebuilt in stages by stopping blood loss and settling digestion.",
+      "symptom": [
+        "sleep"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal"
+      ]
     },
     {
       "slug": "twenty-years-of-asthma-off-the-inhaler",
@@ -174,7 +226,16 @@
       ],
       "treatment_outro": "Alongside the acupuncture, a herbal combination was prescribed to clear phlegm and inflammation out of the lungs over time.",
       "result": "The inflammation and phlegm in his lungs cleared. The wheezing and coughing stopped, and — after his family doctor verified the improvement — he was able to stop using his inhaler for the first time in ten years.",
-      "quote": ""
+      "quote": "",
+      "summary": "Twenty years of asthma and a decade on inhalers — wheezing and phlegm cleared, and off the inhaler with her doctor's sign-off.",
+      "symptom": [
+        "breathing",
+        "inflammation"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "heel-pain-from-a-bone-spur-back-on-his-feet",
@@ -203,7 +264,17 @@
       ],
       "treatment_outro": "Alongside the needling, the foot was soaked in Dr. Haixia Ni's herbal formula to reduce the swelling and inflammation from the outside in.",
       "result": "The swelling and inflammation resolved. As healing progressed, the pain began to move around the foot — a sign of returning circulation — before fading completely. The tight muscles and sinews in her leg loosened back to a normal, comfortable state, and her foot could carry her weight again.",
-      "quote": ""
+      "quote": "",
+      "summary": "Severe heel pain from a bone spur, with the foot unable to touch the floor — swelling, inflammation and pain fully resolved.",
+      "symptom": [
+        "pain",
+        "inflammation"
+      ],
+      "modality": [
+        "acupuncture",
+        "scalp",
+        "herbal"
+      ]
     },
     {
       "slug": "whole-body-tightness-and-pain-from-scoliosis-relieved",
@@ -232,7 +303,16 @@
       ],
       "treatment_outro": "A herbal formula ran throughout to tonify Qi, blood, and Yang and break the stagnation. The strategy was twofold: strengthen the spine and its surrounding muscles so the gains would last, while never overtaxing a body that had little energy to spare.",
       "result": "The patient grew steadily stronger until his body had enough energy to support the spine itself. The vertebrae moved back toward a centred position, and as the structure recentred, the pain and tightness resolved alongside it — a lasting result built on a strengthened, better-supported spine.",
-      "quote": ""
+      "quote": "",
+      "summary": "Whole-body tightness and pain from scoliosis eased as a gentle, strengthening plan helped the spine recentre.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "scalp",
+        "herbal"
+      ]
     },
     {
       "slug": "knee-pain-from-a-bone-spur-under-the-kneecap-resolved",
@@ -261,7 +341,15 @@
       ],
       "treatment_outro": "A herbal formula was prescribed to tonify the underlying deficiency, improve digestion, expel the phlegm-dampness, and break up the blood stasis.",
       "result": "The pain eased after each treatment, and once the full course was complete it did not return. With the deficiency strengthened and the local congestion cleared, her knee was free to move again without flaring.",
-      "quote": ""
+      "quote": "",
+      "summary": "Knee pain from a bone spur under the kneecap, cleared by strengthening the deficiency and clearing local congestion.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "frozen-shoulder-pain-from-aging-resolved",
@@ -286,7 +374,15 @@
       ],
       "treatment_outro": "A herbal formula was prescribed to tonify the deficiency, expel the phlegm-damp-cold, and break up the blood stasis.",
       "result": "The pain eased after each treatment, and once the full course was complete it did not come back. With the joint warmed, cleared, and supported, she regained comfortable use of her shoulder and arm.",
-      "quote": ""
+      "quote": "",
+      "summary": "Aging-related 'frozen shoulder' pain warmed, cleared and resolved over a focused treatment course.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "a-blocked-nose-and-lost-sense-of-smell-and-taste-restored",
@@ -315,7 +411,15 @@
       ],
       "treatment_outro": "Alongside the acupuncture, a herbal mixture was prescribed to open the nose and to strengthen and warm the respiratory system from within.",
       "result": "Her nose opened during the treatment itself, and the stuffiness lifted. By the time she went home she could smell and taste her food again — the senses she had lost returning along with clear, easy breathing.",
-      "quote": ""
+      "quote": "",
+      "summary": "A blocked nose and lost sense of smell and taste, restored during treatment by opening and warming the respiratory system.",
+      "symptom": [
+        "breathing"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "migraines-and-chinook-headaches-stopped-at-the-needle",
@@ -356,7 +460,16 @@
       ],
       "treatment_outro": "Chinese herbs are added to help Qi and blood flow through the head, with tonifying herbs for patients who also have an underlying Qi or blood deficiency.",
       "result": "In many cases the headache disappears instantly and completely the moment the needle reaches the right point. From there, the prescribed TCM herbs give patients a way to stop a headache themselves when it recurs at home — turning an unpredictable, debilitating problem into something they can manage.",
-      "quote": ""
+      "quote": "",
+      "summary": "Migraines and Calgary Chinook headaches that disappeared the moment the needle reached the right point — then manageable at home.",
+      "symptom": [
+        "headache",
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "neck-shoulder-and-back-pain-after-a-car-accident-resolved",
@@ -389,7 +502,15 @@
       ],
       "treatment_outro": "A herbal formula was prescribed to break the Qi stagnation and blood stasis and relieve the pain between sessions.",
       "result": "The pain was completely gone after each treatment and the relief lasted for several days at a time. Gradually the pain-free stretches grew longer and longer until the pain stopped coming back at all. After years of trying everything, her relief was visible the moment the needles went in — as she put it, her face broke into a smile on the table, and she signed up to finish the course and clear the pain for good.",
-      "quote": ""
+      "quote": "",
+      "summary": "Years of diffuse neck, shoulder and back pain after a car accident — gone after each treatment, and finally for good.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "sleep-apnea-and-severe-snoring-machine-free-nights",
@@ -414,7 +535,16 @@
       ],
       "treatment_outro": "A herbal formula was prescribed to tonify Yang. For other patients the herbs might be adjusted to clear phlegm or to tonify both Yin and Yang, depending on their pattern.",
       "result": "The snoring stopped, and the sleep apnea resolved — he no longer needed to wear the machine at night. With quiet, uninterrupted sleep restored, both he and his wife could finally rest.",
-      "quote": ""
+      "quote": "",
+      "summary": "Sleep apnea and severe snoring resolved by tonifying Yang and Lung Qi — back to quiet, machine-free nights.",
+      "symptom": [
+        "sleep",
+        "breathing"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "quitting-smoking-after-decades-with-tcm-support",
@@ -439,7 +569,17 @@
       ],
       "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for quitting smoking. A herbal mixture from Dr. Haixia Ni helped her quit, cleared junk from the respiratory system, removed the smoke colour and odour from the mouth, and regulated appetite. All of it was wrapped in a personalised quit-smoking plan to follow at home.",
       "result": "She gradually reduced her smoking, coughed less, and produced less mucus. Along the way she changed both her lifestyle and her attitude toward smoking — and finally quit completely.",
-      "quote": ""
+      "quote": "",
+      "summary": "Decades of heavy smoking, coughing and mucus — gradually reduced and finally quit, with the lungs cleared along the way.",
+      "symptom": [
+        "breathing"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "seasonal-allergies-and-morning-sneezing-cleared",
@@ -468,7 +608,15 @@
       ],
       "treatment_outro": "Herbal combinations were prescribed to tonify Lung and Kidney Qi and to soothe the lungs and nose.",
       "result": "All symptoms were gone after one month. With Lung and Kidney Qi strengthened, the daily morning sneezing and runny nose that had defined his allergy season simply stopped.",
-      "quote": ""
+      "quote": "",
+      "summary": "Daily morning sneezing and runny nose from seasonal allergies, cleared in a month by strengthening Lung and Kidney Qi.",
+      "symptom": [
+        "breathing"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "a-fast-recovery-from-the-flu-without-the-usual-long-illness",
@@ -501,7 +649,14 @@
       ],
       "treatment_outro": "",
       "result": "The symptoms at her nose, sinuses, and throat cleared, and her energy level returned to normal. Most importantly, she did not go on to develop any of the further flu symptoms that usually kept her ill for months — the early treatment stopped the illness in its tracks.",
-      "quote": ""
+      "quote": "",
+      "summary": "Early flu caught and cleared in days — heading off the months-long illness this patient usually suffered.",
+      "symptom": [
+        "breathing"
+      ],
+      "modality": [
+        "acupuncture"
+      ]
     },
     {
       "slug": "high-blood-pressure-that-medication-couldnt-control-brought-down",
@@ -522,7 +677,17 @@
       ],
       "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for hypertension, pressed between visits for continuous effect. A herbal mixture was prescribed to clear the phlegm-damp-heat, break up the blood stasis, and pull down the rising Liver Yang. For home care, she made dietary changes to reduce the phlegm-damp-heat and built a habit of regular, appropriate exercise.",
       "result": "Her blood pressure gradually dropped to a safe level — the top number that medication alone couldn't move finally came down once the underlying patterns were treated and the home-care habits took hold.",
-      "quote": ""
+      "quote": "",
+      "summary": "High blood pressure that medication couldn't control, brought down safely once the underlying patterns and habits were addressed.",
+      "symptom": [
+        "circulation"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "dangerously-high-blood-pressure-without-medication-returned-to-normal",
@@ -543,7 +708,17 @@
       ],
       "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for hypertension. A herbal mixture (for example, a Gui Zhi–based formula to address the problems at the pericardium) was prescribed to target the underlying patterns. For home care, she worked on changing her lifestyle and reducing stress — and was firmly advised to seek medical care immediately if the dangerous spikes returned or if the alternative treatment didn't hold.",
       "result": "Her blood pressure gradually reduced to a normal range. The dangerous spikes settled as the underlying patterns — including the sleep apnea driving the night-time oxygen drops — were treated. Throughout, she was counselled to pursue conventional medical care without delay should the readings climb again.",
-      "quote": ""
+      "quote": "",
+      "summary": "Dangerously high blood pressure in a patient who declined medication, returned to normal range — with medical care advised as backup.",
+      "symptom": [
+        "circulation"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "lifelong-anxiety-and-insomnia-eased-with-herbs",
@@ -564,7 +739,18 @@
       ],
       "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for anxiety. Herbal formulas were prescribed to treat the Zang Zao pattern and the constipation. For home care, she took up daily meditation and regular exercise to support the work.",
       "result": "After taking the herbal formula for the Zang Zao pattern, her anxiety and insomnia resolved. For the constipation, she keeps herbal pills on hand to take whenever needed. After a lifetime of anxiety, she finally found steady relief.",
-      "quote": ""
+      "quote": "",
+      "summary": "Lifelong anxiety and broken sleep eased with targeted herbs and acupuncture, after a lifetime of carrying it.",
+      "symptom": [
+        "mood",
+        "sleep"
+      ],
+      "modality": [
+        "acupuncture",
+        "ear-seeds",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "twenty-years-of-depression-resolved-and-off-medication",
@@ -593,7 +779,17 @@
       ],
       "treatment_outro": "Herbal formulas were prescribed to treat the depression, the sleep apnea, and the hot flashes in turn. For home care, she added regular exercise and time in sunlight.",
       "result": "The hot flashes resolved after the herbal formula tonified Kidney Yin and cleared the deficient heat. The depression lifted — she no longer needed her medication — and the sleep apnea resolved as the Yang was tonified through herbs and acupuncture. Twenty years on, she came out the other side with her energy, her sleep, and her mood restored.",
-      "quote": ""
+      "quote": "",
+      "summary": "Twenty years of depression resolved and off medication, with hot flashes and mild sleep apnea clearing alongside.",
+      "symptom": [
+        "mood",
+        "fatigue"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "raynauds-syndrome-cold-blue-hands-and-feet-warmed",
@@ -618,7 +814,16 @@
       ],
       "treatment_outro": "Herbal formulas were prescribed to break the Liver Qi stagnation, tonify the blood, improve circulation, and warm the extremities. For home care, he worked on reducing stress and increasing sweaty exercise and sunlight.",
       "result": "His hands and feet changed colour — from bluish-purple, to red as circulation returned, and finally to a normal colour at a normal temperature. With the trapped Yang freed and the blood nourished, warmth came back to his extremities and the spread was reversed.",
-      "quote": ""
+      "quote": "",
+      "summary": "Cold, blue hands and feet from Raynaud's warmed back to normal colour and temperature by freeing trapped Yang and nourishing the blood.",
+      "symptom": [
+        "circulation"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "cosmetic-acupuncture-age-spots-gone-and-wrinkles-softened",
@@ -639,7 +844,16 @@
       ],
       "treatment_outro": "A herbal mixture was prescribed to improve the Qi and blood supply and circulation, both on the face and throughout the body, so the results were supported from the inside. For home care, she focused on sunscreen, staying hydrated, eating antioxidants, limiting sugar, gentle Gua Sha, natural face masks, and managing stress.",
       "result": "All of the age spots cleared, and the wrinkles softened enough that they were no longer easily noticed — a brighter, smoother complexion achieved through circulation and nourishment rather than harsh intervention.",
-      "quote": ""
+      "quote": "",
+      "summary": "Age spots cleared and wrinkles softened through cosmetic acupuncture and circulation-boosting herbs — natural, from the inside out.",
+      "symptom": [
+        "skin"
+      ],
+      "modality": [
+        "cosmetic",
+        "herbal",
+        "home-care"
+      ]
     },
     {
       "slug": "sharp-pain-under-the-shoulder-blade-and-flank-relieved",
@@ -664,7 +878,15 @@
       ],
       "treatment_outro": "The herbal formula Shen Tong Zhu Yu Tang — a classic prescription for moving blood and relieving body pain — was prescribed to clear the blood stasis between sessions.",
       "result": "All of the pain resolved after treatment. With the channels rebalanced and the blood stasis cleared, the sharp pain under his shoulder blade and along his flank let go — and his nights settled.",
-      "quote": ""
+      "quote": "",
+      "summary": "Sharp pain under the shoulder blade and along the flank, relieved by rebalancing the channels and clearing blood stasis.",
+      "symptom": [
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     },
     {
       "slug": "shingles-blisters-and-severe-pain-cleared",
@@ -685,7 +907,16 @@
       ],
       "treatment_outro": "Herbs were prescribed for several weeks to clear the virus from within, working steadily alongside the acupuncture.",
       "result": "All of the pain resolved, and the blisters shrank, dried out, and disappeared. By treating both the channel blockage and the virus, the outbreak cleared and the severe pain that came with it let go.",
-      "quote": ""
+      "quote": "",
+      "summary": "Shingles blisters and severe pain on the lower back and flank, cleared by treating both the channel blockage and the virus.",
+      "symptom": [
+        "skin",
+        "pain"
+      ],
+      "modality": [
+        "acupuncture",
+        "herbal"
+      ]
     }
   ]
 }

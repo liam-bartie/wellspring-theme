@@ -15,7 +15,7 @@
  * @package Wellspring
  */
 
-define( 'WELLSPRING_CASES_SEED_VERSION', '1' );
+define( 'WELLSPRING_CASES_SEED_VERSION', '2' );
 
 /**
  * Run the seeder once per seed version, on admin load, for capable users.
@@ -87,7 +87,6 @@ function wellspring_seed_clinic_cases() {
 			continue;
 		}
 
-		// Idempotency: skip if a case with this slug already exists.
 		$existing = get_posts(
 			array(
 				'post_type'      => 'clinic_case',
@@ -97,16 +96,25 @@ function wellspring_seed_clinic_cases() {
 				'fields'         => 'ids',
 			)
 		);
+
+		// Already created on a previous pass — augment with newer fields only,
+		// without clobbering any manual edits, then move on.
 		if ( ! empty( $existing ) ) {
+			$post_id = (int) $existing[0];
+			if ( ! empty( $case['summary'] ) && '' === (string) get_field( 'summary', $post_id ) ) {
+				update_field( 'field_case_summary', $case['summary'], $post_id );
+			}
+			wellspring_assign_case_terms( $post_id, 'case_symptom', $case['symptom'] ?? array(), true );
+			wellspring_assign_case_terms( $post_id, 'case_modality', $case['modality'] ?? array(), true );
 			continue;
 		}
 
 		$post_id = wp_insert_post(
 			array(
-				'post_type'   => 'clinic_case',
-				'post_status' => 'publish',
-				'post_title'  => $case['title'],
-				'post_name'   => $case['slug'],
+				'post_type'    => 'clinic_case',
+				'post_status'  => 'publish',
+				'post_title'   => $case['title'],
+				'post_name'    => $case['slug'],
 				'post_content' => '',
 			),
 			true
@@ -116,22 +124,15 @@ function wellspring_seed_clinic_cases() {
 			continue;
 		}
 
-		// Focus-area taxonomy term (create from a friendly name if missing).
+		// Taxonomy terms (create any missing terms from a friendly name).
 		if ( ! empty( $case['focus'] ) ) {
-			$term = get_term_by( 'slug', $case['focus'], 'case_focus' );
-			if ( ! $term ) {
-				$name   = wellspring_focus_name_from_slug( $case['focus'] );
-				$insert = wp_insert_term( $name, 'case_focus', array( 'slug' => $case['focus'] ) );
-				if ( ! is_wp_error( $insert ) ) {
-					$term = get_term( $insert['term_id'], 'case_focus' );
-				}
-			}
-			if ( $term && ! is_wp_error( $term ) ) {
-				wp_set_object_terms( $post_id, (int) $term->term_id, 'case_focus', false );
-			}
+			wellspring_assign_case_terms( $post_id, 'case_focus', array( $case['focus'] ), false );
 		}
+		wellspring_assign_case_terms( $post_id, 'case_symptom', $case['symptom'] ?? array(), false );
+		wellspring_assign_case_terms( $post_id, 'case_modality', $case['modality'] ?? array(), false );
 
 		// ACF fields (set by field key for reliability on a fresh post).
+		update_field( 'field_case_summary', $case['summary'] ?? '', $post_id );
 		update_field( 'field_case_patient_initial', $case['initials'] ?? '', $post_id );
 		update_field( 'field_case_patient_context', $case['context'] ?? '', $post_id );
 		update_field( 'field_case_presentation', wellspring_paragraphs( $case['presentation'] ?? '' ), $post_id );
@@ -257,22 +258,93 @@ function wellspring_sideload_featured_image( $url, $post_id, $alt = '' ) {
 }
 
 /**
- * Friendly fallback name for a focus-area slug (used only if the term is
- * somehow missing when the seeder runs).
+ * Assign taxonomy terms to a case by slug, creating any missing terms.
  *
- * @param string $slug Term slug.
+ * @param int    $post_id       Case ID.
+ * @param string $taxonomy      Taxonomy name.
+ * @param array  $slugs         Term slugs.
+ * @param bool   $only_if_empty If true, skip when the case already has terms in
+ *                              this taxonomy (so manual edits aren't overwritten).
+ */
+function wellspring_assign_case_terms( $post_id, $taxonomy, $slugs, $only_if_empty = false ) {
+	$slugs = array_values( array_filter( (array) $slugs ) );
+	if ( empty( $slugs ) ) {
+		return;
+	}
+
+	if ( $only_if_empty ) {
+		$current = wp_get_object_terms( $post_id, $taxonomy, array( 'fields' => 'ids' ) );
+		if ( ! is_wp_error( $current ) && ! empty( $current ) ) {
+			return;
+		}
+	}
+
+	$ids = array();
+	foreach ( $slugs as $slug ) {
+		$term = get_term_by( 'slug', $slug, $taxonomy );
+		if ( ! $term ) {
+			$insert = wp_insert_term( wellspring_facet_name_from_slug( $slug, $taxonomy ), $taxonomy, array( 'slug' => $slug ) );
+			if ( ! is_wp_error( $insert ) ) {
+				$term = get_term( $insert['term_id'], $taxonomy );
+			}
+		}
+		if ( $term && ! is_wp_error( $term ) ) {
+			$ids[] = (int) $term->term_id;
+		}
+	}
+
+	if ( $ids ) {
+		wp_set_object_terms( $post_id, $ids, $taxonomy, false );
+	}
+}
+
+/**
+ * Friendly fallback name for a facet term slug (used only if a term is missing
+ * when the seeder runs — normally the taxonomy seeders create them first).
+ *
+ * @param string $slug     Term slug.
+ * @param string $taxonomy Taxonomy name.
  * @return string Name.
  */
-function wellspring_focus_name_from_slug( $slug ) {
-	$map = array(
-		'pain-relief'         => 'Pain Relief & Injury Recovery',
-		'womens-health'       => "Women's Health",
-		'mental-health-sleep' => 'Mental Health & Sleep',
-		'digestive-health'    => 'Digestive Health',
-		'respiratory'         => 'Respiratory',
-		'other-conditions'    => 'Other Conditions',
+function wellspring_facet_name_from_slug( $slug, $taxonomy = 'case_focus' ) {
+	$maps = array(
+		'case_focus'    => array(
+			'pain-relief'              => 'Pain Relief & Injury Recovery',
+			'womens-health'            => "Women's Health",
+			'mental-health-sleep'      => 'Mental Health & Sleep',
+			'digestive-health'         => 'Digestive Health',
+			'respiratory'              => 'Respiratory',
+			'heart-circulation'        => 'Heart & Circulation',
+			'skin-facial-health'       => 'Skin & Facial Health',
+			'allergies-immune-support' => 'Allergies & Immune Support',
+			'other-conditions'         => 'Other Conditions',
+		),
+		'case_symptom'  => array(
+			'pain'         => 'Pain',
+			'headache'     => 'Headache',
+			'sleep'        => 'Sleep',
+			'inflammation' => 'Inflammation',
+			'bleeding'     => 'Bleeding & periods',
+			'urinary'      => 'Urinary',
+			'breathing'    => 'Breathing & sinus',
+			'circulation'  => 'Circulation',
+			'mood'         => 'Mood & anxiety',
+			'skin'         => 'Skin',
+			'fatigue'      => 'Fatigue & energy',
+		),
+		'case_modality' => array(
+			'acupuncture' => 'Acupuncture',
+			'herbal'      => 'Herbal medicine',
+			'ear-seeds'   => 'Ear seeds',
+			'scalp'       => 'Scalp acupuncture',
+			'cosmetic'    => 'Cosmetic acupuncture',
+			'home-care'   => 'Lifestyle & home care',
+		),
 	);
-	return $map[ $slug ] ?? ucwords( str_replace( '-', ' ', $slug ) );
+	if ( isset( $maps[ $taxonomy ][ $slug ] ) ) {
+		return $maps[ $taxonomy ][ $slug ];
+	}
+	return ucwords( str_replace( '-', ' ', $slug ) );
 }
 
 /**

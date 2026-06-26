@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.21.0
+Version: 0.23.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -1293,6 +1293,296 @@ label {
 
 .ws-case-card__cta:hover {
 	color: var(--ws-spring);
+}
+
+/* =========================================================
+   Clinic case — two-column case-study layout
+   ========================================================= */
+.ws-case-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) 330px;
+	gap: var(--ws-space-12);
+	align-items: start;
+}
+
+@media (max-width: 900px) {
+	.ws-case-layout { grid-template-columns: 1fr; }
+}
+
+/* At-a-glance summary box */
+.ws-case-glance {
+	background: var(--ws-forest);
+	color: #e9f4ee;
+	border-radius: var(--ws-radius-lg);
+	padding: 1.5rem 1.6rem;
+	margin-bottom: var(--ws-space-8);
+}
+
+.ws-case-glance__lbl {
+	font-size: var(--ws-text-xs);
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: #8fd9bd;
+	font-weight: 500;
+	margin: 0 0 0.5rem;
+}
+
+.ws-case-glance__text {
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-lg);
+	color: #fff;
+	line-height: 1.5;
+	margin: 0;
+	letter-spacing: -0.01em;
+}
+
+.ws-case-glance__stats {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.6rem;
+	margin-top: 1.1rem;
+	padding-top: 1rem;
+	border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.ws-case-glance__stats div {
+	font-size: var(--ws-text-xs);
+	color: #bfe3d4;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.ws-case-glance__stats b {
+	display: block;
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-lg);
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: -0.01em;
+	text-transform: none;
+	margin-bottom: 2px;
+}
+
+/* Auto-generated case sidebar */
+.ws-case-side {
+	position: sticky;
+	top: 1.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: var(--ws-space-4);
+}
+
+@media (max-width: 900px) {
+	.ws-case-side { position: static; }
+}
+
+.ws-case-box {
+	background: #fff;
+	border: 1px solid var(--ws-border);
+	border-radius: var(--ws-radius-lg);
+	padding: 1.25rem 1.3rem;
+}
+
+.ws-case-box--book {
+	background: var(--ws-mist);
+	border-color: rgba(15, 77, 51, 0.16);
+}
+
+.ws-case-box__title {
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-lg);
+	font-weight: 500;
+	letter-spacing: -0.02em;
+	margin: 0 0 0.2rem;
+}
+
+.ws-case-box__sub {
+	font-size: var(--ws-text-sm);
+	color: var(--ws-text-muted);
+	margin: 0 0 1rem;
+	line-height: 1.5;
+}
+
+.ws-case-box__auto {
+	font-size: var(--ws-text-xs);
+	color: var(--ws-spring-dark);
+	font-weight: 500;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	margin: 0 0 0.6rem;
+}
+
+.ws-case-box__more {
+	display: inline-block;
+	margin-top: 0.9rem;
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-forest);
+}
+
+.ws-case-box__more:hover { color: var(--ws-spring); }
+
+/* Pill buttons (sidebar) */
+.ws-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4rem;
+	font-family: inherit;
+	font-weight: 500;
+	font-size: var(--ws-text-sm);
+	padding: 0.7rem 1rem;
+	border-radius: 100px;
+	cursor: pointer;
+	transition: all 150ms ease;
+	text-decoration: none;
+	border: 1.5px solid transparent;
+}
+
+.ws-btn--solid { background: var(--ws-forest); color: #fff; }
+.ws-btn--solid:hover { background: var(--ws-spring-dark); color: #fff; }
+.ws-btn--ghost { background: #fff; color: var(--ws-forest); border-color: var(--ws-border-strong); }
+.ws-btn--ghost:hover { border-color: var(--ws-spring); color: var(--ws-spring-dark); }
+.ws-btn--block { display: flex; width: 100%; }
+.ws-case-box .ws-btn + .ws-btn { margin-top: 0.5rem; }
+
+.ws-case-facts {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ws-case-facts li {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	font-size: var(--ws-text-sm);
+	padding: 0.5rem 0;
+	border-bottom: 1px solid var(--ws-border);
+}
+
+.ws-case-facts li:last-child { border-bottom: none; }
+.ws-case-facts span { color: var(--ws-text-muted); }
+.ws-case-facts b { font-weight: 500; color: var(--ws-forest); text-align: right; }
+
+.ws-case-rel {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.ws-case-rel li { border-bottom: 1px solid var(--ws-border); }
+.ws-case-rel li:last-child { border-bottom: none; }
+
+.ws-case-rel a {
+	display: flex;
+	justify-content: space-between;
+	gap: 0.6rem;
+	align-items: center;
+	padding: 0.6rem 0;
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-forest);
+	line-height: 1.35;
+}
+
+.ws-case-rel a:hover { color: var(--ws-spring); }
+.ws-case-rel__arr { color: var(--ws-spring); flex: 0 0 auto; }
+
+.ws-case-detail__tag--static { cursor: default; }
+.ws-case-detail__tag--static:hover { background: var(--ws-mist); color: var(--ws-forest); }
+
+/* =========================================================
+   Clinic cases library — faceted filter rail
+   ========================================================= */
+.ws-cases-archive .ws-cases-search { margin-bottom: var(--ws-space-8); }
+
+.ws-cases-faceted {
+	display: grid;
+	grid-template-columns: 230px minmax(0, 1fr);
+	gap: var(--ws-space-12);
+	align-items: start;
+}
+
+@media (max-width: 860px) {
+	.ws-cases-faceted { grid-template-columns: 1fr; }
+}
+
+.ws-cases-rail { position: sticky; top: 1.5rem; }
+
+@media (max-width: 860px) {
+	.ws-cases-rail { position: static; }
+}
+
+.ws-cases-rail__head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.ws-cases-rail__title {
+	font-family: var(--ws-font-display);
+	font-size: var(--ws-text-base);
+	margin: 0;
+}
+
+.ws-cases-rail__clear {
+	background: none;
+	border: none;
+	color: var(--ws-spring-dark);
+	font-family: inherit;
+	font-size: var(--ws-text-xs);
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: underline;
+	padding: 0;
+}
+
+.ws-facet { margin-bottom: 1.4rem; }
+
+.ws-facet__label {
+	font-size: var(--ws-text-xs);
+	text-transform: uppercase;
+	letter-spacing: 0.14em;
+	color: var(--ws-text-muted);
+	font-weight: 500;
+	margin: 0 0 0.6rem;
+}
+
+.ws-facet__chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+.ws-facet__chip {
+	font-size: var(--ws-text-xs);
+	border: 1px solid var(--ws-border-strong);
+	background: #fff;
+	color: var(--ws-char);
+	padding: 0.35rem 0.7rem;
+	border-radius: 100px;
+	cursor: pointer;
+	font-family: inherit;
+	transition: all 120ms ease;
+}
+
+.ws-facet__chip:hover { border-color: var(--ws-spring); color: var(--ws-spring-dark); }
+.ws-facet__chip.is-active { background: var(--ws-forest); border-color: var(--ws-forest); color: #fff; }
+
+.ws-cases-results__top { margin-bottom: 1.2rem; }
+
+.ws-cases-results__count {
+	font-size: var(--ws-text-sm);
+	font-weight: 500;
+	color: var(--ws-forest);
+	margin: 0;
+}
+
+.ws-cases-results .ws-cases-grid { grid-template-columns: 1fr; }
+
+@media (min-width: 680px) {
+	.ws-cases-results .ws-cases-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* Related cases — shortcode block used on What We Treat pages */
