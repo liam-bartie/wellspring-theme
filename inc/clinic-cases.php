@@ -87,21 +87,26 @@ add_action(
 add_action(
 	'admin_init',
 	function () {
-		if ( ! get_option( 'wellspring_focus_areas_seeded' ) ) {
+		// Bump this version to add new focus areas on the next admin load.
+		$focus_seed_version = '2';
+		if ( get_option( 'wellspring_focus_areas_seeded' ) !== $focus_seed_version ) {
 			$defaults = array(
-				'pain-relief'        => 'Pain Relief & Injury Recovery',
-				'womens-health'      => "Women's Health",
-				'mental-health-sleep' => 'Mental Health & Sleep',
-				'digestive-health'   => 'Digestive Health',
-				'respiratory'        => 'Respiratory',
-				'other-conditions'   => 'Other Conditions',
+				'pain-relief'              => 'Pain Relief & Injury Recovery',
+				'womens-health'            => "Women's Health",
+				'mental-health-sleep'      => 'Mental Health & Sleep',
+				'digestive-health'         => 'Digestive Health',
+				'respiratory'              => 'Respiratory',
+				'heart-circulation'        => 'Heart & Circulation',
+				'skin-facial-health'       => 'Skin & Facial Health',
+				'allergies-immune-support' => 'Allergies & Immune Support',
+				'other-conditions'         => 'Other Conditions',
 			);
 			foreach ( $defaults as $slug => $name ) {
 				if ( ! term_exists( $slug, 'case_focus' ) ) {
 					wp_insert_term( $name, 'case_focus', array( 'slug' => $slug ) );
 				}
 			}
-			update_option( 'wellspring_focus_areas_seeded', 1 );
+			update_option( 'wellspring_focus_areas_seeded', $focus_seed_version );
 		}
 	}
 );

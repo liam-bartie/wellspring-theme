@@ -48,6 +48,12 @@ while ( have_posts() ) :
 		<div class="ws-container ws-container--narrow">
 			<article class="ws-case-detail">
 
+				<?php if ( has_post_thumbnail() ) : ?>
+					<figure class="ws-case-detail__figure">
+						<?php the_post_thumbnail( 'large', array( 'class' => 'ws-case-detail__image', 'loading' => 'eager' ) ); ?>
+					</figure>
+				<?php endif; ?>
+
 				<?php if ( ! empty( $focus_areas ) ) : ?>
 					<div class="ws-case-detail__tags">
 						<?php foreach ( $focus_areas as $term ) : ?>

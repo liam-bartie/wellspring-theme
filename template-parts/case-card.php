@@ -32,12 +32,31 @@ if ( $initial ) {
 		$monogram .= strtoupper( substr( $part, 0, 1 ) );
 	}
 }
+$has_image       = has_post_thumbnail( $case->ID );
 ?>
 <article
 	class="ws-case-card"
 	data-search="<?php echo esc_attr( strtolower( $case->post_title . ' ' . wp_strip_all_tags( $case->post_content ) . ' ' . $context . ' ' . implode( ' ', $focus_names ) ) ); ?>"
 	data-tags="<?php echo esc_attr( implode( ',', $focus_slugs ) ); ?>"
 >
+	<a class="ws-case-card__media<?php echo $has_image ? '' : ' ws-case-card__media--placeholder'; ?>" href="<?php echo esc_url( get_permalink( $case->ID ) ); ?>" tabindex="-1" aria-hidden="true">
+		<?php
+		if ( $has_image ) {
+			echo get_the_post_thumbnail(
+				$case->ID,
+				'medium_large',
+				array(
+					'class'   => 'ws-case-card__img',
+					'loading' => 'lazy',
+					'alt'     => '',
+				)
+			);
+		} else {
+			get_template_part( 'template-parts/case-sprig' );
+		}
+		?>
+	</a>
+
 	<?php if ( $primary_focus ) : ?>
 		<p class="ws-case-card__focus"><?php echo esc_html( $primary_focus ); ?></p>
 	<?php endif; ?>

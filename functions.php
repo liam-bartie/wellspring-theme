@@ -9,7 +9,7 @@
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.19.0' );
+	define( 'WELLSPRING_VERSION', '0.21.0' );
 }
 
 /**
@@ -212,6 +212,16 @@ require get_template_directory() . '/inc/block-patterns.php';
  * Clinic Cases custom post type, taxonomy, and ACF fields.
  */
 require get_template_directory() . '/inc/clinic-cases.php';
+
+/**
+ * Clinic Cases content seeder (migrated case library).
+ */
+require get_template_directory() . '/inc/clinic-cases-seed.php';
+
+/**
+ * Clinic Cases related-cases shortcode ([wellspring_cases]).
+ */
+require get_template_directory() . '/inc/clinic-cases-shortcode.php';
 
 /**
  * Implement the Custom Header feature.

@@ -2,8 +2,8 @@
 /**
  * Archive template for Clinic Cases.
  *
- * Lists all clinic_case posts as filterable cards with a JS-powered
- * search + chip filter. Lives at /clinic-cases/.
+ * Lists all clinic_case posts grouped under their focus area, with a
+ * JS-powered search + chip filter layered on top. Lives at /clinic-cases/.
  *
  * @package Wellspring
  */
@@ -25,6 +25,18 @@ $all_cases = get_posts(
 		'order'          => 'DESC',
 	)
 );
+
+// Group each case under its primary (first) focus area for sectioning.
+$grouped   = array();
+$ungrouped = array();
+foreach ( $all_cases as $case ) {
+	$terms = wp_get_post_terms( $case->ID, 'case_focus' );
+	if ( ! empty( $terms ) && ! is_wp_error( $terms ) ) {
+		$grouped[ $terms[0]->slug ][] = $case;
+	} else {
+		$ungrouped[] = $case;
+	}
+}
 ?>
 
 <main id="primary" class="site-main">
@@ -76,10 +88,45 @@ $all_cases = get_posts(
 			<?php endif; ?>
 
 			<?php if ( ! empty( $all_cases ) ) : ?>
-				<div class="ws-cases-grid">
-					<?php foreach ( $all_cases as $case ) {
-						get_template_part( 'template-parts/case-card', null, array( 'case' => $case ) );
-					} ?>
+				<div class="ws-cases-groups">
+					<?php
+					// Render groups in taxonomy order; append any ungrouped cases last.
+					$render_groups = array();
+					if ( ! empty( $focus_terms ) && ! is_wp_error( $focus_terms ) ) {
+						foreach ( $focus_terms as $term ) {
+							if ( ! empty( $grouped[ $term->slug ] ) ) {
+								$render_groups[] = array(
+									'slug'  => $term->slug,
+									'name'  => $term->name,
+									'cases' => $grouped[ $term->slug ],
+								);
+							}
+						}
+					}
+					if ( ! empty( $ungrouped ) ) {
+						$render_groups[] = array(
+							'slug'  => 'uncategorized',
+							'name'  => __( 'More cases', 'wellspring' ),
+							'cases' => $ungrouped,
+						);
+					}
+
+					foreach ( $render_groups as $group ) :
+						?>
+						<section class="ws-cases-group" data-group="<?php echo esc_attr( $group['slug'] ); ?>">
+							<header class="ws-cases-group__head">
+								<h2 class="ws-cases-group__title"><?php echo esc_html( $group['name'] ); ?></h2>
+								<span class="ws-cases-group__count"><?php echo count( $group['cases'] ); ?></span>
+							</header>
+							<div class="ws-cases-grid">
+								<?php
+								foreach ( $group['cases'] as $case ) {
+									get_template_part( 'template-parts/case-card', null, array( 'case' => $case ) );
+								}
+								?>
+							</div>
+						</section>
+					<?php endforeach; ?>
 				</div>
 
 				<p class="ws-cases-empty" hidden>No cases match your filters. <button type="button" id="ws-cases-reset">Clear filters</button></p>
@@ -98,24 +145,31 @@ $all_cases = get_posts(
 (function() {
 	const search = document.getElementById('ws-cases-search');
 	const filterBtns = document.querySelectorAll('.ws-cases-filter__btn');
-	const cards = document.querySelectorAll('.ws-case-card');
+	const groups = document.querySelectorAll('.ws-cases-group');
 	const empty = document.querySelector('.ws-cases-empty');
 	const reset = document.getElementById('ws-cases-reset');
 	let activeFilter = 'all';
 	let activeSearch = '';
 
 	function apply() {
-		let visible = 0;
-		cards.forEach(card => {
-			const tags = (card.dataset.tags || '').split(',');
-			const searchable = card.dataset.search || '';
-			const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
-			const matchesSearch = !activeSearch || searchable.includes(activeSearch);
-			const show = matchesFilter && matchesSearch;
-			card.style.display = show ? '' : 'none';
-			if (show) visible++;
+		let totalVisible = 0;
+		groups.forEach(group => {
+			const slug = group.dataset.group;
+			const groupAllowed = activeFilter === 'all' || activeFilter === slug;
+			let groupVisible = 0;
+			group.querySelectorAll('.ws-case-card').forEach(card => {
+				const tags = (card.dataset.tags || '').split(',');
+				const searchable = card.dataset.search || '';
+				const matchesFilter = activeFilter === 'all' || tags.includes(activeFilter);
+				const matchesSearch = !activeSearch || searchable.includes(activeSearch);
+				const show = groupAllowed && matchesFilter && matchesSearch;
+				card.style.display = show ? '' : 'none';
+				if (show) groupVisible++;
+			});
+			group.style.display = (groupAllowed && groupVisible > 0) ? '' : 'none';
+			totalVisible += groupVisible;
 		});
-		if (empty) empty.hidden = visible > 0;
+		if (empty) empty.hidden = totalVisible > 0;
 	}
 
 	filterBtns.forEach(btn => {

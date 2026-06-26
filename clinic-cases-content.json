@@ -1,0 +1,691 @@
+{
+  "_meta": {
+    "note": "Source-of-truth content for the 26 remaining clinic cases migrated from the GoDaddy site. Voice matches the two live demos (outcome-oriented title; invented two-letter initials for privacy; named TCM pattern explained in plain English; acupuncture points given as code + pinyin + lay explanation; patient quotes preserved where they existed). Point/formula references are carried over from the original GoDaddy case notes and should be confirmed by Dr. Cowburn before publishing. Focus-area slugs map to the case_focus taxonomy: pain-relief, womens-health, mental-health-sleep, digestive-health, respiratory, heart-circulation, skin-facial-health, allergies-immune-support, other-conditions.",
+    "already_live": [
+      "Neck & Shoulder Pains (F,32)",
+      "Irregular Heart Beats (F,58)"
+    ]
+  },
+  "cases": [
+    {
+      "slug": "tmj-jaw-pain-and-night-time-teeth-grinding-eased",
+      "title": "TMJ jaw pain and night-time teeth grinding, eased",
+      "focus": "pain-relief",
+      "initials": "R.B.",
+      "context": "A common presentation across many patients",
+      "duration": "6 weeks",
+      "sessions": 6,
+      "source_image": "https://img1.wsimg.com/isteam/ip/df62e211-90c4-4ebd-afb7-d2295753e1fb/Screenshot%202025-11-11%20at%203.06.27%E2%80%AFPM.png",
+      "source_image_alt": "Acupuncture treats TMJ jaw pains and bruxism (tooth grinding)",
+      "presentation": "This is one of the most common complaints we see at the clinic. Patients arrive with aching, tightness, and tenderness around the jaw joint (the temporomandibular joint, or TMJ) — the hinge just in front of each ear. Many also grind or clench their teeth through the night without realising it, a habit known as bruxism, and wake with a sore, fatigued jaw.\n\nLeft unaddressed, the tension tends to compound: the jaw feels locked, the range of movement narrows, and the grinding wears on both the teeth and a good night's sleep.",
+      "diagnosis": "From a TCM perspective, the pattern is one of Qi blockage and muscle tension gathering around the TMJ. When Qi — the body's circulating energy — cannot move freely through the muscles and channels that cross the jaw, the area becomes tight, sore, and prone to involuntary clenching. Stress is a frequent driver, since it constricts the smooth flow of Qi and settles into the jaw as one of the body's favourite places to hold tension.",
+      "treatment_intro": "Treatment focuses on releasing the blockage around the jaw and calming the system that drives the clenching, using a small, well-chosen set of points:",
+      "treatment_points": [
+        [
+          "Linggu (Master Tung's Ling Gu)",
+          "a powerful point on the hand, in the web between thumb and index finger, used to move Qi and relieve pain at a distance from the jaw itself"
+        ],
+        [
+          "LI-4 (Hegu)",
+          "the classic 'command point' of the face and head — pressing here helps release tension throughout the jaw and facial muscles"
+        ],
+        [
+          "a modified Linggu approach",
+          "adapted to the individual patient where the standard points need fine-tuning"
+        ]
+      ],
+      "treatment_outro": "Because the jaw responds quickly to distal points like these, many patients feel the area soften within the session itself.",
+      "result": "The jaw joint stops feeling tense and sore, range of movement through the jaw improves, and the night-time tooth grinding settles. With the underlying tension released, patients are able to open, chew, and sleep without the familiar ache returning.",
+      "quote": ""
+    },
+    {
+      "slug": "extremely-heavy-periods-brought-back-to-normal",
+      "title": "Extremely heavy periods that led to hospital visits, brought back to normal",
+      "focus": "womens-health",
+      "initials": "S.D.",
+      "context": "Female, age 35",
+      "duration": "3 months",
+      "sessions": 10,
+      "source_image": "https://img1.wsimg.com/isteam/ip/df62e211-90c4-4ebd-afb7-d2295753e1fb/Screenshot%202025-11-11%20at%203.03.07%E2%80%AFPM.png",
+      "source_image_alt": "Acupuncture & TCM treat heavy period",
+      "presentation": "A 35-year-old patient came to the clinic after months of extremely heavy menstrual bleeding. The flow was severe enough that she had been sent to hospital on several occasions — a frightening and exhausting experience that had begun to dominate her life around each cycle.\n\nBeyond the physical toll of the blood loss, she was understandably anxious about the recurring emergencies and looking for a way to bring her cycle back under control.",
+      "diagnosis": "The case presented as Spleen Qi deficiency. In TCM, one of the Spleen's key roles is to 'hold the blood' — keeping it within the vessels and governing a contained, well-regulated menstrual flow. When Spleen Qi weakens, it can no longer keep the blood in check, and bleeding becomes excessive. Strengthening the Spleen's holding function was therefore the centre of the treatment.",
+      "treatment_intro": "Treatment worked on three fronts — acupuncture, ear seeds, and herbal medicine — to stop the abnormal bleeding and rebuild the Spleen's ability to contain the blood:",
+      "treatment_points": [
+        [
+          "SP-1 (Yinbai) and SP-2 (Dadu)",
+          "Spleen-channel points classically used to stop excessive uterine bleeding and restore the Spleen's holding function"
+        ]
+      ],
+      "treatment_outro": "Alongside the acupuncture, ear seeds were applied using Dr. Lichun Huang's stop-bleeding combination for the uterus — tiny seeds taped to specific points on the ear that the patient pressed between visits for continuous, gentle stimulation. A custom herbal formula was prescribed to tonify Spleen Qi from the inside, working steadily between sessions to rebuild the body's reserves.",
+      "result": "The quantity of menstrual blood returned to a normal, manageable level, and the cycle of hospital visits came to an end. With the Spleen's holding function restored, her periods were no longer a recurring emergency.",
+      "quote": ""
+    },
+    {
+      "slug": "frequent-and-urgent-urination-resolved",
+      "title": "Frequent, urgent urination resolved as inflammation cleared",
+      "focus": "other-conditions",
+      "initials": "M.W.",
+      "context": "Female, age 55",
+      "duration": "4 weeks",
+      "sessions": 5,
+      "presentation": "A 55-year-old patient came in troubled by urgent, frequent urination — a near-constant need to go that interrupted her days and made it hard to feel comfortable away from a washroom. It is the kind of complaint that quietly reshapes a person's routine, and she was keen to find relief.",
+      "diagnosis": "On examination — including pulse diagnosis — the pattern pointed to inflammation involving the urinary bladder and the lungs. In TCM the lungs and bladder are linked through the body's water pathways: the lungs sit at the top of this system and help govern how fluids descend and are processed below. When heat and inflammation disturb this relationship, the bladder becomes irritable and urgent. Clearing that inflammation was the key to settling the urgency.",
+      "treatment_intro": "Treatment used a focused selection of points to drain the inflammation and restore normal bladder function:",
+      "treatment_points": [
+        [
+          "RN-3 (Zhongji) and RN-4 (Guanyuan)",
+          "front-line points low on the abdomen, with RN-4 needled toward RN-3, used to regulate the bladder and calm urinary urgency"
+        ],
+        [
+          "LU-1 (Zhongfu) and LU-10 (Yuji)",
+          "Lung-channel points — LU-10 in particular helps clear heat and inflammation from the system that governs the body's fluids"
+        ],
+        [
+          "the 'earth' point ST-34 (Liangqiu) and the 'wood' point LR-2 (Xingjian)",
+          "selected through five-element balancing to clear heat and support the organs driving the pattern"
+        ]
+      ],
+      "treatment_outro": "",
+      "result": "The pulse signs of inflammation resolved, and urination returned to a normal, comfortable rhythm. With the underlying heat cleared, the constant urgency that had been organising her days simply lifted.",
+      "quote": ""
+    },
+    {
+      "slug": "swelling-and-pain-after-knee-surgery-fully-recovered",
+      "title": "Swelling and pain after knee surgery, fully recovered",
+      "focus": "pain-relief",
+      "initials": "E.G.",
+      "context": "Female, age 78",
+      "duration": "6 weeks",
+      "sessions": 8,
+      "presentation": "A 78-year-old patient came to the clinic with swelling and pain around her left knee following knee surgery. Recovery had stalled, and the lingering inflammation and discomfort were holding her back from returning to the active life she wanted.",
+      "diagnosis": "The pattern was one of blood stasis and Qi blockage at the knee. After surgery, it is common for circulation through an injured area to become congested — in TCM terms, Qi and blood stop moving smoothly and pool around the joint, producing swelling, pain, and slow healing. Restoring free circulation through the knee was the path to recovery.",
+      "treatment_intro": "Treatment centred on a well-established combination of local knee points to move the stagnant Qi and blood and resolve the swelling:",
+      "treatment_points": [
+        [
+          "the 'Knee Five' combination",
+          "a classic grouping of points surrounding the knee, used together to restore circulation and relieve pain throughout the joint"
+        ],
+        [
+          "SP-10 (Xuehai)",
+          "the 'Sea of Blood' point, just above the knee, used to invigorate the blood and clear stasis"
+        ]
+      ],
+      "treatment_outro": "",
+      "result": "The pain and swelling resolved. Her doctors were surprised by how quickly and completely she recovered, and her gym instructor was amazed at the full range of movement she regained in the knee — a return to function well beyond what had been expected after her surgery.",
+      "quote": ""
+    },
+    {
+      "slug": "waking-through-the-night-to-urinate-restored-deep-sleep",
+      "title": "Waking too many times a night, restored to deep, unbroken sleep",
+      "focus": "mental-health-sleep",
+      "initials": "C.H.",
+      "context": "Female, age 56",
+      "duration": "4 weeks",
+      "sessions": 6,
+      "presentation": "A 56-year-old patient came to the clinic with two layers of disrupted sleep. First, it took her hours to fall asleep at night. Second, once asleep she woke repeatedly to urinate, and the constant interruptions robbed her of the deep and REM sleep the body needs to feel truly rested.\n\nThe result was the familiar toll of chronic sleep loss — low energy, foggy days, and a sense that no amount of time in bed was enough.",
+      "diagnosis": "Two patterns were working together. The difficulty falling asleep traced back to stress driving Liver Qi stagnation — when Qi cannot flow smoothly, the mind stays wound up and won't settle. The repeated night-time waking traced to Kidney Yang deficiency, where the body's warming, consolidating energy is too weak to hold fluids through the night, leading to frequent urination. Each needed its own approach.",
+      "treatment_intro": "Treatment addressed both patterns in parallel — warming and consolidating the Kidneys to settle the bladder overnight, and releasing the stress pattern keeping her awake:",
+      "treatment_points": [],
+      "treatment_outro": "To tonify Kidney Yang, a custom herbal formula was prescribed and paired with guidance toward regular aerobic exercise. To release the stress and smooth the Liver Qi, treatment combined acupuncture, ear seeds, and supportive work on day-to-day attitude and stress habits.",
+      "result": "Within a month, the patient could fall asleep easily and stay asleep through the night. With the bladder settled and the mind unwound, her sleep became deep and unbroken again — and her daytime energy returned with it.",
+      "quote": ""
+    },
+    {
+      "slug": "severe-insomnia-from-barely-sleeping-to-full-nights",
+      "title": "Severe insomnia: from barely sleeping to full, restful nights",
+      "focus": "mental-health-sleep",
+      "initials": "P.L.",
+      "context": "Female, age 51",
+      "duration": "3 weeks",
+      "sessions": 8,
+      "presentation": "A 51-year-old patient arrived in a difficult state — she could barely sleep at all through the night, and the relentless sleep deprivation meant her brain and body simply couldn't function properly during the day. This was insomnia at its most severe, where the lack of rest had become a health crisis in its own right.",
+      "diagnosis": "Two intertwined patterns were driving the sleeplessness. First, long-term heavy menstrual bleeding had led to severe blood deficiency — and without enough Yin and blood to anchor the body's Yang at night, the mind couldn't settle into sleep. Second, Spleen Qi deficiency had weakened her digestion, leaving food to stagnate in the stomach and intestines; in TCM, an unsettled digestive system makes for a restless night. Both had to be treated for sleep to return.",
+      "treatment_intro": "Treatment unfolded in two coordinated stages, combining acupuncture, ear seeds, and herbal medicine:",
+      "treatment_points": [],
+      "treatment_outro": "The first priority was to stop the abnormal uterine bleeding using acupuncture and ear seeds, halting the ongoing blood loss that was deepening the deficiency. From there, a herbal formula, acupuncture, and ear seeds worked together to tonify the Spleen and rebuild the blood, settle the digestion, and steadily improve the depth of sleep.",
+      "result": "Over three weeks, her sleep rebuilt itself in stages — first two hours of straight sleep in a night, then three, then five, and finally a full seven to eight hours of unbroken sleep. From barely sleeping at all, she returned to genuinely restful nights.",
+      "quote": ""
+    },
+    {
+      "slug": "twenty-years-of-asthma-off-the-inhaler",
+      "title": "Twenty years of asthma, off the inhaler",
+      "focus": "respiratory",
+      "initials": "D.R.",
+      "context": "Male, age 73",
+      "duration": "12 weeks",
+      "sessions": 12,
+      "presentation": "A 73-year-old patient came to the clinic carrying twenty years of asthma. He had relied on inhalers for the past decade, and a noticeable side effect had crept in: his body temperature ran hotter than normal, which he attributed to the long-term inhaler use. After two decades, he was hoping for a way to breathe freely without depending on medication.",
+      "diagnosis": "The pattern combined Lung Qi deficiency with heat and inflammation in the lungs and an accumulation of phlegm. In TCM the Lungs govern the breath, and when their Qi weakens while heat and phlegm build up in the airways, the result is the wheezing, coughing, and breathlessness of long-standing asthma. Clearing the phlegm and inflammation while rebuilding Lung Qi was the route forward.",
+      "treatment_intro": "Treatment paired acupuncture with a herbal combination aimed at the lungs:",
+      "treatment_points": [
+        [
+          "LU-1 (Zhongfu) and LU-10 (Yuji)",
+          "Lung-channel points used to support Lung function and clear heat from the airways"
+        ],
+        [
+          "the 'earth' points ST-36 (Zusanli) and SP-9 (Yinlingquan)",
+          "selected to strengthen the body's ability to transform and drain phlegm"
+        ],
+        [
+          "the 'wood' point LR-3 (Taichong)",
+          "used to keep Qi moving smoothly and ease constriction in the chest"
+        ]
+      ],
+      "treatment_outro": "Alongside the acupuncture, a herbal combination was prescribed to clear phlegm and inflammation out of the lungs over time.",
+      "result": "The inflammation and phlegm in his lungs cleared. The wheezing and coughing stopped, and — after his family doctor verified the improvement — he was able to stop using his inhaler for the first time in ten years.",
+      "quote": ""
+    },
+    {
+      "slug": "heel-pain-from-a-bone-spur-back-on-his-feet",
+      "title": "Heel pain from a bone spur, back on her feet",
+      "focus": "pain-relief",
+      "initials": "B.F.",
+      "context": "Female, age 57",
+      "duration": "8 weeks",
+      "sessions": 10,
+      "presentation": "A 57-year-old patient came to the clinic with severe pain, swelling, and inflammation in her left heel, caused by a bone spur. The pain was so intense that her foot couldn't touch the floor — making even standing and walking a daily ordeal.",
+      "diagnosis": "The pattern combined Qi blockage, phlegm-dampness, and inflammation (heat) collecting at the heel. In TCM, a stubborn, inflamed area like this reflects circulation that has become congested and clogged with damp accumulation — which explains the swelling, the heat, and the unrelenting local pain. Moving the blockage and draining the dampness and heat was the goal.",
+      "treatment_intro": "Treatment combined acupuncture with an external herbal soak:",
+      "treatment_points": [
+        [
+          "alternating scalp and palm points",
+          "used to relieve the pain quickly by working through the body's pain-modulating areas"
+        ],
+        [
+          "UB-58 (Feiyang) and KD-3 (Taixi)",
+          "paired Bladder and Kidney points that support the heel and lower leg"
+        ],
+        [
+          "KD-4 (Dazhong) and KD-5 (Shuiquan)",
+          "needled toward the heel bone to address the pain directly at its source"
+        ]
+      ],
+      "treatment_outro": "Alongside the needling, the foot was soaked in Dr. Haixia Ni's herbal formula to reduce the swelling and inflammation from the outside in.",
+      "result": "The swelling and inflammation resolved. As healing progressed, the pain began to move around the foot — a sign of returning circulation — before fading completely. The tight muscles and sinews in her leg loosened back to a normal, comfortable state, and her foot could carry her weight again.",
+      "quote": ""
+    },
+    {
+      "slug": "whole-body-tightness-and-pain-from-scoliosis-relieved",
+      "title": "Whole-body tightness and pain from scoliosis, relieved as the spine recentred",
+      "focus": "pain-relief",
+      "initials": "T.K.",
+      "context": "Male, age 34",
+      "duration": "4 months",
+      "sessions": 16,
+      "presentation": "A 34-year-old patient came to the clinic with whole-body tightness and pain stemming from scoliosis — a sideways curvature of the spine. He carried pain through his mid-back, lower back, and hips, with the curve documented across several regions of his spine (the lower neck curving one way, the mid-back another, and the lower back another again).\n\nThough he looked young and strong, his body did not actually have a lot of energy to draw on — an important detail that shaped his entire treatment.",
+      "diagnosis": "Two patterns sat underneath the picture: a deficiency of Qi, blood, and Yang (not enough fundamental energy to support and stabilise the spine), and Qi stagnation (blocked flow producing the tightness and pain). Treating scoliosis here meant both strengthening the structure and freeing the stagnation — carefully, given how little energy reserve he had.",
+      "treatment_intro": "Treatment was deliberately gentle and layered, because a depleted body responds best to minimal stimulation. Each session used the fewest needles and the lightest stimulation, and he took tonifying herbs about thirty minutes before each treatment so his body had energy to work with:",
+      "treatment_points": [
+        [
+          "DU-14 (Dazhui) and DU-20 (Baihui)",
+          "Governing Vessel points along the body's central axis, used to tonify Qi and Yang and strengthen the spine"
+        ],
+        [
+          "scalp acupuncture",
+          "used to treat the pain while simultaneously supporting Qi and Yang"
+        ],
+        [
+          "structural balancing points",
+          "reducing (calming) the tight side of the spine while tonifying (supporting) the weak side, to coax the curve back toward centre"
+        ]
+      ],
+      "treatment_outro": "A herbal formula ran throughout to tonify Qi, blood, and Yang and break the stagnation. The strategy was twofold: strengthen the spine and its surrounding muscles so the gains would last, while never overtaxing a body that had little energy to spare.",
+      "result": "The patient grew steadily stronger until his body had enough energy to support the spine itself. The vertebrae moved back toward a centred position, and as the structure recentred, the pain and tightness resolved alongside it — a lasting result built on a strengthened, better-supported spine.",
+      "quote": ""
+    },
+    {
+      "slug": "knee-pain-from-a-bone-spur-under-the-kneecap-resolved",
+      "title": "Knee pain from a bone spur under the kneecap, resolved",
+      "focus": "pain-relief",
+      "initials": "A.C.",
+      "context": "Female, age 32",
+      "duration": "6 weeks",
+      "sessions": 8,
+      "presentation": "A 32-year-old patient came in with pain in her right knee, caused by a bone spur sitting under the kneecap (patella). The pain flared with movement and was interfering with the active routine of someone otherwise young and healthy.",
+      "diagnosis": "The pattern combined Kidney and Spleen deficiency with significant phlegm-dampness and blood stasis. In TCM, the Kidneys govern the bones and the Spleen governs the body's handling of dampness; when both are weak, damp accumulation and stagnant blood can settle around a joint and feed a painful bone spur. Treatment had to both strengthen the deficiency and clear the local congestion.",
+      "treatment_intro": "Treatment combined local and channel acupuncture with herbal medicine:",
+      "treatment_points": [
+        [
+          "He Ding",
+          "an extra point at the top of the kneecap, used for pain and swelling in the knee"
+        ],
+        [
+          "Nei Xi Yan and Wai Xi Yan (the 'knee eyes')",
+          "the paired hollows either side of the kneecap, classic local points for knee pain"
+        ],
+        [
+          "LR-7 (Xiguan) and GB-34 (Yanglingquan)",
+          "channel points that benefit the sinews and tendons around the knee and ease pain"
+        ]
+      ],
+      "treatment_outro": "A herbal formula was prescribed to tonify the underlying deficiency, improve digestion, expel the phlegm-dampness, and break up the blood stasis.",
+      "result": "The pain eased after each treatment, and once the full course was complete it did not return. With the deficiency strengthened and the local congestion cleared, her knee was free to move again without flaring.",
+      "quote": ""
+    },
+    {
+      "slug": "frozen-shoulder-pain-from-aging-resolved",
+      "title": "Frozen shoulder ('fifty shoulder') pain, resolved",
+      "focus": "pain-relief",
+      "initials": "L.N.",
+      "context": "Female, age 54",
+      "duration": "8 weeks",
+      "sessions": 10,
+      "presentation": "A 54-year-old patient came to the clinic with considerable pain in her right shoulder — both at the shoulder joint itself and through the muscles of the upper arm. This is the kind of aging-related shoulder pain often nicknamed 'fifty shoulder' (a counterpart to what's commonly called frozen shoulder), where the joint stiffens and aches and the arm becomes hard to use.",
+      "diagnosis": "The pattern combined Kidney and Spleen deficiency with significant phlegm-damp-cold and a degree of blood stasis. The pain tracked along the Large Intestine, Triple Warmer, and Small Intestine channels — and the spaces between them — which run across the shoulder and down the arm. Treating it meant warming and clearing the cold-damp obstruction while supporting the underlying deficiency.",
+      "treatment_intro": "Treatment worked at two levels — balancing the channels from a distance and treating the shoulder directly — plus herbal support:",
+      "treatment_points": [
+        [
+          "Dr. Tan's balance method: KD-3 (Taixi) toward UB-60 (Kunlun), and KD-5 (Shuiquan)",
+          "distal points on the opposite end of the body used to release the shoulder by balancing its channels"
+        ],
+        [
+          "local shoulder points — LI-15 (Jianyu), TW-14 (Jianliao), the area between them, LI-14 (Binao), TW-13 (Naohui), SI-10 (Naoshu)",
+          "a careful map of points around the joint to release the local pain directly"
+        ]
+      ],
+      "treatment_outro": "A herbal formula was prescribed to tonify the deficiency, expel the phlegm-damp-cold, and break up the blood stasis.",
+      "result": "The pain eased after each treatment, and once the full course was complete it did not come back. With the joint warmed, cleared, and supported, she regained comfortable use of her shoulder and arm.",
+      "quote": ""
+    },
+    {
+      "slug": "a-blocked-nose-and-lost-sense-of-smell-and-taste-restored",
+      "title": "A blocked nose and lost sense of smell and taste, restored",
+      "focus": "respiratory",
+      "initials": "J.P.",
+      "context": "Female, age 47",
+      "duration": "4 weeks",
+      "sessions": 5,
+      "presentation": "A 47-year-old patient came to the clinic with a persistently stuffy nose, intermittent clear mucus, and — most distressing of all — a lost sense of smell and taste. Losing those senses takes much of the pleasure out of daily life, and she was eager to breathe and taste freely again.",
+      "diagnosis": "Pulse diagnosis and assessment pointed to several interwoven factors: Lung Qi deficiency, inflammation in the respiratory system, Liver Qi stagnation, and internal cold. In TCM the Lungs open into the nose, so when Lung Qi is weak and the respiratory system is both inflamed and cold, the nose blocks, mucus accumulates, and the senses it carries are dulled. Opening the nose meant addressing each of these at once.",
+      "treatment_intro": "Treatment combined acupuncture to open the nose with a warming, strengthening herbal mixture:",
+      "treatment_points": [
+        [
+          "UB-2 (Zanzhu) and Bitong",
+          "points at the inner eyebrow and beside the nose, used directly to open the nasal passages"
+        ],
+        [
+          "LU-1 (Zhongfu) and LU-10 (Yuji)",
+          "Lung-channel points — LU-10 helps clear inflammation from the respiratory system"
+        ],
+        [
+          "the 'earth' points ST-36 (Zusanli) and SP-9 (Yinlingquan), and the 'wood' point LR-8 (Ququan)",
+          "selected to strengthen the body and smooth the stagnant Liver Qi"
+        ]
+      ],
+      "treatment_outro": "Alongside the acupuncture, a herbal mixture was prescribed to open the nose and to strengthen and warm the respiratory system from within.",
+      "result": "Her nose opened during the treatment itself, and the stuffiness lifted. By the time she went home she could smell and taste her food again — the senses she had lost returning along with clear, easy breathing.",
+      "quote": ""
+    },
+    {
+      "slug": "migraines-and-chinook-headaches-stopped-at-the-needle",
+      "title": "Migraines and Calgary Chinook headaches, stopped at the needle",
+      "focus": "pain-relief",
+      "initials": "Various",
+      "context": "A common presentation across many patients",
+      "duration": "Varies by patient",
+      "sessions": 0,
+      "presentation": "Headaches are one of the most common reasons patients come to the clinic, and in Calgary they take two recognisable forms. The first is migraine — intense, throbbing or pulsating pain, usually on one side of the head. The second is the 'Chinook headache,' the intense head pain that arrives with Calgary's sudden Chinook weather shifts, familiar to many people who live here.",
+      "diagnosis": "At root, these headaches reflect a blockage of Qi and blood at the head — circulation that has become stuck, producing pain. Many patients also carry an underlying deficiency of Qi and/or blood, which both makes them prone to the blockages and shapes how they're treated. A distinctive feature of TCM headache treatment is that the point chosen depends on exactly where the headache sits.",
+      "treatment_intro": "Treatment is tailored to the location of the pain, with herbs to support the whole picture. Points are matched to the region of the head:",
+      "treatment_points": [
+        [
+          "LR-3 (Taichong)",
+          "for headaches at the temples"
+        ],
+        [
+          "the LU-5-to-9 area on the forearm",
+          "for headaches at the back of the head and neck"
+        ],
+        [
+          "Mei (the eyebrow region points)",
+          "for headaches at and behind the eyebrows"
+        ],
+        [
+          "LI-4 (Hegu)",
+          "for headaches across the forehead"
+        ],
+        [
+          "RN-12 (Zhongwan)",
+          "for headaches between the eyes and eyebrows"
+        ],
+        [
+          "HT-3 (Shaohai)",
+          "for headaches felt behind the eyeballs"
+        ]
+      ],
+      "treatment_outro": "Chinese herbs are added to help Qi and blood flow through the head, with tonifying herbs for patients who also have an underlying Qi or blood deficiency.",
+      "result": "In many cases the headache disappears instantly and completely the moment the needle reaches the right point. From there, the prescribed TCM herbs give patients a way to stop a headache themselves when it recurs at home — turning an unpredictable, debilitating problem into something they can manage.",
+      "quote": ""
+    },
+    {
+      "slug": "neck-shoulder-and-back-pain-after-a-car-accident-resolved",
+      "title": "Years of neck, shoulder, and back pain after a car accident, finally resolved",
+      "focus": "pain-relief",
+      "initials": "H.M.",
+      "context": "Female, age 45",
+      "duration": "10 weeks",
+      "sessions": 12,
+      "presentation": "A 45-year-old patient came to the clinic with widespread pain following a car accident: severe pain through the middle back, less severe but persistent pain across the upper and lower back and over the shoulder blades, and severe pain at the neck and shoulders.\n\nShe arrived skeptical. She had tried every kind of treatment from medical doctors and other practitioners over three to four years without much relief, and when she walked in she looked grumpy and didn't really believe we could help her.",
+      "diagnosis": "The pattern was Qi stagnation at the muscle level along the Urinary Bladder, Gall Bladder, Triple Warmer, and Small Intestine channels — the meridians that cover the back, shoulders, and sides of the neck — combined with blood stasis. The trauma of the accident had locked Qi and blood in place across a wide area, which is why the pain was so diffuse and so stubborn.",
+      "treatment_intro": "Treatment mapped each region of pain to specific points, using the principle of balancing channels from the arms and treating local areas directly:",
+      "treatment_points": [
+        [
+          "mid-back pain",
+          "treated with ashi (tender) points in the middle of the upper arm along the Lung and Heart channels"
+        ],
+        [
+          "pain over the shoulder blades",
+          "treated through the LR-4-to-5 area on the forearm"
+        ],
+        [
+          "upper and lower back pain",
+          "treated through the LU-5-to-9 area on the forearm"
+        ],
+        [
+          "neck and shoulder pain",
+          "treated with LU-8 (Jingqu), LU-9 (Taiyuan), HT-4 (Lingdao), HT-7 (Shenmen), and SP-6 (Sanyinjiao)"
+        ]
+      ],
+      "treatment_outro": "A herbal formula was prescribed to break the Qi stagnation and blood stasis and relieve the pain between sessions.",
+      "result": "The pain was completely gone after each treatment and the relief lasted for several days at a time. Gradually the pain-free stretches grew longer and longer until the pain stopped coming back at all. After years of trying everything, her relief was visible the moment the needles went in — as she put it, her face broke into a smile on the table, and she signed up to finish the course and clear the pain for good.",
+      "quote": ""
+    },
+    {
+      "slug": "sleep-apnea-and-severe-snoring-machine-free-nights",
+      "title": "Sleep apnea and severe snoring, back to machine-free nights",
+      "focus": "mental-health-sleep",
+      "initials": "G.T.",
+      "context": "Male, age 57",
+      "duration": "10 weeks",
+      "sessions": 10,
+      "presentation": "A 57-year-old patient came to the clinic worn down by sleep apnea. He had to wear a machine to sleep, and every night he was woken by its noise — so even with the device, he never got a good rest. On top of that, his severe snoring was disturbing his wife's sleep. Both problems were taking a real toll on the household.",
+      "diagnosis": "For this patient, the pattern was Yang deficiency together with Lung Qi deficiency. In TCM, the body's Yang and Lung Qi help keep the airway open and the breath steady through the night; when they weaken, the airway is more prone to collapsing and obstructing, producing apnea and heavy snoring. (It's worth noting that for other patients, sleep apnea and snoring can stem from combined Yin and Yang deficiency, or from phlegm in the lungs — so the treatment is always matched to the individual.)",
+      "treatment_intro": "Treatment paired acupuncture with herbal medicine to tonify the deficient Yang and Lung Qi:",
+      "treatment_points": [
+        [
+          "LU-1 (Zhongfu) and LU-8 (Jingqu)",
+          "Lung-channel points to strengthen Lung Qi and support the breath"
+        ],
+        [
+          "the 'earth' and 'wood' balancing points — including KD-6 (Zhaohai), LI-5 (Yangxi), LU-8 (Jingqu), and ST-41 (Jiexi)",
+          "selected to support the organs underlying the pattern"
+        ]
+      ],
+      "treatment_outro": "A herbal formula was prescribed to tonify Yang. For other patients the herbs might be adjusted to clear phlegm or to tonify both Yin and Yang, depending on their pattern.",
+      "result": "The snoring stopped, and the sleep apnea resolved — he no longer needed to wear the machine at night. With quiet, uninterrupted sleep restored, both he and his wife could finally rest.",
+      "quote": ""
+    },
+    {
+      "slug": "quitting-smoking-after-decades-with-tcm-support",
+      "title": "Quitting smoking after decades, with TCM support",
+      "focus": "other-conditions",
+      "initials": "V.S.",
+      "context": "Female, age 53",
+      "duration": "12 weeks",
+      "sessions": 12,
+      "presentation": "A 53-year-old patient came to the clinic wanting to quit smoking. She had smoked heavily since her teenage years and was coughing constantly, with a lot of mucus in her lungs and a strong smell of cigarettes about her. The coughing and mucus had begun to affect both her work and her social life, and she was ready to stop for good.",
+      "diagnosis": "The pattern was Lung Qi deficiency with inflammation in the lungs and phlegm-dampness — the predictable toll of decades of smoking on the respiratory system. Helping her quit meant both supporting the craving and cleaning out the lungs, so the treatment combined several tools alongside a personalised plan.",
+      "treatment_intro": "Treatment brought together acupuncture, ear seeds, herbs, and structured home support:",
+      "treatment_points": [
+        [
+          "LU-1 (Zhongfu) and LU-10 (Yuji)",
+          "Lung-channel points to support the lungs and clear inflammation"
+        ],
+        [
+          "the 'earth' points ST-36 (Zusanli) and SP-9, SP-8, SP-6 (Sanyinjiao), and the 'wood' point LR-3 (Taichong), plus LI-6 (Pianli)",
+          "selected to strengthen the body and help move out phlegm and dampness"
+        ]
+      ],
+      "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for quitting smoking. A herbal mixture from Dr. Haixia Ni helped her quit, cleared junk from the respiratory system, removed the smoke colour and odour from the mouth, and regulated appetite. All of it was wrapped in a personalised quit-smoking plan to follow at home.",
+      "result": "She gradually reduced her smoking, coughed less, and produced less mucus. Along the way she changed both her lifestyle and her attitude toward smoking — and finally quit completely.",
+      "quote": ""
+    },
+    {
+      "slug": "seasonal-allergies-and-morning-sneezing-cleared",
+      "title": "Seasonal allergies and morning sneezing, cleared in a month",
+      "focus": "allergies-immune-support",
+      "initials": "K.D.",
+      "context": "Male, age 52",
+      "duration": "4 weeks",
+      "sessions": 5,
+      "presentation": "A 52-year-old patient came to the clinic with seasonal allergies that hit hardest in the mornings — one to two hours of sneezing and a runny nose every day, made worse whenever a particular allergen triggered him. It's a wearing way to start each day, and he wanted lasting relief rather than another round of temporary fixes.",
+      "diagnosis": "The pattern was Lung and Kidney Qi deficiency with an underlying respiratory disorder. In TCM the Lungs guard the body's surface against external triggers and the Kidneys anchor the breath; when both are weak, the body overreacts to allergens with sneezing and congestion. Strengthening Lung and Kidney Qi was the key to settling the response.",
+      "treatment_intro": "Treatment combined acupuncture with herbs to tonify Lung and Kidney Qi and soothe the nose:",
+      "treatment_points": [
+        [
+          "LU-1 (Zhongfu) and LU-8 (Jingqu)",
+          "Lung-channel points to strengthen the lungs and the body's surface defences"
+        ],
+        [
+          "the 'earth' points ST-36 (Zusanli) and SP-9 (Yinlingquan), and the 'wood' point LR-3 (Taichong)",
+          "selected to support the body and keep Qi flowing smoothly"
+        ],
+        [
+          "KD-2 (Rangu), KD-4 (Dazhong), and KD-7 (Fuliu)",
+          "Kidney-channel points to anchor the breath and tonify Kidney Qi"
+        ]
+      ],
+      "treatment_outro": "Herbal combinations were prescribed to tonify Lung and Kidney Qi and to soothe the lungs and nose.",
+      "result": "All symptoms were gone after one month. With Lung and Kidney Qi strengthened, the daily morning sneezing and runny nose that had defined his allergy season simply stopped.",
+      "quote": ""
+    },
+    {
+      "slug": "a-fast-recovery-from-the-flu-without-the-usual-long-illness",
+      "title": "A fast recovery from the flu, without the usual months of illness",
+      "focus": "allergies-immune-support",
+      "initials": "F.B.",
+      "context": "Female, age 58",
+      "duration": "1 week",
+      "sessions": 2,
+      "presentation": "A 58-year-old patient came to the clinic at the first signs of the flu — a stuffy nose and sinuses and a scratchy throat. For her this was a worrying moment, because every time she caught a cold or flu she usually went on to be severely ill for several months. She was hoping to head it off before it took hold.",
+      "diagnosis": "The pattern was an external pathogen invading the body — the TCM description of the early stage of a cold or flu, when an outside influence has breached the body's surface defences but hasn't yet penetrated deeply. Caught early, the strategy is to expel the pathogen quickly while supporting the body, before it has a chance to settle in.",
+      "treatment_intro": "Treatment aimed to open the nose and sinuses, moisten the throat, strengthen immunity, and expel the pathogen:",
+      "treatment_points": [
+        [
+          "Yintang",
+          "the point between the eyebrows, used to open the nose and sinuses"
+        ],
+        [
+          "LU-10 (Yuji) and KD-6 (Zhaohai)",
+          "paired points to moisten and soothe the throat"
+        ],
+        [
+          "PC-6 (Neiguan), ST-36 (Zusanli), and SP-6 (Sanyinjiao)",
+          "points to strengthen the body and support immunity"
+        ],
+        [
+          "LI-4 (Hegu), GB-41 (Zulinqi), and TW-5 (Waiguan)",
+          "points to release the exterior and drive out the pathogen"
+        ]
+      ],
+      "treatment_outro": "",
+      "result": "The symptoms at her nose, sinuses, and throat cleared, and her energy level returned to normal. Most importantly, she did not go on to develop any of the further flu symptoms that usually kept her ill for months — the early treatment stopped the illness in its tracks.",
+      "quote": ""
+    },
+    {
+      "slug": "high-blood-pressure-that-medication-couldnt-control-brought-down",
+      "title": "High blood pressure that medication couldn't control, brought down safely",
+      "focus": "heart-circulation",
+      "initials": "N.A.",
+      "context": "Female, age 73",
+      "duration": "3 months",
+      "sessions": 12,
+      "presentation": "A 73-year-old patient came to the clinic with stubborn high blood pressure. Her diastolic (lower) number was normal, but her systolic (upper) number kept rising to 150–160 even after her family doctor had doubled her blood-pressure medication. She also had high cholesterol. She was taking her medication as prescribed, but it simply wasn't bringing the top number under control.",
+      "diagnosis": "Three patterns were contributing: phlegm-damp-heat, Liver Yang rising, and a degree of blood stasis. In TCM, blood pressure that climbs despite medication often reflects this combination — accumulated phlegm and heat thickening the system, the Liver's Yang surging upward, and sluggish blood flow. Each had to be addressed to bring the pressure down.",
+      "treatment_intro": "Treatment combined acupuncture, ear seeds, and herbs, and was paired with practical home care:",
+      "treatment_points": [
+        [
+          "Dr. Tan's 12-point combination together with Master Tung's San Sheng",
+          "established acupuncture combinations used to regulate blood pressure"
+        ]
+      ],
+      "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for hypertension, pressed between visits for continuous effect. A herbal mixture was prescribed to clear the phlegm-damp-heat, break up the blood stasis, and pull down the rising Liver Yang. For home care, she made dietary changes to reduce the phlegm-damp-heat and built a habit of regular, appropriate exercise.",
+      "result": "Her blood pressure gradually dropped to a safe level — the top number that medication alone couldn't move finally came down once the underlying patterns were treated and the home-care habits took hold.",
+      "quote": ""
+    },
+    {
+      "slug": "dangerously-high-blood-pressure-without-medication-returned-to-normal",
+      "title": "Dangerously high blood pressure in a patient who declined medication, returned to normal range",
+      "focus": "heart-circulation",
+      "initials": "O.E.",
+      "context": "Female, age 78",
+      "duration": "3 months",
+      "sessions": 14,
+      "presentation": "A 78-year-old patient came to the clinic with dangerously high blood pressure: a systolic reading that sat at 150–160 mmHg and sometimes spiked to 190–200 mmHg. She refused to take medication, which was a source of deep concern given the risk to her health and life. Treatment proceeded with that concern openly acknowledged and with a clear plan to involve medical care if needed.",
+      "diagnosis": "Several patterns were at work: phlegm-dampness and Qi stagnation at the pericardium (the sac around the heart), severe sleep apnea that was significantly worsening the hypertension by causing repeated drops in blood-oxygen during sleep, Liver Qi stagnation, and blood stasis. The sleep apnea connection was especially important — treating the night-time oxygen drops was part of treating the blood pressure.",
+      "treatment_intro": "Treatment combined acupuncture, ear seeds, and herbs:",
+      "treatment_points": [
+        [
+          "Dr. Tan's 12-point combination together with Master Tung's San Sheng",
+          "established acupuncture combinations used to regulate blood pressure"
+        ]
+      ],
+      "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for hypertension. A herbal mixture (for example, a Gui Zhi–based formula to address the problems at the pericardium) was prescribed to target the underlying patterns. For home care, she worked on changing her lifestyle and reducing stress — and was firmly advised to seek medical care immediately if the dangerous spikes returned or if the alternative treatment didn't hold.",
+      "result": "Her blood pressure gradually reduced to a normal range. The dangerous spikes settled as the underlying patterns — including the sleep apnea driving the night-time oxygen drops — were treated. Throughout, she was counselled to pursue conventional medical care without delay should the readings climb again.",
+      "quote": ""
+    },
+    {
+      "slug": "lifelong-anxiety-and-insomnia-eased-with-herbs",
+      "title": "Lifelong anxiety and insomnia, eased with TCM",
+      "focus": "mental-health-sleep",
+      "initials": "W.R.",
+      "context": "Female, age 52",
+      "duration": "8 weeks",
+      "sessions": 8,
+      "presentation": "A 52-year-old patient came to the clinic carrying anxiety she had felt since childhood — something she described as inherited through her family. Alongside the anxiety, she woke many times during the night and struggled with constipation. After a lifetime of it, she was looking for genuine relief.",
+      "diagnosis": "In TCM terms, the picture matched two classical patterns: Zang Zao (a recognised pattern of restlessness and emotional disturbance, sometimes described as a kind of long-standing agitation) and a heat-related pattern of constipation in the digestive tract. Naming these patterns precisely allowed each to be matched to a targeted herbal formula.",
+      "treatment_intro": "Treatment combined acupuncture, ear seeds, and herbal formulas chosen for the specific patterns:",
+      "treatment_points": [
+        [
+          "Dr. Tan's Jueyin–Shaoyang combination — LI-1 (Shangyang), LI-4 (Hegu), PC-9 (Zhongchong), PC-6 (Neiguan), LR-1 (Dadun), LR-4 (Zhongfeng), ST-45 (Lidui), ST-42 (Chongyang)",
+          "a balancing set of points used to settle the mind and ease anxiety"
+        ]
+      ],
+      "treatment_outro": "Ear seeds followed Dr. Lichun Huang's combination for anxiety. Herbal formulas were prescribed to treat the Zang Zao pattern and the constipation. For home care, she took up daily meditation and regular exercise to support the work.",
+      "result": "After taking the herbal formula for the Zang Zao pattern, her anxiety and insomnia resolved. For the constipation, she keeps herbal pills on hand to take whenever needed. After a lifetime of anxiety, she finally found steady relief.",
+      "quote": ""
+    },
+    {
+      "slug": "twenty-years-of-depression-resolved-and-off-medication",
+      "title": "Twenty years of depression, resolved and off medication",
+      "focus": "mental-health-sleep",
+      "initials": "I.M.",
+      "context": "Female, age 56",
+      "duration": "3 months",
+      "sessions": 12,
+      "presentation": "A 56-year-old patient came to the clinic with depression that had begun twenty years earlier, after the birth of her second child, leaving her with low energy and fatigue most of the time. She also had mild sleep apnea, and for the past year and a half she had been waking every one to two hours through the night with hot flashes. The layers of fatigue, broken sleep, and low mood had become deeply entrenched.",
+      "diagnosis": "Three patterns were interwoven: Yin deficiency with deficient heat (the driver behind the hot flashes), Yang deficiency, and Lung Qi deficiency. In TCM these deficiencies can together produce the exhaustion, disturbed sleep, and low mood she described — so the treatment worked on all three, with the hot flashes, sleep apnea, and depression each mapped to a specific approach.",
+      "treatment_intro": "Treatment combined acupuncture with herbal formulas targeted to each layer:",
+      "treatment_points": [
+        [
+          "LU-1 (Zhongfu), LU-7 (Lieque), the 'earth' point, and LR-3 (Taichong)",
+          "to support Lung Qi and keep Qi moving"
+        ],
+        [
+          "LI-4 (Hegu), SP-6 (Sanyinjiao), and ST-36 (Zusanli)",
+          "to strengthen the body and harmonise its energy"
+        ],
+        [
+          "LU-7 (Lieque), KD-6 (Zhaohai), and KD-2 (Rangu)",
+          "to tonify Kidney Yin and clear the deficient heat behind the hot flashes"
+        ]
+      ],
+      "treatment_outro": "Herbal formulas were prescribed to treat the depression, the sleep apnea, and the hot flashes in turn. For home care, she added regular exercise and time in sunlight.",
+      "result": "The hot flashes resolved after the herbal formula tonified Kidney Yin and cleared the deficient heat. The depression lifted — she no longer needed her medication — and the sleep apnea resolved as the Yang was tonified through herbs and acupuncture. Twenty years on, she came out the other side with her energy, her sleep, and her mood restored.",
+      "quote": ""
+    },
+    {
+      "slug": "raynauds-syndrome-cold-blue-hands-and-feet-warmed",
+      "title": "Raynaud's syndrome: cold, blue hands and feet warmed and restored",
+      "focus": "heart-circulation",
+      "initials": "Z.Q.",
+      "context": "Male, age 20",
+      "duration": "8 weeks",
+      "sessions": 10,
+      "presentation": "A 20-year-old patient came to the clinic with hands and feet that were bluish-purple and icy cold to the touch — and the problem was spreading up toward the lower legs and forearms. This is the picture of Raynaud's syndrome, where circulation to the extremities shuts down and the skin turns cold and discoloured. In someone so young, the steady spread was a real concern.",
+      "diagnosis": "Two patterns were behind it: Liver Qi stagnation so severe that the body's warming Yang was trapped inside and couldn't reach the extremities, and blood deficiency. In TCM, warmth and colour in the hands and feet depend on Yang and blood reaching them; when stagnation bottles up the Yang and the blood is too scarce to circulate well, the extremities go cold and blue. Freeing the Yang and nourishing the blood was the goal.",
+      "treatment_intro": "Treatment used a wide selection of points at the ends of the limbs to draw warmth and circulation back out to the extremities:",
+      "treatment_points": [
+        [
+          "HT-9 (Shaochong), PC-9 (Zhongchong), LU-11 (Shaoshang), SI-1 (Shaoze), TW-3 (Zhongzhu), LI-1 (Shangyang), LI-4 (Hegu)",
+          "points on the hands and fingers to restore circulation to the upper extremities"
+        ],
+        [
+          "UB-67 (Zhiyin), GB-41 (Zulinqi), ST-36 (Zusanli), ST-45 (Lidui), KD-3 (Taixi), LR-1 (Dadun), LR-3 (Taichong), SP-1 (Yinbai)",
+          "points on the feet and lower legs to restore circulation to the lower extremities"
+        ]
+      ],
+      "treatment_outro": "Herbal formulas were prescribed to break the Liver Qi stagnation, tonify the blood, improve circulation, and warm the extremities. For home care, he worked on reducing stress and increasing sweaty exercise and sunlight.",
+      "result": "His hands and feet changed colour — from bluish-purple, to red as circulation returned, and finally to a normal colour at a normal temperature. With the trapped Yang freed and the blood nourished, warmth came back to his extremities and the spread was reversed.",
+      "quote": ""
+    },
+    {
+      "slug": "cosmetic-acupuncture-age-spots-gone-and-wrinkles-softened",
+      "title": "Cosmetic acupuncture: age spots gone and wrinkles softened",
+      "focus": "skin-facial-health",
+      "initials": "Y.L.",
+      "context": "Female, age 55",
+      "duration": "10 weeks",
+      "sessions": 10,
+      "presentation": "A 55-year-old patient came to the clinic for cosmetic concerns: age spots on both cheeks, two frown lines, and wrinkles around the eyes. She was looking for a natural approach to brighten her skin and soften the lines — one that worked with the body rather than against it.",
+      "diagnosis": "The pattern was Qi and blood stagnation together with deficiency. In TCM, the complexion reflects the quality of Qi and blood reaching the face; when supply and circulation are poor, age spots, dullness, and wrinkles appear more readily. Improving the Qi and blood supply to the face — and to the body as a whole — was the foundation of the treatment.",
+      "treatment_intro": "Treatment combined herbal medicine with cosmetic acupuncture:",
+      "treatment_points": [
+        [
+          "cosmetic acupuncture",
+          "fine needling of the face to stimulate local circulation and collagen, brightening the skin and softening lines"
+        ]
+      ],
+      "treatment_outro": "A herbal mixture was prescribed to improve the Qi and blood supply and circulation, both on the face and throughout the body, so the results were supported from the inside. For home care, she focused on sunscreen, staying hydrated, eating antioxidants, limiting sugar, gentle Gua Sha, natural face masks, and managing stress.",
+      "result": "All of the age spots cleared, and the wrinkles softened enough that they were no longer easily noticed — a brighter, smoother complexion achieved through circulation and nourishment rather than harsh intervention.",
+      "quote": ""
+    },
+    {
+      "slug": "sharp-pain-under-the-shoulder-blade-and-flank-relieved",
+      "title": "Sharp pain under the shoulder blade and along the flank, relieved",
+      "focus": "pain-relief",
+      "initials": "Q.H.",
+      "context": "Male, age 57",
+      "duration": "4 weeks",
+      "sessions": 5,
+      "presentation": "A 57-year-old patient came to the clinic with severe pain under his right shoulder blade and along his right flank — sharp enough to cause restless, broken nights. Pain in this region has a way of following a person into every position, and he was losing sleep to it.",
+      "diagnosis": "The pattern was Qi blockage along the Small Intestine channel (under the shoulder blade) and the Gall Bladder channel (along the flank), together with blood stasis. When Qi and blood stop moving freely through these channels, sharp, fixed pain settles in — exactly the kind that made it hard for him to rest. Treatment used the principle of balancing the affected channels from the arms.",
+      "treatment_intro": "Treatment used balancing points on the forearms plus a classic herbal formula:",
+      "treatment_points": [
+        [
+          "Liver-channel points below the shin bone",
+          "needled to balance the Small Intestine channel under the shoulder blade"
+        ],
+        [
+          "Heart-channel points on the forearm",
+          "needled to balance the Gall Bladder channel along the flank"
+        ]
+      ],
+      "treatment_outro": "The herbal formula Shen Tong Zhu Yu Tang — a classic prescription for moving blood and relieving body pain — was prescribed to clear the blood stasis between sessions.",
+      "result": "All of the pain resolved after treatment. With the channels rebalanced and the blood stasis cleared, the sharp pain under his shoulder blade and along his flank let go — and his nights settled.",
+      "quote": ""
+    },
+    {
+      "slug": "shingles-blisters-and-severe-pain-cleared",
+      "title": "Shingles blisters and severe pain on the lower back and flank, cleared",
+      "focus": "skin-facial-health",
+      "initials": "X.C.",
+      "context": "Female, age 49",
+      "duration": "6 weeks",
+      "sessions": 6,
+      "presentation": "A 49-year-old patient came to the clinic with blisters and severe pain caused by shingles, spread across the lower back and flank on the left side of her body. Shingles pain can be intense and unrelenting, and she was looking for relief from both the pain and the outbreak itself.",
+      "diagnosis": "The pattern had two parts: Qi blockage along the Urinary Bladder and Gall Bladder channels — the meridians crossing the lower back and flank — which produced the pain, and the shingles virus itself, which produced the blisters and added to the pain. Treatment therefore addressed both the channel blockage and the underlying viral activity.",
+      "treatment_intro": "Treatment combined channel-balancing acupuncture with several weeks of antiviral-oriented herbs:",
+      "treatment_points": [
+        [
+          "Lung-channel and Heart-channel points on the arm",
+          "needled to balance the Urinary Bladder and Gall Bladder channels and relieve the pain"
+        ]
+      ],
+      "treatment_outro": "Herbs were prescribed for several weeks to clear the virus from within, working steadily alongside the acupuncture.",
+      "result": "All of the pain resolved, and the blisters shrank, dried out, and disappeared. By treating both the channel blockage and the virus, the outbreak cleared and the severe pain that came with it let go.",
+      "quote": ""
+    }
+  ]
+}

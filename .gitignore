@@ -6,6 +6,11 @@ vendor/
 *.zip
 *.tar.gz
 
+# Working docs / import files — used in WP admin, not part of the deployed theme
+Clinic-Cases-Review.docx
+What-We-Treat-new-pages.wordpress.xml
+What-We-Treat-setup-guide.md
+
 # OS junk
 .DS_Store
 Thumbs.db

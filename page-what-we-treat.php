@@ -25,9 +25,9 @@ while ( have_posts() ) :
 	$hub_lede      = ws_field( 'hub_lede', "TCM addresses the whole person — body, mind, and the patterns that link them. Browse by category, or get in touch if you don't see what you're looking for." );
 	$intro_eyebrow = ws_field( 'intro_eyebrow', '' );
 	$intro_title   = ws_field( 'intro_title', '' );
-	$intro_body    = ws_field( 'intro_body', "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the six areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect." );
+	$intro_body    = ws_field( 'intro_body', "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect." );
 	$cards_eyebrow = ws_field( 'cards_eyebrow', 'Conditions we treat' );
-	$cards_title   = ws_field( 'cards_title', 'Six areas of focus.' );
+	$cards_title   = ws_field( 'cards_title', 'Nine areas of focus.' );
 	$cards_intro   = ws_field( 'cards_intro', '' );
 
 	$subpages = get_children(
