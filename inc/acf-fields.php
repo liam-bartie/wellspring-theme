@@ -30,7 +30,9 @@ add_action(
 					array(
 						'key'   => 'field_hero_tab',
 						'label' => 'Hero',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_hero_eyebrow',
@@ -101,7 +103,9 @@ add_action(
 					array(
 						'key'   => 'field_home_intro_tab',
 						'label' => 'Intro section',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'     => 'field_home_intro_note',
@@ -139,7 +143,9 @@ add_action(
 					array(
 						'key'   => 'field_wwt_tab',
 						'label' => 'What we treat',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_wwt_eyebrow',
@@ -176,7 +182,9 @@ add_action(
 					array(
 						'key'   => 'field_pract_tab',
 						'label' => 'Practitioner',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_pract_eyebrow',
@@ -238,7 +246,9 @@ add_action(
 					array(
 						'key'   => 'field_mod_tab',
 						'label' => 'Our practice',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_mod_eyebrow',
@@ -312,7 +322,9 @@ add_action(
 					array(
 						'key'   => 'field_home_cases_tab',
 						'label' => 'Featured cases',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'     => 'field_home_cases_note',
@@ -360,7 +372,9 @@ add_action(
 					array(
 						'key'   => 'field_testi_tab',
 						'label' => 'Testimonials',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_testi_eyebrow',
@@ -420,7 +434,9 @@ add_action(
 					array(
 						'key'   => 'field_cta_tab',
 						'label' => 'Closing CTA',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_cta_title',
@@ -510,7 +526,9 @@ add_action(
 					array(
 						'key'   => 'field_wwt_hero_tab',
 						'label' => 'Hero',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_wwt_hub_eyebrow',
@@ -541,7 +559,9 @@ add_action(
 					array(
 						'key'   => 'field_wwt_intro_tab',
 						'label' => 'Intro section',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'     => 'field_wwt_intro_note',
@@ -579,7 +599,9 @@ add_action(
 					array(
 						'key'   => 'field_wwt_cards_tab',
 						'label' => 'Cards section',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'           => 'field_wwt_cards_eyebrow',
@@ -616,7 +638,9 @@ add_action(
 					array(
 						'key'   => 'field_wwt_content_tab',
 						'label' => 'Content blocks',
-						'type'  => 'tab',
+						'type'  => 'accordion',
+						'open'  => 0,
+						'multi_expand' => 1,
 					),
 					array(
 						'key'     => 'field_wwt_content_note',
@@ -639,6 +663,106 @@ add_action(
 				'style'           => 'default',
 				'label_placement' => 'top',
 				'instruction_placement' => 'label',
+			)
+		);
+	}
+);
+
+/**
+ * Field group for the "About" page.
+ *
+ * A single rich-text "Main body" box, pre-filled with the current content so
+ * nothing has to be re-typed. The native block editor / content canvas is
+ * hidden on this page (see inc/template-functions.php) so all editing happens
+ * in this one tidy box.
+ */
+add_action(
+	'acf/init',
+	function () {
+		$about_page = get_page_by_path( 'about' );
+		if ( ! $about_page ) {
+			return;
+		}
+
+		acf_add_local_field_group(
+			array(
+				'key'    => 'group_wellspring_about',
+				'title'  => 'About page content',
+				'fields' => array(
+					array(
+						'key'          => 'field_about_body_acc',
+						'label'        => 'Page content',
+						'type'         => 'accordion',
+						'open'         => 1,
+						'multi_expand' => 1,
+					),
+					array(
+						'key'           => 'field_about_main_body',
+						'name'          => 'about_main_body',
+						'label'         => 'Main body',
+						'instructions'  => 'The full body of the About page. Use the toolbar to format text and add headings, lists, links, and images.',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'all',
+						'toolbar'       => 'full',
+						'media_upload'  => 1,
+						'default_value' => "<h2>Meet Dr. Laura Cowburn</h2>
+<p>Dr. Laura Cowburn is a Doctor of Traditional Chinese Medicine and a Registered Acupuncturist with the College of Acupuncturists of Alberta (CAA). She brings a rare combination of extensive medical knowledge and deep clinical experience to every treatment, supported by two master's degrees from top Canadian and Chinese universities.</p>
+<p>Her lifelong study of Daoism and Qi practice informs a treatment style that is both highly skilled and quietly attentive. Outside the clinic, she is a passionate mountain lover — backpacking, ice climbing, mountaineering — an avid reader, and a mother of two grown children.</p>
+<p>Connect with Dr. Cowburn on <a href='https://www.linkedin.com/in/laura19zh/'>LinkedIn</a>.</p>
+<h2>Our Clinic</h2>
+<p>Wellspring Health Acupuncture &amp; TCM Clinic is a member of the Lochend Clinic Health Collective, located in Inglewood, Calgary. We provide holistic health care through acupuncture, no-needle acupuncture, and TCM herbal medicine.</p>
+<p>Our approach is patient-first and grounded in real-world clinical experience. We aim to deliver premium treatments with instant, sustainable, and desirable results — helping the body heal itself rather than masking symptoms.</p>
+<h3>Our Services</h3>
+<ul>
+<li>Premium acupuncture treatments with instant and lasting results</li>
+<li>No-needle acupuncture for those with needle aversion (trypanophobia), including auricular medicine and ear seeds for acupoints</li>
+<li>Top-quality TCM herbs to address the root cause of health issues</li>
+<li>Free educational sessions for the community</li>
+</ul>
+<h2>Giving Back: Loving Heart Wellness Association</h2>
+<p>We actively participate in charity work through our partnership with the Loving Heart Wellness Association (LHWA), a registered charity. Through LHWA we are able to:</p>
+<ul>
+<li>Donate acupuncture treatments to community contributors such as Mustard Seed workers</li>
+<li>Donate top-quality TCM herbs</li>
+<li>Donate high-quality ear seeds</li>
+<li>Offer free, health-focused educational sessions to the public</li>
+</ul>
+<p>Learn more at <a href='https://www.lovingheartswellness.org/'>lovingheartswellness.org</a>.</p>
+<h2>Independent Pharmacy Partners</h2>
+<p>We work alongside a network of trusted independent pharmacies across Calgary to make it easy for our patients to fill prescriptions and access pharmacist support.</p>
+<ul>
+<li><strong>Sage Plus Clinical Pharmacy</strong><br>860 13 St SE, Calgary, AB T2G 1R2 · (587) 480-0178 · <a href='https://sageplus.ca/'>sageplus.ca</a></li>
+<li><strong>Marshall Drugs (Inglewood)</strong><br>1231–1233 9 Ave SE, Calgary, AB T2G 0S9 · (403) 265-5766 · <a href='https://marshalldrugs.com/'>marshalldrugs.com</a></li>
+<li><strong>Corner Drugstore (Downtown Border)</strong><br>602 8 Ave SE, Calgary, AB T2G 0M1 · (403) 263-4620 · <a href='https://www.cornerdrugstore.ca/'>cornerdrugstore.ca</a></li>
+<li><strong>Downtown Drugmart</strong><br>115 8 Ave SW, Calgary, AB T2P 1B4 · (403) 266-2059 · <a href='https://www.pharmachoice.com/locations/downtown-drugmart/'>pharmachoice.com</a></li>
+<li><strong>MediMax Pharmacy</strong><br>240-520 3 Ave SW, Calgary, AB T2P 0R3 · (403) 454-4412 · <a href='https://www.guardian-ida-remedysrx.ca/'>guardian-ida-remedysrx.ca</a></li>
+<li><strong>Heathers Pharmacy</strong><br>Unit 104, 305 10 St NW, Calgary, AB · (825) 540-1500 · <a href='https://heatherspharmacy.ca/'>heatherspharmacy.ca</a></li>
+<li><strong>Riverside Pharmacy</strong><br>10-630 1st Ave NE, Calgary, AB T2E 0B6 · (403) 457-9033</li>
+<li><strong>Bridgedale Pharmacy</strong><br>1010 1st Ave NE, Calgary, AB T2E 7W7 · (403) 269-6440 · <a href='https://www.pharmachoice.com/locations/bridgedale-pharmacy/'>pharmachoice.com</a></li>
+<li><strong>Tower Drugs</strong><br>#137, 131 9 Ave SW, Calgary, AB T2P 1K1 · (403) 261-2006 · <a href='https://www.pharmachoice.com/locations/tower-drugs/'>pharmachoice.com</a></li>
+<li><strong>Aster Mettra Pharmacy &amp; Travel Clinic</strong><br>931 5 Ave SW, Calgary, AB T2P 0N8 · (587) 702-3434 · <a href='https://asterpharmacy.ca/'>asterpharmacy.ca</a></li>
+<li><strong>Midtown Remedy's Rx Pharmacy &amp; Travel Clinic</strong><br>1110 11 Ave SW, Calgary, AB T2R 0G4 · (403) 452-0712 · <a href='https://www.guardian-ida-remedysrx.ca/'>guardian-ida-remedysrx.ca</a></li>
+</ul>
+<h2>Listen first, treat second.</h2>
+<p>Every appointment begins with a real conversation about how you're feeling, what you've tried, and where you want to get to. From there we plan a course of treatment that fits your body and your life.</p>
+<blockquote><p>The body has its own intelligence. Our work is to listen carefully, then gently guide it back to balance.</p><cite>Dr. Laura Cowburn</cite></blockquote>
+<p><strong>10+</strong> years in practice &nbsp;·&nbsp; <strong>2</strong> master's degrees in TCM &nbsp;·&nbsp; <strong>1,000+</strong> patients treated</p>",
+					),
+				),
+				'location'               => array(
+					array(
+						array(
+							'param'    => 'page',
+							'operator' => '==',
+							'value'    => $about_page->ID,
+						),
+					),
+				),
+				'menu_order'             => 0,
+				'position'               => 'normal',
+				'style'                  => 'default',
+				'label_placement'        => 'top',
+				'instruction_placement'  => 'label',
 			)
 		);
 	}
