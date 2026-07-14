@@ -159,7 +159,7 @@ add_action(
 						'name'          => 'wwt_title',
 						'label'         => 'Section headline',
 						'type'          => 'text',
-						'default_value' => 'Nine areas of focus, drawn from thousands of years of practice.',
+						'default_value' => 'A wide range of conditions, drawn from thousands of years of practice.',
 					),
 					array(
 						'key'           => 'field_wwt_lede',
@@ -615,7 +615,7 @@ add_action(
 						'name'          => 'cards_title',
 						'label'         => 'Section headline',
 						'type'          => 'text',
-						'default_value' => 'Nine areas of focus.',
+						'default_value' => 'The areas we treat most often.',
 					),
 					array(
 						'key'           => 'field_wwt_cards_intro',
@@ -631,22 +631,57 @@ add_action(
 						'key'     => 'field_wwt_cards_note',
 						'label'   => 'Where the cards come from',
 						'type'    => 'message',
-						'message' => 'Cards are pulled automatically from sub-pages of this page (Pain Relief, Women\'s Health, etc.). Edit each sub-page\'s title, excerpt, and featured image to update the matching card.',
+						'message' => 'Each tile is a sub-page of this page (Pain Relief, Women\'s Health, etc.). Edit a sub-page\'s title, excerpt, and featured image to change the matching tile. Use the "Tile order" control below to set the order they appear in.',
+					),
+					array(
+						'key'           => 'field_wwt_cards_order',
+						'name'          => 'cards_order',
+						'label'         => 'Tile order (optional)',
+						'instructions'  => 'Drag the tiles into the order you want them to appear. Leave empty to show every sub-page automatically, in page order.',
+						'type'          => 'relationship',
+						'post_type'     => array( 'page' ),
+						'filters'       => array( 'search' ),
+						'elements'      => array( 'featured_image' ),
+						'return_format' => 'id',
 					),
 
-					// CONTENT BLOCKS
+					// CONTENT BELOW THE TILES
 					array(
-						'key'   => 'field_wwt_content_tab',
-						'label' => 'Content blocks',
-						'type'  => 'accordion',
-						'open'  => 0,
+						'key'          => 'field_wwt_content_tab',
+						'label'        => 'Content below the tiles',
+						'type'         => 'accordion',
+						'open'         => 0,
 						'multi_expand' => 1,
 					),
 					array(
-						'key'     => 'field_wwt_content_note',
-						'label'   => 'Add additional sections',
-						'type'    => 'message',
-						'message' => 'Use the main Gutenberg editor above to add additional sections below the cards grid — callouts, image+text, stats, mini-CTA, etc. Insert any of the Wellspring block patterns from the block inserter.',
+						'key'           => 'field_wwt_below_content',
+						'name'          => 'wwt_below_content',
+						'label'         => 'Content below the tiles',
+						'instructions'  => 'Everything shown beneath the condition tiles — Our Approach, Your First Visit, and the FAQ. Edit freely; use the toolbar for headings, lists, links, and images.',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'all',
+						'toolbar'       => 'full',
+						'media_upload'  => 1,
+						'default_value' => "<h2>Our Approach</h2>
+<p>Acupuncture and TCM don't treat diseases the way Western medicine does — they help the body return to balance, and trust the body's own healing intelligence to do the rest. This is why a single course of treatment can address conditions that span multiple body systems, and why old patterns of recurrence often resolve along with the primary concern.</p>
+<h3>Got questions about acupuncture?</h3>
+<p>Book a free 15-minute phone consult to talk through your concerns and decide if treatment is right for you. No pressure, no commitment.</p>
+<p><a class='ws-btn' href='/book-appointments/'>Book a consult</a></p>
+<h2>Your First Visit</h2>
+<p>Your first visit lasts about 50 minutes. We'll talk through your full health history, current concerns, sleep patterns, diet, and stress — then move into a treatment session that may include acupuncture, an herbal recommendation, cupping, or tui na (gentle bodywork). Most patients leave feeling deeply relaxed and a little surprised at how thorough the conversation was.</p>
+<h3>Ready to book?</h3>
+<p>New patients welcome. Direct billing to most major insurers.</p>
+<p><a class='ws-btn' href='/book-appointments/'>Book an appointment</a></p>
+<h2>Frequently asked questions</h2>
+<details class='wp-block-details'><summary>How many acupuncture sessions do I need?</summary><p>The number of acupuncture treatments you need depends on your specific condition, its severity, and how your body responds. Treatment plans are personalized to your medical history, needs, and overall health. In some cases one treatment is enough to address acute pain; in others, you may benefit from 10 or more sessions over a course of treatment.</p></details>
+<details class='wp-block-details'><summary>Is acupuncture covered by insurance in Alberta?</summary><p>Acupuncture is generally not covered by Alberta Health Care (provincial insurance). However, it is commonly covered under private extended health benefits or company group insurance plans, often listed under paramedical services. Coverage typically requires the practitioner to be a registered, licensed acupuncturist in Alberta — which we are.</p></details>
+<details class='wp-block-details'><summary>Does acupuncture hurt?</summary><p>Most people don't report pain during acupuncture, though you may feel some sensations. What you feel depends on your pain tolerance and overall sensitivity. Your first treatment may seem more intense than the ones that follow — partly nerves, partly the body responding to needling for the first time. Most patients become more relaxed and comfortable with each subsequent session.</p></details>
+<details class='wp-block-details'><summary>How deep do the needles go?</summary><p>Acupuncture needles generally penetrate from 1/16 of an inch to 1.5 inches (roughly 2mm to 40mm), depending on body area, muscle density, and treatment goals. Delicate areas like the scalp or face receive shallow insertions (1–5 mm), while fleshier areas like the hips or glutes can be treated more deeply.</p></details>
+<details class='wp-block-details'><summary>Are the needles sterilized or one-time use?</summary><p>Both. In modern, regulated practices, acupuncture needles are treated as single-use medical devices: sterilized during manufacturing, opened from sealed packaging in front of you, and disposed of immediately after a single treatment.</p></details>
+<details class='wp-block-details'><summary>What are the needles made from?</summary><p>Modern acupuncture needles are made from high-quality, surgical-grade stainless steel — thin, flexible, hair-thin, and sterile. Handles are typically stainless steel, copper, or plastic, sometimes with a silicone coating for smoother insertion.</p></details>
+<details class='wp-block-details'><summary>How quickly does acupuncture and TCM work?</summary><p>Most patients see improvement within 1–2 sessions for acute conditions, and 2–3 sessions for chronic issues. Some feel relief immediately; others need a series of treatments to achieve lasting results. We'll talk through realistic expectations during your first appointment.</p></details>
+<details class='wp-block-details'><summary>What will my first appointment include?</summary><p>Your first appointment typically lasts 50 minutes. It includes a comprehensive intake of your health history, a TCM-based pattern diagnosis, and a personalized treatment plan. Expect detailed questions about your sleep, diet, stress, and overall patterns — followed by acupuncture and, if appropriate, an herbal recommendation.</p></details>
+<details class='wp-block-details'><summary>How will I feel after treatment?</summary><p>Most patients feel a deep sense of relaxation after treatment. Some experience mild soreness at the needle sites or feel a bit tired — both subside within a day. Any mild bruising or discolouration usually clears within a few days. For the first 24 hours, rest, drink plenty of water, eat well, and avoid strenuous activity. Use heat packs rather than ice.</p></details>",
 					),
 				),
 				'location' => array(
@@ -765,6 +800,21 @@ add_action(
 				'instruction_placement'  => 'label',
 			)
 		);
+	}
+);
+
+/**
+ * Scope the What We Treat "Tile order" relationship picker to this page's own
+ * sub-pages, so editors only ever see the condition tiles.
+ */
+add_filter(
+	'acf/fields/relationship/query/key=field_wwt_cards_order',
+	function ( $args ) {
+		$wwt = get_page_by_path( 'what-we-treat' );
+		if ( $wwt instanceof WP_Post ) {
+			$args['post_parent'] = $wwt->ID;
+		}
+		return $args;
 	}
 );
 

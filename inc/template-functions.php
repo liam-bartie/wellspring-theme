@@ -40,9 +40,6 @@ add_action( 'wp_head', 'wellspring_pingback_header' );
  * Pages whose content is fully ACF-driven, so the native block editor /
  * content canvas is hidden — editing happens only in the ACF field boxes.
  *
- * (What We Treat is intentionally NOT here: it still uses its content area
- * for the "Our Approach", "Your First Visit", and FAQ sections.)
- *
  * @return int[] Page IDs.
  */
 function ws_acf_driven_page_ids() {
@@ -51,9 +48,11 @@ function ws_acf_driven_page_ids() {
 	if ( $front ) {
 		$ids[] = $front;
 	}
-	$about = get_page_by_path( 'about' );
-	if ( $about instanceof WP_Post ) {
-		$ids[] = (int) $about->ID;
+	foreach ( array( 'about', 'what-we-treat' ) as $slug ) {
+		$page = get_page_by_path( $slug );
+		if ( $page instanceof WP_Post ) {
+			$ids[] = (int) $page->ID;
+		}
 	}
 	return $ids;
 }

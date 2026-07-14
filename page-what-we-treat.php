@@ -27,18 +27,27 @@ while ( have_posts() ) :
 	$intro_title   = ws_field( 'intro_title', '' );
 	$intro_body    = ws_field( 'intro_body', "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect." );
 	$cards_eyebrow = ws_field( 'cards_eyebrow', 'Conditions we treat' );
-	$cards_title   = ws_field( 'cards_title', 'Nine areas of focus.' );
+	$cards_title   = ws_field( 'cards_title', 'The areas we treat most often.' );
 	$cards_intro   = ws_field( 'cards_intro', '' );
 
-	$subpages = get_children(
-		array(
-			'post_parent' => get_the_ID(),
-			'post_type'   => 'page',
-			'orderby'     => 'menu_order',
-			'order'       => 'ASC',
-			'numberposts' => -1,
-		)
-	);
+	$below_content = ws_field( 'wwt_below_content', '' );
+
+	// Condition tiles: use the manual "Tile order" (ACF relationship) if set,
+	// otherwise show every sub-page automatically in menu order.
+	$ordered_ids = ws_field( 'cards_order', array() );
+	if ( ! empty( $ordered_ids ) && is_array( $ordered_ids ) ) {
+		$subpages = array_filter( array_map( 'get_post', $ordered_ids ) );
+	} else {
+		$subpages = get_children(
+			array(
+				'post_parent' => get_the_ID(),
+				'post_type'   => 'page',
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC',
+				'numberposts' => -1,
+			)
+		);
+	}
 	?>
 
 <main id="primary" class="site-main">
@@ -123,16 +132,27 @@ while ( have_posts() ) :
 	</section>
 
 	<?php
-	// Render Gutenberg page content if any (so editor can drop in callouts, image+text, etc.)
-	$content = trim( wp_strip_all_tags( get_the_content() ) );
-	if ( ! empty( $content ) ) :
+	// Content below the tiles (Our Approach, Your First Visit, FAQ). Lives in the
+	// ACF "Content below the tiles" field; falls back to classic content if empty.
+	if ( $below_content ) :
 		?>
 		<section class="ws-page-body">
 			<div class="ws-container ws-container--narrow">
-				<article class="entry-content"><?php the_content(); ?></article>
+				<article class="entry-content"><?php echo wp_kses_post( $below_content ); ?></article>
 			</div>
 		</section>
 		<?php
+	else :
+		$content = trim( wp_strip_all_tags( get_the_content() ) );
+		if ( ! empty( $content ) ) :
+			?>
+			<section class="ws-page-body">
+				<div class="ws-container ws-container--narrow">
+					<article class="entry-content"><?php the_content(); ?></article>
+				</div>
+			</section>
+			<?php
+		endif;
 	endif;
 	?>
 

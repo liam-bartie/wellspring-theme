@@ -27,7 +27,7 @@ $intro_title       = ws_field( 'intro_title', '' );
 $intro_body        = ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help." );
 
 $wwt_eyebrow       = ws_field( 'wwt_eyebrow', 'What we treat' );
-$wwt_title         = ws_field( 'wwt_title', 'Nine areas of focus, drawn from thousands of years of practice.' );
+$wwt_title         = ws_field( 'wwt_title', 'A wide range of conditions, drawn from thousands of years of practice.' );
 $wwt_lede          = ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.' );
 
 $pract_eyebrow     = ws_field( 'practitioner_eyebrow', 'Meet your practitioner' );
