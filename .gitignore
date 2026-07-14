@@ -22,6 +22,7 @@ services-hub.html
 services-premium-acupuncture.html
 services-no-needle-acupuncture.html
 services-tcm-herbs.html
+wwt-*.html
 
 # OS junk
 .DS_Store

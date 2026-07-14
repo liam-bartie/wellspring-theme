@@ -65,7 +65,7 @@ get_header();
 		$ws_related = function_exists( 'wellspring_page_related_cases' ) ? wellspring_page_related_cases() : '';
 		if ( $ws_related ) :
 			?>
-			<section class="ws-section">
+			<section class="ws-section ws-section--mist ws-related-cases-section">
 				<div class="ws-container">
 					<?php echo $ws_related; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- pre-escaped markup. ?>
 				</div>
