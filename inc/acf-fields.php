@@ -657,7 +657,7 @@ add_action(
 						'key'           => 'field_wwt_below_content',
 						'name'          => 'wwt_below_content',
 						'label'         => 'Content below the tiles',
-						'instructions'  => 'Everything shown beneath the condition tiles — Our Approach, Your First Visit, and the FAQ. Edit freely; use the toolbar for headings, lists, links, and images.',
+						'instructions'  => 'The sections shown beneath the condition tiles — Our Approach and Your First Visit. The FAQ is managed in its own repeater below.',
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
@@ -671,17 +671,40 @@ add_action(
 <p>Your first visit lasts about 50 minutes. We'll talk through your full health history, current concerns, sleep patterns, diet, and stress — then move into a treatment session that may include acupuncture, an herbal recommendation, cupping, or tui na (gentle bodywork). Most patients leave feeling deeply relaxed and a little surprised at how thorough the conversation was.</p>
 <h3>Ready to book?</h3>
 <p>New patients welcome. Direct billing to most major insurers.</p>
-<p><a class='ws-btn' href='/book-appointments/'>Book an appointment</a></p>
-<h2>Frequently asked questions</h2>
-<details class='wp-block-details'><summary>How many acupuncture sessions do I need?</summary><p>The number of acupuncture treatments you need depends on your specific condition, its severity, and how your body responds. Treatment plans are personalized to your medical history, needs, and overall health. In some cases one treatment is enough to address acute pain; in others, you may benefit from 10 or more sessions over a course of treatment.</p></details>
-<details class='wp-block-details'><summary>Is acupuncture covered by insurance in Alberta?</summary><p>Acupuncture is generally not covered by Alberta Health Care (provincial insurance). However, it is commonly covered under private extended health benefits or company group insurance plans, often listed under paramedical services. Coverage typically requires the practitioner to be a registered, licensed acupuncturist in Alberta — which we are.</p></details>
-<details class='wp-block-details'><summary>Does acupuncture hurt?</summary><p>Most people don't report pain during acupuncture, though you may feel some sensations. What you feel depends on your pain tolerance and overall sensitivity. Your first treatment may seem more intense than the ones that follow — partly nerves, partly the body responding to needling for the first time. Most patients become more relaxed and comfortable with each subsequent session.</p></details>
-<details class='wp-block-details'><summary>How deep do the needles go?</summary><p>Acupuncture needles generally penetrate from 1/16 of an inch to 1.5 inches (roughly 2mm to 40mm), depending on body area, muscle density, and treatment goals. Delicate areas like the scalp or face receive shallow insertions (1–5 mm), while fleshier areas like the hips or glutes can be treated more deeply.</p></details>
-<details class='wp-block-details'><summary>Are the needles sterilized or one-time use?</summary><p>Both. In modern, regulated practices, acupuncture needles are treated as single-use medical devices: sterilized during manufacturing, opened from sealed packaging in front of you, and disposed of immediately after a single treatment.</p></details>
-<details class='wp-block-details'><summary>What are the needles made from?</summary><p>Modern acupuncture needles are made from high-quality, surgical-grade stainless steel — thin, flexible, hair-thin, and sterile. Handles are typically stainless steel, copper, or plastic, sometimes with a silicone coating for smoother insertion.</p></details>
-<details class='wp-block-details'><summary>How quickly does acupuncture and TCM work?</summary><p>Most patients see improvement within 1–2 sessions for acute conditions, and 2–3 sessions for chronic issues. Some feel relief immediately; others need a series of treatments to achieve lasting results. We'll talk through realistic expectations during your first appointment.</p></details>
-<details class='wp-block-details'><summary>What will my first appointment include?</summary><p>Your first appointment typically lasts 50 minutes. It includes a comprehensive intake of your health history, a TCM-based pattern diagnosis, and a personalized treatment plan. Expect detailed questions about your sleep, diet, stress, and overall patterns — followed by acupuncture and, if appropriate, an herbal recommendation.</p></details>
-<details class='wp-block-details'><summary>How will I feel after treatment?</summary><p>Most patients feel a deep sense of relaxation after treatment. Some experience mild soreness at the needle sites or feel a bit tired — both subside within a day. Any mild bruising or discolouration usually clears within a few days. For the first 24 hours, rest, drink plenty of water, eat well, and avoid strenuous activity. Use heat packs rather than ice.</p></details>",
+<p><a class='ws-btn' href='/book-appointments/'>Book an appointment</a></p>",
+					),
+					array(
+						'key'          => 'field_wwt_faq_acc',
+						'label'        => 'Frequently asked questions',
+						'type'         => 'accordion',
+						'open'         => 0,
+						'multi_expand' => 1,
+					),
+					array(
+						'key'          => 'field_wwt_faqs',
+						'name'         => 'wwt_faqs',
+						'label'        => 'FAQ items',
+						'instructions' => 'Each row is one question and answer, shown as a collapsible accordion. Drag rows to reorder; add or remove as needed.',
+						'type'         => 'repeater',
+						'layout'       => 'block',
+						'button_label' => 'Add question',
+						'sub_fields'   => array(
+							array(
+								'key'   => 'field_wwt_faq_q',
+								'name'  => 'faq_question',
+								'label' => 'Question',
+								'type'  => 'text',
+							),
+							array(
+								'key'          => 'field_wwt_faq_a',
+								'name'         => 'faq_answer',
+								'label'        => 'Answer',
+								'type'         => 'wysiwyg',
+								'tabs'         => 'visual',
+								'toolbar'      => 'basic',
+								'media_upload' => 0,
+							),
+						),
 					),
 				),
 				'location' => array(
@@ -815,6 +838,73 @@ add_filter(
 			$args['post_parent'] = $wwt->ID;
 		}
 		return $args;
+	}
+);
+
+/**
+ * Seed the What We Treat FAQ repeater once, so it arrives pre-filled and
+ * immediately editable (a repeater can't carry default rows in its field
+ * definition). Guarded by an option flag so it only ever runs a single time,
+ * and only when the repeater is still empty.
+ */
+add_action(
+	'admin_init',
+	function () {
+		if ( get_option( 'ws_wwt_faqs_seeded' ) ) {
+			return;
+		}
+		if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
+			return;
+		}
+		$wwt = get_page_by_path( 'what-we-treat' );
+		if ( ! $wwt instanceof WP_Post ) {
+			return;
+		}
+
+		$existing = get_field( 'wwt_faqs', $wwt->ID );
+		if ( empty( $existing ) ) {
+			$faqs = array(
+				array(
+					'faq_question' => 'How many acupuncture sessions do I need?',
+					'faq_answer'   => "<p>The number of acupuncture treatments you need depends on your specific condition, its severity, and how your body responds. Treatment plans are personalized to your medical history, needs, and overall health. In some cases one treatment is enough to address acute pain; in others, you may benefit from 10 or more sessions over a course of treatment.</p>",
+				),
+				array(
+					'faq_question' => 'Is acupuncture covered by insurance in Alberta?',
+					'faq_answer'   => "<p>Acupuncture is generally not covered by Alberta Health Care (provincial insurance). However, it is commonly covered under private extended health benefits or company group insurance plans, often listed under paramedical services. Coverage typically requires the practitioner to be a registered, licensed acupuncturist in Alberta — which we are.</p>",
+				),
+				array(
+					'faq_question' => 'Does acupuncture hurt?',
+					'faq_answer'   => "<p>Most people don't report pain during acupuncture, though you may feel some sensations. What you feel depends on your pain tolerance and overall sensitivity. Your first treatment may seem more intense than the ones that follow — partly nerves, partly the body responding to needling for the first time. Most patients become more relaxed and comfortable with each subsequent session.</p>",
+				),
+				array(
+					'faq_question' => 'How deep do the needles go?',
+					'faq_answer'   => "<p>Acupuncture needles generally penetrate from 1/16 of an inch to 1.5 inches (roughly 2mm to 40mm), depending on body area, muscle density, and treatment goals. Delicate areas like the scalp or face receive shallow insertions (1–5 mm), while fleshier areas like the hips or glutes can be treated more deeply.</p>",
+				),
+				array(
+					'faq_question' => 'Are the needles sterilized or one-time use?',
+					'faq_answer'   => "<p>Both. In modern, regulated practices, acupuncture needles are treated as single-use medical devices: sterilized during manufacturing, opened from sealed packaging in front of you, and disposed of immediately after a single treatment.</p>",
+				),
+				array(
+					'faq_question' => 'What are the needles made from?',
+					'faq_answer'   => "<p>Modern acupuncture needles are made from high-quality, surgical-grade stainless steel — thin, flexible, hair-thin, and sterile. Handles are typically stainless steel, copper, or plastic, sometimes with a silicone coating for smoother insertion.</p>",
+				),
+				array(
+					'faq_question' => 'How quickly does acupuncture and TCM work?',
+					'faq_answer'   => "<p>Most patients see improvement within 1–2 sessions for acute conditions, and 2–3 sessions for chronic issues. Some feel relief immediately; others need a series of treatments to achieve lasting results. We'll talk through realistic expectations during your first appointment.</p>",
+				),
+				array(
+					'faq_question' => 'What will my first appointment include?',
+					'faq_answer'   => "<p>Your first appointment typically lasts 50 minutes. It includes a comprehensive intake of your health history, a TCM-based pattern diagnosis, and a personalized treatment plan. Expect detailed questions about your sleep, diet, stress, and overall patterns — followed by acupuncture and, if appropriate, an herbal recommendation.</p>",
+				),
+				array(
+					'faq_question' => 'How will I feel after treatment?',
+					'faq_answer'   => "<p>Most patients feel a deep sense of relaxation after treatment. Some experience mild soreness at the needle sites or feel a bit tired — both subside within a day. Any mild bruising or discolouration usually clears within a few days. For the first 24 hours, rest, drink plenty of water, eat well, and avoid strenuous activity. Use heat packs rather than ice.</p>",
+				),
+			);
+			update_field( 'wwt_faqs', $faqs, $wwt->ID );
+		}
+
+		update_option( 'ws_wwt_faqs_seeded', '1' );
 	}
 );
 

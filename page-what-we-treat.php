@@ -132,8 +132,8 @@ while ( have_posts() ) :
 	</section>
 
 	<?php
-	// Content below the tiles (Our Approach, Your First Visit, FAQ). Lives in the
-	// ACF "Content below the tiles" field; falls back to classic content if empty.
+	// Content below the tiles (Our Approach, Your First Visit). Lives in the ACF
+	// "Content below the tiles" field; falls back to classic content if empty.
 	if ( $below_content ) :
 		?>
 		<section class="ws-page-body">
@@ -155,6 +155,29 @@ while ( have_posts() ) :
 		endif;
 	endif;
 	?>
+
+	<?php if ( function_exists( 'have_rows' ) && have_rows( 'wwt_faqs' ) ) : ?>
+		<section class="ws-page-body ws-faq">
+			<div class="ws-container ws-container--narrow">
+				<h2>Frequently asked questions</h2>
+				<div class="entry-content">
+					<?php
+					while ( have_rows( 'wwt_faqs' ) ) :
+						the_row();
+						$faq_q = get_sub_field( 'faq_question' );
+						$faq_a = get_sub_field( 'faq_answer' );
+						if ( ! $faq_q ) {
+							continue;
+						}
+						?>
+						<details class="wp-block-details"><summary><?php echo esc_html( $faq_q ); ?></summary><?php echo wp_kses_post( $faq_a ); ?></details>
+						<?php
+					endwhile;
+					?>
+				</div>
+			</div>
+		</section>
+	<?php endif; ?>
 
 <?php endwhile; ?>
 
