@@ -37,10 +37,12 @@ add_action(
 				),
 				'public'        => true,
 				'show_in_menu'  => true,
-				'show_in_rest'  => true, // Enables Gutenberg.
+				'show_in_rest'  => true, // Keeps REST/ACF happy; the case body is all ACF fields.
 				'menu_position' => 25,
 				'menu_icon'     => 'dashicons-clipboard',
-				'supports'      => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions' ),
+				// No 'editor' — the case narrative lives entirely in the ACF "Case details" boxes,
+				// so the block canvas is hidden. "Additional notes" is an ACF field instead.
+				'supports'      => array( 'title', 'excerpt', 'thumbnail', 'revisions' ),
 				'has_archive'   => 'clinic-cases',
 				'rewrite'       => array(
 					'slug'       => 'clinic-case',
@@ -219,6 +221,13 @@ add_action(
 				'title'    => 'Case details',
 				'fields'   => array(
 					array(
+						'key'          => 'field_case_patient_acc',
+						'label'        => 'Patient',
+						'type'         => 'accordion',
+						'open'         => 1,
+						'multi_expand' => 1,
+					),
+					array(
 						'key'           => 'field_case_patient_initial',
 						'name'          => 'patient_initial',
 						'label'         => 'Patient initial',
@@ -233,13 +242,21 @@ add_action(
 						'type'          => 'text',
 					),
 					array(
+						'key'          => 'field_case_narrative_acc',
+						'label'        => 'The case',
+						'type'         => 'accordion',
+						'open'         => 1,
+						'multi_expand' => 1,
+					),
+					array(
 						'key'           => 'field_case_summary',
 						'name'          => 'summary',
 						'label'         => 'At a glance (summary)',
 						'instructions'  => 'One or two sentences summarising the case and outcome. Shown in the highlighted box near the top of the case page.',
-						'type'          => 'textarea',
-						'rows'          => 3,
-						'new_lines'     => '',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'visual',
+						'toolbar'       => 'basic',
+						'media_upload'  => 0,
 					),
 					array(
 						'key'           => 'field_case_presentation',
@@ -286,6 +303,13 @@ add_action(
 						'rows'          => 6,
 					),
 					array(
+						'key'          => 'field_case_details_acc',
+						'label'        => 'Details',
+						'type'         => 'accordion',
+						'open'         => 0,
+						'multi_expand' => 1,
+					),
+					array(
 						'key'           => 'field_case_duration',
 						'name'          => 'duration',
 						'label'         => 'Treatment duration (optional)',
@@ -298,6 +322,16 @@ add_action(
 						'label'         => 'Sessions (optional)',
 						'instructions'  => 'Total number of acupuncture sessions in the course of treatment.',
 						'type'          => 'number',
+					),
+					array(
+						'key'           => 'field_case_notes',
+						'name'          => 'case_notes',
+						'label'         => 'Additional notes (optional)',
+						'instructions'  => 'Anything extra to show at the bottom of the case, below Result. Leave empty to skip.',
+						'type'          => 'wysiwyg',
+						'tabs'          => 'visual',
+						'toolbar'       => 'basic',
+						'media_upload'  => 0,
 					),
 				),
 				'location' => array(
