@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.31.1
+Version: 0.32.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -2712,52 +2712,40 @@ a.ws-reviews-summary:hover {
 	justify-content: center;
 }
 
-.ws-page-header--sprig {
+/* Default (no featured image) page header, site-wide: forest panel + sprig
+   watermark + faint dot texture. Any .ws-page-header that isn't the imaged
+   variant gets this automatically, so every template picks it up. */
+.ws-page-header:not(.ws-page-header--imaged) {
 	color: var(--ws-snow);
 	padding-block: clamp(5rem, 9vw, 8rem) clamp(4rem, 7vw, 6rem);
 	background-color: var(--ws-forest);
 	background-image:
 		radial-gradient(130% 140% at 85% -20%, rgba(31, 168, 115, 0.30) 0%, rgba(31, 168, 115, 0) 55%),
+		url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%20120%20120%27%20fill%3D%27none%27%3E%3Cpath%20d%3D%27M60%20104V40%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.12%27%20stroke-width%3D%272.4%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M60%2058C60%2058%2050%2054%2044%2044C38%2034%2040%2022%2040%2022C40%2022%2052%2026%2058%2036C64%2046%2060%2058%2060%2058Z%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.12%27%20stroke-width%3D%272.2%27%20stroke-linejoin%3D%27round%27%2F%3E%3Cpath%20d%3D%27M60%2072C60%2072%2070%2068%2076%2058C82%2048%2080%2036%2080%2036C80%2036%2068%2040%2062%2050C56%2060%2060%2072%2060%2072Z%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.12%27%20stroke-width%3D%272.2%27%20stroke-linejoin%3D%27round%27%2F%3E%3Cpath%20d%3D%27M60%2088C60%2088%2052%2086%2047%2078C42%2070%2044%2061%2044%2061C44%2061%2053%2064%2058%2072C63%2080%2060%2088%2060%2088Z%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.12%27%20stroke-width%3D%272.2%27%20stroke-linejoin%3D%27round%27%2F%3E%3Ccircle%20cx%3D%2760%27%20cy%3D%2733%27%20r%3D%274.4%27%20stroke%3D%27%23ffffff%27%20stroke-opacity%3D%270.12%27%20stroke-width%3D%272.2%27%2F%3E%3C%2Fsvg%3E"),
 		url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='8' cy='8' r='1' fill='%23FFFFFF' fill-opacity='0.06'/%3E%3C/svg%3E");
+	background-repeat: no-repeat, no-repeat, repeat;
+	background-position: center, right -1.5rem bottom -2rem, top left;
+	background-size: auto, clamp(180px, 26vw, 300px) auto, 16px 16px;
 	min-height: clamp(18rem, 38vh, 26rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 }
 
-.ws-page-header__sprig {
-	position: absolute;
-	right: clamp(-2rem, 2vw, 2.5rem);
-	bottom: -1.5rem;
-	width: clamp(180px, 26vw, 300px);
-	color: var(--ws-snow);
-	opacity: 0.1;
-	z-index: 0;
-	pointer-events: none;
-}
-
-.ws-page-header__sprig .ws-case-sprig {
-	width: 100%;
-	max-width: none;
-	height: auto;
-	opacity: 1;
-	color: inherit;
-}
-
 .ws-page-header--imaged .ws-page-header__title,
-.ws-page-header--sprig .ws-page-header__title {
+.ws-page-header:not(.ws-page-header--imaged) .ws-page-header__title {
 	color: var(--ws-snow);
 }
 
 .ws-page-header--imaged .ws-page-header__lede,
-.ws-page-header--sprig .ws-page-header__lede {
+.ws-page-header:not(.ws-page-header--imaged) .ws-page-header__lede {
 	color: rgba(255, 255, 255, 0.85);
 }
 
 .ws-page-header--imaged .eyebrow,
 .ws-page-header--imaged .ws-page-header__crumb a,
-.ws-page-header--sprig .eyebrow,
-.ws-page-header--sprig .ws-page-header__crumb a {
+.ws-page-header:not(.ws-page-header--imaged) .eyebrow,
+.ws-page-header:not(.ws-page-header--imaged) .ws-page-header__crumb a {
 	color: var(--ws-mist);
 }
 
