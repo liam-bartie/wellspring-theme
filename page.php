@@ -56,21 +56,39 @@ get_header();
 					}
 					?>
 				</article>
+			</div>
+		</section>
 
-				<?php
-				$siblings = ( $parent_id )
-					? get_pages(
-						array(
-							'child_of'    => $parent_id,
-							'parent'      => $parent_id,
-							'sort_column' => 'menu_order',
-							'exclude'     => get_the_ID(),
-						)
-					)
-					: array();
+		<?php
+		// Related clinic cases — rendered full-width (matching the homepage grid)
+		// when the page's ACF "Show related clinic cases" toggle is on.
+		$ws_related = function_exists( 'wellspring_page_related_cases' ) ? wellspring_page_related_cases() : '';
+		if ( $ws_related ) :
+			?>
+			<section class="ws-section">
+				<div class="ws-container">
+					<?php echo $ws_related; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- pre-escaped markup. ?>
+				</div>
+			</section>
+			<?php
+		endif;
 
-				if ( ! empty( $siblings ) ) :
-					?>
+		// "Also explore" — sibling pages, kept in the narrow column.
+		$siblings = ( $parent_id )
+			? get_pages(
+				array(
+					'child_of'    => $parent_id,
+					'parent'      => $parent_id,
+					'sort_column' => 'menu_order',
+					'exclude'     => get_the_ID(),
+				)
+			)
+			: array();
+
+		if ( ! empty( $siblings ) ) :
+			?>
+			<section class="ws-section">
+				<div class="ws-container ws-container--narrow">
 					<nav class="ws-sibling-nav" aria-label="<?php esc_attr_e( 'Other pages', 'wellspring' ); ?>">
 						<p class="eyebrow"><?php esc_html_e( 'Also explore', 'wellspring' ); ?></p>
 						<ul class="ws-sibling-nav__list">
@@ -79,11 +97,11 @@ get_header();
 							<?php endforeach; ?>
 						</ul>
 					</nav>
-					<?php
-				endif;
-				?>
-			</div>
-		</section>
+				</div>
+			</section>
+			<?php
+		endif;
+		?>
 
 		<?php
 		if ( comments_open() || get_comments_number() ) :

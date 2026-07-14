@@ -254,38 +254,33 @@ add_filter(
 );
 
 /**
- * Append related cases beneath page content when the ACF toggle is on.
+ * Return the related-cases section for the current page when the ACF toggle is
+ * on. Rendered by page.php in a full-width container so the grid matches the
+ * homepage, rather than appended inside the narrow content column.
+ *
+ * @return string Section markup, or '' when there is nothing to show.
  */
-add_filter(
-	'the_content',
-	function ( $content ) {
-		if ( is_admin() || ! function_exists( 'get_field' ) ) {
-			return $content;
-		}
-		if ( ! ( is_singular( 'page' ) && in_the_loop() && is_main_query() ) ) {
-			return $content;
-		}
-		if ( ! get_field( 'ws_show_cases' ) ) {
-			return $content;
-		}
+function wellspring_page_related_cases() {
+	if ( ! function_exists( 'get_field' ) || ! is_singular( 'page' ) ) {
+		return '';
+	}
+	if ( ! get_field( 'ws_show_cases' ) ) {
+		return '';
+	}
 
-		$post_id = get_the_ID();
-		$focus   = wellspring_resolve_focus_for_page( $post_id, get_field( 'ws_cases_focus' ) );
-		$limit   = get_field( 'ws_cases_limit' );
-		$heading = (string) get_field( 'ws_cases_heading' );
-		$orderby = get_field( 'ws_cases_orderby' );
+	$post_id = get_the_ID();
+	$focus   = wellspring_resolve_focus_for_page( $post_id, get_field( 'ws_cases_focus' ) );
+	$limit   = get_field( 'ws_cases_limit' );
+	$heading = (string) get_field( 'ws_cases_heading' );
+	$orderby = get_field( 'ws_cases_orderby' );
 
-		$content .= wellspring_render_related_cases(
-			$focus,
-			$limit ? (int) $limit : 3,
-			$heading,
-			$orderby ? $orderby : 'rand'
-		);
-
-		return $content;
-	},
-	20
-);
+	return wellspring_render_related_cases(
+		$focus,
+		$limit ? (int) $limit : 3,
+		$heading,
+		$orderby ? $orderby : 'rand'
+	);
+}
 
 /**
  * [wellspring_cases] shortcode — manual fallback for placing cases anywhere.
