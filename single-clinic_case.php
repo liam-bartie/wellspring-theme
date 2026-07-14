@@ -34,12 +34,14 @@ while ( have_posts() ) :
 	<?php
 	$case_has_thumb = has_post_thumbnail();
 	$case_thumb_url = $case_has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
-	$case_ph_class  = $case_has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
+	$case_ph_class  = $case_has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header ws-page-header--sprig';
 	?>
 	<section class="<?php echo esc_attr( $case_ph_class ); ?>">
 		<?php if ( $case_has_thumb ) : ?>
 			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $case_thumb_url ); ?>');" aria-hidden="true"></div>
 			<div class="ws-page-header__overlay" aria-hidden="true"></div>
+		<?php else : ?>
+			<div class="ws-page-header__sprig" aria-hidden="true"><?php get_template_part( 'template-parts/case-sprig' ); ?></div>
 		<?php endif; ?>
 		<div class="ws-container ws-container--narrow ws-page-header__content">
 			<p class="eyebrow ws-page-header__crumb">
