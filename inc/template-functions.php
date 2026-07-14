@@ -37,49 +37,27 @@ function wellspring_pingback_header() {
 add_action( 'wp_head', 'wellspring_pingback_header' );
 
 /**
- * Pages whose content is fully ACF-driven, so the native block editor /
- * content canvas is hidden — editing happens only in the ACF field boxes.
+ * The whole site edits page content through ACF fields, not the block editor.
+ * So the Gutenberg canvas is switched off for ALL Pages — every page (new ones
+ * included) starts with the ACF "Main body" box instead. The Home / About /
+ * What We Treat templates render their own dedicated ACF fields; every other
+ * page uses the generic "Main body" field (see page.php).
  *
- * @return int[] Page IDs.
+ * To re-enable the block editor on pages, remove these two hooks.
  */
-function ws_acf_driven_page_ids() {
-	$ids   = array();
-	$front = (int) get_option( 'page_on_front' );
-	if ( $front ) {
-		$ids[] = $front;
-	}
-	foreach ( array( 'about', 'what-we-treat' ) as $slug ) {
-		$page = get_page_by_path( $slug );
-		if ( $page instanceof WP_Post ) {
-			$ids[] = (int) $page->ID;
-		}
-	}
-	return $ids;
-}
+add_filter(
+	'use_block_editor_for_post_type',
+	function ( $use_block_editor, $post_type ) {
+		return ( 'page' === $post_type ) ? false : $use_block_editor;
+	},
+	10,
+	2
+);
 
-/**
- * Turn off the block editor on ACF-driven pages.
- *
- * @param bool    $use_block_editor Whether to use the block editor.
- * @param WP_Post $post             The post being edited.
- * @return bool
- */
-function wellspring_disable_block_editor( $use_block_editor, $post ) {
-	if ( $post instanceof WP_Post && in_array( (int) $post->ID, ws_acf_driven_page_ids(), true ) ) {
-		return false;
-	}
-	return $use_block_editor;
-}
-add_filter( 'use_block_editor_for_post', 'wellspring_disable_block_editor', 10, 2 );
-
-/**
- * Remove the content editor box entirely on ACF-driven pages, so only the
- * ACF field boxes remain on the edit screen.
- */
-function wellspring_remove_editor_support() {
-	global $post;
-	if ( $post instanceof WP_Post && in_array( (int) $post->ID, ws_acf_driven_page_ids(), true ) ) {
+add_action(
+	'init',
+	function () {
 		remove_post_type_support( 'page', 'editor' );
-	}
-}
-add_action( 'add_meta_boxes', 'wellspring_remove_editor_support', 0 );
+	},
+	100
+);

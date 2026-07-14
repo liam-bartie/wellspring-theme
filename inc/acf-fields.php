@@ -827,6 +827,194 @@ add_action(
 );
 
 /**
+ * Generic "Main body" field for standard pages — Contact, Book Appointments,
+ * Privacy Policy, and any new page you create. Gives every page one rich-text
+ * box (see page.php) instead of the block editor. Home, About, and What We
+ * Treat have their own dedicated field groups, so they are excluded here.
+ */
+add_action(
+	'acf/init',
+	function () {
+		$rules = array(
+			array(
+				'param'    => 'post_type',
+				'operator' => '==',
+				'value'    => 'page',
+			),
+		);
+
+		$home = (int) get_option( 'page_on_front' );
+		if ( $home ) {
+			$rules[] = array(
+				'param'    => 'page',
+				'operator' => '!=',
+				'value'    => (string) $home,
+			);
+		}
+		foreach ( array( 'about', 'what-we-treat' ) as $slug ) {
+			$page = get_page_by_path( $slug );
+			if ( $page instanceof WP_Post ) {
+				$rules[] = array(
+					'param'    => 'page',
+					'operator' => '!=',
+					'value'    => (string) $page->ID,
+				);
+			}
+		}
+
+		acf_add_local_field_group(
+			array(
+				'key'    => 'group_wellspring_page',
+				'title'  => 'Page content',
+				'fields' => array(
+					array(
+						'key'          => 'field_page_sections',
+						'name'         => 'page_sections',
+						'label'        => 'Page sections',
+						'instructions' => 'Build the page by adding and reordering sections. Leave empty to fall back to any existing content.',
+						'type'         => 'flexible_content',
+						'button_label' => 'Add section',
+						'layouts'      => array(
+							'layout_text'      => array(
+								'key'        => 'layout_text',
+								'name'       => 'text',
+								'label'      => 'Text',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'          => 'field_sec_text_body',
+										'name'         => 'body',
+										'label'        => 'Text',
+										'type'         => 'wysiwyg',
+										'tabs'         => 'all',
+										'toolbar'      => 'full',
+										'media_upload' => 1,
+									),
+								),
+							),
+							'layout_heading'   => array(
+								'key'        => 'layout_heading',
+								'name'       => 'heading',
+								'label'      => 'Heading',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'   => 'field_sec_head_eyebrow',
+										'name'  => 'eyebrow',
+										'label' => 'Eyebrow (optional)',
+										'type'  => 'text',
+									),
+									array(
+										'key'   => 'field_sec_head_text',
+										'name'  => 'heading',
+										'label' => 'Heading',
+										'type'  => 'text',
+									),
+								),
+							),
+							'layout_image_text' => array(
+								'key'        => 'layout_image_text',
+								'name'       => 'image_text',
+								'label'      => 'Image + Text',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_it_image',
+										'name'          => 'image',
+										'label'         => 'Image',
+										'type'          => 'image',
+										'return_format' => 'array',
+										'preview_size'  => 'medium',
+									),
+									array(
+										'key'           => 'field_sec_it_side',
+										'name'          => 'image_side',
+										'label'         => 'Image position',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'left'  => 'Left',
+											'right' => 'Right',
+										),
+										'default_value' => 'left',
+									),
+									array(
+										'key'   => 'field_sec_it_eyebrow',
+										'name'  => 'eyebrow',
+										'label' => 'Eyebrow (optional)',
+										'type'  => 'text',
+									),
+									array(
+										'key'   => 'field_sec_it_heading',
+										'name'  => 'heading',
+										'label' => 'Heading (optional)',
+										'type'  => 'text',
+									),
+									array(
+										'key'          => 'field_sec_it_body',
+										'name'         => 'body',
+										'label'        => 'Text',
+										'type'         => 'wysiwyg',
+										'tabs'         => 'all',
+										'toolbar'      => 'basic',
+										'media_upload' => 0,
+									),
+								),
+							),
+							'layout_faq'       => array(
+								'key'        => 'layout_faq',
+								'name'       => 'faq',
+								'label'      => 'FAQ',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_faq_heading',
+										'name'          => 'heading',
+										'label'         => 'Heading (optional)',
+										'type'          => 'text',
+										'default_value' => 'Frequently asked questions',
+									),
+									array(
+										'key'          => 'field_sec_faq_items',
+										'name'         => 'items',
+										'label'        => 'Questions',
+										'type'         => 'repeater',
+										'layout'       => 'block',
+										'button_label' => 'Add question',
+										'sub_fields'   => array(
+											array(
+												'key'   => 'field_sec_faq_q',
+												'name'  => 'question',
+												'label' => 'Question',
+												'type'  => 'text',
+											),
+											array(
+												'key'          => 'field_sec_faq_a',
+												'name'         => 'answer',
+												'label'        => 'Answer',
+												'type'         => 'wysiwyg',
+												'tabs'         => 'visual',
+												'toolbar'      => 'basic',
+												'media_upload' => 0,
+											),
+										),
+									),
+								),
+							),
+						),
+					),
+				),
+				'location'              => array( $rules ),
+				'menu_order'            => 0,
+				'position'              => 'normal',
+				'style'                 => 'default',
+				'label_placement'       => 'top',
+				'instruction_placement' => 'label',
+			)
+		);
+	}
+);
+
+/**
  * Scope the What We Treat "Tile order" relationship picker to this page's own
  * sub-pages, so editors only ever see the condition tiles.
  */

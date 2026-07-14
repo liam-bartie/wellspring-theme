@@ -46,7 +46,15 @@ get_header();
 		<section class="ws-page-body">
 			<div class="ws-container ws-container--narrow">
 				<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-content' ); ?>>
-					<?php the_content(); ?>
+					<?php
+					// Page content is built from the ACF "Page sections" builder. If a
+					// page has no sections yet, fall back to any existing content.
+					if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
+						get_template_part( 'template-parts/flexible-sections' );
+					} else {
+						the_content();
+					}
+					?>
 				</article>
 
 				<?php
