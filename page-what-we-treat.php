@@ -54,7 +54,7 @@ while ( have_posts() ) :
 			<?php endif; ?>
 			<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
 			<?php if ( $hub_lede ) : ?>
-				<p class="ws-page-header__lede"><?php echo esc_html( $hub_lede ); ?></p>
+				<div class="ws-page-header__lede"><?php echo wp_kses_post( $hub_lede ); ?></div>
 			<?php endif; ?>
 		</div>
 	</section>
@@ -71,7 +71,7 @@ while ( have_posts() ) :
 					<h2 class="ws-intro-text__title"><?php echo esc_html( $intro_title ); ?></h2>
 				<?php endif; ?>
 				<?php if ( $intro_body ) : ?>
-					<div class="ws-intro-text__body"><?php echo wp_kses_post( wpautop( $intro_body ) ); ?></div>
+					<div class="ws-intro-text__body"><?php echo wp_kses_post( $intro_body ); ?></div>
 				<?php endif; ?>
 			</div>
 		</section>
@@ -88,7 +88,7 @@ while ( have_posts() ) :
 						<h2><?php echo esc_html( $cards_title ); ?></h2>
 					<?php endif; ?>
 					<?php if ( $cards_intro ) : ?>
-						<p class="ws-section-header__lede"><?php echo esc_html( $cards_intro ); ?></p>
+						<div class="ws-section-header__lede"><?php echo wp_kses_post( $cards_intro ); ?></div>
 					<?php endif; ?>
 				</header>
 			<?php endif; ?>

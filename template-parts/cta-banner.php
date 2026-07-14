@@ -30,7 +30,7 @@ $cta_btn2_url    = ws_home_field( 'cta_secondary_button_url', 'tel:+15876004945'
 <section class="ws-cta">
 	<div class="ws-container ws-container--narrow ws-cta__inner">
 		<h2 class="ws-cta__title"><?php echo esc_html( $cta_title ); ?></h2>
-		<p class="ws-cta__lede"><?php echo esc_html( $cta_lede ); ?></p>
+		<div class="ws-cta__lede"><?php echo wp_kses_post( $cta_lede ); ?></div>
 		<div class="ws-cta__actions">
 			<?php if ( $cta_btn1_label ) : ?>
 				<a href="<?php echo esc_url( $cta_btn1_url ); ?>" class="ws-btn ws-btn--reversed"><?php echo esc_html( $cta_btn1_label ); ?></a>

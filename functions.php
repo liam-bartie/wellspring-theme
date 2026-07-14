@@ -51,10 +51,11 @@ function wellspring_setup() {
 	add_image_size( 'wellspring-hero', 1920, 800, true );     // Hero / page header backgrounds
 	add_image_size( 'wellspring-portrait', 600, 750, true );  // 4:5 practitioner portrait
 
-	// This theme uses wp_nav_menu() in one location.
+	// This theme uses wp_nav_menu() in two locations.
 	register_nav_menus(
 		array(
-			'menu-1' => esc_html__( 'Primary', 'wellspring' ),
+			'menu-1'      => esc_html__( 'Primary', 'wellspring' ),
+			'menu-footer' => esc_html__( 'Footer (secondary)', 'wellspring' ),
 		)
 	);
 

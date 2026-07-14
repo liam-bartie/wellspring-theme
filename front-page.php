@@ -27,7 +27,7 @@ $intro_title       = ws_field( 'intro_title', '' );
 $intro_body        = ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help." );
 
 $wwt_eyebrow       = ws_field( 'wwt_eyebrow', 'What we treat' );
-$wwt_title         = ws_field( 'wwt_title', 'Six areas of focus, drawn from thousands of years of practice.' );
+$wwt_title         = ws_field( 'wwt_title', 'Nine areas of focus, drawn from thousands of years of practice.' );
 $wwt_lede          = ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.' );
 
 $pract_eyebrow     = ws_field( 'practitioner_eyebrow', 'Meet your practitioner' );
@@ -106,7 +106,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		<div class="ws-container ws-container--narrow ws-hero__content">
 			<p class="eyebrow"><?php echo wp_kses_post( $hero_eyebrow ); ?></p>
 			<h1 class="ws-hero__title"><?php echo esc_html( $hero_title ); ?></h1>
-			<p class="ws-hero__lede"><?php echo esc_html( $hero_lede ); ?></p>
+			<div class="ws-hero__lede"><?php echo wp_kses_post( $hero_lede ); ?></div>
 			<div class="ws-hero__actions">
 				<?php if ( $hero_btn1_label ) : ?>
 					<a href="<?php echo esc_url( $hero_btn1_url ); ?>" class="ws-btn"><?php echo esc_html( $hero_btn1_label ); ?></a>
@@ -130,7 +130,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 					<h2 class="ws-intro-text__title"><?php echo esc_html( $intro_title ); ?></h2>
 				<?php endif; ?>
 				<?php if ( $intro_body ) : ?>
-					<div class="ws-intro-text__body"><?php echo wp_kses_post( wpautop( $intro_body ) ); ?></div>
+					<div class="ws-intro-text__body"><?php echo wp_kses_post( $intro_body ); ?></div>
 				<?php endif; ?>
 			</div>
 		</section>
@@ -141,7 +141,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 			<header class="ws-section-header">
 				<p class="eyebrow"><?php echo esc_html( $wwt_eyebrow ); ?></p>
 				<h2><?php echo esc_html( $wwt_title ); ?></h2>
-				<p class="ws-section-header__lede"><?php echo esc_html( $wwt_lede ); ?></p>
+				<div class="ws-section-header__lede"><?php echo wp_kses_post( $wwt_lede ); ?></div>
 			</header>
 
 			<div class="ws-cards">
@@ -261,7 +261,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 						<h2><?php echo esc_html( $cases_title ); ?></h2>
 					<?php endif; ?>
 					<?php if ( $cases_lede ) : ?>
-						<p class="ws-section-header__lede"><?php echo esc_html( $cases_lede ); ?></p>
+						<div class="ws-section-header__lede"><?php echo wp_kses_post( $cases_lede ); ?></div>
 					<?php endif; ?>
 				</header>
 

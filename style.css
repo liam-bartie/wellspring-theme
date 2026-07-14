@@ -1,10 +1,10 @@
 /*!
-Theme Name: Wellspring
+Theme Name: Wellspring Health
 Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.23.3
+Version: 0.25.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -596,6 +596,31 @@ strong, b { font-weight: 500; }
 	color: var(--ws-spring);
 }
 
+.ws-footer-secondary {
+	max-width: var(--ws-container);
+	margin: var(--ws-space-10) auto 0;
+	padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+.ws-footer-secondary ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ws-space-3) var(--ws-space-6);
+	font-size: var(--ws-text-xs);
+}
+
+.ws-footer-secondary a {
+	color: rgba(255, 255, 255, 0.6);
+	text-decoration: none;
+}
+
+.ws-footer-secondary a:hover {
+	color: var(--ws-spring);
+}
+
 .ws-footer-bottom {
 	max-width: var(--ws-container);
 	margin: var(--ws-space-12) auto 0;
@@ -1007,6 +1032,23 @@ label {
 
 .ws-intro-text__body p:last-child {
 	margin-bottom: 0;
+}
+
+/* Single-line lede / CTA fields are now WYSIWYG, so their text is wrapped
+   in <p>. Zero the outer margins so spacing matches the old plain-text
+   rendering, and only add a gap when the editor adds a second paragraph. */
+.ws-hero__lede p,
+.ws-page-header__lede p,
+.ws-section-header__lede p,
+.ws-cta__lede p {
+	margin: 0;
+}
+
+.ws-hero__lede p + p,
+.ws-page-header__lede p + p,
+.ws-section-header__lede p + p,
+.ws-cta__lede p + p {
+	margin-top: 0.75em;
 }
 
 /* =========================================================

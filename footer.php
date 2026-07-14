@@ -45,6 +45,25 @@
 
 		</div>
 
+		<?php
+		// Secondary footer menu (Events, legal pages, etc.). Only renders if a
+		// menu is assigned to the "Footer (secondary)" location in Appearance → Menus.
+		if ( has_nav_menu( 'menu-footer' ) ) :
+			?>
+			<nav class="ws-footer-secondary" aria-label="<?php esc_attr_e( 'Secondary footer', 'wellspring' ); ?>">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-footer',
+						'container'      => false,
+						'depth'          => 1,
+						'fallback_cb'    => '__return_empty_string',
+					)
+				);
+				?>
+			</nav>
+		<?php endif; ?>
+
 		<div class="ws-footer-bottom">
 			<span>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> Wellspring Health Ltd. All rights reserved.</span>
 			<span>Acupuncture &middot; Herbal medicine &middot; Cupping &middot; Tui Na</span>
