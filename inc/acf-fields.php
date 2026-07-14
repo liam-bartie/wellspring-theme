@@ -175,7 +175,18 @@ add_action(
 						'key'          => 'field_wwt_note',
 						'label'        => 'Cards source',
 						'type'         => 'message',
-						'message'      => 'The condition cards below this section are pulled automatically from the sub-pages of "What We Treat". Edit each sub-page (title, excerpt, featured image) and the home cards will update.',
+						'message'      => 'The condition cards below this section are pulled automatically from the sub-pages of "What We Treat". Edit each sub-page (title, excerpt, featured image) and the home cards will update. Use "Tile order" below to set the order they appear in on the home page.',
+					),
+					array(
+						'key'           => 'field_home_wwt_order',
+						'name'          => 'home_wwt_order',
+						'label'         => 'Tile order (optional)',
+						'instructions'  => 'Drag the tiles into the order you want them on the home page. Leave empty to show every What We Treat sub-page automatically, in page order. (This only affects the home page.)',
+						'type'          => 'relationship',
+						'post_type'     => array( 'page' ),
+						'filters'       => array( 'search' ),
+						'elements'      => array( 'featured_image' ),
+						'return_format' => 'id',
 					),
 
 					// PRACTITIONER
@@ -1020,6 +1031,17 @@ add_action(
  */
 add_filter(
 	'acf/fields/relationship/query/key=field_wwt_cards_order',
+	function ( $args ) {
+		$wwt = get_page_by_path( 'what-we-treat' );
+		if ( $wwt instanceof WP_Post ) {
+			$args['post_parent'] = $wwt->ID;
+		}
+		return $args;
+	}
+);
+
+add_filter(
+	'acf/fields/relationship/query/key=field_home_wwt_order',
 	function ( $args ) {
 		$wwt = get_page_by_path( 'what-we-treat' );
 		if ( $wwt instanceof WP_Post ) {

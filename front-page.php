@@ -81,16 +81,24 @@ $cta_btn2_label    = ws_field( 'cta_secondary_button_label', 'Call (587) 600-494
 $cta_btn2_url      = ws_field( 'cta_secondary_button_url', 'tel:+15876004945' );
 
 // Get the What We Treat page so we can pull its sub-pages for cards.
-$wwt_page    = get_page_by_path( 'what-we-treat' );
-$wwt_subpages = $wwt_page ? get_children(
-	array(
-		'post_parent' => $wwt_page->ID,
-		'post_type'   => 'page',
-		'orderby'     => 'menu_order',
-		'order'       => 'ASC',
-		'numberposts' => -1,
-	)
-) : array();
+$wwt_page = get_page_by_path( 'what-we-treat' );
+
+// Card order: use the manual "Tile order" (ACF relationship) if set, otherwise
+// pull every What We Treat sub-page automatically in menu order.
+$wwt_ordered = ws_field( 'home_wwt_order', array() );
+if ( ! empty( $wwt_ordered ) && is_array( $wwt_ordered ) ) {
+	$wwt_subpages = array_filter( array_map( 'get_post', $wwt_ordered ) );
+} else {
+	$wwt_subpages = $wwt_page ? get_children(
+		array(
+			'post_parent' => $wwt_page->ID,
+			'post_type'   => 'page',
+			'orderby'     => 'menu_order',
+			'order'       => 'ASC',
+			'numberposts' => -1,
+		)
+	) : array();
+}
 
 // Hero with optional bg image — different class for styling.
 $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
