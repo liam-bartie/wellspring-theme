@@ -31,8 +31,14 @@ while ( have_posts() ) :
 		<?php endif; ?>
 		<div class="ws-container ws-container--narrow ws-page-header__content">
 			<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
-			<?php if ( has_excerpt() ) : ?>
-				<p class="ws-page-header__lede"><?php echo esc_html( get_the_excerpt() ); ?></p>
+			<?php
+			$about_sub = ws_field( 'page_subheading', '' );
+			if ( ! $about_sub && has_excerpt() ) {
+				$about_sub = get_the_excerpt();
+			}
+			if ( $about_sub ) :
+				?>
+				<p class="ws-page-header__lede"><?php echo esc_html( $about_sub ); ?></p>
 			<?php endif; ?>
 		</div>
 	</section>
@@ -48,6 +54,11 @@ while ( have_posts() ) :
 				} else {
 					// Safety fallback: render classic content if the field is empty.
 					the_content();
+				}
+
+				// Any extra sections added via the "Page sections" builder render below.
+				if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
+					get_template_part( 'template-parts/flexible-sections' );
 				}
 				?>
 			</article>

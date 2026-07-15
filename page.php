@@ -35,8 +35,14 @@ get_header();
 
 				<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
 
-				<?php if ( has_excerpt() ) : ?>
-					<p class="ws-page-header__lede"><?php echo esc_html( get_the_excerpt() ); ?></p>
+				<?php
+				$ws_sub = ws_field( 'page_subheading', '' );
+				if ( ! $ws_sub && has_excerpt() ) {
+					$ws_sub = get_the_excerpt();
+				}
+				if ( $ws_sub ) :
+					?>
+					<p class="ws-page-header__lede"><?php echo esc_html( $ws_sub ); ?></p>
 				<?php endif; ?>
 			</div>
 		</section>

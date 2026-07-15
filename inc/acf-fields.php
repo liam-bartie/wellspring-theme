@@ -838,10 +838,11 @@ add_action(
 );
 
 /**
- * Generic "Main body" field for standard pages — Contact, Book Appointments,
- * Privacy Policy, and any new page you create. Gives every page one rich-text
- * box (see page.php) instead of the block editor. Home, About, and What We
- * Treat have their own dedicated field groups, so they are excluded here.
+ * Sub-heading + "Page sections" builder for standard pages — Contact, Book
+ * Appointments, Privacy Policy, About, the What We Treat sub-pages, and any new
+ * page. Gives every page an editable hero sub-heading and a section builder
+ * instead of the block editor. Home and the What We Treat hub have their own
+ * dedicated templates, so they are excluded here.
  */
 add_action(
 	'acf/init',
@@ -862,7 +863,7 @@ add_action(
 				'value'    => (string) $home,
 			);
 		}
-		foreach ( array( 'about', 'what-we-treat' ) as $slug ) {
+		foreach ( array( 'what-we-treat' ) as $slug ) {
 			$page = get_page_by_path( $slug );
 			if ( $page instanceof WP_Post ) {
 				$rules[] = array(
@@ -878,6 +879,14 @@ add_action(
 				'key'    => 'group_wellspring_page',
 				'title'  => 'Page content',
 				'fields' => array(
+					array(
+						'key'          => 'field_page_subheading',
+						'name'         => 'page_subheading',
+						'label'        => 'Sub-heading (optional)',
+						'instructions' => 'Short line shown under the page title in the hero. Leave blank to fall back to the page excerpt.',
+						'type'         => 'textarea',
+						'rows'         => 2,
+					),
 					array(
 						'key'          => 'field_page_sections',
 						'name'         => 'page_sections',
