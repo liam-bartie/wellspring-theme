@@ -75,7 +75,9 @@ add_action(
 		}
 		$path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
 		if ( in_array( trim( (string) $path, '/' ), array( 'book', 'book-appointments' ), true ) ) {
-			wp_safe_redirect( WELLSPRING_BOOKING_URL, 301 );
+			// External URL (Jane), so wp_redirect — wp_safe_redirect would block it
+			// and fall back to wp-admin.
+			wp_redirect( WELLSPRING_BOOKING_URL, 301 ); // phpcs:ignore WordPress.Security.SafeRedirect.wp_redirect_wp_redirect
 			exit;
 		}
 	}
