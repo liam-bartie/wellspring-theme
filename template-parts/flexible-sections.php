@@ -12,6 +12,9 @@ if ( ! function_exists( 'have_rows' ) || ! have_rows( 'page_sections' ) ) {
 	return;
 }
 
+// Fallback for the "View on Google Maps" link when a map section leaves it blank.
+$ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupuncture+%26+TCM+Clinic/data=!4m2!3m1!1s0x0:0x8039f60c08965bb1?sa=X&ved=1t:2428&ictx=111';
+
 while ( have_rows( 'page_sections' ) ) :
 	the_row();
 	$layout = get_row_layout();
@@ -72,6 +75,8 @@ while ( have_rows( 'page_sections' ) ) :
 				<div class="ws-map">
 					<iframe src="<?php echo esc_url( $map_src ); ?>" title="<?php echo esc_attr( $map_address ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
 				</div>
+				<?php $map_link = get_sub_field( 'map_link' ) ? get_sub_field( 'map_link' ) : $ws_maps_default; ?>
+				<p class="ws-map__link"><a href="<?php echo esc_url( $map_link ); ?>" target="_blank" rel="noopener">View on Google Maps <span aria-hidden="true">&rarr;</span></a></p>
 				<?php
 			endif;
 			break;
@@ -93,6 +98,8 @@ while ( have_rows( 'page_sections' ) ) :
 				<?php if ( $tm_address ) : ?>
 					<div class="ws-flex-textmap__map">
 						<iframe src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( $tm_address ) . '&output=embed' ); ?>" title="<?php echo esc_attr( $tm_address ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+						<?php $tm_link = get_sub_field( 'map_link' ) ? get_sub_field( 'map_link' ) : $ws_maps_default; ?>
+						<p class="ws-map__link"><a href="<?php echo esc_url( $tm_link ); ?>" target="_blank" rel="noopener">View on Google Maps <span aria-hidden="true">&rarr;</span></a></p>
 					</div>
 				<?php endif; ?>
 			</div>

@@ -994,6 +994,13 @@ add_action(
 										'type'          => 'text',
 										'default_value' => '1004 8 Ave SE, Calgary, AB T2G 0M4',
 									),
+									array(
+										'key'          => 'field_sec_map_link',
+										'name'         => 'map_link',
+										'label'        => 'Google Maps link (optional)',
+										'instructions' => 'Where the "View on Google Maps" link points. Leave blank to use the clinic listing.',
+										'type'         => 'url',
+									),
 								),
 							),
 							'layout_text_map' => array(
@@ -1034,6 +1041,12 @@ add_action(
 										'label'         => 'Map address',
 										'type'          => 'text',
 										'default_value' => '1004 8 Ave SE, Calgary, AB T2G 0M4',
+									),
+									array(
+										'key'   => 'field_sec_tm_link',
+										'name'  => 'map_link',
+										'label' => 'Google Maps link (optional)',
+										'type'  => 'url',
 									),
 								),
 							),
