@@ -30,13 +30,16 @@
 			<div class="site-branding">
 				<?php
 				the_custom_logo();
+				// When a logo is set it replaces the visible site name; keep the name
+				// in the markup for screen readers and SEO via screen-reader-text.
+				$ws_title_class = has_custom_logo() ? 'site-title screen-reader-text' : 'site-title';
 				if ( is_front_page() && is_home() ) :
 					?>
-					<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+					<h1 class="<?php echo esc_attr( $ws_title_class ); ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 					<?php
 				else :
 					?>
-					<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+					<p class="<?php echo esc_attr( $ws_title_class ); ?>"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
 					<?php
 				endif;
 				?>
