@@ -479,7 +479,7 @@ add_action(
 						'label'         => 'Primary button URL',
 						'type'          => 'text',
 						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
-						'default_value' => '/book/',
+						'default_value' => 'https://lochendclinic.janeapp.com/#/staff_member/13/bio',
 					),
 					array(
 						'key'           => 'field_cta_btn2_label',

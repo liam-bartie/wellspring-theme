@@ -22,7 +22,7 @@ if ( in_array( $current_slug, $excluded_slugs, true ) ) {
 $cta_title       = ws_home_field( 'cta_title', 'Ready when you are.' );
 $cta_lede        = ws_home_field( 'cta_lede', 'New patients welcome. Appointments typically available within the week. Direct billing to most major insurers.' );
 $cta_btn1_label  = ws_home_field( 'cta_primary_button_label', 'Book an appointment' );
-$cta_btn1_url    = ws_home_field( 'cta_primary_button_url', '/book/' );
+$cta_btn1_url    = ws_home_field( 'cta_primary_button_url', 'https://lochendclinic.janeapp.com/#/staff_member/13/bio' );
 $cta_btn2_label  = ws_home_field( 'cta_secondary_button_label', 'Call (587) 600-4945' );
 $cta_btn2_url    = ws_home_field( 'cta_secondary_button_url', 'tel:+15876004945' );
 ?>
