@@ -8,8 +8,9 @@
  */
 
 if ( ! defined( 'WELLSPRING_VERSION' ) ) {
-	// Replace the version number of the theme on each release.
-	define( 'WELLSPRING_VERSION', '0.23.3' );
+	// Track the theme's own version (from the style.css header) so that bumping
+	// the version automatically busts the cached CSS/JS asset URLs.
+	define( 'WELLSPRING_VERSION', wp_get_theme()->get( 'Version' ) ?: '1.0.0' );
 }
 
 /**
