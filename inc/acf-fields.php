@@ -996,6 +996,47 @@ add_action(
 									),
 								),
 							),
+							'layout_text_map' => array(
+								'key'        => 'layout_text_map',
+								'name'       => 'text_map',
+								'label'      => 'Text + Map',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_tm_side',
+										'name'          => 'map_side',
+										'label'         => 'Map position',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'left'  => 'Left',
+											'right' => 'Right',
+										),
+										'default_value' => 'right',
+									),
+									array(
+										'key'   => 'field_sec_tm_heading',
+										'name'  => 'heading',
+										'label' => 'Heading (optional)',
+										'type'  => 'text',
+									),
+									array(
+										'key'          => 'field_sec_tm_body',
+										'name'         => 'body',
+										'label'        => 'Text',
+										'type'         => 'wysiwyg',
+										'tabs'         => 'all',
+										'toolbar'      => 'basic',
+										'media_upload' => 0,
+									),
+									array(
+										'key'           => 'field_sec_tm_address',
+										'name'          => 'address',
+										'label'         => 'Map address',
+										'type'          => 'text',
+										'default_value' => '1004 8 Ave SE, Calgary, AB T2G 0M4',
+									),
+								),
+							),
 							'layout_faq'       => array(
 								'key'        => 'layout_faq',
 								'name'       => 'faq',

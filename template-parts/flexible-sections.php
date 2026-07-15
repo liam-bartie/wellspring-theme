@@ -76,6 +76,29 @@ while ( have_rows( 'page_sections' ) ) :
 			endif;
 			break;
 
+		case 'text_map':
+			$tm_side    = get_sub_field( 'map_side' );
+			$tm_heading = get_sub_field( 'heading' );
+			$tm_body    = get_sub_field( 'body' );
+			$tm_address = get_sub_field( 'address' );
+			$tm_flip    = ( 'left' === $tm_side ) ? ' ws-flex-textmap--map-left' : '';
+			?>
+			<div class="ws-flex-textmap<?php echo esc_attr( $tm_flip ); ?>">
+				<div class="ws-flex-textmap__text">
+					<?php if ( $tm_heading ) : ?>
+						<h2><?php echo esc_html( $tm_heading ); ?></h2>
+					<?php endif; ?>
+					<?php echo wp_kses_post( $tm_body ); ?>
+				</div>
+				<?php if ( $tm_address ) : ?>
+					<div class="ws-flex-textmap__map">
+						<iframe src="<?php echo esc_url( 'https://www.google.com/maps?q=' . rawurlencode( $tm_address ) . '&output=embed' ); ?>" title="<?php echo esc_attr( $tm_address ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+					</div>
+				<?php endif; ?>
+			</div>
+			<?php
+			break;
+
 		case 'faq':
 			$faq_heading = get_sub_field( 'heading' );
 			?>
