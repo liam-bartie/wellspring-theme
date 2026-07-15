@@ -14,7 +14,7 @@ $focus        = ( ! empty( $focus_terms ) && ! is_wp_error( $focus_terms ) ) ? $
 $modalities   = wp_get_post_terms( $pid, 'case_modality' );
 $duration     = function_exists( 'get_field' ) ? get_field( 'duration' ) : '';
 $sessions     = function_exists( 'get_field' ) ? get_field( 'sessions' ) : '';
-$book_url     = home_url( '/book/' );
+$book_url     = defined( 'WELLSPRING_BOOKING_URL' ) ? WELLSPRING_BOOKING_URL : home_url( '/' );
 
 // Related cases in the same focus area (exclude the current one).
 $related = array();

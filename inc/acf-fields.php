@@ -71,8 +71,8 @@ add_action(
 						'name'          => 'hero_primary_button_url',
 						'label'         => 'Primary button URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
-						'default_value' => '/book/',
+						'instructions'  => 'Accepts a full URL, relative path (/what-we-treat/), tel:+15876004945, or mailto:hi@example.com',
+						'default_value' => WELLSPRING_BOOKING_URL,
 					),
 					array(
 						'key'           => 'field_hero_btn2_label',

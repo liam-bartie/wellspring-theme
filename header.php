@@ -45,16 +45,22 @@
 				?>
 			</div><!-- .site-branding -->
 
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'wellspring' ); ?></button>
-				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					)
-				);
-				?>
-			</nav><!-- #site-navigation -->
+			<div class="site-header__nav-wrap">
+				<nav id="site-navigation" class="main-navigation">
+					<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Menu', 'wellspring' ); ?></button>
+					<?php
+					wp_nav_menu(
+						array(
+							'theme_location' => 'menu-1',
+							'menu_id'        => 'primary-menu',
+						)
+					);
+					?>
+				</nav><!-- #site-navigation -->
+
+				<a class="ws-btn ws-header-book" href="<?php echo esc_url( WELLSPRING_BOOKING_URL ); ?>" target="_blank" rel="noopener">
+					<?php esc_html_e( 'Book now', 'wellspring' ); ?>
+				</a>
+			</div><!-- .site-header__nav-wrap -->
 		</div>
 	</header><!-- #masthead -->

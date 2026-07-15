@@ -13,6 +13,11 @@ if ( ! defined( 'WELLSPRING_VERSION' ) ) {
 	define( 'WELLSPRING_VERSION', wp_get_theme()->get( 'Version' ) ?: '1.0.0' );
 }
 
+if ( ! defined( 'WELLSPRING_BOOKING_URL' ) ) {
+	// Single source of truth for the online booking link (Jane App).
+	define( 'WELLSPRING_BOOKING_URL', 'https://lochendclinic.janeapp.com/#/staff_member/13/bio' );
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *

@@ -63,18 +63,19 @@ add_action(
 );
 
 /**
- * 301-redirect the old /book-appointments/ URL to the new /book/ page, so
- * external and legacy links don't 404 after the slug change.
+ * Send any request for the old booking pages (/book or /book-appointments)
+ * straight to the Jane App booking link, so legacy and internal links don't
+ * 404 now that there's no on-site booking page.
  */
 add_action(
 	'template_redirect',
 	function () {
-		if ( ! is_404() ) {
+		if ( ! is_404() || ! defined( 'WELLSPRING_BOOKING_URL' ) ) {
 			return;
 		}
 		$path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
-		if ( 'book-appointments' === trim( (string) $path, '/' ) ) {
-			wp_safe_redirect( home_url( '/book/' ), 301 );
+		if ( in_array( trim( (string) $path, '/' ), array( 'book', 'book-appointments' ), true ) ) {
+			wp_safe_redirect( WELLSPRING_BOOKING_URL, 301 );
 			exit;
 		}
 	}
