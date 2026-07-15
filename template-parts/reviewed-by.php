@@ -14,7 +14,7 @@
  * @package Wellspring
  */
 
-$excluded_slugs = array( 'contact', 'book-appointments' );
+$excluded_slugs = array( 'contact', 'book' );
 $current_slug   = is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : '';
 if ( in_array( $current_slug, $excluded_slugs, true ) ) {
 	return;

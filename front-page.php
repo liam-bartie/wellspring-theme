@@ -17,7 +17,7 @@ $hero_eyebrow      = ws_field( 'hero_eyebrow', 'Calgary &middot; Inglewood' );
 $hero_title        = ws_field( 'hero_title', 'Calm, considered care for body and mind.' );
 $hero_lede         = ws_field( 'hero_lede', "Acupuncture and Traditional Chinese Medicine for pain relief, women's health, sleep, digestion, and beyond — practised by Dr. Laura Cowburn for over a decade." );
 $hero_btn1_label   = ws_field( 'hero_primary_button_label', 'Book an appointment' );
-$hero_btn1_url     = ws_field( 'hero_primary_button_url', '/book-appointments/' );
+$hero_btn1_url     = ws_field( 'hero_primary_button_url', '/book/' );
 $hero_btn2_label   = ws_field( 'hero_secondary_button_label', 'See what we treat' );
 $hero_btn2_url     = ws_field( 'hero_secondary_button_url', '/what-we-treat/' );
 $hero_bg           = function_exists( 'get_field' ) ? get_field( 'hero_background_image' ) : null;
@@ -76,7 +76,7 @@ if ( ! empty( $cases_featured_ids ) && is_array( $cases_featured_ids ) ) {
 $cta_title         = ws_field( 'cta_title', 'Ready when you are.' );
 $cta_lede          = ws_field( 'cta_lede', 'New patients welcome. Appointments typically available within the week. Direct billing to most major insurers.' );
 $cta_btn1_label    = ws_field( 'cta_primary_button_label', 'Book an appointment' );
-$cta_btn1_url      = ws_field( 'cta_primary_button_url', '/book-appointments/' );
+$cta_btn1_url      = ws_field( 'cta_primary_button_url', '/book/' );
 $cta_btn2_label    = ws_field( 'cta_secondary_button_label', 'Call (587) 600-4945' );
 $cta_btn2_url      = ws_field( 'cta_secondary_button_url', 'tel:+15876004945' );
 

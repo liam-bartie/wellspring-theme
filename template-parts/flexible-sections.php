@@ -64,6 +64,18 @@ while ( have_rows( 'page_sections' ) ) :
 			<?php
 			break;
 
+		case 'map':
+			$map_address = get_sub_field( 'address' );
+			if ( $map_address ) :
+				$map_src = 'https://www.google.com/maps?q=' . rawurlencode( $map_address ) . '&output=embed';
+				?>
+				<div class="ws-map">
+					<iframe src="<?php echo esc_url( $map_src ); ?>" title="<?php echo esc_attr( $map_address ); ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+				</div>
+				<?php
+			endif;
+			break;
+
 		case 'faq':
 			$faq_heading = get_sub_field( 'heading' );
 			?>

@@ -71,8 +71,8 @@ add_action(
 						'name'          => 'hero_primary_button_url',
 						'label'         => 'Primary button URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book-appointments/), tel:+15876004945, or mailto:hi@example.com',
-						'default_value' => '/book-appointments/',
+						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
+						'default_value' => '/book/',
 					),
 					array(
 						'key'           => 'field_hero_btn2_label',
@@ -86,7 +86,7 @@ add_action(
 						'name'          => 'hero_secondary_button_url',
 						'label'         => 'Secondary button URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book-appointments/), tel:+15876004945, or mailto:hi@example.com',
+						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
 						'default_value' => '/what-we-treat/',
 					),
 					array(
@@ -240,7 +240,7 @@ add_action(
 						'name'          => 'practitioner_link_url',
 						'label'         => 'Link URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book-appointments/), tel:+15876004945, or mailto:hi@example.com',
+						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
 						'default_value' => '/about/',
 					),
 					array(
@@ -478,8 +478,8 @@ add_action(
 						'name'          => 'cta_primary_button_url',
 						'label'         => 'Primary button URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book-appointments/), tel:+15876004945, or mailto:hi@example.com',
-						'default_value' => '/book-appointments/',
+						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
+						'default_value' => '/book/',
 					),
 					array(
 						'key'           => 'field_cta_btn2_label',
@@ -493,7 +493,7 @@ add_action(
 						'name'          => 'cta_secondary_button_url',
 						'label'         => 'Secondary button URL',
 						'type'          => 'text',
-						'instructions'  => 'Accepts full URL, relative path (/book-appointments/), tel:+15876004945, or mailto:hi@example.com',
+						'instructions'  => 'Accepts full URL, relative path (/book/), tel:+15876004945, or mailto:hi@example.com',
 						'default_value' => 'tel:+15876004945',
 					),
 				),
@@ -677,12 +677,12 @@ add_action(
 <p>Acupuncture and TCM don't treat diseases the way Western medicine does — they help the body return to balance, and trust the body's own healing intelligence to do the rest. This is why a single course of treatment can address conditions that span multiple body systems, and why old patterns of recurrence often resolve along with the primary concern.</p>
 <h3>Got questions about acupuncture?</h3>
 <p>Book a free 15-minute phone consult to talk through your concerns and decide if treatment is right for you. No pressure, no commitment.</p>
-<p><a class='ws-btn' href='/book-appointments/'>Book a consult</a></p>
+<p><a class='ws-btn' href='/book/'>Book a consult</a></p>
 <h2>Your First Visit</h2>
 <p>Your first visit lasts about 50 minutes. We'll talk through your full health history, current concerns, sleep patterns, diet, and stress — then move into a treatment session that may include acupuncture, an herbal recommendation, cupping, or tui na (gentle bodywork). Most patients leave feeling deeply relaxed and a little surprised at how thorough the conversation was.</p>
 <h3>Ready to book?</h3>
 <p>New patients welcome. Direct billing to most major insurers.</p>
-<p><a class='ws-btn' href='/book-appointments/'>Book an appointment</a></p>",
+<p><a class='ws-btn' href='/book/'>Book an appointment</a></p>",
 					),
 					array(
 						'key'          => 'field_wwt_faq_acc',
@@ -977,6 +977,22 @@ add_action(
 										'tabs'         => 'all',
 										'toolbar'      => 'basic',
 										'media_upload' => 0,
+									),
+								),
+							),
+							'layout_map'       => array(
+								'key'        => 'layout_map',
+								'name'       => 'map',
+								'label'      => 'Map',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_map_address',
+										'name'          => 'address',
+										'label'         => 'Address',
+										'instructions'  => 'The address to pin on the map.',
+										'type'          => 'text',
+										'default_value' => '1004 8 Ave SE, Calgary, AB T2G 0M4',
 									),
 								),
 							),

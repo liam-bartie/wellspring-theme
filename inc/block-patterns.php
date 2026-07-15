@@ -44,7 +44,7 @@ add_action(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/book-appointments/">Book a consult</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/book/">Book a consult</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->',
@@ -244,7 +244,7 @@ add_action(
 
 <!-- wp:buttons -->
 <div class="wp-block-buttons"><!-- wp:button -->
-<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/book-appointments/">Book an appointment</a></div>
+<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/book/">Book an appointment</a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group -->',

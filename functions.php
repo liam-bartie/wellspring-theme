@@ -181,7 +181,7 @@ add_action( 'wp_enqueue_scripts', 'wellspring_scripts' );
 function ws_reviews_page_slugs() {
 	return apply_filters(
 		'ws_reviews_page_slugs',
-		array( 'about', 'book-appointments', 'bookings', 'booking', 'contact', 'contact-us' )
+		array( 'about', 'book', 'bookings', 'booking', 'contact', 'contact-us' )
 	);
 }
 

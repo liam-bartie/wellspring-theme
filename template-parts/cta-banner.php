@@ -13,7 +13,7 @@
  */
 
 // Skip on pages where a CTA would be redundant.
-$excluded_slugs = array( 'contact', 'book-appointments' );
+$excluded_slugs = array( 'contact', 'book' );
 $current_slug   = is_singular() ? get_post_field( 'post_name', get_queried_object_id() ) : '';
 if ( in_array( $current_slug, $excluded_slugs, true ) ) {
 	return;
@@ -22,7 +22,7 @@ if ( in_array( $current_slug, $excluded_slugs, true ) ) {
 $cta_title       = ws_home_field( 'cta_title', 'Ready when you are.' );
 $cta_lede        = ws_home_field( 'cta_lede', 'New patients welcome. Appointments typically available within the week. Direct billing to most major insurers.' );
 $cta_btn1_label  = ws_home_field( 'cta_primary_button_label', 'Book an appointment' );
-$cta_btn1_url    = ws_home_field( 'cta_primary_button_url', '/book-appointments/' );
+$cta_btn1_url    = ws_home_field( 'cta_primary_button_url', '/book/' );
 $cta_btn2_label  = ws_home_field( 'cta_secondary_button_label', 'Call (587) 600-4945' );
 $cta_btn2_url    = ws_home_field( 'cta_secondary_button_url', 'tel:+15876004945' );
 ?>

@@ -61,3 +61,21 @@ add_action(
 	},
 	100
 );
+
+/**
+ * 301-redirect the old /book-appointments/ URL to the new /book/ page, so
+ * external and legacy links don't 404 after the slug change.
+ */
+add_action(
+	'template_redirect',
+	function () {
+		if ( ! is_404() ) {
+			return;
+		}
+		$path = isset( $_SERVER['REQUEST_URI'] ) ? wp_parse_url( wp_unslash( $_SERVER['REQUEST_URI'] ), PHP_URL_PATH ) : '';
+		if ( 'book-appointments' === trim( (string) $path, '/' ) ) {
+			wp_safe_redirect( home_url( '/book/' ), 301 );
+			exit;
+		}
+	}
+);
