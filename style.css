@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.38.1
+Version: 0.39.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -237,15 +237,36 @@ strong, b { font-weight: 500; }
 	padding: var(--ws-space-4) clamp(1rem, 4vw, 2.5rem);
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: flex-start;
 	gap: var(--ws-space-6);
 	flex-wrap: wrap;
 }
 
-.site-header__nav-wrap {
+.site-header__actions {
 	display: flex;
 	align-items: center;
-	gap: var(--ws-space-6);
+	gap: var(--ws-space-4);
+	flex: 0 0 auto;
+	order: 3;
+}
+
+/* Tap-to-call icon — mobile header only. */
+.ws-header-phone {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	width: 42px;
+	height: 42px;
+	border-radius: var(--ws-radius);
+	border: 1px solid var(--ws-border-strong);
+	color: var(--ws-forest);
+	transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+}
+
+.ws-header-phone:hover {
+	background: var(--ws-mist);
+	border-color: var(--ws-spring);
+	color: var(--ws-spring);
 }
 
 .ws-header-book {
@@ -261,6 +282,8 @@ strong, b { font-weight: 500; }
 	display: flex;
 	align-items: center;
 	gap: 0.6rem;
+	order: 1;
+	margin-right: auto;
 }
 
 .site-title {
@@ -294,15 +317,16 @@ strong, b { font-weight: 500; }
 
 /* Navigation */
 .main-navigation {
-	flex: 1 1 auto;
+	flex: 0 0 auto;
 	display: flex;
 	justify-content: flex-end;
+	order: 2;
 }
 
 @media (max-width: 720px) {
 	.main-navigation {
-		flex: 1 1 100%;
-		justify-content: flex-start;
+		flex: 0 0 auto;
+		order: 1;
 	}
 }
 
@@ -458,10 +482,34 @@ strong, b { font-weight: 500; }
 	.site-header__inner {
 		position: relative;
 		flex-wrap: nowrap;
+		gap: var(--ws-space-3);
 	}
 
 	.main-navigation {
 		flex: 0 0 auto;
+		order: 1;
+	}
+
+	.site-branding {
+		order: 2;
+	}
+
+	.site-header__actions {
+		order: 3;
+		gap: var(--ws-space-2);
+	}
+
+	.ws-header-phone {
+		display: inline-flex;
+	}
+
+	.custom-logo {
+		max-height: 36px;
+	}
+
+	.ws-header-book {
+		padding: 0.5rem 0.85rem;
+		letter-spacing: 0.03em;
 	}
 
 	.menu-toggle {
