@@ -66,7 +66,16 @@
 
 		<div class="ws-footer-bottom">
 			<span>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> Wellspring Health Ltd. All rights reserved.</span>
+			<nav class="ws-footer-legal" aria-label="<?php esc_attr_e( 'Legal', 'wellspring' ); ?>">
+				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
+				<a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">Terms of Service</a>
+				<a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>">Cookie Policy</a>
+			</nav>
+		</div>
+
+		<div class="ws-footer-credit">
 			<span>Acupuncture &middot; Herbal medicine &middot; Cupping &middot; Tui Na</span>
+			<span>Designed, hosted and managed by <a href="https://canrank.ca" target="_blank" rel="noopener">CanRank</a></span>
 		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
