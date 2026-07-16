@@ -31,8 +31,19 @@
 		menu.classList.add( 'nav-menu' );
 	}
 
+	// Expose the header height so the full-screen mobile menu starts right below it.
+	const masthead = document.getElementById( 'masthead' );
+	const setHeaderHeight = function() {
+		if ( masthead ) {
+			document.documentElement.style.setProperty( '--ws-header-height', masthead.offsetHeight + 'px' );
+		}
+	};
+	setHeaderHeight();
+	window.addEventListener( 'resize', setHeaderHeight );
+
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {
+		setHeaderHeight();
 		siteNavigation.classList.toggle( 'toggled' );
 
 		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
