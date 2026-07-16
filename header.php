@@ -34,6 +34,7 @@
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
+						'items_wrap'     => '<ul id="%1$s" class="%2$s">%3$s<li class="menu-item ws-menu-book-item"><a class="ws-btn ws-menu-book" href="' . esc_url( WELLSPRING_BOOKING_URL ) . '" target="_blank" rel="noopener">' . esc_html__( 'Book now', 'wellspring' ) . '</a></li></ul>',
 					)
 				);
 				?>

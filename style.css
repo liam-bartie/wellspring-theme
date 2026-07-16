@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.39.0
+Version: 0.39.1
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -255,18 +255,38 @@ strong, b { font-weight: 500; }
 	display: none;
 	align-items: center;
 	justify-content: center;
-	width: 42px;
-	height: 42px;
-	border-radius: var(--ws-radius);
-	border: 1px solid var(--ws-border-strong);
+	width: 48px;
+	height: 48px;
 	color: var(--ws-forest);
-	transition: background 150ms ease, border-color 150ms ease, color 150ms ease;
+	transition: color 150ms ease;
 }
 
 .ws-header-phone:hover {
-	background: var(--ws-mist);
-	border-color: var(--ws-spring);
 	color: var(--ws-spring);
+}
+
+.ws-header-phone svg {
+	width: 26px;
+	height: 26px;
+}
+
+/* In-menu Book button (mobile dropdown only). */
+.ws-menu-book-item {
+	display: none;
+}
+
+.main-navigation .ws-menu-book {
+	display: inline-flex;
+	margin-top: var(--ws-space-2);
+	color: var(--ws-snow);
+	border-bottom: none;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+}
+
+.main-navigation .ws-menu-book:hover {
+	color: var(--ws-snow);
+	border-bottom: none;
 }
 
 .ws-header-book {
@@ -427,35 +447,33 @@ strong, b { font-weight: 500; }
 /* Hamburger button — hidden on desktop, visible on mobile */
 .menu-toggle {
 	display: none;
-	width: 44px;
-	height: 44px;
+	width: 48px;
+	height: 48px;
 	background: transparent;
-	border: 1px solid var(--ws-border-strong);
-	border-radius: var(--ws-radius);
+	border: none;
 	padding: 0;
 	cursor: pointer;
 	position: relative;
 	color: var(--ws-char);
 	font-size: 0;
 	line-height: 0;
-	transition: background 150ms ease, border-color 150ms ease;
+	transition: color 150ms ease;
 }
 
 .menu-toggle:hover {
-	background: var(--ws-mist);
-	border-color: var(--ws-spring);
+	color: var(--ws-spring);
 }
 
 /* Three horizontal lines drawn with a single pseudo-element + box-shadow */
 .menu-toggle::before {
 	content: "";
 	position: absolute;
-	left: 10px;
-	right: 10px;
+	left: 9px;
+	right: 9px;
 	top: 50%;
 	height: 2px;
 	background: currentColor;
-	box-shadow: 0 -7px 0 currentColor, 0 7px 0 currentColor;
+	box-shadow: 0 -9px 0 currentColor, 0 9px 0 currentColor;
 	transition: transform 200ms ease, box-shadow 200ms ease;
 	transform: translateY(-50%);
 }
@@ -469,8 +487,8 @@ strong, b { font-weight: 500; }
 .main-navigation.toggled .menu-toggle::after {
 	content: "";
 	position: absolute;
-	left: 10px;
-	right: 10px;
+	left: 9px;
+	right: 9px;
 	top: 50%;
 	height: 2px;
 	background: currentColor;
@@ -492,6 +510,7 @@ strong, b { font-weight: 500; }
 
 	.site-branding {
 		order: 2;
+		margin: 0 auto;
 	}
 
 	.site-header__actions {
@@ -504,12 +523,17 @@ strong, b { font-weight: 500; }
 	}
 
 	.custom-logo {
-		max-height: 36px;
+		max-height: 40px;
 	}
 
+	/* On mobile the header shows only hamburger, logo, and phone; booking
+	   moves into the menu. */
 	.ws-header-book {
-		padding: 0.5rem 0.85rem;
-		letter-spacing: 0.03em;
+		display: none;
+	}
+
+	.ws-menu-book-item {
+		display: block;
 	}
 
 	.menu-toggle {
@@ -549,9 +573,11 @@ strong, b { font-weight: 500; }
 		border-bottom: none;
 	}
 
-	/* Sub-menu expands inline below its parent in mobile dropdown */
+	/* Sub-menu expands inline below its parent in mobile dropdown, stacked */
 	.main-navigation .sub-menu {
 		position: static;
+		flex-direction: column;
+		gap: 0;
 		opacity: 1;
 		visibility: visible;
 		transform: none;
