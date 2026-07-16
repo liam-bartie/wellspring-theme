@@ -52,6 +52,24 @@
 		}
 	} );
 
+	// Inject expand/collapse caret toggles for parent items (mobile dropdown).
+	const parentItems = siteNavigation.querySelectorAll( '.menu-item-has-children' );
+	parentItems.forEach( function( item ) {
+		const parentLink = item.querySelector( ':scope > a' );
+		if ( ! parentLink ) {
+			return;
+		}
+		const toggle = document.createElement( 'button' );
+		toggle.className = 'submenu-toggle';
+		toggle.setAttribute( 'aria-label', 'Expand submenu' );
+		toggle.setAttribute( 'aria-expanded', 'false' );
+		parentLink.after( toggle );
+		toggle.addEventListener( 'click', function() {
+			const isOpen = item.classList.toggle( 'is-open' );
+			toggle.setAttribute( 'aria-expanded', isOpen ? 'true' : 'false' );
+		} );
+	} );
+
 	// Get all the link elements within the menu.
 	const links = menu.getElementsByTagName( 'a' );
 

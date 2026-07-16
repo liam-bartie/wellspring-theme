@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.39.1
+Version: 0.39.2
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -270,23 +270,35 @@ strong, b { font-weight: 500; }
 	height: 26px;
 }
 
-/* In-menu Book button (mobile dropdown only). */
-.ws-menu-book-item {
+/* Mobile sub-menu expand/collapse caret (injected by navigation.js). */
+.submenu-toggle {
 	display: none;
+	width: 44px;
+	height: 44px;
+	background: transparent;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	position: relative;
+	color: var(--ws-char);
+	flex: 0 0 auto;
 }
 
-.main-navigation .ws-menu-book {
-	display: inline-flex;
-	margin-top: var(--ws-space-2);
-	color: var(--ws-snow);
-	border-bottom: none;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
+.submenu-toggle::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 9px;
+	height: 9px;
+	border-right: 2px solid currentColor;
+	border-bottom: 2px solid currentColor;
+	transform: translate(-50%, -70%) rotate(45deg);
+	transition: transform 200ms ease;
 }
 
-.main-navigation .ws-menu-book:hover {
-	color: var(--ws-snow);
-	border-bottom: none;
+.menu-item-has-children.is-open > .submenu-toggle::before {
+	transform: translate(-50%, -30%) rotate(-135deg);
 }
 
 .ws-header-book {
@@ -526,13 +538,23 @@ strong, b { font-weight: 500; }
 		max-height: 40px;
 	}
 
-	/* On mobile the header shows only hamburger, logo, and phone; booking
-	   moves into the menu. */
+	/* On mobile the header shows only hamburger, logo, and phone. */
 	.ws-header-book {
 		display: none;
 	}
 
-	.ws-menu-book-item {
+	/* Parent items: link + expand caret on one row, sub-menu drops below. */
+	.main-navigation .menu-item-has-children {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	.main-navigation .menu-item-has-children > a {
+		flex: 1 1 auto;
+	}
+
+	.submenu-toggle {
 		display: block;
 	}
 
@@ -553,6 +575,8 @@ strong, b { font-weight: 500; }
 		padding: var(--ws-space-4) clamp(1rem, 4vw, 2.5rem);
 		display: none;
 		z-index: 50;
+		max-height: calc(100vh - 90px);
+		overflow-y: auto;
 	}
 
 	.main-navigation.toggled > div {
@@ -573,11 +597,13 @@ strong, b { font-weight: 500; }
 		border-bottom: none;
 	}
 
-	/* Sub-menu expands inline below its parent in mobile dropdown, stacked */
+	/* Sub-menu is collapsed by default; the caret expands it, stacked inline. */
 	.main-navigation .sub-menu {
 		position: static;
+		flex: 0 0 100%;
 		flex-direction: column;
 		gap: 0;
+		display: none;
 		opacity: 1;
 		visibility: visible;
 		transform: none;
@@ -587,6 +613,10 @@ strong, b { font-weight: 500; }
 		padding-left: var(--ws-space-4);
 		padding-top: var(--ws-space-2);
 		margin-top: var(--ws-space-2);
+	}
+
+	.main-navigation .menu-item-has-children.is-open > .sub-menu {
+		display: flex;
 	}
 
 	.main-navigation .sub-menu li {
