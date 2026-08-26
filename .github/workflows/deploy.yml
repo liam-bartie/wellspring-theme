@@ -27,7 +27,9 @@ jobs:
             **/.git/**
             **/.github/**
             **/node_modules/**
-            seo-migration/**
+            seo-migration/*.py
+            seo-migration/test_*.php
+            seo-migration/dry_run_report.json
             .gitignore
             README.md
             .DS_Store

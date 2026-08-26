@@ -22,13 +22,13 @@ get_header();
 		<div class="ws-container ws-container--narrow ws-404">
 			<div class="ws-404-actions">
 				<a class="ws-btn" href="<?php echo esc_url( home_url( '/' ) ); ?>">Back to home</a>
-				<a class="ws-btn ws-btn--ghost" href="<?php echo esc_url( home_url( '/what-we-treat/' ) ); ?>">See what we treat</a>
+				<a class="ws-btn ws-btn--ghost" href="<?php echo esc_url( wellspring_page_url( 'what-we-treat' ) ); ?>">See what we treat</a>
 			</div>
 			<p class="ws-404-links">
 				Or explore
-				<a href="<?php echo esc_url( home_url( '/about/' ) ); ?>">About</a>,
-				<a href="<?php echo esc_url( home_url( '/clinic-cases/' ) ); ?>">Clinic Cases</a>, or
-				<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>">Contact</a>.
+				<a href="<?php echo esc_url( wellspring_page_url( 'about' ) ); ?>">About</a>,
+				<a href="<?php echo esc_url( wellspring_page_url( 'clinic-cases' ) ); ?>">Clinic Cases</a>, or
+				<a href="<?php echo esc_url( wellspring_page_url( 'contact' ) ); ?>">Contact</a>.
 			</p>
 		</div>
 	</section>

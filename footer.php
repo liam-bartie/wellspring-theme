@@ -67,9 +67,9 @@
 		<div class="ws-footer-bottom">
 			<span>&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> Wellspring Health Ltd. All rights reserved.</span>
 			<nav class="ws-footer-legal" aria-label="<?php esc_attr_e( 'Legal', 'wellspring' ); ?>">
-				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
-				<a href="<?php echo esc_url( home_url( '/terms-of-service/' ) ); ?>">Terms of Service</a>
-				<a href="<?php echo esc_url( home_url( '/cookie-policy/' ) ); ?>">Cookie Policy</a>
+				<a href="<?php echo esc_url( wellspring_page_url( 'privacy-policy' ) ); ?>">Privacy Policy</a>
+				<a href="<?php echo esc_url( wellspring_page_url( 'terms-of-service' ) ); ?>">Terms of Service</a>
+				<a href="<?php echo esc_url( wellspring_page_url( 'cookie-policy' ) ); ?>">Cookie Policy</a>
 			</nav>
 		</div>
 

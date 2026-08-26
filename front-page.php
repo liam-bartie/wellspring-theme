@@ -19,7 +19,7 @@ $hero_lede         = ws_field( 'hero_lede', "Acupuncture and Traditional Chinese
 $hero_btn1_label   = ws_field( 'hero_primary_button_label', 'Book an appointment' );
 $hero_btn1_url     = ws_field( 'hero_primary_button_url', WELLSPRING_BOOKING_URL );
 $hero_btn2_label   = ws_field( 'hero_secondary_button_label', 'See what we treat' );
-$hero_btn2_url     = ws_field( 'hero_secondary_button_url', '/what-we-treat/' );
+$hero_btn2_url     = ws_field( 'hero_secondary_button_url', wellspring_page_url( 'what-we-treat' ) );
 $hero_bg           = function_exists( 'get_field' ) ? get_field( 'hero_background_image' ) : null;
 
 $intro_eyebrow     = ws_field( 'intro_eyebrow', '' );
@@ -35,7 +35,7 @@ $pract_name        = ws_field( 'practitioner_name', 'Dr. Laura Cowburn' );
 $pract_credentials = ws_field( 'practitioner_credentials', 'Doctor of Traditional Chinese Medicine · Registered Acupuncturist (Alberta)' );
 $pract_bio         = ws_field( 'practitioner_bio', 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.' );
 $pract_link_label  = ws_field( 'practitioner_link_label', 'Read her full story' );
-$pract_link_url    = ws_field( 'practitioner_link_url', '/about/' );
+$pract_link_url    = ws_field( 'practitioner_link_url', wellspring_page_url( 'about' ) );
 $pract_portrait    = function_exists( 'get_field' ) ? get_field( 'practitioner_portrait' ) : null;
 
 $mod_eyebrow       = ws_field( 'modalities_eyebrow', 'Our practice' );

@@ -62,6 +62,8 @@ function is_post_type_archive( $t = '' ) {
 function is_search()     { return (bool) st( 'is_search' ); }
 function is_404()        { return (bool) st( 'is_404' ); }
 function is_admin()      { return false; }
+function is_author()     { return (bool) st( 'is_author' ); }
+function is_date()       { return (bool) st( 'is_date' ); }
 function is_feed()       { return false; }
 function is_wp_error( $t ) { return $t instanceof WP_Error; }
 
@@ -353,6 +355,27 @@ switch ( $SCENARIO ) {
 		check( 'thumbnail used', $r['og_image'], 'https://example.test/img/hero.jpg' );
 		$head = render_hook( 'wp_head' );
 		contains( 'large image card', $head, 'twitter:card" content="summary_large_image"' );
+		break;
+
+	case 'author_archive':
+		echo "SCENARIO: author archive is noindexed\n";
+		$STATE = array( 'is_author' => true, 'the_title' => 'Liam' );
+		$r = wellspring_seo_resolve();
+		check( 'noindex set', $r['noindex'], true );
+		$robots = apply_filters( 'wp_robots', array( 'index' => true ) );
+		check( 'robots noindex', $robots['noindex'] ?? null, true );
+		break;
+
+	case 'date_archive':
+		echo "SCENARIO: date archive is noindexed\n";
+		$STATE = array( 'is_date' => true, 'the_title' => 'August 2026' );
+		check( 'noindex set', wellspring_seo_resolve()['noindex'], true );
+		break;
+
+	case 'users_sitemap':
+		echo "SCENARIO: users sitemap provider is removed\n";
+		check( 'users provider dropped', apply_filters( 'wp_sitemaps_add_provider', 'PROVIDER', 'users' ), false );
+		check( 'posts provider kept',    apply_filters( 'wp_sitemaps_add_provider', 'PROVIDER', 'posts' ), 'PROVIDER' );
 		break;
 
 	case 'plugin_guard':

@@ -261,6 +261,26 @@ add_action(
 	}
 );
 
+/**
+ * Remove the author sitemap.
+ *
+ * Core lists a user as soon as they have published posts of ANY public post
+ * type, so the ~31 clinic cases keep the author archive in /wp-sitemap.xml even
+ * after the sample blog post is deleted. Deleting posts is not the fix; this is.
+ * Paired with the noindex on author archives in wellspring_seo_resolve().
+ */
+add_filter(
+	'wp_sitemaps_add_provider',
+	function ( $provider, $name ) {
+		if ( 'users' === $name ) {
+			return false;
+		}
+		return $provider;
+	},
+	10,
+	2
+);
+
 /* -------------------------------------------------------------------------
  * 3. Helpers
  * ---------------------------------------------------------------------- */
@@ -468,6 +488,14 @@ function wellspring_seo_resolve() {
 		$out['noindex'] = true;
 	}
 	if ( in_array( $ctx['type'], array( 'search', 'not_found' ), true ) ) {
+		$out['noindex'] = true;
+	}
+	/*
+	 * Author and date archives have no job on a single-practitioner clinic site:
+	 * they re-list content that already has a proper home on the clinic-case
+	 * archive, and the author URL exposes the account's login-derived slug.
+	 */
+	if ( is_author() || is_date() ) {
 		$out['noindex'] = true;
 	}
 

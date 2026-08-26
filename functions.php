@@ -257,6 +257,13 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/seo.php';
 
 /**
+ * Tools → Wellspring SEO: preview and import the ported meta values.
+ */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/seo-import.php';
+}
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {

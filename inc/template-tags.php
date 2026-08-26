@@ -199,3 +199,36 @@ if ( ! function_exists( 'wp_body_open' ) ) :
 		do_action( 'wp_body_open' );
 	}
 endif;
+
+if ( ! function_exists( 'wellspring_page_url' ) ) :
+	/**
+	 * Internal link that survives a permalink-structure change.
+	 *
+	 * Hardcoding "/about/" breaks the day the structure drops trailing slashes,
+	 * and hardcoding "/about" breaks today — every such link then 301s. Resolve
+	 * the page and let WordPress build the URL instead: get_permalink() always
+	 * returns the shape the current structure actually uses.
+	 *
+	 * Falls back to user_trailingslashit(), which applies the site's own slash
+	 * policy, so even a path with no matching page comes out the right shape.
+	 *
+	 * @param string $path Page path, e.g. 'about' or 'what-we-treat/pain-relief'.
+	 * @return string Absolute URL.
+	 */
+	function wellspring_page_url( $path ) {
+		$path = trim( (string) $path, '/' );
+		if ( '' === $path ) {
+			return home_url( '/' );
+		}
+
+		$page = get_page_by_path( $path );
+		if ( $page instanceof WP_Post ) {
+			$url = get_permalink( $page );
+			if ( $url ) {
+				return $url;
+			}
+		}
+
+		return home_url( user_trailingslashit( $path ) );
+	}
+endif;

@@ -92,7 +92,7 @@ if ( $focus ) {
 			<p class="ws-case-box__auto"><span aria-hidden="true">⚡</span> What we treat</p>
 			<h3 class="ws-case-box__title">Explore <?php echo esc_html( $focus->name ); ?></h3>
 			<p class="ws-case-box__sub">See how we approach this area and what to expect from treatment.</p>
-			<a class="ws-btn ws-btn--ghost ws-btn--block" href="<?php echo esc_url( home_url( '/what-we-treat/' . $focus->slug . '/' ) ); ?>"><?php echo esc_html( $focus->name ); ?> →</a>
+			<a class="ws-btn ws-btn--ghost ws-btn--block" href="<?php echo esc_url( wellspring_page_url( 'what-we-treat/' . $focus->slug ) ); ?>"><?php echo esc_html( $focus->name ); ?> →</a>
 		</div>
 	<?php endif; ?>
 
