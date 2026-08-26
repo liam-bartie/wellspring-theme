@@ -16,6 +16,18 @@ if ( ! function_exists( 'have_rows' ) || ! have_rows( 'page_sections' ) ) {
 	return;
 }
 
+/*
+ * Optional position filter.
+ *
+ * On inner pages this part is called once with no position, and every section
+ * renders in the order the editor arranged them. The home page has nine built-in
+ * sections, so front-page.php calls this part once per gap between them, passing
+ * the anchor name — each call renders only the sections assigned to that gap.
+ * Rows saved before the field existed have no position and fall back to
+ * 'before_cta', which is where a single insertion point would have put them.
+ */
+$ws_position = isset( $args['position'] ) ? (string) $args['position'] : '';
+
 // Fallback for the "View on Google Maps" link when a map section leaves it blank.
 $ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupuncture+%26+TCM+Clinic/data=!4m2!3m1!1s0x0:0x8039f60c08965bb1?sa=X&ved=1t:2428&ictx=111';
 
@@ -25,6 +37,16 @@ $ws_backgrounds = array( 'none', 'mist', 'paper' );
 while ( have_rows( 'page_sections' ) ) :
 	the_row();
 	$layout = get_row_layout();
+
+	if ( '' !== $ws_position ) {
+		$row_position = (string) get_sub_field( 'position' );
+		if ( '' === $row_position ) {
+			$row_position = 'before_cta';
+		}
+		if ( $row_position !== $ws_position ) {
+			continue;
+		}
+	}
 
 	$ws_bg = (string) get_sub_field( 'background' );
 	if ( ! in_array( $ws_bg, $ws_backgrounds, true ) ) {

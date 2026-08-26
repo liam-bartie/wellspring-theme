@@ -855,14 +855,13 @@ add_action(
 			),
 		);
 
-		$home = (int) get_option( 'page_on_front' );
-		if ( $home ) {
-			$rules[] = array(
-				'param'    => 'page',
-				'operator' => '!=',
-				'value'    => (string) $home,
-			);
-		}
+		/*
+		 * "What We Treat" has its own template that never renders page_sections,
+		 * so offering the builder there would be a trap. The HOME page does now
+		 * render it — at chosen anchor points in front-page.php — so it is no
+		 * longer excluded. The sub-heading field is still meaningless on home,
+		 * which is why there are two rule sets rather than one.
+		 */
 		foreach ( array( 'what-we-treat' ) as $slug ) {
 			$page = get_page_by_path( $slug );
 			if ( $page instanceof WP_Post ) {
@@ -874,11 +873,24 @@ add_action(
 			}
 		}
 
+		// Sections: every page except What We Treat. Home included.
+		$section_rules = $rules;
+
+		// Sub-heading: as above, but never on home.
+		$home = (int) get_option( 'page_on_front' );
+		if ( $home ) {
+			$rules[] = array(
+				'param'    => 'page',
+				'operator' => '!=',
+				'value'    => (string) $home,
+			);
+		}
+
 		acf_add_local_field_group(
 			array(
-				'key'    => 'group_wellspring_page',
-				'title'  => 'Page content',
-				'fields' => array(
+				'key'                   => 'group_wellspring_page_subheading',
+				'title'                 => 'Page sub-heading',
+				'fields'                => array(
 					array(
 						'key'          => 'field_page_subheading',
 						'name'         => 'page_subheading',
@@ -887,6 +899,21 @@ add_action(
 						'type'         => 'textarea',
 						'rows'         => 2,
 					),
+				),
+				'location'              => array( $rules ),
+				'menu_order'            => 0,
+				'position'              => 'normal',
+				'style'                 => 'default',
+				'label_placement'       => 'top',
+				'instruction_placement' => 'label',
+			)
+		);
+
+		acf_add_local_field_group(
+			array(
+				'key'    => 'group_wellspring_page',
+				'title'  => 'Page content',
+				'fields' => array(
 					array(
 						'key'          => 'field_page_sections',
 						'name'         => 'page_sections',
@@ -901,6 +928,26 @@ add_action(
 								'label'      => 'Text',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_text_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
 									array(
 										'key'           => 'field_sec_text_bg',
 										'name'          => 'background',
@@ -932,6 +979,26 @@ add_action(
 								'label'      => 'Heading',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_head_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
 									array(
 										'key'           => 'field_sec_head_bg',
 										'name'          => 'background',
@@ -966,6 +1033,26 @@ add_action(
 								'label'      => 'Image + Text',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_it_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
 									array(
 										'key'           => 'field_sec_it_bg',
 										'name'          => 'background',
@@ -1029,6 +1116,26 @@ add_action(
 								'display'    => 'block',
 								'sub_fields' => array(
 									array(
+										'key'           => 'field_sec_map_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
+									array(
 										'key'           => 'field_sec_map_bg',
 										'name'          => 'background',
 										'label'         => 'Background',
@@ -1065,6 +1172,26 @@ add_action(
 								'label'      => 'Text + Map',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_tm_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
 									array(
 										'key'           => 'field_sec_tm_bg',
 										'name'          => 'background',
@@ -1127,6 +1254,26 @@ add_action(
 								'display'    => 'block',
 								'sub_fields' => array(
 									array(
+										'key'           => 'field_sec_faq_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
+									array(
 										'key'           => 'field_sec_faq_bg',
 										'name'          => 'background',
 										'label'         => 'Background',
@@ -1177,7 +1324,7 @@ add_action(
 						),
 					),
 				),
-				'location'              => array( $rules ),
+				'location'              => array( $section_rules ),
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',

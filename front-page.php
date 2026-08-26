@@ -126,6 +126,7 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		</div>
 	</section>
 
+	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_hero' ) ); ?>
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<?php if ( $intro_eyebrow || $intro_title || $intro_body ) : ?>
@@ -143,6 +144,8 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 			</div>
 		</section>
 	<?php endif; ?>
+
+	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_intro' ) ); ?>
 
 	<section class="ws-section ws-section--mist">
 		<div class="ws-container">
@@ -182,6 +185,8 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		</div>
 	</section>
 
+	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_wwt' ) ); ?>
+
 	<section class="ws-section ws-practitioner">
 		<div class="ws-container">
 			<div class="ws-practitioner__inner">
@@ -204,6 +209,8 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 			</div>
 		</div>
 	</section>
+
+	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_practitioner' ) ); ?>
 
 	<?php
 	// Modalities section — only render if either block has a heading.
@@ -256,6 +263,8 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		<?php
 	endif;
 
+	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_modalities' ) );
+
 	// Featured cases — only render if there's at least one published case.
 	if ( ! empty( $featured_cases ) ) :
 		?>
@@ -287,8 +296,14 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		<?php
 	endif;
 
+	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_cases' ) );
+
 	// Curated Google reviews slider.
 	get_template_part( 'template-parts/reviews-slider' );
+
+	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_reviews' ) );
+
+	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'before_cta' ) );
 	?>
 
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
