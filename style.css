@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.41.0
+Version: 0.42.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -1262,6 +1262,122 @@ label {
 .ws-cta__lede p + p,
 .ws-case-glance__text p + p {
 	margin-top: 0.75em;
+}
+
+/* Editor-inserted headings inside the WYSIWYG body/lede fields. The Format
+   dropdown is enabled on those fields, so H2-H5 can now appear in running
+   copy. Base heading styles carry no top margin, so give them breathing room
+   and step the sizes down so they sit under the section title, not over it. */
+.ws-intro-text__body h2,
+.ws-intro-text__body h3,
+.ws-intro-text__body h4,
+.ws-intro-text__body h5,
+.ws-modality__body h2,
+.ws-modality__body h3,
+.ws-modality__body h4,
+.ws-modality__body h5,
+.ws-practitioner__bio h2,
+.ws-practitioner__bio h3,
+.ws-practitioner__bio h4,
+.ws-practitioner__bio h5,
+.ws-hero__lede h2,
+.ws-hero__lede h3,
+.ws-hero__lede h4,
+.ws-hero__lede h5,
+.ws-page-header__lede h2,
+.ws-page-header__lede h3,
+.ws-page-header__lede h4,
+.ws-page-header__lede h5,
+.ws-section-header__lede h2,
+.ws-section-header__lede h3,
+.ws-section-header__lede h4,
+.ws-section-header__lede h5,
+.ws-cta__lede h2,
+.ws-cta__lede h3,
+.ws-cta__lede h4,
+.ws-cta__lede h5,
+.ws-case-glance__text h2,
+.ws-case-glance__text h3,
+.ws-case-glance__text h4,
+.ws-case-glance__text h5 {
+	margin: var(--ws-space-6) 0 var(--ws-space-3);
+	text-wrap: balance;
+}
+
+.ws-intro-text__body h2:first-child,
+.ws-intro-text__body h3:first-child,
+.ws-intro-text__body h4:first-child,
+.ws-intro-text__body h5:first-child,
+.ws-modality__body h2:first-child,
+.ws-modality__body h3:first-child,
+.ws-modality__body h4:first-child,
+.ws-modality__body h5:first-child,
+.ws-practitioner__bio h2:first-child,
+.ws-practitioner__bio h3:first-child,
+.ws-practitioner__bio h4:first-child,
+.ws-practitioner__bio h5:first-child,
+.ws-hero__lede h2:first-child,
+.ws-hero__lede h3:first-child,
+.ws-hero__lede h4:first-child,
+.ws-hero__lede h5:first-child,
+.ws-page-header__lede h2:first-child,
+.ws-page-header__lede h3:first-child,
+.ws-page-header__lede h4:first-child,
+.ws-page-header__lede h5:first-child,
+.ws-section-header__lede h2:first-child,
+.ws-section-header__lede h3:first-child,
+.ws-section-header__lede h4:first-child,
+.ws-section-header__lede h5:first-child,
+.ws-cta__lede h2:first-child,
+.ws-cta__lede h3:first-child,
+.ws-cta__lede h4:first-child,
+.ws-cta__lede h5:first-child,
+.ws-case-glance__text h2:first-child,
+.ws-case-glance__text h3:first-child,
+.ws-case-glance__text h4:first-child,
+.ws-case-glance__text h5:first-child {
+	margin-top: 0;
+}
+
+.ws-intro-text__body h2,
+.ws-modality__body h2,
+.ws-practitioner__bio h2,
+.ws-hero__lede h2,
+.ws-page-header__lede h2,
+.ws-section-header__lede h2,
+.ws-cta__lede h2,
+.ws-case-glance__text h2 {
+	font-size: var(--ws-text-2xl);
+}
+
+.ws-intro-text__body h3,
+.ws-modality__body h3,
+.ws-practitioner__bio h3,
+.ws-hero__lede h3,
+.ws-page-header__lede h3,
+.ws-section-header__lede h3,
+.ws-cta__lede h3,
+.ws-case-glance__text h3 {
+	font-size: var(--ws-text-xl);
+}
+
+.ws-intro-text__body h4,
+.ws-intro-text__body h5,
+.ws-modality__body h4,
+.ws-modality__body h5,
+.ws-practitioner__bio h4,
+.ws-practitioner__bio h5,
+.ws-hero__lede h4,
+.ws-hero__lede h5,
+.ws-page-header__lede h4,
+.ws-page-header__lede h5,
+.ws-section-header__lede h4,
+.ws-section-header__lede h5,
+.ws-cta__lede h4,
+.ws-cta__lede h5,
+.ws-case-glance__text h4,
+.ws-case-glance__text h5 {
+	font-size: var(--ws-text-lg);
 }
 
 /* =========================================================
