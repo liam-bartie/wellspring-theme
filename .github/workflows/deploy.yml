@@ -27,6 +27,7 @@ jobs:
             **/.git/**
             **/.github/**
             **/node_modules/**
+            seo-migration/**
             .gitignore
             README.md
             .DS_Store

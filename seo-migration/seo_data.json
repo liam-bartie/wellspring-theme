@@ -1,0 +1,170 @@
+{
+  "_meta": {
+    "captured_utc": "2026-08-26T17:13:39Z",
+    "deviations": [
+      {
+        "after": "Wellspring Health's Cookie Policy outlines how we use cookies to enhance your experience on our website.",
+        "before": "Wellspring Health&#39;s Cookie Policy outlines how we use cookies to enhance your experience on our website.",
+        "field": "description",
+        "path": "/cookie-policy",
+        "reason": "Source was double-encoded (&amp;#39;), a GoDaddy artifact that renders a literal &#39; in the SERP snippet. Approved as a platform-artifact exception, same basis as a CMS-appended suffix."
+      },
+      {
+        "after": "Wellspring Health's privacy policy outlines our commitment to data security and transparency in personal information collection.",
+        "before": "Wellspring Health&#39;s privacy policy outlines our commitment to data security and transparency in personal information collection.",
+        "field": "description",
+        "path": "/privacy-policy",
+        "reason": "Source was double-encoded (&amp;#39;), a GoDaddy artifact that renders a literal &#39; in the SERP snippet. Approved as a platform-artifact exception, same basis as a CMS-appended suffix."
+      },
+      {
+        "after": "Read the Terms of Service for Wellspring Health, Calgary's leading TCM clinic, to understand your rights and responsibilities.",
+        "before": "Read the Terms of Service for Wellspring Health, Calgary&#39;s leading TCM clinic, to understand your rights and responsibilities.",
+        "field": "description",
+        "path": "/terms-of-service",
+        "reason": "Source was double-encoded (&amp;#39;), a GoDaddy artifact that renders a literal &#39; in the SERP snippet. Approved as a platform-artifact exception, same basis as a CMS-appended suffix."
+      }
+    ],
+    "encoding_fix_applied": true,
+    "generated_from": "dry_run_report.json",
+    "rule": "Values are byte-for-byte copies of the old site EXCEPT where a 'deviation' key is present. Never hand-edit this file — regenerate it.",
+    "unmapped_source_paths": []
+  },
+  "entries": [
+    {
+      "description": "Calgary acupuncture and Traditional Chinese Medicine (TCM) for pain, stress, sleep and much more. Needle-free options and Chinese herbs. Book an appointment.",
+      "description_len": 157,
+      "description_sha": "1855290ac85c372c5596367602a56d417e702b9fa06ba182f14712bab6d32c69",
+      "notes": [],
+      "source_path": "/",
+      "source_url": "https://wellspringhealth.ca/",
+      "target_key": "",
+      "target_type": "front_page",
+      "title": "Wellspring Health Acupuncture & Traditional Chinese Medicine (TCM) Clinic Calgary",
+      "title_len": 81,
+      "title_sha": "066d1aa032b9a6846a79d415611ab519db9218df570127706ba6af295d53bcff"
+    },
+    {
+      "description": "Meet Dr. Laura Cowburn, Registered Acupuncturist and Doctor of TCM in Calgary. Learn about our treatment, approach and what to expect at your visit.",
+      "description_len": 148,
+      "description_sha": "c4773a3cc997878b4b9ba05bfc79f781bbc0599e1dd008df22b79880fe12dbad",
+      "notes": [],
+      "source_path": "/about",
+      "source_url": "https://wellspringhealth.ca/about",
+      "target_key": "about",
+      "target_type": "page",
+      "title": "About",
+      "title_len": 5,
+      "title_sha": "4efca0d10c5feb8e9b35eb1d994f2905bb71714e6a271f511d713b539ea5faa1"
+    },
+    {
+      "description": "Book an appointment at our Acupuncture & Traditional Chinese Medicine Clinic in SE Calgary. Online scheduling & appointment booking options.",
+      "description_len": 140,
+      "description_sha": "7eb92d705d3f9468eeb41482ad8f793d22cefb8e3f3f6b53cd8ee858ba049a98",
+      "notes": [],
+      "source_path": "/book-appointments",
+      "source_url": "https://wellspringhealth.ca/book-appointments",
+      "target_key": "book-appointments",
+      "target_type": "page",
+      "title": "Book Appointment: Doctor of Traditional Chinese Medicine & Registered Acupuncturist",
+      "title_len": 83,
+      "title_sha": "2a7f4e98ea34a80957f486636efa243db7f1485459a19cff9de99e0fac683adb"
+    },
+    {
+      "description": "Read acupuncture & TCM case studies from Calgary patients treated for TMJ/bruxism, pain and more. See typical treatment approaches and outcomes from clinic.",
+      "description_len": 156,
+      "description_sha": "81c30a5e2612b707e317ac5de70f56a1784a5e65999bd10d38c3a6942a58350a",
+      "notes": [],
+      "source_path": "/clinic-cases",
+      "source_url": "https://wellspringhealth.ca/clinic-cases",
+      "target_key": "clinic_case",
+      "target_type": "cpt_archive",
+      "title": "TCM & Acupuncture: Calgary Results & Clinic Case Studies",
+      "title_len": 56,
+      "title_sha": "78c4470394b6957b1a33d9bb9e6c86d1db046f3626c31a45aa29ad101cebf1c8"
+    },
+    {
+      "description": "Contact Wellspring Health Calgary acupuncture & TCM clinic. Send a message or call. Conveniently located in the same building as Lochend Clinic.",
+      "description_len": 144,
+      "description_sha": "fd2fe960b12e8a50c1304dd38347b10b784c8d4791c12802b3954b647f3c8508",
+      "notes": [],
+      "source_path": "/contact",
+      "source_url": "https://wellspringhealth.ca/contact",
+      "target_key": "contact",
+      "target_type": "page",
+      "title": "Contact Our TCM & Acupuncture Clinic in Calgary",
+      "title_len": 47,
+      "title_sha": "03d53614c95843a3188f6139fdad4fe445df1dbd4add16a70a01873d0df3e2e6"
+    },
+    {
+      "description": "Wellspring Health's Cookie Policy outlines how we use cookies to enhance your experience on our website.",
+      "description_len": 104,
+      "description_sha": "40e47c3f95fccbda2a2b6f81aa721c541af0e6f00f6ea0baf71070b558112ef4",
+      "description_source_sha": "f6a650a7a92abe2902b7a0c6342a66676d9ce5177e9ff44bc96ed204c688c6d0",
+      "deviation": "encoding_fix",
+      "notes": [],
+      "source_path": "/cookie-policy",
+      "source_url": "https://wellspringhealth.ca/cookie-policy",
+      "target_key": "cookie-policy",
+      "target_type": "page",
+      "title": "Wellspring Health TCM Alberta Cookie Policy",
+      "title_len": 43,
+      "title_sha": "ee1490981a85b9da2d41ff82e8856c1d7e4d225bf105d2a221a47508a9b96d12"
+    },
+    {
+      "description": "Find AcupuTraditional Chinese Medicine Workshops & Webinars in Calgary by Wellspring Health Acupuncture & TCM Clinic on stress relief, sleep & wellness topics.",
+      "description_len": 159,
+      "description_sha": "46f0554e8b61a00aeaf4856aaa10b5d384737b10639d53aedfacd056e5391c5d",
+      "notes": [],
+      "source_path": "/events",
+      "source_url": "https://wellspringhealth.ca/events",
+      "target_key": "events",
+      "target_type": "page",
+      "title": "Wellspring Health in the Calgary Community: Charity Events, Workshops & Webinars",
+      "title_len": 80,
+      "title_sha": "398ea4eea34ccc399ba0bd8b90f0e31a9e73a76d9f5d5f9182a19468a2b30b82"
+    },
+    {
+      "description": "Wellspring Health's privacy policy outlines our commitment to data security and transparency in personal information collection.",
+      "description_len": 128,
+      "description_sha": "bfcdec9e396c3e251ce53ac4095ff32819a7c8634c2bdf48ecdaf5bf92f9e06e",
+      "description_source_sha": "c612567301ee383733ea99cbc1136f533b14ba5bcff00a1d198e33682feb1548",
+      "deviation": "encoding_fix",
+      "notes": [],
+      "source_path": "/privacy-policy",
+      "source_url": "https://wellspringhealth.ca/privacy-policy",
+      "target_key": "privacy-policy",
+      "target_type": "page",
+      "title": "Wellspring Health Privacy Policy: Your Data Security Explained",
+      "title_len": 62,
+      "title_sha": "cb3fa4273ec55adc3ccc7d1a21a0bb11673482df8219ea87ceb27d09ef4c5a25"
+    },
+    {
+      "description": "Read the Terms of Service for Wellspring Health, Calgary's leading TCM clinic, to understand your rights and responsibilities.",
+      "description_len": 126,
+      "description_sha": "d623832ba1dc6eb8507ee25027a04fed76a9bca6c5df741fd5a4f563760b71eb",
+      "description_source_sha": "cad21c408a973892d6c229bd0227a5673eda79ad583735ec07dbae8a49c1fca5",
+      "deviation": "encoding_fix",
+      "notes": [],
+      "source_path": "/terms-of-service",
+      "source_url": "https://wellspringhealth.ca/terms-of-service",
+      "target_key": "terms-of-service",
+      "target_type": "page",
+      "title": "Terms of Service",
+      "title_len": 16,
+      "title_sha": "4afa55bf7aec7ddc5dfb904271f881be278e7629ce258675bf4b62f460017abb"
+    },
+    {
+      "description": "Acupuncture & TCM for pain relief, women's health, digestive disorders, and more. At Wellspring Health we help you feel better, function better, and stay well.",
+      "description_len": 159,
+      "description_sha": "3bf0cf0ca0b3704bf8fea9b7c0d6854f944ff422f3213e1c0c524d7926a25a36",
+      "notes": [],
+      "source_path": "/what-we-treat",
+      "source_url": "https://wellspringhealth.ca/what-we-treat",
+      "target_key": "what-we-treat",
+      "target_type": "page",
+      "title": "Conditions We Treat with Acupuncture & TCM at Wellspring Health Clinic",
+      "title_len": 70,
+      "title_sha": "7afb4582c1ece69ed7074de90515cad05cba3bf78d1834f24481b753bf792ca4"
+    }
+  ]
+}

@@ -251,6 +251,12 @@ require get_template_directory() . '/inc/template-functions.php';
 require get_template_directory() . '/inc/customizer.php';
 
 /**
+ * SEO — titles, meta descriptions, Open Graph, schema, and the canonicals core
+ * omits. Goes silent automatically if an SEO plugin is ever activated.
+ */
+require get_template_directory() . '/inc/seo.php';
+
+/**
  * Load Jetpack compatibility file.
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
