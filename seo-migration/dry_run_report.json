@@ -6,7 +6,7 @@
         "kept": "https://wellspringhealth.ca/"
       }
     ],
-    "generated_utc": "2026-08-26T17:13:39Z",
+    "generated_utc": "2026-08-26T18:38:45Z",
     "new": "https://wheat-loris-762449.hostingersite.com",
     "note": "Nothing was written to either site or to WordPress.",
     "old": "https://wellspringhealth.ca",
@@ -17,9 +17,7 @@
     "titles": {}
   },
   "findings": [
-    "URL SHAPE MISMATCH: old URLs have no trailing slash, new site canonicalises to trailing slash. Either set permalinks to /%postname% (and fix hardcoded theme links) or accept a 301 on every old URL.",
-    "1 old URL(s) have no 200 on the new site — they need a redirect target decided: /events",
-    "69 new URL(s) have no old counterpart and will keep default WordPress titles with no ported description.",
+    "66 new URL(s) have no old counterpart and will keep default WordPress titles with no ported description.",
     "NEW SITE robots.txt blocks Googlebot entirely. Correct for staging, catastrophic if it survives cutover. Must be removed at launch."
   ],
   "invisibles": {},
@@ -28,75 +26,72 @@
     "titles": []
   },
   "new_orphans": [
-    "https://wheat-loris-762449.hostingersite.com/acupuncture/",
-    "https://wheat-loris-762449.hostingersite.com/author/liambartie-lifegmail-com/",
-    "https://wheat-loris-762449.hostingersite.com/category/uncategorized/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/a-blocked-nose-and-lost-sense-of-smell-and-taste-restored/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/a-fast-recovery-from-the-flu-without-the-usual-long-illness/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/cosmetic-acupuncture-age-spots-gone-and-wrinkles-softened/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/dangerously-high-blood-pressure-without-medication-returned-to-normal/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/extremely-heavy-periods-brought-back-to-normal/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/frequent-and-urgent-urination-resolved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/frozen-shoulder-pain-from-aging-resolved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/heart-palpitations-and-severe-sweating-returned-to-a-normal-rhythm/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/heel-pain-from-a-bone-spur-back-on-his-feet/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/high-blood-pressure-that-medication-couldnt-control-brought-down/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/knee-pain-from-a-bone-spur-under-the-kneecap-resolved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/lifelong-anxiety-and-insomnia-eased-with-herbs/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/migraines-and-chinook-headaches-stopped-at-the-needle/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/neck-shoulder-and-back-pain-after-a-car-accident-resolved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/quitting-smoking-after-decades-with-tcm-support/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/raynauds-syndrome-cold-blue-hands-and-feet-warmed/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/seasonal-allergies-and-morning-sneezing-cleared/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/severe-insomnia-from-barely-sleeping-to-full-nights/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/sharp-pain-under-the-shoulder-blade-and-flank-relieved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/shingles-blisters-and-severe-pain-cleared/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/sleep-apnea-and-severe-snoring-machine-free-nights/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/stress-driven-neck-and-shoulder-pain-resolved-in-one-treatment-course/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/swelling-and-pain-after-knee-surgery-fully-recovered/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/tmj-jaw-pain-and-night-time-teeth-grinding-eased/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/twenty-years-of-asthma-off-the-inhaler/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/twenty-years-of-depression-resolved-and-off-medication/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/waking-through-the-night-to-urinate-restored-deep-sleep/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-case/whole-body-tightness-and-pain-from-scoliosis-relieved/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/allergies-immune-support/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/heart-circulation/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/mental-health-sleep/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/other-conditions/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/pain-relief/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/respiratory/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/skin-facial-health/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/womens-health/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/bleeding/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/breathing/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/circulation/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/fatigue/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/headache/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/inflammation/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/mood/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/pain/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/skin/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/sleep/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/urinary/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/acupuncture/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/cosmetic/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/ear-seeds/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/herbal/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/home-care/",
-    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/scalp/",
-    "https://wheat-loris-762449.hostingersite.com/hello-world/",
-    "https://wheat-loris-762449.hostingersite.com/no-needle-acupuncture/",
-    "https://wheat-loris-762449.hostingersite.com/services/",
-    "https://wheat-loris-762449.hostingersite.com/traditional-chinese-medicine/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/allergies-immune-support/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/digestive-health/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/heart-circulation/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/mental-health-sleep/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/other-conditions/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/pain-relief/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/respiratory/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/skin-facial-health/",
-    "https://wheat-loris-762449.hostingersite.com/what-we-treat/womens-health/"
+    "https://wheat-loris-762449.hostingersite.com/acupuncture",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/a-blocked-nose-and-lost-sense-of-smell-and-taste-restored",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/a-fast-recovery-from-the-flu-without-the-usual-long-illness",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/cosmetic-acupuncture-age-spots-gone-and-wrinkles-softened",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/dangerously-high-blood-pressure-without-medication-returned-to-normal",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/extremely-heavy-periods-brought-back-to-normal",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/frequent-and-urgent-urination-resolved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/frozen-shoulder-pain-from-aging-resolved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/heart-palpitations-and-severe-sweating-returned-to-a-normal-rhythm",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/heel-pain-from-a-bone-spur-back-on-his-feet",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/high-blood-pressure-that-medication-couldnt-control-brought-down",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/knee-pain-from-a-bone-spur-under-the-kneecap-resolved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/lifelong-anxiety-and-insomnia-eased-with-herbs",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/migraines-and-chinook-headaches-stopped-at-the-needle",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/neck-shoulder-and-back-pain-after-a-car-accident-resolved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/quitting-smoking-after-decades-with-tcm-support",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/raynauds-syndrome-cold-blue-hands-and-feet-warmed",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/seasonal-allergies-and-morning-sneezing-cleared",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/severe-insomnia-from-barely-sleeping-to-full-nights",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/sharp-pain-under-the-shoulder-blade-and-flank-relieved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/shingles-blisters-and-severe-pain-cleared",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/sleep-apnea-and-severe-snoring-machine-free-nights",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/stress-driven-neck-and-shoulder-pain-resolved-in-one-treatment-course",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/swelling-and-pain-after-knee-surgery-fully-recovered",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/tmj-jaw-pain-and-night-time-teeth-grinding-eased",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/twenty-years-of-asthma-off-the-inhaler",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/twenty-years-of-depression-resolved-and-off-medication",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/waking-through-the-night-to-urinate-restored-deep-sleep",
+    "https://wheat-loris-762449.hostingersite.com/clinic-case/whole-body-tightness-and-pain-from-scoliosis-relieved",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/allergies-immune-support",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/heart-circulation",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/mental-health-sleep",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/other-conditions",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/pain-relief",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/respiratory",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/skin-facial-health",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/focus/womens-health",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/bleeding",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/breathing",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/circulation",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/fatigue",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/headache",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/inflammation",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/mood",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/pain",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/skin",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/sleep",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/symptom/urinary",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/acupuncture",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/cosmetic",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/ear-seeds",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/herbal",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/home-care",
+    "https://wheat-loris-762449.hostingersite.com/clinic-cases/treatment/scalp",
+    "https://wheat-loris-762449.hostingersite.com/no-needle-acupuncture",
+    "https://wheat-loris-762449.hostingersite.com/services",
+    "https://wheat-loris-762449.hostingersite.com/traditional-chinese-medicine",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/allergies-immune-support",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/digestive-health",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/heart-circulation",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/mental-health-sleep",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/other-conditions",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/pain-relief",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/respiratory",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/skin-facial-health",
+    "https://wheat-loris-762449.hostingersite.com/what-we-treat/womens-health"
   ],
   "old": {
     "https://wellspringhealth.ca/": {
@@ -332,10 +327,12 @@
   },
   "pairs": {
     "https://wellspringhealth.ca/": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/",
+      "left_site": false,
+      "new_description_now": "Calgary acupuncture and Traditional Chinese Medicine (TCM) for pain, stress, sleep and much more. Needle-free options and Chinese herbs. Book an appointment.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Wellspring Health – Acupuncture & Traditional Chinese Medicine",
+      "new_title_now": "Wellspring Health Acupuncture & Traditional Chinese Medicine (TCM) Clinic Calgary",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/",
       "old_description": "Calgary acupuncture and Traditional Chinese Medicine (TCM) for pain, stress, sleep and much more. Needle-free options and Chinese herbs. Book an appointment.",
@@ -344,44 +341,60 @@
       "redirect_chain": null
     },
     "https://wellspringhealth.ca/about": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/about",
+      "left_site": false,
+      "new_description_now": "Meet Dr. Laura Cowburn, Registered Acupuncturist and Doctor of TCM in Calgary. Learn about our treatment, approach and what to expect at your visit.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "About – Wellspring Health",
+      "new_title_now": "About",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/about/",
       "old_description": "Meet Dr. Laura Cowburn, Registered Acupuncturist and Doctor of TCM in Calgary. Learn about our treatment, approach and what to expect at your visit.",
       "old_title": "About",
       "old_url": "https://wellspringhealth.ca/about",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/about",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/about/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/about"
+        }
+      ]
     },
     "https://wellspringhealth.ca/book-appointments": {
-      "new_description_now": "",
+      "final_url": "https://wheat-loris-762449.hostingersite.com/book-appointments",
+      "left_site": false,
+      "new_description_now": "Book an appointment at our Acupuncture & Traditional Chinese Medicine Clinic in SE Calgary. Online scheduling & appointment booking options.",
       "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "\nBook Online\n|\nLochend Clinic Ltd\n",
+      "new_title_now": "Book Appointment: Doctor of Traditional Chinese Medicine & Registered Acupuncturist",
       "new_title_tag_count": 1,
-      "new_url": "https://wheat-loris-762449.hostingersite.com/book/",
+      "new_url": "https://wheat-loris-762449.hostingersite.com/book-appointments/",
       "old_description": "Book an appointment at our Acupuncture & Traditional Chinese Medicine Clinic in SE Calgary. Online scheduling & appointment booking options.",
       "old_title": "Book Appointment: Doctor of Traditional Chinese Medicine & Registered Acupuncturist",
       "old_url": "https://wellspringhealth.ca/book-appointments",
       "redirect_chain": [
         {
-          "location": "https://lochendclinic.janeapp.com/#/staff_member/13/bio",
+          "location": "https://wheat-loris-762449.hostingersite.com/book-appointments",
           "status": 301,
-          "url": "https://wheat-loris-762449.hostingersite.com/book/"
+          "url": "https://wheat-loris-762449.hostingersite.com/book-appointments/"
         },
         {
           "status": 200,
-          "url": "https://lochendclinic.janeapp.com/#/staff_member/13/bio"
+          "url": "https://wheat-loris-762449.hostingersite.com/book-appointments"
         }
       ]
     },
     "https://wellspringhealth.ca/clinic-cases": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/clinic-cases/",
+      "left_site": false,
+      "new_description_now": "Read acupuncture & TCM case studies from Calgary patients treated for TMJ/bruxism, pain and more. See typical treatment approaches and outcomes from clinic.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Clinic Cases – Wellspring Health",
+      "new_title_now": "TCM & Acupuncture: Calgary Results & Clinic Case Studies",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/clinic-cases/",
       "old_description": "Read acupuncture & TCM case studies from Calgary patients treated for TMJ/bruxism, pain and more. See typical treatment approaches and outcomes from clinic.",
@@ -390,76 +403,148 @@
       "redirect_chain": null
     },
     "https://wellspringhealth.ca/contact": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/contact",
+      "left_site": false,
+      "new_description_now": "Contact Wellspring Health Calgary acupuncture & TCM clinic. Send a message or call. Conveniently located in the same building as Lochend Clinic.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Contact – Wellspring Health",
+      "new_title_now": "Contact Our TCM & Acupuncture Clinic in Calgary",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/contact/",
       "old_description": "Contact Wellspring Health Calgary acupuncture & TCM clinic. Send a message or call. Conveniently located in the same building as Lochend Clinic.",
       "old_title": "Contact Our TCM & Acupuncture Clinic in Calgary",
       "old_url": "https://wellspringhealth.ca/contact",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/contact",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/contact/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/contact"
+        }
+      ]
     },
     "https://wellspringhealth.ca/cookie-policy": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/cookie-policy",
+      "left_site": false,
+      "new_description_now": "Wellspring Health's Cookie Policy outlines how we use cookies to enhance your experience on our website.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Cookie Policy – Wellspring Health",
+      "new_title_now": "Wellspring Health TCM Alberta Cookie Policy",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/cookie-policy/",
       "old_description": "Wellspring Health&#39;s Cookie Policy outlines how we use cookies to enhance your experience on our website.",
       "old_title": "Wellspring Health TCM Alberta Cookie Policy",
       "old_url": "https://wellspringhealth.ca/cookie-policy",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/cookie-policy",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/cookie-policy/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/cookie-policy"
+        }
+      ]
     },
     "https://wellspringhealth.ca/events": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
-      "new_status": 404,
-      "new_title_now": "Page not found – Wellspring Health",
+      "final_url": "https://wheat-loris-762449.hostingersite.com/events",
+      "left_site": false,
+      "new_description_now": "Find AcupuTraditional Chinese Medicine Workshops & Webinars in Calgary by Wellspring Health Acupuncture & TCM Clinic on stress relief, sleep & wellness topics.",
+      "new_description_tag_count": 1,
+      "new_status": 200,
+      "new_title_now": "Wellspring Health in the Calgary Community: Charity Events, Workshops & Webinars",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/events/",
       "old_description": "Find AcupuTraditional Chinese Medicine Workshops & Webinars in Calgary by Wellspring Health Acupuncture & TCM Clinic on stress relief, sleep & wellness topics.",
       "old_title": "Wellspring Health in the Calgary Community: Charity Events, Workshops & Webinars",
       "old_url": "https://wellspringhealth.ca/events",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/events",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/events/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/events"
+        }
+      ]
     },
     "https://wellspringhealth.ca/privacy-policy": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/privacy-policy",
+      "left_site": false,
+      "new_description_now": "Wellspring Health's privacy policy outlines our commitment to data security and transparency in personal information collection.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Privacy Policy – Wellspring Health",
+      "new_title_now": "Wellspring Health Privacy Policy: Your Data Security Explained",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/privacy-policy/",
       "old_description": "Wellspring Health&#39;s privacy policy outlines our commitment to data security and transparency in personal information collection.",
       "old_title": "Wellspring Health Privacy Policy: Your Data Security Explained",
       "old_url": "https://wellspringhealth.ca/privacy-policy",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/privacy-policy",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/privacy-policy/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/privacy-policy"
+        }
+      ]
     },
     "https://wellspringhealth.ca/terms-of-service": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/terms-of-service",
+      "left_site": false,
+      "new_description_now": "Read the Terms of Service for Wellspring Health, Calgary's leading TCM clinic, to understand your rights and responsibilities.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "Terms of Service – Wellspring Health",
+      "new_title_now": "Terms of Service",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/terms-of-service/",
       "old_description": "Read the Terms of Service for Wellspring Health, Calgary&#39;s leading TCM clinic, to understand your rights and responsibilities.",
       "old_title": "Terms of Service",
       "old_url": "https://wellspringhealth.ca/terms-of-service",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/terms-of-service",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/terms-of-service/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/terms-of-service"
+        }
+      ]
     },
     "https://wellspringhealth.ca/what-we-treat": {
-      "new_description_now": null,
-      "new_description_tag_count": 0,
+      "final_url": "https://wheat-loris-762449.hostingersite.com/what-we-treat",
+      "left_site": false,
+      "new_description_now": "Acupuncture & TCM for pain relief, women's health, digestive disorders, and more. At Wellspring Health we help you feel better, function better, and stay well.",
+      "new_description_tag_count": 1,
       "new_status": 200,
-      "new_title_now": "What We Treat – Wellspring Health",
+      "new_title_now": "Conditions We Treat with Acupuncture & TCM at Wellspring Health Clinic",
       "new_title_tag_count": 1,
       "new_url": "https://wheat-loris-762449.hostingersite.com/what-we-treat/",
       "old_description": "Acupuncture & TCM for pain relief, women's health, digestive disorders, and more. At Wellspring Health we help you feel better, function better, and stay well.",
       "old_title": "Conditions We Treat with Acupuncture & TCM at Wellspring Health Clinic",
       "old_url": "https://wellspringhealth.ca/what-we-treat",
-      "redirect_chain": null
+      "redirect_chain": [
+        {
+          "location": "https://wheat-loris-762449.hostingersite.com/what-we-treat",
+          "status": 301,
+          "url": "https://wheat-loris-762449.hostingersite.com/what-we-treat/"
+        },
+        {
+          "status": 200,
+          "url": "https://wheat-loris-762449.hostingersite.com/what-we-treat"
+        }
+      ]
     }
   },
   "robots": {
@@ -477,15 +562,15 @@
     "reason": "no common separator+suffix found"
   },
   "url_shape": {
-    "canonical_shape": "trailing slash (/%postname%/)",
+    "canonical_shape": "no trailing slash (/%postname%)",
     "sample": "about",
     "with_slash": {
-      "status": 200,
+      "redirects_to": "https://wheat-loris-762449.hostingersite.com/about",
+      "status": 301,
       "url": "https://wheat-loris-762449.hostingersite.com/about/"
     },
     "without_slash": {
-      "redirects_to": "https://wheat-loris-762449.hostingersite.com/about/",
-      "status": 301,
+      "status": 200,
       "url": "https://wheat-loris-762449.hostingersite.com/about"
     }
   }

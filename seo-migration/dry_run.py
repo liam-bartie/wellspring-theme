@@ -190,14 +190,19 @@ def detect_slash_behaviour(new_base: str, sample_path: str, prober) -> dict[str,
         result[label] = entry
 
     ws, wos = result["with_slash"], result["without_slash"]
-    if ws.get("status") == 200 and wos.get("status") in (301, 302, 307, 308):
+    redirects = (301, 302, 307, 308)
+    if ws.get("status") == 200 and wos.get("status") in redirects:
         result["canonical_shape"] = "trailing slash (/%postname%/)"
-    elif wos.get("status") == 200 and ws.get("status") in (301, 302, 307, 308):
+        result["uses_trailing_slash"] = True
+    elif wos.get("status") == 200 and ws.get("status") in redirects:
         result["canonical_shape"] = "no trailing slash (/%postname%)"
+        result["uses_trailing_slash"] = False
     elif ws.get("status") == 200 and wos.get("status") == 200:
         result["canonical_shape"] = "BOTH serve 200 — duplicate content risk"
+        result["uses_trailing_slash"] = None
     else:
         result["canonical_shape"] = "inconclusive"
+        result["uses_trailing_slash"] = None
     return result
 
 
@@ -365,7 +370,13 @@ def main() -> int:
     print("3. MAPPING + 4. BASELINE — what the new site serves today")
     print("=" * 72)
 
-    slash = "trailing slash" in shape["canonical_shape"]
+    # Read the boolean. Substring-matching the phrase was wrong: "trailing slash"
+    # is a substring of "no trailing slash", so it was always True and the
+    # mapping tested slashed URLs even after the site dropped them. It looked
+    # fine only because same-site redirects are followed.
+    slash = bool(shape.get("uses_trailing_slash"))
+    if shape.get("uses_trailing_slash") is None:
+        print("  ! slash policy inconclusive — targets built without a trailing slash")
 
     def new_url_for(old_url: str) -> str:
         key = norm_key(old_url)
