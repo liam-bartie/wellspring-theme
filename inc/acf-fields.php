@@ -135,7 +135,7 @@ add_action(
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
-						'media_upload'  => 0,
+						'media_upload'  => 1,
 						'default_value' => "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help.",
 					),
 
@@ -225,7 +225,7 @@ add_action(
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
-						'media_upload'  => 0,
+						'media_upload'  => 1,
 						'default_value' => 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.',
 					),
 					array(
@@ -299,7 +299,7 @@ add_action(
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
-						'media_upload'  => 0,
+						'media_upload'  => 1,
 						'default_value' => "Traditional Chinese Medicine (TCM) is a comprehensive healthcare system based on real-world clinical experience. For over 2,000 years, TCM has been used to diagnose, treat and prevent illness, harnessing your body's powers of self-healing.\n\nThe World Health Organization (WHO) recognizes TCM as a formal healthcare system and includes its principles in the International Classification of Diseases (ICD-11). Additionally, the National Institutes of Health (NIH) acknowledges it as a vital complementary and alternative medicine (CAM) modality.\n\nAt Wellspring Health Acupuncture & TCM Clinic, our TCM practice emphasizes acupuncture and herbal medicine as effective therapies to support your journey for a healthy and happy life.",
 					),
 					array(
@@ -325,7 +325,7 @@ add_action(
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
-						'media_upload'  => 0,
+						'media_upload'  => 1,
 						'default_value' => "Acupuncture is a core therapy within Traditional Chinese Medicine that supports the body's natural healing response by restoring balance. Your body has a complex network of energy pathways that can be thrown out of balance by internal or external factors.\n\nAt Wellspring Health, your acupuncturist assesses these patterns and helps restore healthier flow by stimulating specific acupuncture points, often by activating areas that may seem unrelated to where symptoms are felt. After the main imbalance is addressed, Chinese herbal medicine is often recommended to help support and stabilize your progress and cure.\n\nAcupuncture is recognized by the National Institutes of Health (NIH) and the World Health Organization (WHO) as an effective treatment for a variety of health conditions.",
 					),
 
@@ -602,7 +602,7 @@ add_action(
 						'type'          => 'wysiwyg',
 						'tabs'          => 'all',
 						'toolbar'       => 'full',
-						'media_upload'  => 0,
+						'media_upload'  => 1,
 						'default_value' => "Whether you're managing chronic pain, navigating hormonal shifts, recovering from injury, or just struggling to sleep — there's a good chance acupuncture and TCM can help. Below are the areas of focus we see most often. Each links to a dedicated page with conditions, treatment context, and what to expect.",
 					),
 
@@ -713,7 +713,7 @@ add_action(
 								'type'         => 'wysiwyg',
 								'tabs'         => 'all',
 								'toolbar'      => 'full',
-								'media_upload' => 0,
+								'media_upload' => 1,
 							),
 						),
 					),
@@ -1084,7 +1084,7 @@ add_action(
 												'type'         => 'wysiwyg',
 												'tabs'         => 'all',
 												'toolbar'      => 'full',
-												'media_upload' => 0,
+												'media_upload' => 1,
 											),
 										),
 									),
