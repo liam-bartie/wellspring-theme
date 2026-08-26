@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.43.0
+Version: 0.44.1
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -2335,7 +2335,9 @@ figcaption,
 	text-align: center;
 }
 
-.ws-link-arrow--back::after {
+/* Needs both classes to outrank .ws-link-arrow::after, which is defined later
+   in this file — otherwise a back link renders an arrow at both ends. */
+.ws-link-arrow.ws-link-arrow--back::after {
 	content: none;
 }
 
@@ -3253,14 +3255,65 @@ a.ws-reviews-summary:hover {
 	padding-block: clamp(2.5rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem);
 }
 
-.ws-page-body .entry-content {
+.ws-page-body .entry-content,
+.ws-flex-section .entry-content {
 	font-size: var(--ws-text-base);
 	line-height: 1.7;
 }
 
 .ws-page-body .entry-content > h2:first-child,
-.ws-page-body .entry-content > h3:first-child {
+.ws-page-body .entry-content > h3:first-child,
+.ws-flex-section .entry-content > h2:first-child,
+.ws-flex-section .entry-content > h3:first-child {
 	margin-top: 0;
+}
+
+/* ---------------------------------------------------------
+   Page-section bands — the ACF "Add section" Background choice.
+   Each section is emitted as a full-width band so its colour spans
+   the browser, matching the tinted bands on the home page.
+   --------------------------------------------------------- */
+.ws-flex-section {
+	padding-block: clamp(2.5rem, 5vw, 4rem);
+}
+
+.ws-flex-section--none  { background: var(--ws-snow); }
+.ws-flex-section--mist  { background: var(--ws-mist); }
+.ws-flex-section--paper { background: var(--ws-paper); }
+
+/* Consecutive sections sharing a colour should read as one band — drop the
+   doubled padding at the join so there is no dead gap between them. */
+.ws-flex-section--none + .ws-flex-section--none,
+.ws-flex-section--mist + .ws-flex-section--mist,
+.ws-flex-section--paper + .ws-flex-section--paper {
+	padding-top: 0;
+}
+
+/* The band owns the vertical rhythm, so the first and last blocks inside
+   it must not add their own (e.g. .ws-flex-heading's 2.5rem top margin). */
+.ws-flex-section .entry-content > *:first-child,
+.ws-flex-section .entry-content > *:first-child > *:first-child {
+	margin-top: 0;
+}
+
+.ws-flex-section .entry-content > *:last-child {
+	margin-bottom: 0;
+}
+
+/* The reviewed-by strip above and the related-cases section below are both
+   mist too. A Light green band butting onto either needs the same collapse,
+   plus the reviewed-by hairline hidden, or a stray rule runs across what
+   reads as one continuous green area. */
+.ws-reviewed-by + .ws-flex-sections > .ws-flex-section--mist:first-child {
+	padding-top: 0;
+}
+
+.ws-reviewed-by:has(+ .ws-flex-sections > .ws-flex-section--mist:first-child) {
+	border-bottom-color: transparent;
+}
+
+.ws-flex-sections:has(> .ws-flex-section--mist:last-child) + .ws-section--mist {
+	padding-top: 0;
 }
 
 /* Sibling nav at bottom of sub-pages */

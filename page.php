@@ -49,21 +49,29 @@ get_header();
 
 		<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
-		<section class="ws-page-body">
-			<div class="ws-container ws-container--narrow">
-				<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-content' ); ?>>
-					<?php
-					// Page content is built from the ACF "Page sections" builder. If a
-					// page has no sections yet, fall back to any existing content.
-					if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
-						get_template_part( 'template-parts/flexible-sections' );
-					} else {
-						the_content();
-					}
-					?>
-				</article>
+		<?php
+		// Page content is built from the ACF "Page sections" builder. Each section
+		// renders as its own full-width band so it can carry a background colour,
+		// which is why the sections sit outside the narrow container. Pages with
+		// no sections fall back to classic content in the narrow column.
+		if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) :
+			?>
+			<div id="post-<?php the_ID(); ?>" <?php post_class( 'ws-flex-sections' ); ?>>
+				<?php get_template_part( 'template-parts/flexible-sections' ); ?>
 			</div>
-		</section>
+			<?php
+		else :
+			?>
+			<section class="ws-page-body">
+				<div class="ws-container ws-container--narrow">
+					<article id="post-<?php the_ID(); ?>" <?php post_class( 'entry-content' ); ?>>
+						<?php the_content(); ?>
+					</article>
+				</div>
+			</section>
+			<?php
+		endif;
+		?>
 
 		<?php
 		// Related clinic cases — rendered full-width (matching the homepage grid)

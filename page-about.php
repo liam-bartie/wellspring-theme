@@ -55,15 +55,24 @@ while ( have_posts() ) :
 					// Safety fallback: render classic content if the field is empty.
 					the_content();
 				}
-
-				// Any extra sections added via the "Page sections" builder render below.
-				if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
-					get_template_part( 'template-parts/flexible-sections' );
-				}
 				?>
 			</article>
 		</div>
 	</section>
+
+	<?php
+	// Extra sections from the "Page sections" builder render below the main body
+	// as full-width bands, so each can carry its own background colour. The
+	// .ws-flex-sections wrapper lets the CSS collapse the seam when the last
+	// band and the mist reviews section below it share a colour.
+	if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) :
+		?>
+		<div class="ws-flex-sections">
+			<?php get_template_part( 'template-parts/flexible-sections' ); ?>
+		</div>
+		<?php
+	endif;
+	?>
 
 <?php endwhile; ?>
 

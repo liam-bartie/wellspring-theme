@@ -902,6 +902,20 @@ add_action(
 								'display'    => 'block',
 								'sub_fields' => array(
 									array(
+										'key'           => 'field_sec_text_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
+									array(
 										'key'          => 'field_sec_text_body',
 										'name'         => 'body',
 										'label'        => 'Text',
@@ -918,6 +932,20 @@ add_action(
 								'label'      => 'Heading',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_head_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
 									array(
 										'key'   => 'field_sec_head_eyebrow',
 										'name'  => 'eyebrow',
@@ -938,6 +966,20 @@ add_action(
 								'label'      => 'Image + Text',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_it_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
 									array(
 										'key'           => 'field_sec_it_image',
 										'name'          => 'image',
@@ -987,6 +1029,20 @@ add_action(
 								'display'    => 'block',
 								'sub_fields' => array(
 									array(
+										'key'           => 'field_sec_map_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
+									array(
 										'key'           => 'field_sec_map_address',
 										'name'          => 'address',
 										'label'         => 'Address',
@@ -1009,6 +1065,20 @@ add_action(
 								'label'      => 'Text + Map',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_tm_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
 									array(
 										'key'           => 'field_sec_tm_side',
 										'name'          => 'map_side',
@@ -1056,6 +1126,20 @@ add_action(
 								'label'      => 'FAQ',
 								'display'    => 'block',
 								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_faq_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'none',
+										'return_format' => 'value',
+									),
 									array(
 										'key'           => 'field_sec_faq_heading',
 										'name'          => 'heading',
