@@ -202,7 +202,7 @@ add_action(
 						),
 					),
 				),
-				'menu_order'      => 20,
+				'menu_order'      => 30,
 				'position'        => 'normal',
 				'style'           => 'default',
 				'label_placement' => 'top',

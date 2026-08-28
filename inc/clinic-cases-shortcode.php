@@ -245,7 +245,7 @@ add_action(
 						),
 					),
 				),
-				'menu_order'      => 5,
+				'menu_order'      => 20,
 				'position'        => 'normal',
 				'style'           => 'default',
 				'label_placement' => 'top',
