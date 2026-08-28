@@ -190,6 +190,22 @@ add_action(
 				. 'serious or urgent symptom, please see a doctor first.</p>',
 		);
 
+		/*
+		 * Practitioner facts for the structured data, from Amber's brief.
+		 *
+		 * 'person_sameas' is deliberately absent: it holds profile URLs such as
+		 * LinkedIn, and nobody has given us one. A guessed URL in sameAs asserts
+		 * that a stranger's profile is hers.
+		 */
+		$seed['person_name']            = 'Dr. Laura Cowburn';
+		$seed['person_job_title']       = 'Doctor of Traditional Chinese Medicine and Registered Acupuncturist';
+		$seed['person_degree']          = 'Doctor of Traditional Chinese Medicine and Acupuncture';
+		$seed['person_school']          = 'Alberta College of Acupuncture & Traditional Chinese Medicine';
+		$seed['person_school_short']    = 'ACATCM';
+		$seed['person_regulator']       = 'College of Acupuncturists of Alberta';
+		$seed['person_regulator_short'] = 'CAA';
+		$seed['person_licence']         = 'Registered Acupuncturist (Alberta)';
+
 		$written = 0;
 		foreach ( $seed as $name => $value ) {
 			$existing = get_field( $name, 'option' );
