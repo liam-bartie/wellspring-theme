@@ -30,7 +30,7 @@ while ( have_posts() ) :
 			<div class="ws-page-header__overlay" aria-hidden="true"></div>
 		<?php endif; ?>
 		<div class="ws-container ws-container--narrow ws-page-header__content">
-			<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
+			<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
 			<?php
 			$about_sub = ws_field( 'page_subheading', '' );
 			if ( ! $about_sub && has_excerpt() ) {

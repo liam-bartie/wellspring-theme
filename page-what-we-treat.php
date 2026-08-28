@@ -61,7 +61,7 @@ while ( have_posts() ) :
 			<?php if ( $hub_eyebrow ) : ?>
 				<p class="eyebrow"><?php echo esc_html( $hub_eyebrow ); ?></p>
 			<?php endif; ?>
-			<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
+			<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
 			<?php if ( $hub_lede ) : ?>
 				<div class="ws-page-header__lede"><?php echo wp_kses_post( $hub_lede ); ?></div>
 			<?php endif; ?>

@@ -33,7 +33,7 @@ get_header();
 					</p>
 				<?php endif; ?>
 
-				<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
+				<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
 
 				<?php
 				$ws_sub = ws_field( 'page_subheading', '' );

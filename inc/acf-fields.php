@@ -889,8 +889,15 @@ add_action(
 		acf_add_local_field_group(
 			array(
 				'key'                   => 'group_wellspring_page_subheading',
-				'title'                 => 'Page sub-heading',
+				'title'                 => 'Page heading',
 				'fields'                => array(
+					array(
+						'key'          => 'field_page_h1',
+						'name'         => 'page_h1',
+						'label'        => 'Heading on the page (optional)',
+						'instructions' => 'The big heading a visitor sees, if it should differ from the page title. Leave blank and the page title is used.<br><br>Use this rather than renaming the page: the page title is also the label in the Pages list, the parent dropdown, breadcrumbs and the &ldquo;Also explore&rdquo; links, so a long title makes all of those unwieldy. Keep the title short and put the full heading here.',
+						'type'         => 'text',
+					),
 					array(
 						'key'          => 'field_page_subheading',
 						'name'         => 'page_subheading',

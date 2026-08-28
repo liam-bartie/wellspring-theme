@@ -45,7 +45,7 @@ while ( have_posts() ) :
 			<p class="eyebrow ws-page-header__crumb">
 				<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>">Clinic cases</a>
 			</p>
-			<h1 class="ws-page-header__title"><?php the_title(); ?></h1>
+			<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
 			<?php if ( $initial || $context ) : ?>
 				<p class="ws-page-header__lede">
 					<?php echo esc_html( $initial ?: 'Patient' ); ?>

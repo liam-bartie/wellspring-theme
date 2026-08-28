@@ -274,3 +274,33 @@ if ( ! function_exists( 'wellspring_wwt_subpages' ) ) :
 		return $cache;
 	}
 endif;
+
+if ( ! function_exists( 'wellspring_page_h1' ) ) :
+	/**
+	 * The heading to render as this page's H1.
+	 *
+	 * Deliberately separate from the page title. The title is reused as the
+	 * label in the Pages list, the parent dropdown, breadcrumb markup, sibling
+	 * "Also explore" links and search results — so making it long to improve
+	 * one H1 degrades all of those. This lets the title stay short ("About")
+	 * while the visible heading says whatever it needs to.
+	 *
+	 * Falls back to the page title, so a page with nothing entered behaves
+	 * exactly as it did before this existed.
+	 *
+	 * @param int|null $post_id Optional post ID; defaults to the current post.
+	 * @return string Heading text, unescaped.
+	 */
+	function wellspring_page_h1( $post_id = null ) {
+		$post_id = $post_id ? (int) $post_id : get_the_ID();
+
+		if ( function_exists( 'get_field' ) ) {
+			$override = trim( (string) get_field( 'page_h1', $post_id ) );
+			if ( '' !== $override ) {
+				return $override;
+			}
+		}
+
+		return get_the_title( $post_id );
+	}
+endif;
