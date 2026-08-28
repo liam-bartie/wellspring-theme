@@ -2067,7 +2067,6 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 							'instructions'  => 'Used on every clinic case, the Clinic Cases listing, and the focus / symptom / treatment archives.',
 							'placeholder'   => WELLSPRING_BADGE_DEFAULT_CASE,
 						),
-					),
 						array(
 							'key'           => 'field_ws_badge_bottom_case',
 							'name'          => 'badge_bottom_clinic_case',
@@ -2075,8 +2074,9 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 							'type'          => 'textarea',
 							'rows'          => 3,
 							'new_lines'     => '',
-							'instructions'  => 'As above, but for clinic cases and the case archives.',
+							'instructions'  => 'As above, but for clinic cases and the case archives. Leave empty and no badge appears at the bottom of a case.',
 						),
+					),
 					'location' => array(
 						array(
 							array(

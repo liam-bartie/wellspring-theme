@@ -54,6 +54,8 @@ $facet_groups = array(
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
+	<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'cases_top' ) ); ?>
+
 	<section class="ws-section ws-cases-archive">
 		<div class="ws-container">
 
@@ -105,6 +107,8 @@ $facet_groups = array(
 
 		</div>
 	</section>
+
+	<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'cases_bottom' ) ); ?>
 
 	<?php get_template_part( 'template-parts/reviewed-by', null, array( 'position' => 'bottom' ) ); ?>
 

@@ -4,7 +4,7 @@ Theme URI: https://wellspringhealth.ca/
 Author: Wellspring Health
 Author URI: https://wellspringhealth.ca/
 Description: A custom WordPress theme for Wellspring Health, built on the Underscores starter. Lean, accessible, mobile-first.
-Version: 0.58.0
+Version: 0.60.0
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 8.0
@@ -3369,4 +3369,66 @@ a.ws-reviews-summary:hover {
 .ws-sibling-nav__list a:hover {
 	color: var(--ws-spring);
 	border-bottom-color: var(--ws-spring);
+}
+
+/* ---------------------------------------------------------------------------
+   Case-study disclosures
+   Authorship, patient consent and the medical disclaimer. Deliberately quiet:
+   this is content a reader should be able to find and trust, not content that
+   competes with the cases. The legal paragraph is set smaller and lighter than
+   the explanatory copy above it, and separated by a rule rather than a box, so
+   it reads as a footnote instead of a warning.
+   --------------------------------------------------------------------------- */
+
+.ws-disclosure {
+	padding-block: clamp(2rem, 4vw, 3rem);
+}
+
+/* Sits directly under the mist band of the listing header, so no double gap. */
+.ws-disclosure--cases-top {
+	padding-top: clamp(2.5rem, 5vw, 3.5rem);
+	padding-bottom: 0;
+}
+
+.ws-disclosure__body h2 {
+	font-size: var(--ws-text-xl);
+	margin-bottom: var(--ws-space-3);
+}
+
+.ws-disclosure__body h3 {
+	font-size: var(--ws-text-lg);
+	margin-top: var(--ws-space-6);
+	margin-bottom: var(--ws-space-2);
+}
+
+.ws-disclosure__body p {
+	margin-bottom: var(--ws-space-4);
+}
+
+.ws-disclosure__body p:last-child {
+	margin-bottom: 0;
+}
+
+.ws-disclosure__legal {
+	margin-top: var(--ws-space-6);
+	padding-top: var(--ws-space-5);
+	border-top: 1px solid rgba(15, 77, 51, 0.14);
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: rgba(26, 43, 36, 0.72);
+}
+
+.ws-disclosure__legal p {
+	margin-bottom: var(--ws-space-3);
+}
+
+.ws-disclosure__legal p:last-child {
+	margin-bottom: 0;
+}
+
+/* When the body is absent the rule would float with nothing above it. */
+.ws-disclosure__legal:first-child {
+	margin-top: 0;
+	padding-top: 0;
+	border-top: 0;
 }

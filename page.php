@@ -74,18 +74,15 @@ get_header();
 		?>
 
 		<?php
-		// Related clinic cases — rendered full-width (matching the homepage grid)
-		// when the page's ACF "Show related clinic cases" toggle is on.
-		$ws_related = function_exists( 'wellspring_page_related_cases' ) ? wellspring_page_related_cases() : '';
-		if ( $ws_related ) :
-			?>
-			<section class="ws-section ws-section--mist ws-related-cases-section">
-				<div class="ws-container">
-					<?php echo $ws_related; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- pre-escaped markup. ?>
-				</div>
-			</section>
-			<?php
-		endif;
+		/*
+		 * The related-cases grid used to be hardcoded here, always after the
+		 * page sections — which is precisely why nothing could be placed below
+		 * it. It is now a "Clinic cases" section row, so it can sit anywhere in
+		 * the list and content can follow it.
+		 *
+		 * seo-migration/migrate-cases-sections.php moved every page that had
+		 * the old toggle on; revert-cases-sections.php puts it back if needed.
+		 */
 
 		// "Also explore" — sibling pages, kept in the narrow column.
 		$siblings = ( $parent_id )

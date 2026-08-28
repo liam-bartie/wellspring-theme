@@ -55,6 +55,8 @@ while ( have_posts() ) :
 		</div>
 	</section>
 
+	<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'case_bottom' ) ); ?>
+
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<section class="ws-page-body">

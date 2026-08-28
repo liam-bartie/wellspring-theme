@@ -252,6 +252,12 @@ require get_template_directory() . '/inc/home-blocks.php';
 require get_template_directory() . '/inc/reviews.php';
 
 /**
+ * Case-study disclosures: authorship, patient consent and the medical
+ * disclaimer shown on the Clinic Cases listing and individual case pages.
+ */
+require get_template_directory() . '/inc/disclosure.php';
+
+/**
  * Tools screen that migrates the home page's fields into section rows.
  * Admin-only, and it previews before it writes.
  */

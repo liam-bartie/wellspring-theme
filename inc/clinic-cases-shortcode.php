@@ -211,100 +211,29 @@ add_action(
 			return;
 		}
 
+		/*
+		 * Retired panel.
+		 *
+		 * These controls used to render a hardcoded cases grid that always sat
+		 * after the page sections, which made it impossible to put anything
+		 * below it. That grid is now a "Clinic cases" section row instead.
+		 *
+		 * The fields are replaced with a pointer rather than deleted outright:
+		 * the stored ws_cases_* values are still in the database (the migration
+		 * copied rather than moved them), so revert-cases-sections.php can put
+		 * the old behaviour back if it is ever needed. Once you are confident
+		 * this is permanent, delete this whole block.
+		 */
 		acf_add_local_field_group(
 			array(
 				'key'      => 'group_wellspring_related_cases',
 				'title'    => 'Related clinic cases',
 				'fields'   => array(
 					array(
-						'key'           => 'field_ws_show_cases',
-						'name'          => 'ws_show_cases',
-						'label'         => 'Show related clinic cases',
-						'instructions'  => 'Display a grid of matching clinic cases beneath this page’s content.',
-						'type'          => 'true_false',
-						'ui'            => 1,
-						'default_value' => 0,
-					),
-					array(
-						'key'               => 'field_ws_cases_taxonomy',
-						'name'              => 'ws_cases_taxonomy',
-						'label'             => 'Filter by',
-						'instructions'      => 'Which facet to match cases on. Pick the facet first, then choose a value below.',
-						'type'              => 'select',
-						'choices'           => array(
-							'case_focus'    => 'Focus area',
-							'case_symptom'  => 'Symptom',
-							'case_modality' => 'Treatment used',
-						),
-						'default_value'     => 'case_focus',
-						'allow_null'        => 0,
-						'ui'                => 1,
-						'conditional_logic' => wellspring_cases_conditional(),
-					),
-					array(
-						'key'               => 'field_ws_cases_focus',
-						'name'              => 'ws_cases_focus',
-						'label'             => 'Focus area',
-						'instructions'      => 'Which area’s cases to show. “Auto” matches this page’s slug (e.g. a page slugged “pain-relief” shows Pain Relief cases).',
-						'type'              => 'select',
-						'choices'           => array( 'auto' => 'Auto (match this page’s slug)' ),
-						'default_value'     => 'auto',
-						'allow_null'        => 0,
-						'ui'                => 1,
-						'conditional_logic' => wellspring_cases_conditional( 'case_focus' ),
-					),
-					array(
-						'key'               => 'field_ws_cases_symptom',
-						'name'              => 'ws_cases_symptom',
-						'label'             => 'Symptom',
-						'instructions'      => 'Show cases tagged with this symptom. Manage the list under Clinic cases → Symptoms.',
-						'type'              => 'select',
-						'choices'           => array(),
-						'allow_null'        => 1,
-						'ui'                => 1,
-						'conditional_logic' => wellspring_cases_conditional( 'case_symptom' ),
-					),
-					array(
-						'key'               => 'field_ws_cases_modality',
-						'name'              => 'ws_cases_modality',
-						'label'             => 'Treatment used',
-						'instructions'      => 'Show cases that used this treatment. Manage the list under Clinic cases → Treatments used.',
-						'type'              => 'select',
-						'choices'           => array(),
-						'allow_null'        => 1,
-						'ui'                => 1,
-						'conditional_logic' => wellspring_cases_conditional( 'case_modality' ),
-					),
-					array(
-						'key'               => 'field_ws_cases_heading',
-						'name'              => 'ws_cases_heading',
-						'label'             => 'Heading',
-						'instructions'      => 'Optional. Leave blank for a sensible default, or type “none” to hide the heading.',
-						'type'              => 'text',
-						'conditional_logic' => wellspring_cases_conditional(),
-					),
-					array(
-						'key'               => 'field_ws_cases_limit',
-						'name'              => 'ws_cases_limit',
-						'label'             => 'How many to show',
-						'type'              => 'number',
-						'default_value'     => 3,
-						'min'               => 1,
-						'max'               => 12,
-						'conditional_logic' => wellspring_cases_conditional(),
-					),
-					array(
-						'key'               => 'field_ws_cases_orderby',
-						'name'              => 'ws_cases_orderby',
-						'label'             => 'Order',
-						'type'              => 'select',
-						'choices'           => array(
-							'rand'  => 'Random (feels fresh each visit)',
-							'date'  => 'Newest first',
-							'title' => 'A–Z by title',
-						),
-						'default_value'     => 'rand',
-						'conditional_logic' => wellspring_cases_conditional(),
+						'key'     => 'field_ws_cases_retired',
+						'label'   => '',
+						'type'    => 'message',
+						'message' => 'Clinic cases are now a <strong>section</strong>. Use <em>Page content &rsaquo; Add section &rsaquo; Clinic cases</em>, and drag it wherever you want it &mdash; anything you add after it appears below the grid.',
 					),
 				),
 				'location' => array(
