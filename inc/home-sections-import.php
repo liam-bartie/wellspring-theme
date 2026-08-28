@@ -105,6 +105,62 @@ function wellspring_build_home_section_rows() {
 }
 
 /**
+ * Reduce rows to a comparable shape, whichever direction they came from.
+ *
+ * Rows built for writing hold scalars and attachment IDs. Rows read back with
+ * get_field() are hydrated: images become arrays, relationships become
+ * WP_Post objects. Both are flattened here so intent can be compared with
+ * result.
+ *
+ * @param array $rows Flexible-content rows.
+ * @return array layout::field => scalar
+ */
+function wellspring_normalise_section_rows( $rows ) {
+	$flat = array();
+
+	foreach ( (array) $rows as $i => $row ) {
+		if ( ! is_array( $row ) ) {
+			continue;
+		}
+
+		$layout = $row['acf_fc_layout'] ?? '(unknown)';
+
+		foreach ( $row as $key => $value ) {
+			if ( 'acf_fc_layout' === $key ) {
+				continue;
+			}
+
+			if ( is_array( $value ) && isset( $value['ID'] ) ) {
+				$flat[ "{$i}:{$layout}::{$key}" ] = (string) (int) $value['ID'];
+				continue;
+			}
+
+			if ( is_array( $value ) ) {
+				$ids = array();
+				foreach ( $value as $item ) {
+					if ( is_object( $item ) && isset( $item->ID ) ) {
+						$ids[] = (int) $item->ID;
+					} elseif ( is_numeric( $item ) ) {
+						$ids[] = (int) $item;
+					}
+				}
+				$flat[ "{$i}:{$layout}::{$key}" ] = implode( ',', $ids );
+				continue;
+			}
+
+			if ( is_object( $value ) && isset( $value->ID ) ) {
+				$flat[ "{$i}:{$layout}::{$key}" ] = (string) (int) $value->ID;
+				continue;
+			}
+
+			$flat[ "{$i}:{$layout}::{$key}" ] = (string) $value;
+		}
+	}
+
+	return $flat;
+}
+
+/**
  * Register the Tools screen.
  */
 add_action(
@@ -159,17 +215,65 @@ function wellspring_render_home_sections_screen() {
 				. count( $existing )
 				. ' section row(s). Tick the confirmation box to replace them.</p></div>';
 		} else {
-			$ok = update_field( 'page_sections', $rows, $home_id );
+			/*
+			 * The return value of update_field() is not evidence.
+			 *
+			 * It proxies update_post_meta(), which returns false when the
+			 * stored value is unchanged. The parent page_sections meta is only
+			 * the list of layout names, identical on every re-run, so a
+			 * perfectly successful write reports false. Verify by reading the
+			 * rows back and comparing them with what we meant to write.
+			 */
+			update_field( 'page_sections', $rows, $home_id );
 
-			if ( $ok ) {
-				echo '<div class="notice notice-success"><p><strong>Wrote ' . count( $rows )
-					. ' section rows to the home page.</strong> The original fields were not changed. '
-					. 'The page still renders from those fields until the template cutover, so it should look identical right now.</p></div>';
-				$existing = get_field( 'page_sections', $home_id );
-				$existing = is_array( $existing ) ? $existing : array();
-			} else {
-				echo '<div class="notice notice-error"><p>update_field() reported failure. Nothing was changed.</p></div>';
+			if ( function_exists( 'acf_flush_value_cache' ) ) {
+				acf_flush_value_cache( $home_id );
 			}
+			wp_cache_delete( $home_id, 'post_meta' );
+
+			$readback = get_field( 'page_sections', $home_id );
+			$readback = is_array( $readback ) ? $readback : array();
+
+			$want = wellspring_normalise_section_rows( $rows );
+			$got  = wellspring_normalise_section_rows( $readback );
+
+			$mismatch = array();
+			foreach ( $want as $key => $value ) {
+				$actual = $got[ $key ] ?? '(absent)';
+				if ( (string) $actual !== (string) $value ) {
+					$mismatch[ $key ] = array( $value, $actual );
+				}
+			}
+
+			if ( ! $mismatch && count( $readback ) === count( $rows ) ) {
+				echo '<div class="notice notice-success"><p><strong>Wrote ' . count( $rows )
+					. ' section rows, and verified all ' . count( $want )
+					. ' values by reading them back.</strong> The original fields were not changed.</p></div>';
+			} else {
+				echo '<div class="notice notice-error"><p><strong>Verification failed.</strong> '
+					. esc_html( count( $mismatch ) ) . ' of ' . esc_html( count( $want ) )
+					. ' value(s) did not read back as written'
+					. ( count( $readback ) !== count( $rows )
+						? ', and ' . esc_html( count( $readback ) ) . ' row(s) came back instead of ' . esc_html( count( $rows ) )
+						: '' )
+					. '.</p><ul style="list-style:disc;margin-left:2em">';
+				$shown = 0;
+				foreach ( $mismatch as $key => $pair ) {
+					if ( $shown++ >= 15 ) {
+						echo '<li>&hellip; and ' . esc_html( count( $mismatch ) - 15 ) . ' more</li>';
+						break;
+					}
+					printf(
+						'<li><code>%s</code><br>wrote: <code>%s</code><br>read: <code>%s</code></li>',
+						esc_html( $key ),
+						esc_html( mb_substr( (string) $pair[0], 0, 90 ) ),
+						esc_html( mb_substr( (string) $pair[1], 0, 90 ) )
+					);
+				}
+				echo '</ul></div>';
+			}
+
+			$existing = $readback;
 		}
 	}
 
