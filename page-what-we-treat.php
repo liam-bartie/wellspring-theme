@@ -17,10 +17,6 @@ get_header();
 while ( have_posts() ) :
 	the_post();
 
-	$has_thumb    = has_post_thumbnail();
-	$thumb_url    = $has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
-	$header_class = $has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
-
 	$hub_eyebrow   = ws_field( 'hub_eyebrow', 'What we treat' );
 	$hub_lede      = ws_field( 'hub_lede', "TCM addresses the whole person — body, mind, and the patterns that link them. Browse by category, or get in touch if you don't see what you're looking for." );
 	$intro_eyebrow = ws_field( 'intro_eyebrow', '' );
@@ -52,21 +48,16 @@ while ( have_posts() ) :
 
 <main id="primary" class="site-main">
 
-	<section class="<?php echo esc_attr( $header_class ); ?>">
-		<?php if ( $has_thumb ) : ?>
-			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $thumb_url ); ?>');" aria-hidden="true"></div>
-			<div class="ws-page-header__overlay" aria-hidden="true"></div>
-		<?php endif; ?>
-		<div class="ws-container ws-container--narrow ws-page-header__content">
-			<?php if ( $hub_eyebrow ) : ?>
-				<p class="eyebrow"><?php echo esc_html( $hub_eyebrow ); ?></p>
-			<?php endif; ?>
-			<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
-			<?php if ( $hub_lede ) : ?>
-				<div class="ws-page-header__lede"><?php echo wp_kses_post( $hub_lede ); ?></div>
-			<?php endif; ?>
-		</div>
-	</section>
+	<?php
+	get_template_part(
+		'template-parts/page-hero',
+		null,
+		array(
+			'eyebrow' => $hub_eyebrow ? esc_html( $hub_eyebrow ) : '',
+			'lede'    => $hub_lede ? wp_kses_post( $hub_lede ) : '',
+		)
+	);
+	?>
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 

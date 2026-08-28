@@ -32,28 +32,23 @@ while ( have_posts() ) :
 <main id="primary" class="site-main">
 
 	<?php
-	$case_has_thumb = has_post_thumbnail();
-	$case_thumb_url = $case_has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
-	$case_ph_class  = $case_has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
 	?>
-	<section class="<?php echo esc_attr( $case_ph_class ); ?>">
-		<?php if ( $case_has_thumb ) : ?>
-			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $case_thumb_url ); ?>');" aria-hidden="true"></div>
-			<div class="ws-page-header__overlay" aria-hidden="true"></div>
-		<?php endif; ?>
-		<div class="ws-container ws-container--narrow ws-page-header__content">
-			<p class="eyebrow ws-page-header__crumb">
-				<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>">Clinic cases</a>
-			</p>
-			<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
-			<?php if ( $initial || $context ) : ?>
-				<p class="ws-page-header__lede">
-					<?php echo esc_html( $initial ?: 'Patient' ); ?>
-					<?php if ( $context ) : ?>&middot; <?php echo esc_html( $context ); ?><?php endif; ?>
-				</p>
-			<?php endif; ?>
-		</div>
-	</section>
+	<?php
+	get_template_part(
+		'template-parts/page-hero',
+		null,
+		array(
+			'eyebrow' => sprintf(
+				'<a href="%s">%s</a>',
+				esc_url( get_post_type_archive_link( 'clinic_case' ) ),
+				esc_html__( 'Clinic cases', 'wellspring' )
+			),
+			'lede'    => ( $initial || $context )
+				? esc_html( $initial ? $initial : 'Patient' ) . ( $context ? ' &middot; ' . esc_html( $context ) : '' )
+				: '',
+		)
+	);
+	?>
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 

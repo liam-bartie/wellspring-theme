@@ -16,36 +16,9 @@ get_header();
 	while ( have_posts() ) :
 		the_post();
 		$parent_id    = wp_get_post_parent_id( get_the_ID() );
-		$has_thumb    = has_post_thumbnail();
-		$thumb_url    = $has_thumb ? get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' ) : '';
-		$header_class = $has_thumb ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
 		?>
 
-		<section class="<?php echo esc_attr( $header_class ); ?>">
-			<?php if ( $has_thumb ) : ?>
-				<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $thumb_url ); ?>');" aria-hidden="true"></div>
-				<div class="ws-page-header__overlay" aria-hidden="true"></div>
-			<?php endif; ?>
-			<div class="ws-container ws-container--narrow ws-page-header__content">
-				<?php if ( $parent_id ) : ?>
-					<p class="eyebrow ws-page-header__crumb">
-						<a href="<?php echo esc_url( get_permalink( $parent_id ) ); ?>"><?php echo esc_html( get_the_title( $parent_id ) ); ?></a>
-					</p>
-				<?php endif; ?>
-
-				<h1 class="ws-page-header__title"><?php echo esc_html( wellspring_page_h1() ); ?></h1>
-
-				<?php
-				$ws_sub = ws_field( 'page_subheading', '' );
-				if ( ! $ws_sub && has_excerpt() ) {
-					$ws_sub = get_the_excerpt();
-				}
-				if ( $ws_sub ) :
-					?>
-					<p class="ws-page-header__lede"><?php echo esc_html( $ws_sub ); ?></p>
-				<?php endif; ?>
-			</div>
-		</section>
+		<?php get_template_part( 'template-parts/page-hero' ); ?>
 
 		<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
