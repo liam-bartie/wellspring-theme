@@ -1485,6 +1485,89 @@ add_action(
 );
 
 /**
+ * Hide the section "Position" select on every page except the home page.
+ *
+ * The eight position anchors ("After the intro text", "After TCM &
+ * Acupuncture", ...) name the home page's built-in sections. front-page.php is
+ * the only template that calls template-parts/flexible-sections once per gap
+ * between them; page.php and page-about.php call it a single time with no
+ * position argument, so every section simply renders in the order the editor
+ * arranged it and the stored position is never read.
+ *
+ * That made the control worse than useless on inner pages: it offered choices
+ * referring to sections that do not exist there, and changing it did nothing.
+ *
+ * Implemented on acf/prepare_field (admin render only) rather than
+ * acf/load_field, so the stored values on the home page are never touched and
+ * nothing changes on the front end.
+ */
+
+/**
+ * Best-effort "which post is being edited" for an ACF admin request.
+ *
+ * ACF does not pass the post to prepare_field, so this reads ACF's own form
+ * data when available and falls back to the request. Returns 0 when unknown —
+ * callers must treat 0 as "don't change anything" rather than guessing.
+ *
+ * @return int|string Post ID, ACF pseudo-ID (e.g. 'options'), or 0.
+ */
+function wellspring_acf_current_post_id() {
+	if ( function_exists( 'acf_get_form_data' ) ) {
+		$id = acf_get_form_data( 'post_id' );
+		if ( ! empty( $id ) ) {
+			return $id;
+		}
+	}
+
+	// Initial edit-screen load, then classic save, then ACF's AJAX payload.
+	foreach ( array( 'post', 'post_ID', 'post_id' ) as $key ) {
+		if ( isset( $_GET[ $key ] ) && '' !== $_GET[ $key ] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return sanitize_text_field( wp_unslash( $_GET[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		}
+		if ( isset( $_POST[ $key ] ) && '' !== $_POST[ $key ] ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			return sanitize_text_field( wp_unslash( $_POST[ $key ] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		}
+	}
+
+	return 0;
+}
+
+/**
+ * Remove the Position select unless we are editing the static front page.
+ *
+ * @param array $field ACF field array.
+ * @return array|false The field, or false to drop it from the form.
+ */
+function wellspring_hide_section_position( $field ) {
+	if ( ! is_admin() ) {
+		return $field;
+	}
+
+	$home = (int) get_option( 'page_on_front' );
+	if ( ! $home ) {
+		return $field;
+	}
+
+	$current = wellspring_acf_current_post_id();
+
+	// Unknown context: keep the field. Failing "visible" is recoverable;
+	// failing "hidden" would silently strip the control from the home page.
+	if ( empty( $current ) ) {
+		return $field;
+	}
+
+	return ( (int) $current === $home ) ? $field : false;
+}
+
+foreach ( array( 'text', 'head', 'it', 'map', 'tm', 'faq', 'cases' ) as $ws_layout_slug ) {
+	add_filter(
+		'acf/prepare_field/key=field_sec_' . $ws_layout_slug . '_pos',
+		'wellspring_hide_section_position'
+	);
+}
+unset( $ws_layout_slug );
+
+/**
  * Scope the What We Treat "Tile order" relationship picker to this page's own
  * sub-pages, so editors only ever see the condition tiles.
  */
