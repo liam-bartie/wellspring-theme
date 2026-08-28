@@ -47,6 +47,22 @@ $ws_selfcontained = array(
 	'home_reviews',
 );
 
+/*
+ * Layouts that get the band and container but NOT the .entry-content wrapper.
+ *
+ * .entry-content carries prose rules meant for rich text, and two of them
+ * actively break a card grid:
+ *
+ *   .entry-content img { margin-block: var(--ws-space-6); }  -> a dead band
+ *                                    above every card photo
+ *   .entry-content h2  { margin-top: var(--ws-space-12); }   -> a large gap
+ *                                    between the eyebrow and the heading
+ *
+ * The hardcoded related-cases block never had that wrapper, which is why the
+ * section version looked wrong beside it. Card grids bring their own styling.
+ */
+$ws_no_prose = array( 'cases' );
+
 // Fallback for the "View on Google Maps" link when a map section leaves it blank.
 $ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupuncture+%26+TCM+Clinic/data=!4m2!3m1!1s0x0:0x8039f60c08965bb1?sa=X&ved=1t:2428&ictx=111';
 
@@ -350,11 +366,15 @@ while ( have_rows( 'page_sections' ) ) :
 		continue;
 	}
 	?>
-	<section class="ws-flex-section ws-flex-section--<?php echo esc_attr( $ws_bg ); ?>">
+	<section class="ws-flex-section ws-flex-section--<?php echo esc_attr( $ws_bg ); ?> ws-flex-section--<?php echo esc_attr( str_replace( '_', '-', $layout ) ); ?>">
 		<div class="<?php echo esc_attr( $ws_container ); ?>">
-			<div class="entry-content">
+			<?php if ( in_array( $layout, $ws_no_prose, true ) ) : ?>
 				<?php echo $ws_inner; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- escaped as it was built above. ?>
-			</div>
+			<?php else : ?>
+				<div class="entry-content">
+					<?php echo $ws_inner; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- escaped as it was built above. ?>
+				</div>
+			<?php endif; ?>
 		</div>
 	</section>
 	<?php
