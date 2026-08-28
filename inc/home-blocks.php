@@ -30,40 +30,46 @@ function wellspring_home_block_values() {
 		return $cache;
 	}
 
+	// Bound to the front page rather than "the current post": the migration
+	// screen runs in wp-admin where there is no current post, and an unbound
+	// read returns null, so the DEFAULT would be written instead of the saved
+	// value — a silent, content-shaped failure.
+	$home_id = (int) get_option( 'page_on_front' );
+
 	$cache = array(
 		'intro' => array(
-			'eyebrow'     => ws_field( 'intro_eyebrow', '' ),
-			'title'       => ws_field( 'intro_title', '' ),
-			'body'        => ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help." ),
+			'eyebrow'     => ws_field( 'intro_eyebrow', '', $home_id ),
+			'title'       => ws_field( 'intro_title', '', $home_id ),
+			'body'        => ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help.", $home_id ),
 		),
 		'wwt' => array(
-			'eyebrow'     => ws_field( 'wwt_eyebrow', 'What we treat' ),
-			'title'       => ws_field( 'wwt_title', 'A wide range of conditions, drawn from thousands of years of practice.' ),
-			'lede'        => ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.' ),
+			'eyebrow'     => ws_field( 'wwt_eyebrow', 'What we treat', $home_id ),
+			'title'       => ws_field( 'wwt_title', 'A wide range of conditions, drawn from thousands of years of practice.', $home_id ),
+			'lede'        => ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.', $home_id ),
 		),
 		'practitioner' => array(
-			'eyebrow'     => ws_field( 'practitioner_eyebrow', 'Meet your practitioner' ),
-			'name'        => ws_field( 'practitioner_name', 'Dr. Laura Cowburn' ),
-			'credentials' => ws_field( 'practitioner_credentials', 'Doctor of Traditional Chinese Medicine · Registered Acupuncturist (Alberta)' ),
-			'bio'         => ws_field( 'practitioner_bio', 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.' ),
-			'link_label'  => ws_field( 'practitioner_link_label', 'Read her full story' ),
-			'link_url'    => ws_field( 'practitioner_link_url', wellspring_page_url( 'about' ) ),
-			'portrait'    => function_exists( 'get_field' ) ? get_field( 'practitioner_portrait' ) : null,
+			'eyebrow'     => ws_field( 'practitioner_eyebrow', 'Meet your practitioner', $home_id ),
+			'name'        => ws_field( 'practitioner_name', 'Dr. Laura Cowburn', $home_id ),
+			'credentials' => ws_field( 'practitioner_credentials', 'Doctor of Traditional Chinese Medicine · Registered Acupuncturist (Alberta)', $home_id ),
+			'bio'         => ws_field( 'practitioner_bio', 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.', $home_id ),
+			'link_label'  => ws_field( 'practitioner_link_label', 'Read her full story', $home_id ),
+			'link_url'    => ws_field( 'practitioner_link_url', wellspring_page_url( 'about' ), $home_id ),
+			'portrait'    => function_exists( 'get_field' ) ? get_field( 'practitioner_portrait', $home_id ) : null,
 		),
 		'modalities' => array(
-			'eyebrow'     => ws_field( 'modalities_eyebrow', 'Our practice' ),
-			'title'       => ws_field( 'modalities_title', 'Two ancient modalities, applied with modern care.' ),
-			'tcm_title'   => ws_field( 'tcm_title', 'What is Traditional Chinese Medicine (TCM)?' ),
-			'tcm_body'    => ws_field( 'tcm_body', '' ),
-			'tcm_image'   => function_exists( 'get_field' ) ? get_field( 'tcm_image' ) : null,
-			'acu_title'   => ws_field( 'acupuncture_title', 'What is Acupuncture?' ),
-			'acu_body'    => ws_field( 'acupuncture_body', '' ),
-			'acu_image'   => function_exists( 'get_field' ) ? get_field( 'acupuncture_image' ) : null,
+			'eyebrow'     => ws_field( 'modalities_eyebrow', 'Our practice', $home_id ),
+			'title'       => ws_field( 'modalities_title', 'Two ancient modalities, applied with modern care.', $home_id ),
+			'tcm_title'   => ws_field( 'tcm_title', 'What is Traditional Chinese Medicine (TCM)?', $home_id ),
+			'tcm_body'    => ws_field( 'tcm_body', '', $home_id ),
+			'tcm_image'   => function_exists( 'get_field' ) ? get_field( 'tcm_image', $home_id ) : null,
+			'acu_title'   => ws_field( 'acupuncture_title', 'What is Acupuncture?', $home_id ),
+			'acu_body'    => ws_field( 'acupuncture_body', '', $home_id ),
+			'acu_image'   => function_exists( 'get_field' ) ? get_field( 'acupuncture_image', $home_id ) : null,
 		),
 		'cases' => array(
-			'eyebrow'     => ws_field( 'cases_eyebrow', 'Cases from the clinic' ),
-			'title'       => ws_field( 'cases_title', 'Real patients, real outcomes.' ),
-			'lede'        => ws_field( 'cases_lede', '' ),
+			'eyebrow'     => ws_field( 'cases_eyebrow', 'Cases from the clinic', $home_id ),
+			'title'       => ws_field( 'cases_title', 'Real patients, real outcomes.', $home_id ),
+			'lede'        => ws_field( 'cases_lede', '', $home_id ),
 		),
 	);
 
@@ -79,7 +85,8 @@ function wellspring_home_block_values() {
  * @return array WP_Post objects.
  */
 function wellspring_home_featured_case_ids() {
-	$ids = function_exists( 'get_field' ) ? get_field( 'cases_featured' ) : array();
+	$home_id = (int) get_option( 'page_on_front' );
+	$ids     = function_exists( 'get_field' ) ? get_field( 'cases_featured', $home_id ) : array();
 
 	if ( empty( $ids ) || ! is_array( $ids ) ) {
 		return array();
