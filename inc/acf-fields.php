@@ -2049,6 +2049,15 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 							'placeholder'   => WELLSPRING_BADGE_DEFAULT_PAGE,
 						),
 						array(
+							'key'           => 'field_ws_badge_bottom_default',
+							'name'          => 'badge_bottom_default',
+							'label'         => 'Default wording &mdash; bottom of page',
+							'type'          => 'textarea',
+							'rows'          => 3,
+							'new_lines'     => '',
+							'instructions'  => 'Leave empty and no badge appears at the bottom. Fill it in and one appears above the closing call-to-action on every page without its own override.',
+						),
+						array(
 							'key'           => 'field_ws_badge_case',
 							'name'          => 'badge_clinic_case',
 							'label'         => 'Clinic cases wording',
@@ -2059,6 +2068,15 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 							'placeholder'   => WELLSPRING_BADGE_DEFAULT_CASE,
 						),
 					),
+						array(
+							'key'           => 'field_ws_badge_bottom_case',
+							'name'          => 'badge_bottom_clinic_case',
+							'label'         => 'Clinic cases wording &mdash; bottom of page',
+							'type'          => 'textarea',
+							'rows'          => 3,
+							'new_lines'     => '',
+							'instructions'  => 'As above, but for clinic cases and the case archives.',
+						),
 					'location' => array(
 						array(
 							array(
@@ -2090,13 +2108,22 @@ add_action(
 				'title'    => 'Reviewed-by badge',
 				'fields'   => array(
 					array(
-						'key'           => 'field_ws_badge_override',
-						'name'          => 'badge_override',
-						'label'         => 'Override the badge wording',
+						'key'           => 'field_ws_badge_top',
+						'name'          => 'badge_top',
+						'label'         => 'Top of page',
 						'type'          => 'textarea',
 						'rows'          => 3,
 						'new_lines'     => '',
 						'instructions'  => 'Leave empty to use the site-wide wording from Settings &rsaquo; Wellspring. Basic formatting allowed: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a href=""&gt;</code>.',
+					),
+					array(
+						'key'           => 'field_ws_badge_bottom',
+						'name'          => 'badge_bottom',
+						'label'         => 'Bottom of page',
+						'type'          => 'textarea',
+						'rows'          => 3,
+						'new_lines'     => '',
+						'instructions'  => 'Shown above the closing call-to-action. Empty here and empty in Settings means no bottom badge on this page.',
 					),
 					array(
 						'key'           => 'field_ws_badge_hide',
@@ -2135,18 +2162,29 @@ add_action(
 );
 
 /**
- * Resolve the badge text for the current request.
+ * Resolve the badge text for one position on the current request.
  *
+ * Two independent badges: one near the top of the page, one above the closing
+ * call-to-action. Each resolves separately, and an empty result renders nothing
+ * at all rather than an empty band.
+ *
+ * The top badge keeps the theme's built-in wording as its last resort, so it
+ * behaves exactly as before. The bottom badge has no built-in default: it stays
+ * absent until someone writes something, which is why adding this changed
+ * nothing on any existing page.
+ *
+ * @param string $position 'top' or 'bottom'.
  * @return string Unescaped HTML (run through wp_kses at output), or '' to hide.
  */
-function wellspring_badge_text() {
-	$has_acf = function_exists( 'get_field' );
+function wellspring_badge_text( $position = 'top' ) {
+	$position = ( 'bottom' === $position ) ? 'bottom' : 'top';
+	$has_acf  = function_exists( 'get_field' );
 
 	$is_case_context = is_singular( 'clinic_case' )
 		|| is_post_type_archive( 'clinic_case' )
 		|| is_tax( array( 'case_focus', 'case_symptom', 'case_modality' ) );
 
-	// 1 + 2: per-post toggle and override.
+	// 1 + 2: the page's own toggle and override.
 	if ( $has_acf && is_singular() ) {
 		$post_id = get_queried_object_id();
 
@@ -2154,21 +2192,31 @@ function wellspring_badge_text() {
 			return '';
 		}
 
-		$override = trim( (string) get_field( 'badge_override', $post_id ) );
+		$override = trim( (string) get_field( 'badge_' . $position, $post_id ) );
 		if ( '' !== $override ) {
 			return $override;
 		}
 	}
 
-	// 3 + 4: global defaults.
+	// 3 + 4: site-wide defaults.
 	if ( $has_acf ) {
-		$global = trim( (string) get_field( $is_case_context ? 'badge_clinic_case' : 'badge_default', 'option' ) );
+		if ( 'bottom' === $position ) {
+			$key = $is_case_context ? 'badge_bottom_clinic_case' : 'badge_bottom_default';
+		} else {
+			$key = $is_case_context ? 'badge_clinic_case' : 'badge_default';
+		}
+
+		$global = trim( (string) get_field( $key, 'option' ) );
 		if ( '' !== $global ) {
 			return $global;
 		}
 	}
 
-	// 5: theme constants.
+	// 5: theme constants — top only. The bottom badge is opt-in.
+	if ( 'bottom' === $position ) {
+		return '';
+	}
+
 	return $is_case_context ? WELLSPRING_BADGE_DEFAULT_CASE : WELLSPRING_BADGE_DEFAULT_PAGE;
 }
 

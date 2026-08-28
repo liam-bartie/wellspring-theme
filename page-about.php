@@ -78,6 +78,8 @@ while ( have_posts() ) :
 
 	<?php get_template_part( 'template-parts/reviews-slider' ); ?>
 
+	<?php get_template_part( 'template-parts/reviewed-by', null, array( 'position' => 'bottom' ) ); ?>
+
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main><!-- #primary -->

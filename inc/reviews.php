@@ -14,8 +14,8 @@
  * are transcribed by hand, which is also why the API's attribution
  * requirements do not apply to them.
  *
- * No date is stored or displayed, by decision: a relative date makes a
- * testimonial visibly age, and this is a curated set rather than a live feed.
+ * No date is stored or displayed, by decision: a relative date makes a curated
+ * testimonial visibly age, and these are chosen rather than a live feed.
  *
  * @package Wellspring
  */

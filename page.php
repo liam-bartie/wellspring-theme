@@ -135,6 +135,8 @@ get_header();
 	}
 	?>
 
+	<?php get_template_part( 'template-parts/reviewed-by', null, array( 'position' => 'bottom' ) ); ?>
+
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
 
 </main><!-- #main -->
