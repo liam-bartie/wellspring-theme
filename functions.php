@@ -247,6 +247,14 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/home-blocks.php';
 
 /**
+ * Tools screen that migrates the home page's fields into section rows.
+ * Admin-only, and it previews before it writes.
+ */
+if ( is_admin() ) {
+	require get_template_directory() . '/inc/home-sections-import.php';
+}
+
+/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';

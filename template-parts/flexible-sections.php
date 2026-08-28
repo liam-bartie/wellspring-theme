@@ -28,12 +28,6 @@ if ( ! function_exists( 'have_rows' ) || ! have_rows( 'page_sections' ) ) {
  */
 $ws_position = isset( $args['position'] ) ? (string) $args['position'] : '';
 
-// Fallback for the "View on Google Maps" link when a map section leaves it blank.
-$ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupuncture+%26+TCM+Clinic/data=!4m2!3m1!1s0x0:0x8039f60c08965bb1?sa=X&ved=1t:2428&ictx=111';
-
-// Background choices an editor can pick, mapped to their band modifier.
-$ws_backgrounds = array( 'none', 'mist', 'paper' );
-
 /*
  * Layouts that emit their own complete <section>.
  *
@@ -53,9 +47,30 @@ $ws_selfcontained = array(
 	'home_reviews',
 );
 
+// Fallback for the "View on Google Maps" link when a map section leaves it blank.
+$ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupuncture+%26+TCM+Clinic/data=!4m2!3m1!1s0x0:0x8039f60c08965bb1?sa=X&ved=1t:2428&ictx=111';
+
+// Background choices an editor can pick, mapped to their band modifier.
+$ws_backgrounds = array( 'none', 'mist', 'paper' );
+
+
 while ( have_rows( 'page_sections' ) ) :
 	the_row();
 	$layout = get_row_layout();
+
+	/*
+	 * The home blocks never render through a positional pass.
+	 *
+	 * front-page.php currently calls this part once per gap between its
+	 * built-in sections. A migrated home block has no 'position' sub-field, so
+	 * without this guard it would fall through to the 'before_cta' default and
+	 * render a second copy of the whole page. Once front-page.php switches to a
+	 * single ordered pass (no position argument) this guard stops applying and
+	 * the blocks render in their arranged order.
+	 */
+	if ( '' !== $ws_position && in_array( $layout, $ws_selfcontained, true ) ) {
+		continue;
+	}
 
 	if ( '' !== $ws_position ) {
 		$row_position = (string) get_sub_field( 'position' );
