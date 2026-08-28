@@ -129,172 +129,81 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_hero' ) ); ?>
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
-	<?php if ( $intro_eyebrow || $intro_title || $intro_body ) : ?>
-		<section class="ws-section ws-intro-text">
-			<div class="ws-container ws-container--narrow">
-				<?php if ( $intro_eyebrow ) : ?>
-					<p class="eyebrow"><?php echo esc_html( $intro_eyebrow ); ?></p>
-				<?php endif; ?>
-				<?php if ( $intro_title ) : ?>
-					<h2 class="ws-intro-text__title"><?php echo esc_html( $intro_title ); ?></h2>
-				<?php endif; ?>
-				<?php if ( $intro_body ) : ?>
-					<div class="ws-intro-text__body"><?php echo wp_kses_post( $intro_body ); ?></div>
-				<?php endif; ?>
-			</div>
-		</section>
-	<?php endif; ?>
+	<?php
+	get_template_part(
+		'template-parts/home/intro',
+		null,
+		array(
+			'eyebrow' => $intro_eyebrow,
+			'title'   => $intro_title,
+			'body'    => $intro_body,
+		)
+	);
+	?>
 
 	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_intro' ) ); ?>
 
-	<section class="ws-section ws-section--mist">
-		<div class="ws-container">
-			<header class="ws-section-header">
-				<p class="eyebrow"><?php echo esc_html( $wwt_eyebrow ); ?></p>
-				<h2><?php echo esc_html( $wwt_title ); ?></h2>
-				<div class="ws-section-header__lede"><?php echo wp_kses_post( $wwt_lede ); ?></div>
-			</header>
-
-			<div class="ws-cards">
-				<?php
-				if ( ! empty( $wwt_subpages ) ) :
-					foreach ( $wwt_subpages as $sub ) :
-						$thumb_url = get_the_post_thumbnail_url( $sub->ID, 'wellspring-card' );
-						$excerpt   = $sub->post_excerpt;
-						if ( ! $excerpt ) {
-							// Auto-generate excerpt from content if none set.
-							$excerpt = wp_trim_words( wp_strip_all_tags( $sub->post_content ), 22, '…' );
-						}
-						$card_class = $thumb_url ? 'ws-card ws-card--imaged' : 'ws-card';
-						?>
-						<a class="<?php echo esc_attr( $card_class ); ?>" href="<?php echo esc_url( get_permalink( $sub->ID ) ); ?>">
-							<?php if ( $thumb_url ) : ?>
-								<div class="ws-card__image" style="background-image: url('<?php echo esc_url( $thumb_url ); ?>');" aria-hidden="true"></div>
-							<?php endif; ?>
-							<div class="ws-card__body-wrap">
-								<h3 class="ws-card__title"><?php echo esc_html( $sub->post_title ); ?></h3>
-								<p class="ws-card__body"><?php echo esc_html( $excerpt ); ?></p>
-								<span class="ws-card__cta">Learn more</span>
-							</div>
-						</a>
-						<?php
-					endforeach;
-				endif;
-				?>
-			</div>
-		</div>
-	</section>
+	<?php
+	get_template_part(
+		'template-parts/home/what-we-treat',
+		null,
+		array(
+			'eyebrow'  => $wwt_eyebrow,
+			'title'    => $wwt_title,
+			'lede'     => $wwt_lede,
+			'subpages' => $wwt_subpages,
+		)
+	);
+	?>
 
 	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_wwt' ) ); ?>
 
-	<section class="ws-section ws-practitioner">
-		<div class="ws-container">
-			<div class="ws-practitioner__inner">
-				<div class="ws-practitioner__portrait">
-					<?php if ( $pract_portrait && ! empty( $pract_portrait['url'] ) ) : ?>
-						<img src="<?php echo esc_url( $pract_portrait['sizes']['wellspring-portrait'] ?? $pract_portrait['url'] ); ?>" alt="<?php echo esc_attr( $pract_portrait['alt'] ?: $pract_name ); ?>" />
-					<?php else : ?>
-						<span class="ws-practitioner__monogram" aria-hidden="true">LC</span>
-					<?php endif; ?>
-				</div>
-				<div class="ws-practitioner__body">
-					<p class="eyebrow"><?php echo esc_html( $pract_eyebrow ); ?></p>
-					<h2><?php echo esc_html( $pract_name ); ?></h2>
-					<p class="ws-practitioner__credential"><?php echo esc_html( $pract_credentials ); ?></p>
-					<div class="ws-practitioner__bio"><?php echo wp_kses_post( wpautop( $pract_bio ) ); ?></div>
-					<?php if ( $pract_link_label ) : ?>
-						<p><a href="<?php echo esc_url( $pract_link_url ); ?>" class="ws-link-arrow"><?php echo esc_html( $pract_link_label ); ?></a></p>
-					<?php endif; ?>
-				</div>
-			</div>
-		</div>
-	</section>
+	<?php
+	get_template_part(
+		'template-parts/home/practitioner',
+		null,
+		array(
+			'eyebrow'     => $pract_eyebrow,
+			'name'        => $pract_name,
+			'credentials' => $pract_credentials,
+			'bio'         => $pract_bio,
+			'link_label'  => $pract_link_label,
+			'link_url'    => $pract_link_url,
+			'portrait'    => $pract_portrait,
+		)
+	);
+	?>
 
 	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_practitioner' ) ); ?>
 
 	<?php
-	// Modalities section — only render if either block has a heading.
-	if ( $tcm_title || $acu_title ) :
-		?>
-		<section class="ws-section ws-modalities">
-			<div class="ws-container">
-				<?php if ( $mod_eyebrow || $mod_title ) : ?>
-					<header class="ws-section-header ws-section-header--center">
-						<?php if ( $mod_eyebrow ) : ?>
-							<p class="eyebrow"><?php echo esc_html( $mod_eyebrow ); ?></p>
-						<?php endif; ?>
-						<?php if ( $mod_title ) : ?>
-							<h2><?php echo esc_html( $mod_title ); ?></h2>
-						<?php endif; ?>
-					</header>
-				<?php endif; ?>
-
-				<div class="ws-modalities__grid">
-					<?php if ( $tcm_title || $tcm_body || $tcm_image ) : ?>
-						<article class="ws-modality">
-							<?php if ( $tcm_image && ! empty( $tcm_image['url'] ) ) : ?>
-								<div class="ws-modality__image" style="background-image: url('<?php echo esc_url( $tcm_image['sizes']['wellspring-card'] ?? $tcm_image['url'] ); ?>');" role="img" aria-label="<?php echo esc_attr( $tcm_image['alt'] ?: $tcm_title ); ?>"></div>
-							<?php endif; ?>
-							<?php if ( $tcm_title ) : ?>
-								<h3 class="ws-modality__title"><?php echo esc_html( $tcm_title ); ?></h3>
-							<?php endif; ?>
-							<?php if ( $tcm_body ) : ?>
-								<div class="ws-modality__body"><?php echo wp_kses_post( wpautop( $tcm_body ) ); ?></div>
-							<?php endif; ?>
-						</article>
-					<?php endif; ?>
-
-					<?php if ( $acu_title || $acu_body || $acu_image ) : ?>
-						<article class="ws-modality">
-							<?php if ( $acu_image && ! empty( $acu_image['url'] ) ) : ?>
-								<div class="ws-modality__image" style="background-image: url('<?php echo esc_url( $acu_image['sizes']['wellspring-card'] ?? $acu_image['url'] ); ?>');" role="img" aria-label="<?php echo esc_attr( $acu_image['alt'] ?: $acu_title ); ?>"></div>
-							<?php endif; ?>
-							<?php if ( $acu_title ) : ?>
-								<h3 class="ws-modality__title"><?php echo esc_html( $acu_title ); ?></h3>
-							<?php endif; ?>
-							<?php if ( $acu_body ) : ?>
-								<div class="ws-modality__body"><?php echo wp_kses_post( wpautop( $acu_body ) ); ?></div>
-							<?php endif; ?>
-						</article>
-					<?php endif; ?>
-				</div>
-			</div>
-		</section>
-		<?php
-	endif;
+	get_template_part(
+		'template-parts/home/modalities',
+		null,
+		array(
+			'eyebrow'   => $mod_eyebrow,
+			'title'     => $mod_title,
+			'tcm_title' => $tcm_title,
+			'tcm_body'  => $tcm_body,
+			'tcm_image' => $tcm_image,
+			'acu_title' => $acu_title,
+			'acu_body'  => $acu_body,
+			'acu_image' => $acu_image,
+		)
+	);
 
 	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_modalities' ) );
 
-	// Featured cases — only render if there's at least one published case.
-	if ( ! empty( $featured_cases ) ) :
-		?>
-		<section class="ws-section ws-home-cases">
-			<div class="ws-container">
-				<header class="ws-section-header ws-section-header--center">
-					<?php if ( $cases_eyebrow ) : ?>
-						<p class="eyebrow"><?php echo esc_html( $cases_eyebrow ); ?></p>
-					<?php endif; ?>
-					<?php if ( $cases_title ) : ?>
-						<h2><?php echo esc_html( $cases_title ); ?></h2>
-					<?php endif; ?>
-					<?php if ( $cases_lede ) : ?>
-						<div class="ws-section-header__lede"><?php echo wp_kses_post( $cases_lede ); ?></div>
-					<?php endif; ?>
-				</header>
-
-				<div class="ws-cases-grid">
-					<?php foreach ( $featured_cases as $case ) {
-						get_template_part( 'template-parts/case-card', null, array( 'case' => $case ) );
-					} ?>
-				</div>
-
-				<p class="ws-home-cases__view-all">
-					<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>" class="ws-link-arrow">View all cases</a>
-				</p>
-			</div>
-		</section>
-		<?php
-	endif;
+	get_template_part(
+		'template-parts/home/featured-cases',
+		null,
+		array(
+			'eyebrow' => $cases_eyebrow,
+			'title'   => $cases_title,
+			'lede'    => $cases_lede,
+			'cases'   => $featured_cases,
+		)
+	);
 
 	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_cases' ) );
 
