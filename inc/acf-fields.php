@@ -1470,6 +1470,250 @@ add_action(
 									),
 								),
 							),
+							'layout_home_intro' => array(
+								'key'        => 'layout_home_intro',
+								'name'       => 'home_intro',
+								'label'      => 'Home: intro text',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'          => 'field_hs_intro_eyebrow',
+									'name'         => 'eyebrow',
+									'label'        => 'Eyebrow',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_intro_title',
+									'name'         => 'title',
+									'label'        => 'Heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_intro_body',
+									'name'         => 'body',
+									'label'        => 'Body',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								),
+							),
+							'layout_home_wwt' => array(
+								'key'        => 'layout_home_wwt',
+								'name'       => 'home_wwt',
+								'label'      => 'Home: what we treat',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'     => 'field_hs_wwt_note',
+									'label'   => '',
+									'type'    => 'message',
+									'message' => 'The cards in this grid are the sub-pages of &quot;What We Treat&quot;. Edit a sub-page&rsquo;s title, excerpt and featured image to change its card. Only the heading below is edited here.',
+								),
+								array(
+									'key'          => 'field_hs_wwt_eyebrow',
+									'name'         => 'eyebrow',
+									'label'        => 'Eyebrow',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_wwt_title',
+									'name'         => 'title',
+									'label'        => 'Heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_wwt_lede',
+									'name'         => 'lede',
+									'label'        => 'Standfirst',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								),
+							),
+							'layout_home_practitioner' => array(
+								'key'        => 'layout_home_practitioner',
+								'name'       => 'home_practitioner',
+								'label'      => 'Home: practitioner',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'          => 'field_hs_pr_eyebrow',
+									'name'         => 'eyebrow',
+									'label'        => 'Eyebrow',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_pr_name',
+									'name'         => 'name',
+									'label'        => 'Name',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_pr_credentials',
+									'name'         => 'credentials',
+									'label'        => 'Credentials',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_pr_bio',
+									'name'         => 'bio',
+									'label'        => 'Biography',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								array(
+									'key'          => 'field_hs_pr_link_label',
+									'name'         => 'link_label',
+									'label'        => 'Link label',
+									'type'         => 'text',
+								),
+								array(
+									'key'   => 'field_hs_pr_link_url',
+									'name'  => 'link_url',
+									'label' => 'Link URL',
+									'type'  => 'url',
+								),
+								array(
+									'key'           => 'field_hs_pr_portrait',
+									'name'          => 'portrait',
+									'label'         => 'Portrait',
+									'type'          => 'image',
+									'return_format' => 'array',
+									'preview_size'  => 'medium',
+								),
+								),
+							),
+							'layout_home_modalities' => array(
+								'key'        => 'layout_home_modalities',
+								'name'       => 'home_modalities',
+								'label'      => 'Home: modalities',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'          => 'field_hs_mod_eyebrow',
+									'name'         => 'eyebrow',
+									'label'        => 'Eyebrow',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_mod_title',
+									'name'         => 'title',
+									'label'        => 'Heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_mod_tcm_title',
+									'name'         => 'tcm_title',
+									'label'        => 'First card &mdash; heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_mod_tcm_body',
+									'name'         => 'tcm_body',
+									'label'        => 'First card &mdash; body',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								array(
+									'key'           => 'field_hs_mod_tcm_image',
+									'name'          => 'tcm_image',
+									'label'         => 'First card &mdash; image',
+									'type'          => 'image',
+									'return_format' => 'array',
+									'preview_size'  => 'medium',
+								),
+								array(
+									'key'          => 'field_hs_mod_acu_title',
+									'name'         => 'acu_title',
+									'label'        => 'Second card &mdash; heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_mod_acu_body',
+									'name'         => 'acu_body',
+									'label'        => 'Second card &mdash; body',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								array(
+									'key'           => 'field_hs_mod_acu_image',
+									'name'          => 'acu_image',
+									'label'         => 'Second card &mdash; image',
+									'type'          => 'image',
+									'return_format' => 'array',
+									'preview_size'  => 'medium',
+								),
+								),
+							),
+							'layout_home_cases' => array(
+								'key'        => 'layout_home_cases',
+								'name'       => 'home_cases',
+								'label'      => 'Home: featured clinic cases',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'          => 'field_hs_fc_eyebrow',
+									'name'         => 'eyebrow',
+									'label'        => 'Eyebrow',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_fc_title',
+									'name'         => 'title',
+									'label'        => 'Heading',
+									'type'         => 'text',
+								),
+								array(
+									'key'          => 'field_hs_fc_lede',
+									'name'         => 'lede',
+									'label'        => 'Standfirst',
+									'type'         => 'wysiwyg',
+									'tabs'         => 'all',
+									'toolbar'      => 'full',
+									'media_upload' => 1,
+									'delay'        => 1,
+								),
+								array(
+									'key'           => 'field_hs_fc_cases',
+									'name'          => 'cases',
+									'label'         => 'Cases to feature',
+									'instructions'  => 'Leave empty to hide the section.',
+									'type'          => 'relationship',
+									'post_type'     => array( 'clinic_case' ),
+									'filters'       => array( 'search' ),
+									'return_format' => 'object',
+								),
+								),
+							),
+							'layout_home_reviews' => array(
+								'key'        => 'layout_home_reviews',
+								'name'       => 'home_reviews',
+								'label'      => 'Home: reviews',
+								'display'    => 'block',
+								'sub_fields' => array(
+								array(
+									'key'     => 'field_hs_rev_note',
+									'label'   => '',
+									'type'    => 'message',
+									'message' => 'The patient reviews are held in the theme and are not editable here yet. This section controls only where they appear on the page.',
+								),
+								),
+							),
 						),
 					),
 				),
@@ -1483,6 +1727,52 @@ add_action(
 		);
 	}
 );
+
+/**
+ * Offer the "Home:" section types only when editing the home page.
+ *
+ * The six home block layouts (intro, what we treat, practitioner, modalities,
+ * featured cases, reviews) render markup that belongs to the front page and
+ * would make no sense on an inner page. They live in the shared page_sections
+ * field because there is only one such field in the theme, so they are filtered
+ * out at render time instead.
+ *
+ * On acf/prepare_field, not acf/load_field: prepare_field runs only when the
+ * admin form is built, so saved rows on the front end always find their layout
+ * definition. Filtering on load_field would strip the definitions from the
+ * front end too and stop the rows rendering at all.
+ */
+function wellspring_scope_home_layouts( $field ) {
+	if ( ! is_admin() || empty( $field['layouts'] ) || ! is_array( $field['layouts'] ) ) {
+		return $field;
+	}
+
+	$home = (int) get_option( 'page_on_front' );
+	if ( ! $home ) {
+		return $field;
+	}
+
+	$current = wellspring_acf_current_post_id();
+
+	// Unknown context: leave every layout on offer. An extra choice is a
+	// nuisance; a missing one looks like the feature is broken.
+	if ( empty( $current ) ) {
+		return $field;
+	}
+
+	if ( (int) $current === $home ) {
+		return $field;
+	}
+
+	foreach ( array_keys( $field['layouts'] ) as $key ) {
+		if ( 0 === strpos( $key, 'layout_home_' ) ) {
+			unset( $field['layouts'][ $key ] );
+		}
+	}
+
+	return $field;
+}
+add_filter( 'acf/prepare_field/key=field_page_sections', 'wellspring_scope_home_layouts' );
 
 /**
  * Hide the section "Position" select on every page except the home page.

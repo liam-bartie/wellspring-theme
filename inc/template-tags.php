@@ -232,3 +232,45 @@ if ( ! function_exists( 'wellspring_page_url' ) ) :
 		return home_url( user_trailingslashit( $path ) );
 	}
 endif;
+
+if ( ! function_exists( 'wellspring_wwt_subpages' ) ) :
+	/**
+	 * The "What We Treat" sub-pages, in the order the home page shows them.
+	 *
+	 * Extracted from front-page.php so the home block can be rendered either
+	 * from the page's top-level fields or from a "Page sections" row and get
+	 * the identical list either way.
+	 *
+	 * Order: the manual "Tile order" relationship if an editor has set one,
+	 * otherwise every sub-page in menu order.
+	 *
+	 * @return array WP_Post objects.
+	 */
+	function wellspring_wwt_subpages() {
+		static $cache = null;
+		if ( null !== $cache ) {
+			return $cache;
+		}
+
+		$ordered = function_exists( 'ws_field' ) ? ws_field( 'home_wwt_order', array() ) : array();
+
+		if ( ! empty( $ordered ) && is_array( $ordered ) ) {
+			$cache = array_filter( array_map( 'get_post', $ordered ) );
+			return $cache;
+		}
+
+		$wwt_page = get_page_by_path( 'what-we-treat' );
+
+		$cache = $wwt_page ? get_children(
+			array(
+				'post_parent' => $wwt_page->ID,
+				'post_type'   => 'page',
+				'orderby'     => 'menu_order',
+				'order'       => 'ASC',
+				'numberposts' => -1,
+			)
+		) : array();
+
+		return $cache;
+	}
+endif;

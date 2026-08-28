@@ -34,6 +34,25 @@ $ws_maps_default = 'https://www.google.com/maps/place/Wellspring+Health+Acupunct
 // Background choices an editor can pick, mapped to their band modifier.
 $ws_backgrounds = array( 'none', 'mist', 'paper' );
 
+/*
+ * Layouts that emit their own complete <section>.
+ *
+ * The home blocks are rendered by template-parts/home/*.php — the very same
+ * files front-page.php uses — so their markup already carries its own band,
+ * container and classes. Wrapping them again would nest a section inside a
+ * section and change the rendered HTML, which is exactly what the migration
+ * must not do. These rows are echoed straight out and never get a background
+ * modifier, because the block's own class already sets its colour.
+ */
+$ws_selfcontained = array(
+	'home_intro',
+	'home_wwt',
+	'home_practitioner',
+	'home_modalities',
+	'home_cases',
+	'home_reviews',
+);
+
 while ( have_rows( 'page_sections' ) ) :
 	the_row();
 	$layout = get_row_layout();
@@ -227,10 +246,90 @@ while ( have_rows( 'page_sections' ) ) :
 			<?php
 			break;
 
+		case 'home_intro':
+			get_template_part(
+				'template-parts/home/intro',
+				null,
+				array(
+					'eyebrow' => get_sub_field( 'eyebrow' ),
+					'title'   => get_sub_field( 'title' ),
+					'body'    => get_sub_field( 'body' ),
+				)
+			);
+			break;
+
+		case 'home_wwt':
+			get_template_part(
+				'template-parts/home/what-we-treat',
+				null,
+				array(
+					'eyebrow'  => get_sub_field( 'eyebrow' ),
+					'title'    => get_sub_field( 'title' ),
+					'lede'     => get_sub_field( 'lede' ),
+					'subpages' => wellspring_wwt_subpages(),
+				)
+			);
+			break;
+
+		case 'home_practitioner':
+			get_template_part(
+				'template-parts/home/practitioner',
+				null,
+				array(
+					'eyebrow'     => get_sub_field( 'eyebrow' ),
+					'name'        => get_sub_field( 'name' ),
+					'credentials' => get_sub_field( 'credentials' ),
+					'bio'         => get_sub_field( 'bio' ),
+					'link_label'  => get_sub_field( 'link_label' ),
+					'link_url'    => get_sub_field( 'link_url' ),
+					'portrait'    => get_sub_field( 'portrait' ),
+				)
+			);
+			break;
+
+		case 'home_modalities':
+			get_template_part(
+				'template-parts/home/modalities',
+				null,
+				array(
+					'eyebrow'   => get_sub_field( 'eyebrow' ),
+					'title'     => get_sub_field( 'title' ),
+					'tcm_title' => get_sub_field( 'tcm_title' ),
+					'tcm_body'  => get_sub_field( 'tcm_body' ),
+					'tcm_image' => get_sub_field( 'tcm_image' ),
+					'acu_title' => get_sub_field( 'acu_title' ),
+					'acu_body'  => get_sub_field( 'acu_body' ),
+					'acu_image' => get_sub_field( 'acu_image' ),
+				)
+			);
+			break;
+
+		case 'home_cases':
+			get_template_part(
+				'template-parts/home/featured-cases',
+				null,
+				array(
+					'eyebrow' => get_sub_field( 'eyebrow' ),
+					'title'   => get_sub_field( 'title' ),
+					'lede'    => get_sub_field( 'lede' ),
+					'cases'   => (array) get_sub_field( 'cases' ),
+				)
+			);
+			break;
+
+		case 'home_reviews':
+			get_template_part( 'template-parts/reviews-slider' );
+			break;
+
 	endswitch;
 	$ws_inner = trim( (string) ob_get_clean() );
 
 	if ( '' === $ws_inner ) {
+		continue;
+	}
+
+	if ( in_array( $layout, $ws_selfcontained, true ) ) {
+		echo $ws_inner; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- escaped as it was built above.
 		continue;
 	}
 	?>
