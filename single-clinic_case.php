@@ -55,8 +55,6 @@ while ( have_posts() ) :
 		</div>
 	</section>
 
-	<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'case_bottom' ) ); ?>
-
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<section class="ws-page-body">
@@ -131,6 +129,8 @@ while ( have_posts() ) :
 					endif;
 				endif;
 				?>
+
+				<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'case_bottom', 'bare' => true ) ); ?>
 
 				<p class="ws-case-detail__back">
 					<a href="<?php echo esc_url( get_post_type_archive_link( 'clinic_case' ) ); ?>" class="ws-link-arrow ws-link-arrow--back">Back to all cases</a>
