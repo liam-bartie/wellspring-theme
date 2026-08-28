@@ -1703,7 +1703,7 @@ add_action(
 							'layout_home_reviews' => array(
 								'key'        => 'layout_home_reviews',
 								'name'       => 'home_reviews',
-								'label'      => 'Home: reviews',
+								'label'      => 'Patient reviews',
 								'display'    => 'block',
 								'sub_fields' => array(
 								array(
@@ -1765,6 +1765,16 @@ function wellspring_scope_home_layouts( $field ) {
 	}
 
 	foreach ( array_keys( $field['layouts'] ) as $key ) {
+		/*
+		 * Patient reviews is the exception: it carries no home-specific markup
+		 * and its content now lives in a site-wide list, so it is useful on any
+		 * page. Its key keeps the 'layout_home_' prefix only because the stored
+		 * rows reference it — renaming would orphan the row already on the home
+		 * page.
+		 */
+		if ( 'layout_home_reviews' === $key ) {
+			continue;
+		}
 		if ( 0 === strpos( $key, 'layout_home_' ) ) {
 			unset( $field['layouts'][ $key ] );
 		}

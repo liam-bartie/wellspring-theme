@@ -247,6 +247,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/home-blocks.php';
 
 /**
+ * Patient reviews: the editable list, its seed, and the fallback.
+ */
+require get_template_directory() . '/inc/reviews.php';
+
+/**
  * Tools screen that migrates the home page's fields into section rows.
  * Admin-only, and it previews before it writes.
  */
