@@ -695,6 +695,35 @@ function wellspring_seo_schema( $seo, $title ) {
 	$graph = array();
 
 	if ( is_front_page() ) {
+		/*
+		 * Organization, defined once here.
+		 *
+		 * The Person node's worksFor points at this @id, so without it that
+		 * reference dangles — asserting an entity nothing on the site ever
+		 * describes. Deliberately a plain Organization rather than
+		 * LocalBusiness / MedicalBusiness: those want a verified address, phone,
+		 * hours and coordinates, and wrong values there are worse than none.
+		 */
+		$organization = array(
+			'@type' => 'Organization',
+			'@id'   => home_url( '/#organization' ),
+			'name'  => get_bloginfo( 'name' ),
+			'url'   => home_url( '/' ),
+		);
+
+		$logo_id = (int) get_theme_mod( 'custom_logo' );
+		if ( $logo_id ) {
+			$logo_url = wp_get_attachment_image_url( $logo_id, 'full' );
+			if ( $logo_url ) {
+				$organization['logo'] = array(
+					'@type' => 'ImageObject',
+					'url'   => $logo_url,
+				);
+			}
+		}
+
+		$graph[] = $organization;
+
 		$graph[] = array(
 			'@type'       => 'WebSite',
 			'@id'         => home_url( '/#website' ),
@@ -702,7 +731,20 @@ function wellspring_seo_schema( $seo, $title ) {
 			'name'        => get_bloginfo( 'name' ),
 			'description' => $seo['description'] ? $seo['description'] : get_bloginfo( 'description' ),
 			'inLanguage'  => get_bloginfo( 'language' ),
+			'publisher'   => array( '@id' => home_url( '/#organization' ) ),
 		);
+
+		/*
+		 * The practitioner is described on the home page too. She is the
+		 * clinic's named practitioner and is featured on it, so this is the
+		 * page a crawler is most likely to reach first — the best place to
+		 * establish who she is. She is NOT emitted on every page: a privacy
+		 * policy has no business asserting a person's credentials.
+		 */
+		$home_person = wellspring_practitioner_person();
+		if ( $home_person ) {
+			$graph[] = $home_person;
+		}
 	} elseif ( is_singular() ) {
 		$post  = get_post();
 		$crumb = array(
