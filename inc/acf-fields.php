@@ -1321,6 +1321,155 @@ add_action(
 									),
 								),
 							),
+							/*
+							 * Clinic cases as a section, so the block can sit anywhere
+							 * among the other sections instead of being pinned after
+							 * them by the template. This is what lets an editor put
+							 * copy BELOW the cases. The page-level "Related clinic
+							 * cases" toggle still works and still renders in its old
+							 * fixed position — use one or the other on a given page.
+							 */
+							'layout_cases'     => array(
+								'key'        => 'layout_cases',
+								'name'       => 'cases',
+								'label'      => 'Clinic cases',
+								'display'    => 'block',
+								'sub_fields' => array(
+									array(
+										'key'           => 'field_sec_cases_pos',
+										'name'          => 'position',
+										'label'         => 'Position on the home page',
+										'instructions'  => 'Where this section sits among the home page’s built-in sections. Ignored on every other page, where sections simply run in the order you arrange them here.',
+										'type'          => 'select',
+										'choices'       => array(
+											'after_hero'         => 'After the hero',
+											'after_intro'        => 'After the intro text',
+											'after_wwt'          => 'After “What we treat”',
+											'after_practitioner' => 'After the practitioner',
+											'after_modalities'   => 'After TCM & Acupuncture',
+											'after_cases'        => 'After the clinic cases',
+											'after_reviews'      => 'After the reviews',
+											'before_cta'         => 'Just before the closing call-to-action',
+										),
+										'default_value' => 'before_cta',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
+									array(
+										'key'           => 'field_sec_cases_bg',
+										'name'          => 'background',
+										'label'         => 'Background',
+										'instructions'  => 'Tints the full page width behind this section.',
+										'type'          => 'button_group',
+										'choices'       => array(
+											'none'  => 'No background',
+											'mist'  => 'Light green',
+											'paper' => 'Beige',
+										),
+										'default_value' => 'mist',
+										'return_format' => 'value',
+									),
+									array(
+										'key'          => 'field_sec_cases_heading',
+										'name'         => 'heading',
+										'label'        => 'Heading (optional)',
+										'instructions' => 'Leave blank for a sensible default, or type “none” to hide the heading.',
+										'type'         => 'text',
+									),
+									array(
+										'key'           => 'field_sec_cases_taxonomy',
+										'name'          => 'taxonomy',
+										'label'         => 'Filter by',
+										'instructions'  => 'Which facet to match cases on. Pick the facet first, then choose a value below.',
+										'type'          => 'select',
+										'choices'       => array(
+											'case_focus'    => 'Focus area',
+											'case_symptom'  => 'Symptom',
+											'case_modality' => 'Treatment used',
+										),
+										'default_value' => 'case_focus',
+										'allow_null'    => 0,
+										'ui'            => 1,
+									),
+									array(
+										'key'               => 'field_sec_cases_focus',
+										'name'              => 'focus',
+										'label'             => 'Focus area',
+										'instructions'      => '“Auto” matches this page’s slug — e.g. a page slugged “pain-relief” shows Pain Relief cases.',
+										'type'              => 'select',
+										'choices'           => array( 'auto' => 'Auto (match this page’s slug)' ),
+										'default_value'     => 'auto',
+										'allow_null'        => 0,
+										'ui'                => 1,
+										'conditional_logic' => array(
+											array(
+												array(
+													'field'    => 'field_sec_cases_taxonomy',
+													'operator' => '==',
+													'value'    => 'case_focus',
+												),
+											),
+										),
+									),
+									array(
+										'key'               => 'field_sec_cases_symptom',
+										'name'              => 'symptom',
+										'label'             => 'Symptom',
+										'type'              => 'select',
+										'choices'           => array(),
+										'allow_null'        => 1,
+										'ui'                => 1,
+										'conditional_logic' => array(
+											array(
+												array(
+													'field'    => 'field_sec_cases_taxonomy',
+													'operator' => '==',
+													'value'    => 'case_symptom',
+												),
+											),
+										),
+									),
+									array(
+										'key'               => 'field_sec_cases_modality',
+										'name'              => 'modality',
+										'label'             => 'Treatment used',
+										'type'              => 'select',
+										'choices'           => array(),
+										'allow_null'        => 1,
+										'ui'                => 1,
+										'conditional_logic' => array(
+											array(
+												array(
+													'field'    => 'field_sec_cases_taxonomy',
+													'operator' => '==',
+													'value'    => 'case_modality',
+												),
+											),
+										),
+									),
+									array(
+										'key'           => 'field_sec_cases_limit',
+										'name'          => 'limit',
+										'label'         => 'How many to show',
+										'type'          => 'number',
+										'default_value' => 3,
+										'min'           => 1,
+										'max'           => 12,
+									),
+									array(
+										'key'           => 'field_sec_cases_orderby',
+										'name'          => 'orderby',
+										'label'         => 'Order',
+										'type'          => 'select',
+										'choices'       => array(
+											'rand'  => 'Random (feels fresh each visit)',
+											'date'  => 'Newest first',
+											'title' => 'A–Z by title',
+										),
+										'default_value' => 'rand',
+									),
+								),
+							),
 						),
 					),
 				),

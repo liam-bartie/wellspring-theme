@@ -377,6 +377,36 @@ add_filter(
 	}
 );
 
+/*
+ * Same three pickers again, for the "Clinic cases" section layout in the page
+ * builder. Separate field keys because ACF keys must be unique, but the same
+ * loader, so the choices can never drift between the two places.
+ */
+add_filter(
+	'acf/load_field/key=field_sec_cases_focus',
+	function ( $field ) {
+		return wellspring_load_case_term_choices(
+			$field,
+			'case_focus',
+			array( 'auto' => 'Auto (match this page’s slug)' )
+		);
+	}
+);
+
+add_filter(
+	'acf/load_field/key=field_sec_cases_symptom',
+	function ( $field ) {
+		return wellspring_load_case_term_choices( $field, 'case_symptom' );
+	}
+);
+
+add_filter(
+	'acf/load_field/key=field_sec_cases_modality',
+	function ( $field ) {
+		return wellspring_load_case_term_choices( $field, 'case_modality' );
+	}
+);
+
 /**
  * Return the related-cases section for the current page when the ACF toggle is
  * on. Rendered by page.php in a full-width container so the grid matches the

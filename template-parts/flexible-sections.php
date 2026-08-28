@@ -53,6 +53,12 @@ while ( have_rows( 'page_sections' ) ) :
 		$ws_bg = 'none';
 	}
 
+	/*
+	 * A card grid needs the full container. Everything else is running copy and
+	 * stays in the narrow measure, which is what keeps it readable.
+	 */
+	$ws_container = ( 'cases' === $layout ) ? 'ws-container' : 'ws-container ws-container--narrow';
+
 	// Buffer the layout first. A row that renders nothing (a Map with no
 	// address, an empty Text block) must not leave a coloured band behind.
 	ob_start();
@@ -152,6 +158,48 @@ while ( have_rows( 'page_sections' ) ) :
 			<?php
 			break;
 
+		case 'cases':
+			if ( ! function_exists( 'wellspring_render_related_cases' ) ) {
+				break;
+			}
+			$c_tax = function_exists( 'wellspring_normalize_case_taxonomy' )
+				? wellspring_normalize_case_taxonomy( (string) get_sub_field( 'taxonomy' ) )
+				: 'case_focus';
+
+			switch ( $c_tax ) {
+				case 'case_symptom':
+					$c_term = (string) get_sub_field( 'symptom' );
+					break;
+				case 'case_modality':
+					$c_term = (string) get_sub_field( 'modality' );
+					break;
+				default:
+					// Focus areas support "auto", meaning this page's own slug.
+					$c_term = (string) get_sub_field( 'focus' );
+					if ( '' === $c_term || 'auto' === $c_term ) {
+						$c_term = (string) get_post_field( 'post_name', get_the_ID() );
+					}
+					break;
+			}
+
+			if ( '' === $c_term ) {
+				break;
+			}
+
+			$c_limit   = (int) get_sub_field( 'limit' );
+			$c_orderby = (string) get_sub_field( 'orderby' );
+
+			// Returns '' when nothing matches, so the band self-suppresses.
+			echo wellspring_render_related_cases( // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- pre-escaped markup.
+				$c_term,
+				$c_limit ? $c_limit : 3,
+				(string) get_sub_field( 'heading' ),
+				$c_orderby ? $c_orderby : 'rand',
+				true,
+				$c_tax
+			);
+			break;
+
 		case 'faq':
 			$faq_heading = get_sub_field( 'heading' );
 			$faq_items   = (array) get_sub_field( 'items' );
@@ -187,7 +235,7 @@ while ( have_rows( 'page_sections' ) ) :
 	}
 	?>
 	<section class="ws-flex-section ws-flex-section--<?php echo esc_attr( $ws_bg ); ?>">
-		<div class="ws-container ws-container--narrow">
+		<div class="<?php echo esc_attr( $ws_container ); ?>">
 			<div class="entry-content">
 				<?php echo $ws_inner; // phpcs:ignore WordPress.Security.EscapingOutput.OutputNotEscaped -- escaped as it was built above. ?>
 			</div>
