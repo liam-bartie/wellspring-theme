@@ -22,27 +22,9 @@ $hero_btn2_label   = ws_field( 'hero_secondary_button_label', 'See what we treat
 $hero_btn2_url     = ws_field( 'hero_secondary_button_url', wellspring_page_url( 'what-we-treat' ) );
 $hero_bg           = function_exists( 'get_field' ) ? get_field( 'hero_background_image' ) : null;
 
-$cases_featured_ids = function_exists( 'get_field' ) ? get_field( 'cases_featured' ) : array();
-
-if ( ! empty( $cases_featured_ids ) && is_array( $cases_featured_ids ) ) {
-	$featured_cases = get_posts(
-		array(
-			'post_type'      => 'clinic_case',
-			'post__in'       => $cases_featured_ids,
-			'orderby'        => 'post__in',
-			'posts_per_page' => 3,
-		)
-	);
-} else {
-	$featured_cases = get_posts(
-		array(
-			'post_type'      => 'clinic_case',
-			'posts_per_page' => 3,
-			'orderby'        => 'date',
-			'order'          => 'DESC',
-		)
-	);
-}
+// Resolved (with its long-standing fallback) in inc/home-blocks.php so the
+// section layout produces the identical list.
+$featured_cases = wellspring_home_featured_cases();
 
 
 $cta_title         = ws_field( 'cta_title', 'Ready when you are.' );

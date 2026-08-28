@@ -107,3 +107,51 @@ function wellspring_home_featured_case_ids() {
 		)
 	);
 }
+
+/**
+ * The clinic cases to feature, resolved to WP_Post objects.
+ *
+ * Carries the fallback front-page.php has always had: when no cases are
+ * explicitly chosen, show the three most recent. That fallback is why the home
+ * page displayed three cards while 'cases_featured' was empty — and why a
+ * migration that recorded "no cases chosen" produced an empty section. Both
+ * the template and the section layout now resolve through here.
+ *
+ * @param array|null $chosen Explicitly chosen IDs/objects, or null to read the
+ *                           home page's own field.
+ * @return array WP_Post objects, at most three.
+ */
+function wellspring_home_featured_cases( $chosen = null ) {
+	if ( null === $chosen ) {
+		$chosen = wellspring_home_featured_case_ids();
+	}
+
+	$ids = array();
+	foreach ( (array) $chosen as $item ) {
+		if ( is_object( $item ) && isset( $item->ID ) ) {
+			$ids[] = (int) $item->ID;
+		} elseif ( is_numeric( $item ) ) {
+			$ids[] = (int) $item;
+		}
+	}
+
+	if ( $ids ) {
+		return get_posts(
+			array(
+				'post_type'      => 'clinic_case',
+				'post__in'       => $ids,
+				'orderby'        => 'post__in',
+				'posts_per_page' => 3,
+			)
+		);
+	}
+
+	return get_posts(
+		array(
+			'post_type'      => 'clinic_case',
+			'posts_per_page' => 3,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+		)
+	);
+}

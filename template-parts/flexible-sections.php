@@ -327,7 +327,9 @@ while ( have_rows( 'page_sections' ) ) :
 					'eyebrow' => get_sub_field( 'eyebrow' ),
 					'title'   => get_sub_field( 'title' ),
 					'lede'    => get_sub_field( 'lede' ),
-					'cases'   => (array) get_sub_field( 'cases' ),
+					// Falls back to the three most recent when none are chosen,
+					// matching what front-page.php has always done.
+					'cases'   => wellspring_home_featured_cases( get_sub_field( 'cases' ) ),
 				)
 			);
 			break;
