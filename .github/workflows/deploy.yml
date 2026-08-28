@@ -30,6 +30,7 @@ jobs:
             seo-migration/*.py
             seo-migration/test_*.php
             seo-migration/dry_run_report.json
+            seo-migration/case-images/**
             .gitignore
             README.md
             .DS_Store

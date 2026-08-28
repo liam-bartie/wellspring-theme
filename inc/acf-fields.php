@@ -1578,6 +1578,218 @@ add_action(
 );
 
 /**
+ * "Reviewed by" badge — global defaults (Settings screen) plus a per-post
+ * override.
+ *
+ * The badge sits above the CTA on nine templates, several of which (the
+ * clinic-cases archive, the three case taxonomies) have no editor screen at
+ * all — so a global default is the only way to reach them. Clinic cases get
+ * their own default because Dr. Cowburn *wrote* those cases rather than
+ * reviewing them, and "reviewed by" understates authorship on exactly the
+ * content where authorship matters most.
+ *
+ * Resolution order, most specific first:
+ *   1. per-post "hide" toggle      -> render nothing
+ *   2. per-post override text      -> use it
+ *   3. global clinic-case default  -> case contexts only
+ *   4. global page default
+ *   5. hardcoded constant below    -> ACF absent or field never saved
+ */
+
+define( 'WELLSPRING_BADGE_DEFAULT_PAGE', 'This page was reviewed by <strong>Dr.&nbsp;Laura Cowburn</strong>, Doctor of TCM and Registered Acupuncturist in Alberta.' );
+define( 'WELLSPRING_BADGE_DEFAULT_CASE', 'This case was written by <strong>Dr.&nbsp;Laura Cowburn</strong>, Doctor of TCM and Registered Acupuncturist in Alberta.' );
+
+/**
+ * Inline HTML the badge is allowed to contain. Deliberately narrow: the badge
+ * renders inside a single <p>, so block-level tags would produce invalid
+ * markup. This is why the fields are textareas rather than wysiwyg editors —
+ * a wysiwyg wraps its content in <p> and would nest paragraphs.
+ */
+function wellspring_badge_allowed_html() {
+	return array(
+		'strong' => array(),
+		'b'      => array(),
+		'em'     => array(),
+		'i'      => array(),
+		'br'     => array(),
+		'a'      => array(
+			'href'   => array(),
+			'title'  => array(),
+			'target' => array(),
+			'rel'    => array(),
+		),
+	);
+}
+
+/*
+ * Settings screen holding the two global defaults.
+ *
+ * acf_add_options_page() is an ACF Pro function. The theme already depends on
+ * Pro elsewhere (flexible content, repeaters), but guard anyway: without it
+ * the per-post override still works and the constants above supply the text,
+ * which is the behaviour before this feature existed.
+ */
+if ( function_exists( 'acf_add_options_page' ) ) {
+	add_action(
+		'acf/init',
+		function () {
+			acf_add_options_page(
+				array(
+					'page_title'  => 'Wellspring Settings',
+					'menu_title'  => 'Wellspring',
+					'menu_slug'   => 'wellspring-settings',
+					'capability'  => 'edit_pages',
+					'parent_slug' => 'options-general.php',
+					'redirect'    => false,
+				)
+			);
+
+			acf_add_local_field_group(
+				array(
+					'key'      => 'group_wellspring_badge_settings',
+					'title'    => 'Reviewed-by badge',
+					'fields'   => array(
+						array(
+							'key'     => 'field_ws_badge_intro',
+							'label'   => '',
+							'type'    => 'message',
+							'message' => 'The small green badge that appears above the "Book an appointment" banner. Basic formatting is allowed: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a href=""&gt;</code>. Leave a field empty to fall back to the wording built into the theme.',
+						),
+						array(
+							'key'           => 'field_ws_badge_default',
+							'name'          => 'badge_default',
+							'label'         => 'Default wording',
+							'type'          => 'textarea',
+							'rows'          => 3,
+							'new_lines'     => '',
+							'instructions'  => 'Used on the home page, About, What We Treat and any other page without its own override.',
+							'placeholder'   => WELLSPRING_BADGE_DEFAULT_PAGE,
+						),
+						array(
+							'key'           => 'field_ws_badge_case',
+							'name'          => 'badge_clinic_case',
+							'label'         => 'Clinic cases wording',
+							'type'          => 'textarea',
+							'rows'          => 3,
+							'new_lines'     => '',
+							'instructions'  => 'Used on every clinic case, the Clinic Cases listing, and the focus / symptom / treatment archives.',
+							'placeholder'   => WELLSPRING_BADGE_DEFAULT_CASE,
+						),
+					),
+					'location' => array(
+						array(
+							array(
+								'param'    => 'options_page',
+								'operator' => '==',
+								'value'    => 'wellspring-settings',
+							),
+						),
+					),
+					'menu_order'            => 0,
+					'active'                => true,
+					'hide_on_screen'        => '',
+					'description'           => 'Site-wide wording for the reviewed-by badge.',
+				)
+			);
+		}
+	);
+}
+
+/*
+ * Per-post override, on pages and clinic cases.
+ */
+add_action(
+	'acf/init',
+	function () {
+		acf_add_local_field_group(
+			array(
+				'key'      => 'group_wellspring_badge_post',
+				'title'    => 'Reviewed-by badge',
+				'fields'   => array(
+					array(
+						'key'           => 'field_ws_badge_override',
+						'name'          => 'badge_override',
+						'label'         => 'Override the badge wording',
+						'type'          => 'textarea',
+						'rows'          => 3,
+						'new_lines'     => '',
+						'instructions'  => 'Leave empty to use the site-wide wording from Settings &rsaquo; Wellspring. Basic formatting allowed: <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a href=""&gt;</code>.',
+					),
+					array(
+						'key'           => 'field_ws_badge_hide',
+						'name'          => 'badge_hide',
+						'label'         => 'Hide the badge on this page',
+						'type'          => 'true_false',
+						'ui'            => 1,
+						'instructions'  => 'Use for pages with no clinical content.',
+						'default_value' => 0,
+					),
+				),
+				'location' => array(
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'page',
+						),
+					),
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'clinic_case',
+						),
+					),
+				),
+				'menu_order'     => 30,
+				'position'       => 'side',
+				'style'          => 'default',
+				'active'         => true,
+				'description'    => 'Per-page wording for the reviewed-by badge.',
+			)
+		);
+	}
+);
+
+/**
+ * Resolve the badge text for the current request.
+ *
+ * @return string Unescaped HTML (run through wp_kses at output), or '' to hide.
+ */
+function wellspring_badge_text() {
+	$has_acf = function_exists( 'get_field' );
+
+	$is_case_context = is_singular( 'clinic_case' )
+		|| is_post_type_archive( 'clinic_case' )
+		|| is_tax( array( 'case_focus', 'case_symptom', 'case_modality' ) );
+
+	// 1 + 2: per-post toggle and override.
+	if ( $has_acf && is_singular() ) {
+		$post_id = get_queried_object_id();
+
+		if ( get_field( 'badge_hide', $post_id ) ) {
+			return '';
+		}
+
+		$override = trim( (string) get_field( 'badge_override', $post_id ) );
+		if ( '' !== $override ) {
+			return $override;
+		}
+	}
+
+	// 3 + 4: global defaults.
+	if ( $has_acf ) {
+		$global = trim( (string) get_field( $is_case_context ? 'badge_clinic_case' : 'badge_default', 'option' ) );
+		if ( '' !== $global ) {
+			return $global;
+		}
+	}
+
+	// 5: theme constants.
+	return $is_case_context ? WELLSPRING_BADGE_DEFAULT_CASE : WELLSPRING_BADGE_DEFAULT_PAGE;
+}
+
+/**
  * Helper to get an ACF field with a fallback default.
  *
  * Differentiates between "never saved" (null/false → use default) and
