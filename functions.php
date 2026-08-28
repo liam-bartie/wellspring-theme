@@ -241,6 +241,12 @@ require get_template_directory() . '/inc/custom-header.php';
 require get_template_directory() . '/inc/template-tags.php';
 
 /**
+ * Resolved values for the home page content blocks — shared by front-page.php
+ * and the section migration so both see identical values, defaults included.
+ */
+require get_template_directory() . '/inc/home-blocks.php';
+
+/**
  * Functions which enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';

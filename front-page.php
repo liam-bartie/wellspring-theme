@@ -22,34 +22,6 @@ $hero_btn2_label   = ws_field( 'hero_secondary_button_label', 'See what we treat
 $hero_btn2_url     = ws_field( 'hero_secondary_button_url', wellspring_page_url( 'what-we-treat' ) );
 $hero_bg           = function_exists( 'get_field' ) ? get_field( 'hero_background_image' ) : null;
 
-$intro_eyebrow     = ws_field( 'intro_eyebrow', '' );
-$intro_title       = ws_field( 'intro_title', '' );
-$intro_body        = ws_field( 'intro_body', "For over a decade, Dr. Laura Cowburn has helped patients in Calgary move through pain, sleep trouble, hormonal shifts, digestive issues, and the everyday patterns that wear them down. Our practice blends acupuncture, herbal medicine, and old-fashioned, careful listening — and we welcome new patients, with or without a referral. Whatever brought you here, we'd like to help." );
-
-$wwt_eyebrow       = ws_field( 'wwt_eyebrow', 'What we treat' );
-$wwt_title         = ws_field( 'wwt_title', 'A wide range of conditions, drawn from thousands of years of practice.' );
-$wwt_lede          = ws_field( 'wwt_lede', 'From acute pain to chronic patterns, hormonal cycles to mental clarity — acupuncture and herbal medicine address the body as a whole, not in parts.' );
-
-$pract_eyebrow     = ws_field( 'practitioner_eyebrow', 'Meet your practitioner' );
-$pract_name        = ws_field( 'practitioner_name', 'Dr. Laura Cowburn' );
-$pract_credentials = ws_field( 'practitioner_credentials', 'Doctor of Traditional Chinese Medicine · Registered Acupuncturist (Alberta)' );
-$pract_bio         = ws_field( 'practitioner_bio', 'For more than a decade, Dr. Cowburn has practised in Calgary — drawing on acupuncture, herbal medicine, cupping, and patient counsel to help her clients feel themselves again. Her approach combines classical TCM diagnosis with a modern, evidence-aware lens, and a genuine commitment to time spent listening.' );
-$pract_link_label  = ws_field( 'practitioner_link_label', 'Read her full story' );
-$pract_link_url    = ws_field( 'practitioner_link_url', wellspring_page_url( 'about' ) );
-$pract_portrait    = function_exists( 'get_field' ) ? get_field( 'practitioner_portrait' ) : null;
-
-$mod_eyebrow       = ws_field( 'modalities_eyebrow', 'Our practice' );
-$mod_title         = ws_field( 'modalities_title', 'Two ancient modalities, applied with modern care.' );
-$tcm_image         = function_exists( 'get_field' ) ? get_field( 'tcm_image' ) : null;
-$tcm_title         = ws_field( 'tcm_title', 'What is Traditional Chinese Medicine (TCM)?' );
-$tcm_body          = ws_field( 'tcm_body', '' );
-$acu_image         = function_exists( 'get_field' ) ? get_field( 'acupuncture_image' ) : null;
-$acu_title         = ws_field( 'acupuncture_title', 'What is Acupuncture?' );
-$acu_body          = ws_field( 'acupuncture_body', '' );
-
-$cases_eyebrow     = ws_field( 'cases_eyebrow', 'Cases from the clinic' );
-$cases_title       = ws_field( 'cases_title', 'Real patients, real outcomes.' );
-$cases_lede        = ws_field( 'cases_lede', '' );
 $cases_featured_ids = function_exists( 'get_field' ) ? get_field( 'cases_featured' ) : array();
 
 if ( ! empty( $cases_featured_ids ) && is_array( $cases_featured_ids ) ) {
@@ -87,6 +59,10 @@ $wwt_page = get_page_by_path( 'what-we-treat' );
 // identical list. See inc/template-tags.php.
 $wwt_subpages = wellspring_wwt_subpages();
 
+// Content block values (with their defaults) come from one shared place so
+// the section migration can write exactly what this page renders.
+$blocks = wellspring_home_block_values();
+
 // Hero with optional bg image — different class for styling.
 $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 ?>
@@ -121,9 +97,9 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		'template-parts/home/intro',
 		null,
 		array(
-			'eyebrow' => $intro_eyebrow,
-			'title'   => $intro_title,
-			'body'    => $intro_body,
+			'eyebrow' => $blocks['intro']['eyebrow'],
+			'title'   => $blocks['intro']['title'],
+			'body'    => $blocks['intro']['body'],
 		)
 	);
 	?>
@@ -135,9 +111,9 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		'template-parts/home/what-we-treat',
 		null,
 		array(
-			'eyebrow'  => $wwt_eyebrow,
-			'title'    => $wwt_title,
-			'lede'     => $wwt_lede,
+			'eyebrow'  => $blocks['wwt']['eyebrow'],
+			'title'    => $blocks['wwt']['title'],
+			'lede'     => $blocks['wwt']['lede'],
 			'subpages' => $wwt_subpages,
 		)
 	);
@@ -150,13 +126,13 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		'template-parts/home/practitioner',
 		null,
 		array(
-			'eyebrow'     => $pract_eyebrow,
-			'name'        => $pract_name,
-			'credentials' => $pract_credentials,
-			'bio'         => $pract_bio,
-			'link_label'  => $pract_link_label,
-			'link_url'    => $pract_link_url,
-			'portrait'    => $pract_portrait,
+			'eyebrow'     => $blocks['practitioner']['eyebrow'],
+			'name'        => $blocks['practitioner']['name'],
+			'credentials' => $blocks['practitioner']['credentials'],
+			'bio'         => $blocks['practitioner']['bio'],
+			'link_label'  => $blocks['practitioner']['link_label'],
+			'link_url'    => $blocks['practitioner']['link_url'],
+			'portrait'    => $blocks['practitioner']['portrait'],
 		)
 	);
 	?>
@@ -168,14 +144,14 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		'template-parts/home/modalities',
 		null,
 		array(
-			'eyebrow'   => $mod_eyebrow,
-			'title'     => $mod_title,
-			'tcm_title' => $tcm_title,
-			'tcm_body'  => $tcm_body,
-			'tcm_image' => $tcm_image,
-			'acu_title' => $acu_title,
-			'acu_body'  => $acu_body,
-			'acu_image' => $acu_image,
+			'eyebrow'   => $blocks['modalities']['eyebrow'],
+			'title'     => $blocks['modalities']['title'],
+			'tcm_title' => $blocks['modalities']['tcm_title'],
+			'tcm_body'  => $blocks['modalities']['tcm_body'],
+			'tcm_image' => $blocks['modalities']['tcm_image'],
+			'acu_title' => $blocks['modalities']['acu_title'],
+			'acu_body'  => $blocks['modalities']['acu_body'],
+			'acu_image' => $blocks['modalities']['acu_image'],
 		)
 	);
 
@@ -185,9 +161,9 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		'template-parts/home/featured-cases',
 		null,
 		array(
-			'eyebrow' => $cases_eyebrow,
-			'title'   => $cases_title,
-			'lede'    => $cases_lede,
+			'eyebrow' => $blocks['cases']['eyebrow'],
+			'title'   => $blocks['cases']['title'],
+			'lede'    => $blocks['cases']['lede'],
 			'cases'   => $featured_cases,
 		)
 	);
