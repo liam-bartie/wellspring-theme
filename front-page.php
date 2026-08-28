@@ -89,93 +89,85 @@ $hero_class = $hero_bg ? 'ws-hero ws-hero--imaged' : 'ws-hero';
 		</div>
 	</section>
 
-	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_hero' ) ); ?>
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<?php
-	get_template_part(
-		'template-parts/home/intro',
-		null,
-		array(
-			'eyebrow' => $blocks['intro']['eyebrow'],
-			'title'   => $blocks['intro']['title'],
-			'body'    => $blocks['intro']['body'],
-		)
-	);
-	?>
-
-	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_intro' ) ); ?>
-
-	<?php
-	get_template_part(
-		'template-parts/home/what-we-treat',
-		null,
-		array(
-			'eyebrow'  => $blocks['wwt']['eyebrow'],
-			'title'    => $blocks['wwt']['title'],
-			'lede'     => $blocks['wwt']['lede'],
-			'subpages' => $wwt_subpages,
-		)
-	);
-	?>
-
-	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_wwt' ) ); ?>
-
-	<?php
-	get_template_part(
-		'template-parts/home/practitioner',
-		null,
-		array(
-			'eyebrow'     => $blocks['practitioner']['eyebrow'],
-			'name'        => $blocks['practitioner']['name'],
-			'credentials' => $blocks['practitioner']['credentials'],
-			'bio'         => $blocks['practitioner']['bio'],
-			'link_label'  => $blocks['practitioner']['link_label'],
-			'link_url'    => $blocks['practitioner']['link_url'],
-			'portrait'    => $blocks['practitioner']['portrait'],
-		)
-	);
-	?>
-
-	<?php get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_practitioner' ) ); ?>
-
-	<?php
-	get_template_part(
-		'template-parts/home/modalities',
-		null,
-		array(
-			'eyebrow'   => $blocks['modalities']['eyebrow'],
-			'title'     => $blocks['modalities']['title'],
-			'tcm_title' => $blocks['modalities']['tcm_title'],
-			'tcm_body'  => $blocks['modalities']['tcm_body'],
-			'tcm_image' => $blocks['modalities']['tcm_image'],
-			'acu_title' => $blocks['modalities']['acu_title'],
-			'acu_body'  => $blocks['modalities']['acu_body'],
-			'acu_image' => $blocks['modalities']['acu_image'],
-		)
-	);
-
-	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_modalities' ) );
-
-	get_template_part(
-		'template-parts/home/featured-cases',
-		null,
-		array(
-			'eyebrow' => $blocks['cases']['eyebrow'],
-			'title'   => $blocks['cases']['title'],
-			'lede'    => $blocks['cases']['lede'],
-			'cases'   => $featured_cases,
-		)
-	);
-
-	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_cases' ) );
-
-	// Curated Google reviews slider.
-	get_template_part( 'template-parts/reviews-slider' );
-
-	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'after_reviews' ) );
-
-	get_template_part( 'template-parts/flexible-sections', null, array( 'position' => 'before_cta' ) );
+	/*
+	 * Everything between the hero and the closing call-to-action is now an
+	 * editable, reorderable section row.
+	 *
+	 * Called once with no 'position' argument, so every row renders in the
+	 * order the editor arranged it. The home block layouts render through
+	 * template-parts/home/*.php — the same files this template used to include
+	 * directly — which is why the markup is unchanged by the switch.
+	 *
+	 * Hero above and CTA below stay pinned in the template: the page must not
+	 * be able to lose its opening or its call to action.
+	 *
+	 * Falls back to the old fixed rendering when no rows exist, so a site that
+	 * has not run Tools > Wellspring Home Sections still has a home page.
+	 */
+	if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
+		get_template_part( 'template-parts/flexible-sections' );
+	} else {
+		get_template_part(
+			'template-parts/home/intro',
+			null,
+			array(
+				'eyebrow' => $blocks['intro']['eyebrow'],
+				'title'   => $blocks['intro']['title'],
+				'body'    => $blocks['intro']['body'],
+			)
+		);
+		get_template_part(
+			'template-parts/home/what-we-treat',
+			null,
+			array(
+				'eyebrow'  => $blocks['wwt']['eyebrow'],
+				'title'    => $blocks['wwt']['title'],
+				'lede'     => $blocks['wwt']['lede'],
+				'subpages' => $wwt_subpages,
+			)
+		);
+		get_template_part(
+			'template-parts/home/practitioner',
+			null,
+			array(
+				'eyebrow'     => $blocks['practitioner']['eyebrow'],
+				'name'        => $blocks['practitioner']['name'],
+				'credentials' => $blocks['practitioner']['credentials'],
+				'bio'         => $blocks['practitioner']['bio'],
+				'link_label'  => $blocks['practitioner']['link_label'],
+				'link_url'    => $blocks['practitioner']['link_url'],
+				'portrait'    => $blocks['practitioner']['portrait'],
+			)
+		);
+		get_template_part(
+			'template-parts/home/modalities',
+			null,
+			array(
+				'eyebrow'   => $blocks['modalities']['eyebrow'],
+				'title'     => $blocks['modalities']['title'],
+				'tcm_title' => $blocks['modalities']['tcm_title'],
+				'tcm_body'  => $blocks['modalities']['tcm_body'],
+				'tcm_image' => $blocks['modalities']['tcm_image'],
+				'acu_title' => $blocks['modalities']['acu_title'],
+				'acu_body'  => $blocks['modalities']['acu_body'],
+				'acu_image' => $blocks['modalities']['acu_image'],
+			)
+		);
+		get_template_part(
+			'template-parts/home/featured-cases',
+			null,
+			array(
+				'eyebrow' => $blocks['cases']['eyebrow'],
+				'title'   => $blocks['cases']['title'],
+				'lede'    => $blocks['cases']['lede'],
+				'cases'   => $featured_cases,
+			)
+		);
+		get_template_part( 'template-parts/reviews-slider' );
+	}
 	?>
 
 	<?php get_template_part( 'template-parts/cta-banner' ); ?>
