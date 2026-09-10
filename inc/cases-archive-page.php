@@ -19,8 +19,28 @@
  * @package Wellspring
  */
 
-const WELLSPRING_CASES_PAGE_OPTION = 'wellspring_cases_page_id';
-const WELLSPRING_CASES_PAGE_SLUG   = 'clinic-cases-content';
+const WELLSPRING_CASES_PAGE_OPTION  = 'wellspring_cases_page_id';
+const WELLSPRING_CASES_PAGE_SLUG    = 'clinic-cases-content';
+const WELLSPRING_CASES_PAGE_TITLE   = 'Clinic cases';
+const WELLSPRING_CASES_SEED_VERSION = '2';
+
+/**
+ * What the archive displayed before this page existed.
+ *
+ * These are the same fallbacks archive-clinic_case.php passes to
+ * get_theme_mod(), and that matters: the Customizer settings were never
+ * actually saved on this site, so reading the theme mods with an empty default
+ * returns nothing and the hero seeds blank. Version 1 of this file did exactly
+ * that, which is how the internal page title ended up rendering as the H1.
+ *
+ * @return array field name => value
+ */
+function wellspring_cases_page_defaults() {
+	return array(
+		'page_h1'         => (string) get_theme_mod( 'clinic_cases_title', WELLSPRING_CASES_PAGE_TITLE ),
+		'page_subheading' => (string) get_theme_mod( 'clinic_cases_lede', "A curated record of patients we've worked with. Names are shortened to initials for privacy. Search by symptom, or filter by focus area and treatment." ),
+	);
+}
 
 /**
  * The designated page's ID, or 0.
@@ -48,10 +68,10 @@ function wellspring_cases_page_id( $create = false ) {
 
 	$id = wp_insert_post(
 		array(
-			'post_type'   => 'page',
-			'post_title'  => 'Clinic cases (page content)',
-			'post_name'   => WELLSPRING_CASES_PAGE_SLUG,
-			'post_status' => 'draft',
+			'post_type'    => 'page',
+			'post_title'   => WELLSPRING_CASES_PAGE_TITLE,
+			'post_name'    => WELLSPRING_CASES_PAGE_SLUG,
+			'post_status'  => 'draft',
 			'post_content' => '',
 		)
 	);
@@ -62,29 +82,55 @@ function wellspring_cases_page_id( $create = false ) {
 
 	update_option( WELLSPRING_CASES_PAGE_OPTION, (int) $id );
 
-	/*
-	 * Carry the existing Customizer values across, so the archive looks
-	 * exactly as it did before this page existed. Reading them here rather
-	 * than leaving the fields blank is the difference between a silent
-	 * migration and the hero emptying out.
-	 */
-	if ( function_exists( 'update_field' ) ) {
-		$heading = get_theme_mod( 'clinic_cases_title', '' );
-		$lede    = get_theme_mod( 'clinic_cases_lede', '' );
-
-		if ( $heading ) {
-			update_field( 'page_h1', $heading, $id );
-		}
-		if ( $lede ) {
-			update_field( 'page_subheading', $lede, $id );
-		}
-	}
-
 	return (int) $id;
 }
 
 /**
- * Provision the page on an admin load, once.
+ * Fill the hero fields with the values the archive was already showing.
+ *
+ * Writes only where a field is empty, so it can never overwrite an edit, and
+ * the caller's version flag means a deliberately cleared field stays cleared.
+ *
+ * @param int $id Page ID.
+ * @return int Fields written.
+ */
+function wellspring_seed_cases_page( $id ) {
+	if ( ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
+		return 0;
+	}
+
+	$written = 0;
+
+	foreach ( wellspring_cases_page_defaults() as $name => $value ) {
+		if ( '' === trim( $value ) ) {
+			continue;
+		}
+		if ( '' !== trim( (string) get_field( $name, $id ) ) ) {
+			continue;
+		}
+		update_field( $name, $value, $id );
+		$written++;
+	}
+
+	/*
+	 * The Customizer stored a hero image as a URL; the ACF field needs an
+	 * attachment ID. Only carried across when the URL resolves to something in
+	 * the library — a guess here would render a broken background.
+	 */
+	$mod = (string) get_theme_mod( 'clinic_cases_hero_image', '' );
+	if ( '' !== $mod && ! get_field( 'hero_image', $id ) ) {
+		$attachment = attachment_url_to_postid( $mod );
+		if ( $attachment ) {
+			update_field( 'hero_image', $attachment, $id );
+			$written++;
+		}
+	}
+
+	return $written;
+}
+
+/**
+ * Provision and seed the page on an admin load, once per seed version.
  */
 add_action(
 	'admin_init',
@@ -92,7 +138,57 @@ add_action(
 		if ( ! current_user_can( 'edit_pages' ) ) {
 			return;
 		}
-		wellspring_cases_page_id( true );
+
+		$id = wellspring_cases_page_id( true );
+		if ( ! $id ) {
+			return;
+		}
+
+		if ( get_option( 'wellspring_cases_page_seeded' ) === WELLSPRING_CASES_SEED_VERSION ) {
+			return;
+		}
+
+		/*
+		 * Version 1 named the page after its purpose. page_h1 falls back to the
+		 * page title, so with the seed empty that internal label rendered as the
+		 * public H1 on /clinic-cases. Renamed so the fallback is presentable.
+		 */
+		if ( 'Clinic cases (page content)' === get_post_field( 'post_title', $id ) ) {
+			wp_update_post(
+				array(
+					'ID'         => $id,
+					'post_title' => WELLSPRING_CASES_PAGE_TITLE,
+				)
+			);
+		}
+
+		$written = wellspring_seed_cases_page( $id );
+
+		update_option( 'wellspring_cases_page_seeded', WELLSPRING_CASES_SEED_VERSION );
+
+		if ( $written ) {
+			set_transient( 'wellspring_cases_page_seeded_notice', $written, 60 );
+		}
+	}
+);
+
+add_action(
+	'admin_notices',
+	function () {
+		$n = get_transient( 'wellspring_cases_page_seeded_notice' );
+		if ( false === $n ) {
+			return;
+		}
+		delete_transient( 'wellspring_cases_page_seeded_notice' );
+
+		$id = wellspring_cases_page_id();
+
+		printf(
+			'<div class="notice notice-success is-dismissible"><p>%s <a href="%s">%s</a></p></div>',
+			esc_html( sprintf( '%d field(s) on the Clinic Cases listing page filled in with the heading and intro the page was already showing.', $n ) ),
+			esc_url( (string) get_edit_post_link( $id ) ),
+			esc_html__( 'Review it', 'wellspring' )
+		);
 	}
 );
 
@@ -116,11 +212,44 @@ add_action(
 		printf(
 			'<div class="notice notice-info"><p>%s <a href="%s">%s</a>. %s</p></div>',
 			esc_html__( 'The heading, intro and content on the Clinic Cases listing are edited here:', 'wellspring' ),
-			esc_url( get_edit_post_link( $id ) ),
-			esc_html__( 'Clinic cases (page content)', 'wellspring' ),
+			esc_url( (string) get_edit_post_link( $id ) ),
+			esc_html__( 'Clinic cases', 'wellspring' ),
 			esc_html__( 'The order the cases appear in comes from the Order number on each one — lowest first. Use Quick Edit to change it.', 'wellspring' )
 		);
 	}
+);
+
+/**
+ * Replace the admin bar's Edit link on /clinic-cases.
+ *
+ * An archive has no post of its own, so core's edit node falls through to the
+ * front page — "Edit Home Page", which sends you somewhere you did not ask to
+ * go. Swapped for the page that actually holds this listing's content. Runs
+ * after core's node is added at priority 80.
+ */
+add_action(
+	'admin_bar_menu',
+	function ( $bar ) {
+		if ( ! is_post_type_archive( 'clinic_case' ) ) {
+			return;
+		}
+
+		$bar->remove_node( 'edit' );
+
+		$id = wellspring_cases_page_id();
+		if ( ! $id || ! current_user_can( 'edit_post', $id ) ) {
+			return;
+		}
+
+		$bar->add_node(
+			array(
+				'id'    => 'edit',
+				'title' => __( 'Edit Clinic Cases', 'wellspring' ),
+				'href'  => (string) get_edit_post_link( $id ),
+			)
+		);
+	},
+	100
 );
 
 /**
