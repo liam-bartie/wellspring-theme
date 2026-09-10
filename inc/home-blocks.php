@@ -155,3 +155,46 @@ function wellspring_home_featured_cases( $chosen = null ) {
 		)
 	);
 }
+
+/**
+ * Hide the legacy "Home page content" panel once the section builder is in use.
+ *
+ * front-page.php renders from page_sections whenever the home page has any
+ * rows, and skips its hardcoded blocks entirely. Every field in that panel is
+ * then read by nothing, which invites exactly the mistake it caused: choosing
+ * featured cases in a field the front end no longer consults, and reasonably
+ * concluding the site is broken.
+ *
+ * Removed rather than annotated, because the same values live on the matching
+ * section row a few inches up the same screen. If every row is ever deleted the
+ * fallback branch becomes live again and the panel comes back with it, so this
+ * hides the fields exactly when they do nothing and never when they matter.
+ *
+ * Runs at priority 20, after ACF has registered its own meta boxes at 10.
+ */
+add_action(
+	'add_meta_boxes',
+	function ( $post_type, $post ) {
+		if ( 'page' !== $post_type || ! $post instanceof WP_Post ) {
+			return;
+		}
+
+		if ( (int) $post->ID !== (int) get_option( 'page_on_front' ) ) {
+			return;
+		}
+
+		if ( ! function_exists( 'get_field' ) ) {
+			return;
+		}
+
+		$rows = get_field( 'page_sections', $post->ID );
+
+		if ( empty( $rows ) || ! is_array( $rows ) ) {
+			return;
+		}
+
+		remove_meta_box( 'acf-group_wellspring_home', 'page', 'normal' );
+	},
+	20,
+	2
+);
