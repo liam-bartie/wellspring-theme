@@ -936,10 +936,23 @@ add_action(
 						'key'           => 'field_hero_focal',
 						'name'          => 'hero_focal',
 						'label'         => 'Background focal point',
+						'instructions'  => 'Which part of the image stays in frame. The hero band is much wider than most photos, so roughly 40% of the height is visible at any setting.',
 						'type'          => 'select',
+						/*
+						 * Vertical stops at 15% intervals, not just top / centre /
+						 * bottom. Three stops was too coarse: on a seated portrait
+						 * the face sits around 20% of the image height and the
+						 * relevant body part around 58%, and no third of the frame
+						 * holds both. 'center 30%' does. The keyword values are
+						 * kept so anything already chosen still resolves.
+						 */
 						'choices'       => array(
-							'center center' => 'Centre',
 							'center top'    => 'Top',
+							'center 15%'    => 'Higher',
+							'center 30%'    => 'Slightly high',
+							'center center' => 'Centre',
+							'center 70%'    => 'Slightly low',
+							'center 85%'    => 'Lower',
 							'center bottom' => 'Bottom',
 							'left center'   => 'Left',
 							'right center'  => 'Right',
