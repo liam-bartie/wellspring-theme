@@ -345,7 +345,7 @@ add_action(
 						),
 					),
 				),
-				'menu_order'      => 0,
+				'menu_order'      => 5,
 				'position'        => 'normal',
 				'style'           => 'default',
 				'label_placement' => 'top',

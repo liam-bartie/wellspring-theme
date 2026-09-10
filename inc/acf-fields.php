@@ -844,6 +844,23 @@ add_action(
  * instead of the block editor. Home and the What We Treat hub have their own
  * dedicated templates, so they are excluded here.
  */
+/**
+ * Hide the hero sub-heading on clinic cases.
+ *
+ * single-clinic_case.php always passes its own lede to the hero part (the
+ * patient initial and context line), so page_subheading is never read there.
+ * A field that stores a value nothing displays is worse than no field.
+ */
+add_filter(
+	'acf/prepare_field/key=field_page_subheading',
+	function ( $field ) {
+		if ( 'clinic_case' === get_post_type( wellspring_acf_current_post_id() ) ) {
+			return false;
+		}
+		return $field;
+	}
+);
+
 add_action(
 	'acf/init',
 	function () {
@@ -935,7 +952,26 @@ add_action(
 						'allow_null'    => 0,
 					),
 				),
-				'location'              => array( $rules ),
+				/*
+				 * Pages, plus clinic cases. Cases were left out originally, which
+				 * meant a case hero had no focal point control at all: page-hero
+				 * read hero_focal, found nothing, and fell back to centre. On a
+				 * seated portrait that cut the subject's head off with no way to
+				 * correct it from the back end.
+				 *
+				 * Two rule groups rather than one, because ACF ANDs the rules
+				 * within a group and ORs the groups.
+				 */
+				'location'              => array(
+					$rules,
+					array(
+						array(
+							'param'    => 'post_type',
+							'operator' => '==',
+							'value'    => 'clinic_case',
+						),
+					),
+				),
 				'menu_order'            => 0,
 				'position'              => 'normal',
 				'style'                 => 'default',
