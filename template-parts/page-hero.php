@@ -34,16 +34,37 @@
 
 $ws_heading = function_exists( 'wellspring_page_h1' ) ? wellspring_page_h1() : get_the_title();
 
-// ---------------------------------------------------------------- background
-$ws_hero_url = '';
+/*
+ * ---------------------------------------------------------------- background
+ *
+ * Rendered as an <img> with object-fit rather than a CSS background, and from
+ * the uncropped file rather than the 'wellspring-hero' size.
+ *
+ * 'wellspring-hero' is a 1920x800 HARD crop, taken from the centre of the
+ * original at upload time. Two crops therefore stacked up: WordPress discarded
+ * the top and bottom of the photo, and then the hero band - which is wider than
+ * 2.4:1 at most window sizes - cropped what was left. On a portrait that took
+ * the head off, and the focal point could not recover it because those pixels
+ * were already gone from the file being displayed.
+ *
+ * Serving the full frame means the focal point now genuinely chooses which part
+ * of the photo is visible. An <img> also brings srcset, so a phone downloads a
+ * smaller file than a desktop, which a CSS background cannot do.
+ *
+ * The image stays decorative (alt="" inside an aria-hidden wrapper), matching
+ * the previous behaviour: the H1 alongside it already carries the meaning.
+ */
+$ws_hero_id  = 0;
 $ws_hero_img = function_exists( 'get_field' ) ? get_field( 'hero_image' ) : null;
 
 if ( is_array( $ws_hero_img ) && ! empty( $ws_hero_img['ID'] ) ) {
-	$ws_hero_url = (string) wp_get_attachment_image_url( (int) $ws_hero_img['ID'], 'wellspring-hero' );
+	$ws_hero_id = (int) $ws_hero_img['ID'];
+} elseif ( is_numeric( $ws_hero_img ) ) {
+	$ws_hero_id = (int) $ws_hero_img;
 }
 
-if ( '' === $ws_hero_url && has_post_thumbnail() ) {
-	$ws_hero_url = (string) get_the_post_thumbnail_url( get_the_ID(), 'wellspring-hero' );
+if ( ! $ws_hero_id && has_post_thumbnail() ) {
+	$ws_hero_id = (int) get_post_thumbnail_id( get_the_ID() );
 }
 
 $ws_focal = function_exists( 'get_field' ) ? trim( (string) get_field( 'hero_focal' ) ) : '';
@@ -77,12 +98,29 @@ if ( isset( $args['lede'] ) ) {
 	$ws_lede = $ws_sub ? esc_html( $ws_sub ) : '';
 }
 
-$ws_hero_class = $ws_hero_url ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
+$ws_hero_class = $ws_hero_id ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
 ?>
 
 <section class="<?php echo esc_attr( $ws_hero_class ); ?>">
-	<?php if ( $ws_hero_url ) : ?>
-		<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $ws_hero_url ); ?>'); background-position: <?php echo esc_attr( $ws_focal ); ?>;" aria-hidden="true"></div>
+	<?php if ( $ws_hero_id ) : ?>
+		<div class="ws-page-header__bg" aria-hidden="true">
+			<?php
+			echo wp_get_attachment_image(
+				$ws_hero_id,
+				'full',
+				false,
+				array(
+					'class'         => 'ws-page-header__img',
+					'style'         => 'object-position: ' . esc_attr( $ws_focal ) . ';',
+					'sizes'         => '100vw',
+					'alt'           => '',
+					'loading'       => 'eager',
+					'decoding'      => 'sync',
+					'fetchpriority' => 'high',
+				)
+			);
+			?>
+		</div>
 		<div class="ws-page-header__overlay" aria-hidden="true"></div>
 	<?php endif; ?>
 
