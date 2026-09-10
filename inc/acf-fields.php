@@ -1500,6 +1500,7 @@ add_action(
 											'rand'  => 'Random (feels fresh each visit)',
 											'date'  => 'Newest first',
 											'title' => 'A–Z by title',
+											'menu_order' => 'Hand-set order (the Order field on each case)',
 										),
 										'default_value' => 'rand',
 									),

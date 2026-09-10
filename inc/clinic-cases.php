@@ -42,7 +42,9 @@ add_action(
 				'menu_icon'     => 'dashicons-clipboard',
 				// No 'editor' — the case narrative lives entirely in the ACF "Case details" boxes,
 				// so the block canvas is hidden. "Additional notes" is an ACF field instead.
-				'supports'      => array( 'title', 'excerpt', 'thumbnail', 'revisions' ),
+				// 'page-attributes' gives each case an Order number, which is what
+				// lets the archive be arranged by hand instead of by date.
+				'supports'      => array( 'title', 'excerpt', 'thumbnail', 'revisions', 'page-attributes' ),
 				'has_archive'   => 'clinic-cases',
 				'rewrite'       => array(
 					'slug'       => 'clinic-case',
@@ -451,5 +453,68 @@ add_action(
 	'after_switch_theme',
 	function () {
 		flush_rewrite_rules();
+	}
+);
+
+/**
+ * Order column on the Clinic Cases list, so the running order is visible
+ * without opening each case.
+ */
+add_filter(
+	'manage_clinic_case_posts_columns',
+	function ( $columns ) {
+		$out = array();
+		foreach ( $columns as $key => $label ) {
+			if ( 'date' === $key ) {
+				$out['ws_order'] = __( 'Order', 'wellspring' );
+			}
+			$out[ $key ] = $label;
+		}
+		if ( ! isset( $out['ws_order'] ) ) {
+			$out['ws_order'] = __( 'Order', 'wellspring' );
+		}
+		return $out;
+	}
+);
+
+add_action(
+	'manage_clinic_case_posts_custom_column',
+	function ( $column, $post_id ) {
+		if ( 'ws_order' !== $column ) {
+			return;
+		}
+		echo esc_html( (string) get_post_field( 'menu_order', $post_id ) );
+	},
+	10,
+	2
+);
+
+add_filter(
+	'manage_edit-clinic_case_sortable_columns',
+	function ( $columns ) {
+		$columns['ws_order'] = 'menu_order';
+		return $columns;
+	}
+);
+
+/**
+ * Default the admin list to the order the archive uses, so what an editor sees
+ * while arranging cases matches what a visitor gets.
+ *
+ * Only applies when no sort has been chosen, so clicking a column still works.
+ */
+add_action(
+	'pre_get_posts',
+	function ( $query ) {
+		if ( ! is_admin() || ! $query->is_main_query() ) {
+			return;
+		}
+		if ( 'clinic_case' !== $query->get( 'post_type' ) ) {
+			return;
+		}
+		if ( $query->get( 'orderby' ) ) {
+			return;
+		}
+		$query->set( 'orderby', array( 'menu_order' => 'ASC', 'title' => 'ASC' ) );
 	}
 );

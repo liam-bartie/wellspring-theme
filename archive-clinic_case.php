@@ -12,15 +12,30 @@
 get_header();
 
 $focus_terms    = get_terms( array( 'taxonomy' => 'case_focus', 'hide_empty' => true ) );
-$symptom_terms  = get_terms( array( 'taxonomy' => 'case_symptom', 'hide_empty' => true ) );
+// Symptoms are listed by how many cases carry them, most first, so the
+// substantial ones lead. Focus areas and treatments stay alphabetical:
+// they are short, curated lists where A-Z is easier to scan.
+$symptom_terms  = get_terms(
+	array(
+		'taxonomy'   => 'case_symptom',
+		'hide_empty' => true,
+		'orderby'    => 'count',
+		'order'      => 'DESC',
+	)
+);
 $modality_terms = get_terms( array( 'taxonomy' => 'case_modality', 'hide_empty' => true ) );
 
 $all_cases = get_posts(
 	array(
 		'post_type'      => 'clinic_case',
 		'posts_per_page' => -1,
-		'orderby'        => 'date',
-		'order'          => 'DESC',
+		// Hand-set order (the Order field on each case), then title as a
+		// stable tiebreak so two cases sharing a number never swap places
+		// between page loads.
+		'orderby'        => array(
+			'menu_order' => 'ASC',
+			'title'      => 'ASC',
+		),
 	)
 );
 
@@ -40,21 +55,55 @@ $facet_groups = array(
 	$ar_image     = get_theme_mod( 'clinic_cases_hero_image', '' );
 	$header_class = $ar_image ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header';
 	?>
-	<section class="<?php echo esc_attr( $header_class ); ?>">
-		<?php if ( $ar_image ) : ?>
-			<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $ar_image ); ?>');" aria-hidden="true"></div>
-			<div class="ws-page-header__overlay" aria-hidden="true"></div>
-		<?php endif; ?>
-		<div class="ws-container ws-container--narrow ws-page-header__content">
-			<?php if ( $ar_eyebrow ) : ?><p class="eyebrow"><?php echo esc_html( $ar_eyebrow ); ?></p><?php endif; ?>
-			<?php if ( $ar_title ) : ?><h1 class="ws-page-header__title"><?php echo esc_html( $ar_title ); ?></h1><?php endif; ?>
-			<?php if ( $ar_lede ) : ?><p class="ws-page-header__lede"><?php echo esc_html( $ar_lede ); ?></p><?php endif; ?>
-		</div>
-	</section>
+	<?php
+	/*
+	 * Hero and intro come from the designated page, so the listing is editable
+	 * like any other page rather than through Customizer theme mods.
+	 * Falls back to the theme mods when that page is missing.
+	 */
+	if ( function_exists( 'wellspring_with_cases_page' ) && wellspring_cases_page_id() ) {
+		wellspring_with_cases_page(
+			function () use ( $ar_eyebrow ) {
+				get_template_part(
+					'template-parts/page-hero',
+					null,
+					array( 'eyebrow' => $ar_eyebrow ? esc_html( $ar_eyebrow ) : '' )
+				);
+			}
+		);
+	} else {
+		?>
+		<section class="<?php echo esc_attr( $ar_image ? 'ws-page-header ws-page-header--imaged' : 'ws-page-header' ); ?>">
+			<?php if ( $ar_image ) : ?>
+				<div class="ws-page-header__bg" style="background-image: url('<?php echo esc_url( $ar_image ); ?>');" aria-hidden="true"></div>
+				<div class="ws-page-header__overlay" aria-hidden="true"></div>
+			<?php endif; ?>
+			<div class="ws-container ws-container--narrow ws-page-header__content">
+				<?php if ( $ar_eyebrow ) : ?><p class="eyebrow"><?php echo esc_html( $ar_eyebrow ); ?></p><?php endif; ?>
+				<?php if ( $ar_title ) : ?><h1 class="ws-page-header__title"><?php echo esc_html( $ar_title ); ?></h1><?php endif; ?>
+				<?php if ( $ar_lede ) : ?><p class="ws-page-header__lede"><?php echo esc_html( $ar_lede ); ?></p><?php endif; ?>
+			</div>
+		</section>
+		<?php
+	}
+	?>
 
 	<?php get_template_part( 'template-parts/reviewed-by' ); ?>
 
 	<?php get_template_part( 'template-parts/disclosure', null, array( 'slot' => 'cases_top' ) ); ?>
+
+	<?php
+	// Anything the editor has built in Page content on that page.
+	if ( function_exists( 'wellspring_with_cases_page' ) ) {
+		wellspring_with_cases_page(
+			function () {
+				if ( function_exists( 'have_rows' ) && have_rows( 'page_sections' ) ) {
+					get_template_part( 'template-parts/flexible-sections' );
+				}
+			}
+		);
+	}
+	?>
 
 	<section class="ws-section ws-cases-archive">
 		<div class="ws-container">

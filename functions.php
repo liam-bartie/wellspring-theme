@@ -258,6 +258,11 @@ require get_template_directory() . '/inc/reviews.php';
 require get_template_directory() . '/inc/disclosure.php';
 
 /**
+ * The editable page behind the Clinic Cases archive.
+ */
+require get_template_directory() . '/inc/cases-archive-page.php';
+
+/**
  * Tools screen that migrates the home page's fields into section rows.
  * Admin-only, and it previews before it writes.
  */

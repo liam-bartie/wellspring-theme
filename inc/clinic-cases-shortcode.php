@@ -87,14 +87,29 @@ function wellspring_render_related_cases( $term_slug, $limit = 3, $heading = '',
 		return '';
 	}
 
-	$orderby = in_array( $orderby, array( 'rand', 'date', 'title' ), true ) ? $orderby : 'rand';
+	$orderby = in_array( $orderby, array( 'rand', 'date', 'title', 'menu_order' ), true ) ? $orderby : 'rand';
+
+	/*
+	 * Direction depends on the field. Newest-first and random want DESC, but
+	 * A-Z and the hand-set Order both read the wrong way round descending.
+	 */
+	$order = in_array( $orderby, array( 'title', 'menu_order' ), true ) ? 'ASC' : 'DESC';
+
+	// The hand-set order needs title as a tiebreak, or cases sharing a number
+	// shuffle between page loads.
+	$orderby_arg = ( 'menu_order' === $orderby )
+		? array(
+			'menu_order' => 'ASC',
+			'title'      => 'ASC',
+		)
+		: $orderby;
 
 	$query = new WP_Query(
 		array(
 			'post_type'      => 'clinic_case',
 			'posts_per_page' => max( 1, (int) $limit ),
-			'orderby'        => $orderby,
-			'order'          => 'DESC',
+			'orderby'        => $orderby_arg,
+			'order'          => $order,
 			'no_found_rows'  => true,
 			'tax_query'      => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 				array(
